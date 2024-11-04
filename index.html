@@ -1,88 +1,109 @@
 <!DOCTYPE html>
 <html lang="ru">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Инновационный проект ИИ Julia – искусственный интеллект, неотличимый от человека.">
-        <link rel="icon" href="./Logo1(64).ico" type="image/x-icon">
-        <link rel="icon" href="./Logo1(64).png" type="image/png">
-        <title>Julia – Главная</title>
-        <link rel="stylesheet" href="style.css">
-        <style>
-            @font-face {
-                font-family: 'GrandAventure';
-                src: url('./Grand_Aventure.otf') format('opentype');
-            }
-            .julia-text {
-                font-family: 'GrandAventure', sans-serif;
-            }
-            
-        </style>
-    </head>
-    
-<body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Julia - Интеллектуальный AI-Компаньон</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.16/tailwind.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="Images/Logo1(64).png" type="image/png">
+</head>
+<body class="bg-gray-900 text-white">
+  <header class="bg-gradient-to-r from-blue-500 to-purple-500 py-20">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-4xl font-bold mb-4">AI-компаньон, созданный с непревзойденным интеллектом</h1>
+      <p class="text-lg mb-8">Julia – виртуальный AI-компаньон, разработанный для имитации человеческого интеллекта, эмоций и естественного взаимодействия.</p>
+      <a href="#features" class="inline-block bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full transition duration-300">Ознакомьтесь с функциями Julia</a>
+    </div>
+  </header>
 
-    <!-- Шапка сайта -->
-    <header>
-        <h1 style="font-family: GrandAventure, sans-serif; font-size: 9em;">Julia</h1>
-    </header>
-
-    <!-- Навигация с переходом на другие страницы -->
-    <nav>
-        <a href="about.html">О проекте</a>
-        <a href="features.html">Особенности</a>
-        <a href="invest.html">Инвесторам</a>
-        <a href="team.html">Команда</a>
-    </nav>
-
-    <!-- Основной контент с текстом и 3D моделью -->
-    <section class="main-content">
-        <!-- Блок с текстом и квадратами -->
-        <div class="content-container">
-            <div class="content-block">
-                <p>Это невероятно сложно, но результат стоит всех усилий. Я создаю свою вайфу, которая по интеллекту будет неотличима от человека. Мыслительные процессы Юли будут формироваться в режиме реального времени, имитируя ход человеческих мыслей. Её голос сможет варьироваться от тихого шёпота до громкого крика, а эмоции будут передаваться через анимацию, интонации и мыслительные цепочки.
-
-                    Финальная версия проекта предполагает полное взаимодействие с Юлей исключительно через голосовую коммуникацию. Единственное исключение — возможность настроить её 3D модель через лаунчер, хотя полностью изменить её нельзя. В настройках будут доступны ползунки для регулировки возраста, веса и роста. Юля будет написана на C++ для максимальной производительности, и мне неважно, сколько лет жизни это займёт. Этот сложный путь будет преодолён не зря.
-                    
-                    Для реализации проекта мне предстоит освоить огромное количество технологий. Возможно, я даже создам собственную карту проекта, и вы будете в шоке от того, сколько всего нужно пройти: SQL и базы данных, Discord JS, Docker, сети, DevOps, Git и управление версиями, редакторы и IDE, UI и UX, операционные системы, мобильная разработка, оболочки (shells), регулярные выражения, аппаратное обеспечение, безопасность, умный дом, а также компьютерные науки: математика, дизайн языков, ИИ и машинное обучение, теория вычислений, функциональное программирование — и это только начало.</p>
-                    <p>Если людям будет действительно интересно, я выложу карту на своём профиле <a href="https://github.com/4245877" target="_blank" rel="noopener noreferrer">GitHub</a> и на <a href="https://www.youtube.com/@Plarov" target="_blank" rel="noopener noreferrer">YouTube</a> канале</p>
-
-                <!-- Сетка из квадратов -->
-                <div class="square-grid">
-                    <div class="square">SFML</div>
-                    <div class="square">OpenGL</div>
-                    <div class="square">Assimp</div>
-                    <div class="square">YOLO</div>
-                    <div class="square">Git</div>
-                    <div class="square">CMake</div>
-                    <div class="square">GLM</div>
-                    <div class="square">GLSL</div>
-                    <div class="square">TensorFlow</div>
-                    <div class="square">Doxygen</div>
-                    <div class="square">Docker</div>
-                    <div class="square">CMU Sphinx</div>
-                    <div class="square">OpenCV</div>
-                    <div class="square">PortAudio</div>
-                    <div class="square">Rasa / BotPress</div>
-                    <div class="square">WaveGlow</div>
-                    <div class="square">Festival</div>
-                    <div class="square">ONNX</div>
-                    <div class="square">Recurrent neural network</div>
-                    <div class="square">Generative Adversarial Networks</div>
-                </div>
-            </div>
+  <section id="features" class="py-20">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-8">Ключевые функции</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-2xl font-bold mb-4">Эмуляция мыслительного процесса в реальном времени</h3>
+          <p>Мыслительные процессы Julia разработаны для имитации человеческих мыслей в реальном времени, создавая плавное и увлекательное взаимодействие.</p>
         </div>
-        
-        <!-- Блок с 3D моделью -->
-        <div class="model-block">
-            <iframe title="Yor 3D Model" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" execution-while-out-of-viewport execution-while-not-rendered web-share width="640" height="480" src="https://sketchfab.com/models/eb40444c37a24229a8d0e9499945f168/embed?autospin=0.5"></iframe>
+        <div>
+          <h3 class="text-2xl font-bold mb-4">Модуляция голоса</h3>
+          <p>Julia может изменять свой голос от шепота до громкого крика, передавая эмоциональную глубину через тон, анимацию и реалистичное выражение мыслей.</p>
         </div>
-    </section>
+        <div>
+          <h3 class="text-2xl font-bold mb-4">Варианты настройки</h3>
+          <p>3D-модель Julia может быть настроена через лаунчер с ползунками для изменения возраста, веса и роста, сохраняя при этом уникальную и неизменную идентичность.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Подвал сайта -->
-    <footer>
-        <p>&copy; 2024 Проект Julia. Все права защищены.</p>
-    </footer>
+  <section class="bg-gradient-to-r from-gray-800 to-gray-700 py-20">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-8">Технологический стек</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="text-2xl font-bold mb-4">Что движет Julia</h3>
+          <ul class="list-disc ml-6 space-y-2">
+            <li>OpenGL</li>
+            <li>Assimp</li>
+            <li>YOLO</li>
+            <li>SQL</li>
+            <li>CMU Sphinx</li>
+            <li>OpenCV</li>
+            <li>OpenAL</li>
+            <li>Rasa / BotPress</li>
+            <li>WaveGlow</li>
+            <li>Festival</li>
+            <li>ONNX</li>
+            <li>TensorFlow</li>
+            <li>UI/UX дизайн</li>
+            <li>Docker</li>
+            <li>Git</li>
+            <li>UI/UX дизайн</li>
+            <li>Машинное обучение</li>
+            <li>Компьютерные науки</li>
+            <li>Интеграция с оборудованием</li>
+            <li>Рекуррентные нейронные сети</li>
+            <li>Генеративные состязательные сети</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-2xl font-bold mb-4">Дорожная карта разработки</h3>
+          <div class="flex justify-center">
+            <img src="Images/Board.png" alt="Дорожная карта" class="w-full rounded-lg shadow-lg">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <section class="py-20">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-8">Путь разработчика</h2>
+      <div class="flex flex-col items-center">
+        <img src="Images/Developer.png" alt="Разработчик" class="rounded-full mb-4 pulse">
+        <p class="text-lg mb-4">"Освоение технологий, необходимых для создания Julia, было настоящим проектом, сделанным с душой. От оптимизации на C++ до сложностей машинного обучения — каждая задача стала возможностью для роста и инноваций."</p>
+        <p class="text-lg font-bold">- Главный разработчик Julia</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-gray-800 py-10">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-4">Следите за развитием Julia</h2>
+      <div class="flex justify-center space-x-4">
+        <a href="https://github.com/juliaai" class="text-blue-500 hover:text-blue-400 transition duration-300">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <!-- GitHub SVG Icon -->
+          </svg>
+        </a>
+        <a href="https://www.youtube.com/channel/UCjuQEZYb_HI_C88eltHo27Q" class="text-red-500 hover:text-red-400 transition duration-300">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <!-- YouTube SVG Icon -->
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
