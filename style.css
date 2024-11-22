@@ -169,6 +169,7 @@ header, footer {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  
 }
 
 button {
@@ -215,7 +216,7 @@ button:hover {
   top: 10px;
   font-size: 24px;
   cursor: pointer;
-  color: #666;
+  color: #333;
 }
 
 .close-button:hover {
@@ -234,9 +235,3 @@ button:hover {
   text-align: center;
 }
 
-/* Центрирование кнопки в модальном окне */
-.modal-button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
