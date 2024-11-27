@@ -1,0 +1,60 @@
+{
+    "header": {
+      "title": "AI companion created with unparalleled intelligence",
+      "subtitle": "Julia is a virtual AI companion designed to emulate human intelligence, emotions, and natural interaction.",
+      "cta": "Explore Julia's features"
+    },
+    "features": {
+      "sectionTitle": "Key Features",
+      "feature1Title": "Real-time Thought Process Emulation",
+      "feature1Description": "Julia's thought processes are designed to mimic human thinking in real-time, creating smooth and engaging interactions.",
+      "feature2Title": "Voice Modulation",
+      "feature2Description": "Julia can change her voice from a whisper to a shout, conveying emotional depth through tone, animation, and realistic expressions of thought.",
+      "feature3Title": "Customization Options",
+      "feature3Description": "Julia's 3D model can be customized through a launcher with sliders to adjust age, weight, and height while maintaining a unique and consistent identity."
+    },
+    "techStack": {
+      "sectionTitle": "Technology Stack",
+      "whatDrivesTitle": "What Drives Julia",
+      "technologies": [
+        "OpenGL",
+        "Assimp",
+        "YOLO",
+        "SQL",
+        "CMU Sphinx",
+        "OpenCV",
+        "OpenAL",
+        "Rasa / BotPress",
+        "WaveGlow",
+        "Festival",
+        "ONNX",
+        "TensorFlow",
+        "UI/UX Design",
+        "Docker",
+        "Git",
+        "Machine Learning",
+        "Computer Science",
+        "Hardware Integration",
+        "Recurrent Neural Networks",
+        "Generative Adversarial Networks"
+      ],
+      "roadmapTitle": "Development Roadmap",
+      "roadmapImageAlt": "Roadmap"
+    },
+    "developerJourney": {
+      "sectionTitle": "My Journey as a Developer",
+      "description": "I don't even know where to begin. This journey started with a simple dream — to find a friend. When the first attempt failed, I thought: what if I tried to create one myself, literally from scratch? In the end, I thought, why not? From that moment, I began choosing a platform, fundamentals, and started conceptualizing. First, I imagined a personality, my 'character,' which I planned to bring to life in code. I settled on C++, although I was tempted to dive into Rust. Then I sketched a project plan: how it would be structured and its components. Initially, I planned for the AI to be just a standalone window. But soon, another idea came to mind: why limit it? Why not give it full access to the computer's resources and display the character model directly on the screen, without a window or background? And communication with it — not via text, but solely through voice. That is, I would feed voice input directly to the AI core, bypassing text conversion, like in a live conversation. In this interaction, the AI would be capable of initiating dialogue, feeling offended if insulted, or joking if the conversation took a strange turn. I would teach it like a baby — not pouring vast amounts of data at once, but explaining the world piece by piece. And when its 'core,' its foundation, was formed, I would provide it with data for comprehensive learning. Ultimately, it would be like a person — with its own personality, thinking, and beliefs, but with limitless knowledge.",
+      "supportText": "Support my project Julia"
+    },
+    "donation": {
+      "currentAmount": "1.17",
+      "goalAmount": "1000",
+      "buttonText": "Support",
+      "modalTitle": "The amount doesn't matter. I'll appreciate any support!",
+      "paymentDetails": "Visa 4441111042472401"
+    },
+    "footer": {
+      "text": "All rights reserved © 2024"
+    }
+  }
+  

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,9 +12,14 @@
 <body class="bg-gray-900 text-white">
   <header class="bg-gradient-to-r from-blue-500 to-purple-500 py-20">
     <div class="container mx-auto px-4 text-center">
-      <h1 class="text-4xl font-bold mb-4">AI-компаньон, созданный с непревзойденным интеллектом</h1>
-      <p class="text-lg mb-8">Julia – виртуальный AI-компаньон, разработанный для имитации человеческого интеллекта, эмоций и естественного взаимодействия.</p>
-      <a href="#features" class="inline-block bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full transition duration-300">Ознакомьтесь с функциями Julia</a>
+      <div class="language-switcher">
+        <button data-lang="en" class="lang-btn lang-btn-en">EN</button>
+        <button data-lang="ua" class="lang-btn lang-btn-ua">UA</button>
+        <button data-lang="rus" class="lang-btn lang-btn-rus">RU</button>
+    </div>
+      <h1 id="mainHeading" class="text-4xl font-bold mb-4">AI-компаньон, созданный с непревзойденным интеллектом</h1>
+      <p id="mainDescription" class="text-lg mb-8">Julia – виртуальный AI-компаньон, разработанный для имитации человеческого интеллекта, эмоций и естественного взаимодействия.</p>
+      <a id="featuresLink" href="#features" class="inline-block bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full transition duration-300">Ознакомьтесь с функциями Julia</a>
     </div>
   </header>
 
@@ -93,25 +98,25 @@
 
 
 
-    <div class="progress-container">
-      <div class="progress-info">
-          <span id="current-amount">1.17</span> $ из <span id="goal-amount">1000</span> $
-      </div>
-      <div class="progress-bar">
-          <div class="progress-fill" id="progress-fill"></div>
-      </div>
-      <button onclick="openModal()">Поддержать</button>
+      <div class="progress-container">
+       <div class="progress-info">
+           <span id="current-amount">1.17</span> $ из <span id="goal-amount">1000</span> $
+        </div>
+        <div class="progress-bar">
+           <div class="progress-fill" id="progress-fill"></div>
+       </div>
+        <button onclick="openModal()">Поддержать</button>
+    </div>
   </div>
-</div>
 
-<!-- Модальное окно -->
-<div class="modal" id="donateModal">
-  <div class="modal-content">
-      <span class="close-button" onclick="closeModal()">&times;</span>
-      <h2>Сума не важна. Буду рад любой поддержке!</h2>
-      <p>Visa 4441111042472401</p>
+  <!-- Модальное окно -->
+  <div class="modal" id="donateModal">
+   <div class="modal-content">
+        <span class="close-button" onclick="closeModal()">&times;</span>
+        <h2>Сума не важна. Буду рад любой поддержке!</h2>
+       <p>Visa 4441111042472401</p>
+    </div>
   </div>
-</div>
 
 </section>
 
@@ -148,5 +153,7 @@
       </div>
   </div>
 </footer>
+<script src="script.js"></script>
+
 </body>
 </html>
