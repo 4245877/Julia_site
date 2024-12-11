@@ -1,4 +1,7 @@
 class LanguageManager {
+
+
+    
     constructor() {
         this.currentLang = 'en'; // Default language
         this.supportedLanguages = ['en', 'ru', 'ua'];
@@ -107,6 +110,18 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+document.addEventListener('DOMContentLoaded', () => {
+    const languageManager = new LanguageManager();
+
+    // Привязка событий к кнопкам смены языка
+    const buttons = document.querySelectorAll('[data-lang]');
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            const selectedLang = button.dataset.lang;
+            languageManager.changeLanguage(selectedLang);
+        });
+    });
+});
 
 //========================ПрогрессБар========================
 let currentAmount = 12.53; // Изначальная сумма
