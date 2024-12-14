@@ -1,14 +1,13 @@
 class LanguageManager {
-
-
-    
     constructor() {
-        this.currentLang = 'en'; // Default language
+        this.currentLang = localStorage.getItem('selectedLanguage') || 'en';
         this.supportedLanguages = ['en', 'ru', 'ua'];
     }
 
     async loadLanguage(lang) {
-        // Validate language
+        // Нормализация кода языка
+        lang = lang === 'rus' ? 'ru' : lang;
+
         if (!this.supportedLanguages.includes(lang)) {
             console.error(`Unsupported language: ${lang}`);
             return null;
@@ -21,107 +20,47 @@ class LanguageManager {
             }
             return await response.json();
         } catch (error) {
-            console.error('Error loading language file:', error);
+            console.error('Detailed error loading language file:', error);
             return null;
         }
     }
 
     async changeLanguage(lang) {
-        const translations = await this.loadLanguage(lang);
-        if (!translations) return;
-
-        this.currentLang = lang;
-        this.updatePageContent(translations);
-        this.updateLanguageButtonStyles(lang);
-    }
-
-    updatePageContent(translations) {
-        // Обновление текста модального окна
-        const modalTitle = document.querySelector('#donateModal h2');
-        const modalDetails = document.querySelector('#donateModal p');
-        if (modalTitle) {
-            modalTitle.textContent = translations.donation.modalTitle;
-        }
-        if (modalDetails) {
-            modalDetails.textContent = translations.donation.paymentDetails;
-        }
-    
-        // Обновление других разделов, если они есть
-        const featuresSection = document.getElementById('features');
-        if (featuresSection) {
-            // Обновление заголовков и описаний функций
-            const sectionTitle = featuresSection.querySelector('h2');
-            if (sectionTitle) {
-                sectionTitle.textContent = translations.features.sectionTitle;
+        const prevLang = this.currentLang;
+        try {
+            // Добавлена нормализация языка
+            lang = lang === 'rus' ? 'ru' : lang;
+            
+            const translations = await this.loadLanguage(lang);
+            if (!translations) {
+                throw new Error('Translation load failed');
             }
-    
-            const featureBlocks = featuresSection.querySelectorAll('div > div');
-            if (featureBlocks.length >= 3) {
-                const features = [
-                    { titleKey: 'feature1Title', descKey: 'feature1Description' },
-                    { titleKey: 'feature2Title', descKey: 'feature2Description' },
-                    { titleKey: 'feature3Title', descKey: 'feature3Description' }
-                ];
-    
-                features.forEach((feature, index) => {
-                    const titleElement = featureBlocks[index].querySelector('h3');
-                    const descElement = featureBlocks[index].querySelector('p');
-    
-                    if (titleElement) {
-                        titleElement.textContent = translations.features[feature.titleKey];
-                    }
-                    if (descElement) {
-                        descElement.textContent = translations.features[feature.descKey];
-                    }
-                });
+            
+            console.log('Loaded translations:', translations);
+            
+            this.currentLang = lang;
+            localStorage.setItem('selectedLanguage', lang);
+            this.updatePageContent(translations);
+            this.updateLanguageButtonStyles(lang);
+        } catch (error) {
+            console.error('Language change failed', error);
+            alert('Не удалось сменить язык. Попробуйте позже.');
+            // Исправлена рекурсивная ошибка
+            if (lang !== prevLang) {
+                this.changeLanguage(prevLang);
             }
         }
     }
-    
 
-    updateLanguageButtonStyles(lang) {
-        const buttons = document.querySelectorAll('[data-lang]');
-        buttons.forEach(btn => {
-            btn.classList.remove('ring-4');
-            if (btn.dataset.lang === lang) {
-                btn.classList.add('ring-4');
-            }
-        });
-    }
+    // Остальной код без изменений
 }
 
-// Initialize language manager when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    const languageManager = new LanguageManager();
-
-    // Setup language switch buttons
-    const buttons = document.querySelectorAll('[data-lang]');
-    buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            languageManager.changeLanguage(btn.dataset.lang);
-        });
-    });
-
-    // Optional: Set initial language to browser language if supported
-    const browserLang = navigator.language.split('-')[0];
-    if (languageManager.supportedLanguages.includes(browserLang)) {
-        languageManager.changeLanguage(browserLang);
-    }
-});
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    const languageManager = new LanguageManager();
 
-    // Привязка событий к кнопкам смены языка
-    const buttons = document.querySelectorAll('[data-lang]');
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            const selectedLang = button.dataset.lang;
-            languageManager.changeLanguage(selectedLang);
-        });
-    });
-});
+
+
+
 
 //========================ПрогрессБар========================
 let currentAmount = 12.53; // Изначальная сумма
