@@ -35,7 +35,8 @@ class LanguageManager {
 
         try {
             // Используем полный путь от корня сайта
-            const response = await fetch(`/languages/${lang}.json`);
+            const response = await fetch('./languages/' + lang + '.json');
+
 
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
