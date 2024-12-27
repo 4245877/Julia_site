@@ -131,12 +131,17 @@ class LanguageManager {
             }
         }
 
-        const techStackTitle = document.querySelector('section:nth-child(2) h3');
+        const techStackTitle = document.getElementById('techStackTitle');
         if (techStackTitle) {
-            techStackTitle.textContent = translations.techStack.whatDrivesTitle;
+            techStackTitle.textContent = translations.techStack.sectionTitle;
         }
 
-        const roadmapTitle = document.querySelector('section:nth-child(2) h3:nth-of-type(2)');
+        const whatDrivesTitle = document.getElementById('whatDrivesTitle');
+        if (whatDrivesTitle) {
+            whatDrivesTitle.textContent = translations.techStack.whatDrivesTitle;
+        }
+
+        const roadmapTitle = document.getElementById('roadmapTitle');
         if (roadmapTitle) {
             roadmapTitle.textContent = translations.techStack.roadmapTitle;
         }
