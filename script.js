@@ -136,17 +136,22 @@ class LanguageManager {
             techStackTitle.textContent = translations.techStack.whatDrivesTitle;
         }
 
-        const developerJourneyTitle = document.querySelector('section:nth-child(3) h2');
+        const roadmapTitle = document.querySelector('section:nth-child(2) h3:nth-of-type(2)');
+        if (roadmapTitle) {
+            roadmapTitle.textContent = translations.techStack.roadmapTitle;
+        }
+
+        const developerJourneyTitle = document.getElementById('developerJourneyTitle');
         if (developerJourneyTitle) {
             developerJourneyTitle.textContent = translations.developerJourney.sectionTitle;
         }
 
-        const developerJourneyDescription = document.querySelector('#developerJourneyDescription');
+        const developerJourneyDescription = document.getElementById('developerJourneyDescription');
         if (developerJourneyDescription) {
             developerJourneyDescription.textContent = translations.developerJourney.description;
         }
 
-        const developerJourneySupportText = document.querySelector('#developerJourneySupportText');
+        const developerJourneySupportText = document.getElementById('developerJourneySupportText');
         if (developerJourneySupportText) {
             developerJourneySupportText.textContent = translations.developerJourney.supportText;
         }

@@ -51,8 +51,8 @@
         "goalAmount": "1000",
         "buttonText": "Підтримати",
         "modalTitle": "Сума не важлива. Буду радий будь-якій підтримці!",
-      "paymentDetailsUAH": "Visa 4441111042472401 UAH",
-      "paymentDetailsUSD": "Visa 4441111082147673 USD"
+        "paymentDetailsUAH": "Visa 4441111042472401 UAH",
+        "paymentDetailsUSD": "Visa 4441111082147673 USD"
     },
     "footer": {
         "text": "Всі права захищено © 2024"
