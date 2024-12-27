@@ -283,3 +283,30 @@ header, footer {
   color: #561;
   text-align: center;
 }
+
+/* Стили для кнопки "Поддержать" */
+.support-button {
+  padding: 10px 20px;
+  background-color: #4CAF50; /* Зеленый цвет фона */
+  color: white; /* Белый цвет текста */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.support-button:hover {
+  background-color: #45a049; /* Темно-зеленый цвет при наведении */
+  transform: translateY(-2px); /* Легкий подъем при наведении */
+}
+
+.support-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.5); /* Зеленая тень при фокусе */
+}
+
+.support-button:active {
+  transform: scale(0.98); /* Легкое уменьшение при нажатии */
+}
