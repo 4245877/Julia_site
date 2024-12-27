@@ -221,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Инициализация прогресс-бара
     const currentAmount = 12.53; // Изначальная сумма
-    const goalAmount = 1000; // Цель
+    const goalAmount = 100; // Цель
     const progressFill = document.getElementById('progress-fill');
     const currentAmountElement = document.getElementById('current-amount');
 
