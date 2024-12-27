@@ -1,3 +1,102 @@
+/* Контейнер для кнопок */
+.language-buttons {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 1000;
+}
+/* Общие стили для всех языковых кнопок */
+[data-lang] {
+  padding: 0.25rem 1rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Специфичные стили для каждой кнопки */
+[data-lang="en"] {
+  background-color: #3B82F6;
+  color: white;
+}
+
+[data-lang="en"]:hover {
+  background-color: #2563EB;
+  transform: translateY(-2px);
+}
+
+[data-lang="ua"] {
+  background-color: #F59E0B;
+  color: white;
+}
+
+[data-lang="ua"]:hover {
+  background-color: #D97706;
+  transform: translateY(-2px);
+}
+
+[data-lang="ru"] {
+  background-color: #EF4444;
+  color: white;
+}
+
+[data-lang="ru"]:hover {
+  background-color: #DC2626;
+  transform: translateY(-2px);
+}
+
+/* Активное состояние */
+[data-lang].active-lang {
+  transform: scale(1.1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+              0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Состояние фокуса */
+[data-lang]:focus {
+  outline: none;
+}
+
+[data-lang="en"]:focus {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+[data-lang="ua"]:focus {
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.5);
+}
+
+[data-lang="ru"]:focus {
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.5);
+}
+
+/* Анимация при нажатии */
+[data-lang]:active {
+  transform: scale(0.95);
+}
+
+/* Отключение выделения текста */
+[data-lang] {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 640px) {
+  [data-lang] {
+      padding: 0.2rem 0.75rem;
+      font-size: 0.75rem;
+  }
+  
+  .language-buttons {
+      top: 0.5rem;
+      right: 0.5rem;
+  }
+}
+
 /* Style for the header gradient */
 .header-gradient {
     background: linear-gradient(to right, #4299e1, #805ad5);
@@ -23,12 +122,6 @@
     animation: pulse 3s ease-in-out infinite;
   }
   
-  /* Button style */
-  .explore-button {
-    background-color: #2d3748;
-    padding: 12px 24px;
-    border-radius: 9999px;
-  }
   
   .explore-button:hover {
     background-color: #4a5568;
@@ -121,9 +214,6 @@ header, footer {
 }
 
 
-
-
-
 .main-content {
   transition: filter 0.3s ease-out;
 }
@@ -161,28 +251,6 @@ header, footer {
   transition: width 0.5s ease-out;
 }
 
-/* Центрирование кнопки */
-.button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  
-}
-
-button {
-  padding: 10px 20px;
-  background-color: #4287f5;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-button:hover {
-  background-color: #2d6ed9;
-}
-
 /* Стили для модального окна */
 .modal {
   display: none;
@@ -196,7 +264,6 @@ button:hover {
   align-items: center;
   z-index: 1000;
 }
-
 .modal-content {
   background-color: white;
   padding: 20px;
@@ -206,29 +273,13 @@ button:hover {
   max-width: 500px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
-.close-button {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  font-size: 24px;
-  cursor: pointer;
-  color: #333;
-}
-
-.close-button:hover {
-  color: #333;
-}
-
 .modal h2 {
   margin-top: 0;
   color: #333;
   text-align: center;
 }
-
 .modal p {
   margin: 15px 0;
   color: #561;
   text-align: center;
 }
-
