@@ -162,31 +162,6 @@
     color: #cbd5e0;
   }
   
-  /* style.css */
-body {
-  background-color: #1a202c;
-  color: #ffffff;
-}
-
-header, footer {
-  background-color: #2d3748;
-}
-
-.pulse {
-  animation: pulse 3s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
 /* style.css */
 body {
   background-color: #1a202c;
