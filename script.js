@@ -141,6 +141,16 @@ class LanguageManager {
             developerJourneyTitle.textContent = translations.developerJourney.sectionTitle;
         }
 
+        const developerJourneyDescription = document.querySelector('#developerJourneyDescription');
+        if (developerJourneyDescription) {
+            developerJourneyDescription.textContent = translations.developerJourney.description;
+        }
+
+        const developerJourneySupportText = document.querySelector('#developerJourneySupportText');
+        if (developerJourneySupportText) {
+            developerJourneySupportText.textContent = translations.developerJourney.supportText;
+        }
+
         const footerTitle = document.querySelector('footer h2');
         if (footerTitle) {
             footerTitle.textContent = translations.footer.text;
