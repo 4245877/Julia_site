@@ -119,8 +119,7 @@ class LanguageManager {
 
         const featureTitles = document.querySelectorAll('#features h3');
         if (featureTitles.length >= 3) {
-            featureTitles[0].text
-            Content = translations.features.feature1Title;
+            featureTitles[0].textContent = translations.features.feature1Title;
             featureTitles[1].textContent = translations.features.feature2Title;
             featureTitles[2].textContent = translations.features.feature3Title;
 
@@ -132,19 +131,49 @@ class LanguageManager {
             }
         }
 
-        const techStackTitle = document.querySelector('section:nth-child(3) h3');
+        const techStackTitle = document.querySelector('section:nth-child(2) h3');
         if (techStackTitle) {
             techStackTitle.textContent = translations.techStack.whatDrivesTitle;
         }
 
-        const developerJourneyTitle = document.querySelector('section:nth-child(4) h2');
+        const developerJourneyTitle = document.querySelector('section:nth-child(3) h2');
         if (developerJourneyTitle) {
             developerJourneyTitle.textContent = translations.developerJourney.sectionTitle;
         }
 
         const footerTitle = document.querySelector('footer h2');
         if (footerTitle) {
-            footerTitle.textContent = translations.footer.title;
+            footerTitle.textContent = translations.footer.text;
+        }
+
+        // Обновление текста в модальном окне
+        const modalTitle = document.querySelector('.modal-content h2');
+        if (modalTitle) {
+            modalTitle.textContent = translations.donation.modalTitle;
+        }
+
+        const paymentDetailsUAH = document.querySelector('.modal-content p:nth-child(2)');
+        if (paymentDetailsUAH) {
+            paymentDetailsUAH.textContent = translations.donation.paymentDetailsUAH;
+        }
+
+        const paymentDetailsUSD = document.querySelector('.modal-content p:nth-child(3)');
+        if (paymentDetailsUSD) {
+            paymentDetailsUSD.textContent = translations.donation.paymentDetailsUSD;
+        }
+
+        // Обновление текста кнопки пожертвования
+        const donateButton = document.querySelector('.progress-container button');
+        if (donateButton) {
+            donateButton.textContent = translations.donation.buttonText;
+        }
+
+        // Обновление текущей суммы и цели
+        const currentAmountElement = document.getElementById('current-amount');
+        const goalAmountElement = document.getElementById('goal-amount');
+        if (currentAmountElement && goalAmountElement) {
+            currentAmountElement.textContent = translations.donation.currentAmount;
+            goalAmountElement.textContent = translations.donation.goalAmount;
         }
     }
 }
