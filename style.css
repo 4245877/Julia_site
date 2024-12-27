@@ -222,6 +222,7 @@ header, footer {
   filter: blur(5px);
 }
 
+/* Центрирование кнопки "Поддержать" */
 .progress-container {
   display: flex;
   flex-direction: column;
