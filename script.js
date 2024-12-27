@@ -100,14 +100,9 @@ class LanguageManager {
 
     updatePageContent(translations) {
         // Обновление элементов с переводом
-        const mainHeading = document.getElementById('mainHeading');
-        if (mainHeading) mainHeading.textContent = translations.header.title;
-
-        const mainDescription = document.getElementById('mainDescription');
-        if (mainDescription) mainDescription.textContent = translations.header.subtitle;
-
-        const featuresLink = document.getElementById('featuresLink');
-        if (featuresLink) featuresLink.textContent = translations.header.cta;
+        document.getElementById('mainHeading').textContent = translations.header.title;
+        document.getElementById('mainDescription').textContent = translations.header.subtitle;
+        document.getElementById('featuresLink').textContent = translations.header.cta;
 
         const sectionTitles = {
             'features': translations.features.sectionTitle,
@@ -131,12 +126,12 @@ class LanguageManager {
             const featureDescriptions = document.querySelectorAll('#features p');
             if (featureDescriptions.length >= 3) {
                 featureDescriptions[0].textContent = translations.features.feature1Description;
-        const techStackTitle = document.querySelector('#techStack h3');
+                featureDescriptions[1].textContent = translations.features.feature2Description;
                 featureDescriptions[2].textContent = translations.features.feature3Description;
             }
         }
 
-        const developerJourneyTitle = document.querySelector('#developerJourney h2');
+        const techStackTitle = document.querySelector('section:nth-child(2) h3');
         if (techStackTitle) {
             techStackTitle.textContent = translations.techStack.whatDrivesTitle;
         }
@@ -203,8 +198,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Инициализация языкового менеджера
     const languageManager = new LanguageManager();
-    // Example usage of languageManager to remove the warning
-    languageManager.changeLanguage(languageManager.currentLang);
 
     // Инициализация прогресс-бара
     const currentAmount = 12.53; // Изначальная сумма

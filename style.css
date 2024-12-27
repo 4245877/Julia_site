@@ -99,28 +99,13 @@
 
 /* Style for the header gradient */
 .header-gradient {
-    background: linear-gradient(to right, #4299e1, #805ad5);
-  }
-  
-  /* Pulse animation */
-  @keyframes pulse {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.05);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-  
-  
-  
-  /* Classes for pulse effect */
-  .pulse {
-    animation: pulse 3s ease-in-out infinite;
-  }
+  background: linear-gradient(to right, #4299e1, #805ad5);
+}
+
+/* Classes for pulse effect */
+.pulse {
+  animation: pulse 3s ease-in-out infinite;
+}
   
   
   .explore-button:hover {
@@ -214,6 +199,7 @@ header, footer {
   text-align: center;
 }
 
+/* Стили для прогресс-бара */
 .progress-bar {
   width: 100%;
   height: 30px;
@@ -243,6 +229,7 @@ header, footer {
   align-items: center;
   z-index: 1000;
 }
+
 .modal-content {
   background-color: white;
   padding: 20px;
@@ -251,12 +238,9 @@ header, footer {
   width: 90%;
   max-width: 500px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-.modal h2 {
-  margin-top: 0;
-  color: #333;
   text-align: center;
 }
+
 .modal p {
   margin: 15px 0;
   color: #561;
