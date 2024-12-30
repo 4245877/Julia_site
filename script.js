@@ -146,6 +146,16 @@ class LanguageManager {
             roadmapTitle.textContent = translations.techStack.roadmapTitle;
         }
 
+        const techStackList = document.getElementById('techStackList');
+        if (techStackList) {
+            techStackList.innerHTML = '';
+            translations.techStack.technologies.forEach(tech => {
+                const li = document.createElement('li');
+                li.textContent = tech;
+                techStackList.appendChild(li);
+            });
+        }
+
         const developerJourneyTitle = document.getElementById('developerJourneyTitle');
         if (developerJourneyTitle) {
             developerJourneyTitle.textContent = translations.developerJourney.sectionTitle;
@@ -191,9 +201,11 @@ class LanguageManager {
         // Обновление текущей суммы и цели
         const currentAmountElement = document.getElementById('current-amount');
         const goalAmountElement = document.getElementById('goal-amount');
-        if (currentAmountElement && goalAmountElement) {
+        const ofTextElement = document.getElementById('of-text');
+        if (currentAmountElement && goalAmountElement && ofTextElement) {
             currentAmountElement.textContent = translations.donation.currentAmount;
             goalAmountElement.textContent = translations.donation.goalAmount;
+            ofTextElement.textContent = translations.donation.of;
         }
     }
 }

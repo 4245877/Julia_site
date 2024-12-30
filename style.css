@@ -247,6 +247,11 @@ header, footer {
   text-align: center;
 }
 
+.modal h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
 /* Стили для кнопки "Поддержать" */
 .support-button {
   padding: 10px 20px;

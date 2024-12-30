@@ -47,9 +47,10 @@
       "supportText": "Support my project Julia"
     },
     "donation": {
-      "currentAmount": "1.17",
-      "goalAmount": "1000",
+      "currentAmount": "12.17",
+      "goalAmount": "100",
       "buttonText": "Support",
+      "of": "of",
       "modalTitle": "The amount doesn't matter. I'll appreciate any support!",
       "paymentDetailsUAH": "Visa 4441111042472401 UAH",
       "paymentDetailsUSD": "Visa 4441111082147673 USD"
@@ -58,4 +59,6 @@
       "text": "All rights reserved © 2024"
     }
   }
+
+  
   
