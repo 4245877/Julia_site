@@ -177,17 +177,17 @@ class LanguageManager {
         }
 
         // Обновление текста в модальном окне
-        const modalTitle = document.querySelector('.modal-content h2');
+        const modalTitle = document.getElementById('modalTitle');
         if (modalTitle) {
             modalTitle.textContent = translations.donation.modalTitle;
         }
 
-        const paymentDetailsUAH = document.querySelector('.modal-content p:nth-child(2)');
+        const paymentDetailsUAH = document.getElementById('paymentDetailsUAH');
         if (paymentDetailsUAH) {
             paymentDetailsUAH.textContent = translations.donation.paymentDetailsUAH;
         }
 
-        const paymentDetailsUSD = document.querySelector('.modal-content p:nth-child(3)');
+        const paymentDetailsUSD = document.getElementById('paymentDetailsUSD');
         if (paymentDetailsUSD) {
             paymentDetailsUSD.textContent = translations.donation.paymentDetailsUSD;
         }
