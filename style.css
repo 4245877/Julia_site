@@ -99,7 +99,22 @@
 
 /* Style for the header gradient */
 .header-gradient {
-  background: linear-gradient(to right, #4299e1, #805ad5);
+  background: linear-gradient(270deg, #4299e1, #805ad5, #4299e1);
+  background-size: 600% 600%;
+  animation: gradientAnimation 15s ease infinite;
+}
+
+/* Анимация градиента */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Classes for pulse effect */
