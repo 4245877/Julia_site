@@ -294,16 +294,3 @@ header, footer {
 .support-button:active {
   transform: scale(0.98); /* Легкое уменьшение при нажатии */
 }
-
-/* Разделитель между секциями с эффектом размытия */
-.section-divider {
-  /* Высота области, где происходит размытие (настраивайте по вкусу) */
-  height: 30px;
-  /* Чтобы псевдофон и фильтр работали, элемент должен быть на своем слое */
-  position: relative;
-  /* Минимальная прозрачность нужна для срабатывания backdrop-filter */
-  background: rgba(255, 255, 255, 0.001);
-  /* Применяем эффект размытия */
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px); /* для Safari */
-}
