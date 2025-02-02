@@ -295,63 +295,29 @@ header, footer {
   transform: scale(0.98); /* Легкое уменьшение при нажатии */
 }
 
-/* Добавляем размытие между секциями */
-.section {
+/* Эффект размытия между блоками */
+.blur-transition {
+  /* Задаём высоту перехода – можно регулировать по необходимости */
+  height: 50px;
   position: relative;
-  isolation: isolate; /* Создаем новый контекст стекинга */
+  overflow: hidden;
 }
 
-.section::after {
-  content: '';
+/* Псевдоэлемент создаёт градиент с эффектом размытия */
+.blur-transition::before {
+  content: "";
   position: absolute;
-  bottom: -8px;
+  top: 0;
   left: 0;
   right: 0;
-  height: 16px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  background: linear-gradient(
-    to bottom,
-    rgba(26, 32, 44, 0.8),
-    rgba(26, 32, 44, 0.4)
-  );
-  z-index: -1;
-  transform: translateZ(0); /* Аппаратное ускорение */
-}
-
-/* Для feature items */
-.feature-item {
-  position: relative;
-  margin-bottom: 1.5rem;
-}
-
-.feature-item::after {
-  content: '';
-  position: absolute;
-  bottom: -6px;
-  left: 0;
-  right: 0;
-  height: 12px;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  background: rgba(42, 50, 66, 0.6);
-  transform: translateZ(0);
-}
-
-/* Оптимизация анимаций */
-@media (prefers-reduced-motion: no-preference) {
-  .feature-item:hover {
-    transform: scale(1.05);
-    backface-visibility: hidden; /* Улучшает производительность трансформаций */
-    will-change: transform;
-  }
-}
-
-/* Фолбэк для браузеров без поддержки backdrop-filter */
-@supports not (backdrop-filter: blur(1px)) {
-  .section::after,
-  .feature-item::after {
-    background: rgba(42, 50, 66, 0.95);
-    opacity: 0.8;
-  }
+  bottom: 0;
+  /* Градиент плавно переходит от одного цвета к другому.
+     Используем CSS-переменные для гибкости (цвета задаём в HTML). */
+  background: linear-gradient(to bottom, var(--start-color), var(--end-color));
+  /* Применяем размытие – радиус можно регулировать по вкусу */
+  filter: blur(8px);
+  /* Немного увеличиваем размер, чтобы не было видимых краёв размытия */
+  transform: scale(1.1);
+  /* Подсказка для браузера – данное свойство изменяется, оптимизирует рендеринг */
+  will-change: filter;
 }
