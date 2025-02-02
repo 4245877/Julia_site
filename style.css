@@ -302,11 +302,11 @@ header, footer {
 }
 
 .section:nth-child(even) {
-  background-color: #2d3748;
+  background-color: #2a2e35; /* Темно-серый */
 }
 
 .section:nth-child(odd) {
-  background-color: #1a202c;
+  background-color: #1f2329; /* Темно-синий */
 }
 
 .section h2, .section p {
