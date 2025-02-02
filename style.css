@@ -294,7 +294,6 @@ header, footer {
 .support-button:active {
   transform: scale(0.98); /* Легкое уменьшение при нажатии */
 }
-
 /* Эффект размытия между блоками */
 .blur-transition {
   height: 70px; /* Немного увеличили высоту перехода */
