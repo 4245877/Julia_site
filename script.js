@@ -250,27 +250,4 @@ document.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }
     });
-
-    // Функция для добавления класса in-view к секциям при их появлении в области видимости
-    function handleIntersection(entries, observer) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('in-view');
-                observer.unobserve(entry.target);
-            }
-        });
-    }
-
-    // Настройки IntersectionObserver
-    const options = {
-        threshold: 0.1
-    };
-
-    // Инициализация IntersectionObserver
-    const observer = new IntersectionObserver(handleIntersection, options);
-
-    // Наблюдение за секциями
-    document.querySelectorAll('.section').forEach(section => {
-        observer.observe(section);
-    });
 });
