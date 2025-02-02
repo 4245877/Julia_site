@@ -294,23 +294,16 @@ header, footer {
 .support-button:active {
   transform: scale(0.98); /* Легкое уменьшение при нажатии */
 }
-/* Эффект размытия между блоками */
-.blur-transition {
-  height: 70px; /* Немного увеличили высоту перехода */
-  position: relative;
-  overflow: hidden;
-}
 
-.blur-transition::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  /* Градиент, который плавно переходит от первого цвета к второму */
-  background: linear-gradient(to bottom, var(--start-color), var(--end-color));
-  filter: blur(16px); /* Увеличили радиус размытия для более выраженного эффекта */
-  transform: scale(1.2); /* Немного увеличиваем размер, чтобы не были видны края размытия */
-  will-change: filter;
+/* Разделитель между секциями с эффектом размытия */
+.section-divider {
+  /* Высота области, где происходит размытие (настраивайте по вкусу) */
+  height: 30px;
+  /* Чтобы псевдофон и фильтр работали, элемент должен быть на своем слое */
+  position: relative;
+  /* Минимальная прозрачность нужна для срабатывания backdrop-filter */
+  background: rgba(255, 255, 255, 0.001);
+  /* Применяем эффект размытия */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* для Safari */
 }
