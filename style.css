@@ -267,46 +267,6 @@ header, footer {
   color: #333;
 }
 
-.modal-content h2 {
-  margin-bottom: 20px;
-  color: #333;
-}
-
-.modal-content p {
-  margin: 15px 0;
-  color: #561;
-  text-align: center;
-}
-
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #333;
-}
-
-.close-button:hover {
-  color: #000;
-}
-
-.payment-details {
-  margin: 20px 0;
-  text-align: left;
-}
-
-.payment-details p {
-  margin: 5px 0;
-  color: #333;
-}
-
-.payment-details p span {
-  font-weight: bold;
-}
-
 /* Стили для кнопки "Поддержать" */
 .support-button {
   padding: 10px 20px;
@@ -333,4 +293,97 @@ header, footer {
 
 .support-button:active {
   transform: scale(0.98); /* Легкое уменьшение при нажатии */
+}
+
+/* Стили для модального окна */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.modal p {
+  margin: 15px 0;
+  color: #333;
+  word-wrap: break-word; /* Перенос длинных слов */
+}
+
+.modal h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+
+/* Стили для кнопки "Поддержать" */
+.support-button {
+  padding: 12px 24px;
+  background-color: #4CAF50; /* Зеленый цвет фона */
+  color: white; /* Белый цвет текста */
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 20px; /* Отступ сверху */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.support-button:hover {
+  background-color: #45a049; /* Темно-зеленый цвет при наведении */
+  transform: translateY(-3px); /* Легкий подъем при наведении */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.support-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.5); /* Зеленая тень при фокусе */
+}
+
+.support-button:active {
+  transform: scale(0.98); /* Легкое уменьшение при нажатии */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Анимация для кнопки */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.support-button {
+  animation: pulse 2s infinite;
 }
