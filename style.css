@@ -267,6 +267,46 @@ header, footer {
   color: #333;
 }
 
+.modal-content h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.modal-content p {
+  margin: 15px 0;
+  color: #561;
+  text-align: center;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #333;
+}
+
+.close-button:hover {
+  color: #000;
+}
+
+.payment-details {
+  margin: 20px 0;
+  text-align: left;
+}
+
+.payment-details p {
+  margin: 5px 0;
+  color: #333;
+}
+
+.payment-details p span {
+  font-weight: bold;
+}
+
 /* Стили для кнопки "Поддержать" */
 .support-button {
   padding: 10px 20px;
