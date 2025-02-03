@@ -371,6 +371,33 @@ header, footer {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Стили для кнопок копирования */
+.copy-button {
+  background-color: #4CAF50; /* Зеленый цвет фона */
+  color: white; /* Белый цвет текста */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 5px 10px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.copy-button:hover {
+  background-color: #45a049; /* Темно-зеленый цвет при наведении */
+  transform: translateY(-2px); /* Легкий подъем при наведении */
+}
+
+.copy-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.5); /* Зеленая тень при фокусе */
+}
+
+.copy-button:active {
+  transform: scale(0.98); /* Легкое уменьшение при нажатии */
+}
+
 /* Анимация для кнопки */
 @keyframes pulse {
   0% {

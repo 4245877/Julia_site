@@ -15,6 +15,17 @@ window.closeModal = function() {
     }
 };
 
+// Функция для копирования текста в буфер обмена
+function copyToClipboard(text) {
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textarea);
+  alert('Скопировано: ' + text);
+}
+
 // Класс управления языками
 class LanguageManager {
     constructor() {
