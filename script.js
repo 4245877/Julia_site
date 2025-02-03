@@ -203,6 +203,17 @@ class LanguageManager {
             paymentDetailsUSD.textContent = translations.donation.paymentDetailsUSD;
         }
 
+        const paymentDetailsBTC = document.getElementById('paymentDetailsBTC');
+        if (paymentDetailsBTC) {
+            paymentDetailsBTC.textContent = translations.donation.paymentDetailsBTC;
+        }
+
+        // Обновление текста кнопок копирования
+        const copyButtons = document.querySelectorAll('.copy-button');
+        copyButtons.forEach(button => {
+            button.textContent = translations.donation.copybtn;
+        });
+
         // Обновление текста кнопки пожертвования
         const donateButton = document.querySelector('.progress-container button');
         if (donateButton) {
