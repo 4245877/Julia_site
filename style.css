@@ -371,46 +371,135 @@ header, footer {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Стили для кнопок копирования */
+/* Стили для кнопок копирования - современная версия */
 .copy-button {
-  background-color: #4CAF50; /* Зеленый цвет фона */
-  color: white; /* Белый цвет текста */
+  background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
+  color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 12px;
   cursor: pointer;
   font-size: 14px;
-  padding: 5px 10px;
-  margin-top: 10px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  padding: 8px 16px;
+  margin-top: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 4px 20px rgba(0, 119, 182, 0.2);
+  transform-style: preserve-3d;
+}
+
+.copy-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .copy-button:hover {
-  background-color: #45a049; /* Темно-зеленый цвет при наведении */
-  transform: translateY(-2px); /* Легкий подъем при наведении */
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 119, 182, 0.4);
+}
+
+.copy-button:hover::before {
+  left: 100%;
+}
+
+.copy-button:active {
+  transform: scale(0.96) translateY(2px);
+  box-shadow: 0 3px 15px rgba(0, 119, 182, 0.3);
 }
 
 .copy-button:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.5); /* Зеленая тень при фокусе */
+  box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.5),
+    0 4px 25px rgba(0, 119, 182, 0.4);
 }
 
-.copy-button:active {
-  transform: scale(0.98); /* Легкое уменьшение при нажатии */
-}
-
-/* Анимация для кнопки */
-@keyframes pulse {
+/* Анимация успешного копирования */
+@keyframes copyFeedback {
   0% {
-    transform: scale(1);
+    opacity: 0;
+    transform: translateY(0);
   }
   50% {
-    transform: scale(1.05);
+    opacity: 1;
   }
   100% {
-    transform: scale(1);
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+.copy-success::after {
+  content: '✓ Скопировано!';
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 180, 216, 0.9);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  animation: copyFeedback 1.2s ease-out;
+  backdrop-filter: blur(4px);
+}
+
+/* Новая анимация пульсации */
+@keyframes neonPulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(0, 180, 216, 0.4),
+                0 0 20px rgba(0, 180, 216, 0.3),
+                0 0 30px rgba(0, 180, 216, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 180, 216, 0.6),
+                0 0 30px rgba(0, 180, 216, 0.4),
+                0 0 40px rgba(0, 180, 216, 0.3);
   }
 }
 
 .support-button {
-  animation: pulse 2s infinite;
+  animation: neonPulse 2.5s infinite ease-in-out,
+             floating 3.5s infinite ease-in-out;
+  transform-origin: center;
+}
+
+@keyframes floating {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Анимация появления */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.copy-button {
+  animation: slideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@media (hover: hover) {
+  .copy-button:hover {
+    transform: translateY(-3px) scale(1.02);
+  }
 }
