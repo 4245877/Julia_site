@@ -1,19 +1,19 @@
 // Глобальные функции для модального окна
-window.openModal = function() {
-    const modal = document.getElementById('donateModal');
+function openModal() {
+    const modal = document.querySelector('.modal');
     if (modal) {
-        modal.style.display = 'flex';
+        modal.classList.add('active');
         document.body.style.overflow = 'hidden'; // Предотвращаем прокрутку фона
     }
-};
+}
 
-window.closeModal = function() {
-    const modal = document.getElementById('donateModal');
+function closeModal() {
+    const modal = document.querySelector('.modal.active');
     if (modal) {
-        modal.style.display = 'none';
+        modal.classList.remove('active');
         document.body.style.overflow = ''; // Возвращаем прокрутку
     }
-};
+}
 
 // Функция для копирования текста в буфер обмена
 function copyToClipboard(text) {
@@ -265,26 +265,19 @@ document.addEventListener('DOMContentLoaded', () => {
         currentAmountElement.textContent = currentAmount.toFixed(2);
     }
 
-// Открытие/закрытие модального окна
-document.querySelectorAll('.modal').forEach(modal => {
-    modal.addEventListener('click', function(e) {
-      if (e.target === modal) {
-        closeModal();
-      }
+    // Закрытие модального окна при клике вне его
+    document.querySelectorAll('.modal').forEach(modal => {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
     });
-  });
-  
-  function openModal() {
-    document.querySelector('.modal').classList.add('active');
-  }
-  
-  function closeModal() {
-    document.querySelector('.modal').classList.remove('active');
-  }
-  
-  // Закрытие по Esc
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && document.querySelector('.modal.active')) {
-      closeModal();
-    }
-  });
+
+    // Закрытие модального окна при нажатии клавиши Esc
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && document.querySelector('.modal.active')) {
+            closeModal();
+        }
+    });
+});
