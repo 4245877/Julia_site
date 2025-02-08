@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentAmountElement.textContent = currentAmount.toFixed(2);
     }
 
-// Закрытие модального окна при клике вне его
+
 // Закрытие модального окна при клике вне его
 document.querySelectorAll('.modal').forEach(modal => {
     modal.addEventListener('click', function(e) {
