@@ -265,19 +265,20 @@ document.addEventListener('DOMContentLoaded', () => {
         currentAmountElement.textContent = currentAmount.toFixed(2);
     }
 
-    // Закрытие модального окна при клике вне его
-    document.querySelectorAll('.modal').forEach(modal => {
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-    });
-
-    // Закрытие модального окна при нажатии клавиши Esc
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && document.querySelector('.modal.active')) {
+// Закрытие модального окна при клике вне его
+// Закрытие модального окна при клике вне его
+document.querySelectorAll('.modal').forEach(modal => {
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
             closeModal();
         }
     });
+});
+
+// Закрытие модального окна при нажатии клавиши Esc
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && document.querySelector('.modal.active')) {
+        closeModal();
+    }
+});
 });
