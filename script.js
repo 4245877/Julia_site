@@ -265,11 +265,26 @@ document.addEventListener('DOMContentLoaded', () => {
         currentAmountElement.textContent = currentAmount.toFixed(2);
     }
 
-    // Закрытие модального окна при клике вне его
-    window.addEventListener('click', (event) => {
-        const modal = document.getElementById('donateModal');
-        if (event.target === modal) {
-            closeModal();
-        }
+// Открытие/закрытие модального окна
+document.querySelectorAll('.modal').forEach(modal => {
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        closeModal();
+      }
     });
-});
+  });
+  
+  function openModal() {
+    document.querySelector('.modal').classList.add('active');
+  }
+  
+  function closeModal() {
+    document.querySelector('.modal').classList.remove('active');
+  }
+  
+  // Закрытие по Esc
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && document.querySelector('.modal.active')) {
+      closeModal();
+    }
+  });
