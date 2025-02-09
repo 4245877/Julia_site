@@ -303,7 +303,7 @@ header, footer {
 /* Стили для кнопки "Поддержать" */
 .support-button {
   padding: 10px 20px;
-  background-color: #4CAF50; /* Зеленый цвет фона */
+  background-color: #4299e1; /* Зеленый цвет фона */
   color: white; /* Белый цвет текста */
   border: none;
   border-radius: 5px;
@@ -315,13 +315,13 @@ header, footer {
 }
 
 .support-button:hover {
-  background-color: #45a049; /* Темно-зеленый цвет при наведении */
+  background-color: #4299e1; /* Темно-зеленый цвет при наведении */
   transform: translateY(-2px); /* Легкий подъем при наведении */
 }
 
 .support-button:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.5); /* Зеленая тень при фокусе */
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6); /* Зеленая тень при фокусе */
 }
 
 .support-button:active {
