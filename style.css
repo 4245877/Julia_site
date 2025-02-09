@@ -677,7 +677,7 @@ header, footer {
   top: -25px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0, 216, 90, 0.9);
+  background: rgba(66, 153, 225, 0.9);
   padding: 4px 12px;
   border-radius: 20px;
   font-size: 12px;
@@ -688,14 +688,14 @@ header, footer {
 /* Новая анимация пульсации */
 @keyframes neonPulse {
   0%, 100% {
-    box-shadow: 0 0 10px rgba(0, 216, 144, 0.4),
-                0 0 20px rgba(0, 216, 144, 0.3),
-                0 0 30px rgba(0, 216, 144, 0.2);
+    box-shadow: 0 0 10px rgba(66, 153, 225, 0.4),
+                0 0 20px rgba(128, 90, 213, 0.3),
+                0 0 30px rgba(66, 153, 225, 0.2);
   }
   50% {
-    box-shadow: 0 0 20px rgba(0, 216, 144, 0.6),
-                0 0 30px rgba(0, 216, 144, 0.4),
-                0 0 40px rgba(0, 216, 144, 0.3);
+    box-shadow: 0 0 20px rgba(66, 153, 225, 0.6),
+                0 0 30px rgba(128, 90, 213, 0.4),
+                0 0 40px rgba(66, 153, 225, 0.3);
   }
 }
 
