@@ -393,7 +393,7 @@ header, footer {
   position: relative;
   width: 90%;
   max-width: 500px;
-  box-shadow: 0 0 40px rgba(0, 123, 255, 0.1);
+  box-shadow: 0 0 40px rgba(0, 123, 255, 0.329);
   transform: translateY(-50px) scale(0.95) rotateX(-15deg);
   opacity: 0;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
