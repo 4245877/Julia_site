@@ -385,7 +385,7 @@ header, footer {
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(45deg, #52ffa8, #00b4d8);
+  background: linear-gradient(45deg, #805ad5, #00b4d8);
   z-index: -1;
   animation: borderGlow 3s linear infinite;
   opacity: 0.3;
@@ -423,12 +423,12 @@ header, footer {
 
 .modal h2 {
   margin-bottom: 25px;
-  color: #52ffa8;
+  color: #4299e1;
   font-size: 28px;
   font-weight: 600;
   padding-bottom: 15px;
   position: relative;
-  text-shadow: 0 0 15px rgba(82, 255, 168, 0.3);
+  text-shadow: 0 0 15px rgba(66, 153, 225, 0.4);
 }
 
 .modal h2::after {
@@ -438,7 +438,7 @@ header, footer {
   left: 0;
   width: 60px;
   height: 3px;
-  background: linear-gradient(90deg, #52ffa8, transparent);
+  background: linear-gradient(90deg, #4299e1, transparent);
   border-radius: 2px;
 }
 
@@ -518,7 +518,7 @@ header, footer {
 .support-button {
   position: relative;
   padding: 16px 36px;
-  background: linear-gradient(135deg, #6EE7B7 0%, #3B82F6 100%);
+  background: linear-gradient(135deg, #805ad5 0%, #4299e1 100%);
   color: white;
   border: none;
   border-radius: 50px;
@@ -700,8 +700,8 @@ header, footer {
 }
 
 .support-button {
-  animation: neonPulse 2.5s infinite ease-in-out,
-             floating 3.5s infinite ease-in-out;
+  animation: neonPulse 5.5s infinite ease-in-out,
+             floating 7.5s infinite ease-in-out;
   transform-origin: center;
 }
 
