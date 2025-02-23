@@ -1,14 +1,193 @@
-/* Общие стили для светлой темы */
+/* Контейнер для кнопок */
+.language-buttons {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 1000;
+}
+/* Общие стили для всех языковых кнопок */
+[data-lang] {
+  padding: 0.25rem 1rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Специфичные стили для каждой кнопки */
+[data-lang="en"] {
+  background-color: #3B82F6;
+  color: white;
+}
+
+[data-lang="en"]:hover {
+  background-color: #2563EB;
+  transform: translateY(-2px);
+}
+
+[data-lang="ua"] {
+  background-color: #F59E0B;
+  color: white;
+}
+
+[data-lang="ua"]:hover {
+  background-color: #D97706;
+  transform: translateY(-2px);
+}
+
+[data-lang="ru"] {
+  background-color: #EF4444;
+  color: white;
+}
+
+[data-lang="ru"]:hover {
+  background-color: #DC2626;
+  transform: translateY(-2px);
+}
+
+/* Активное состояние */
+[data-lang].active-lang {
+  transform: scale(1.1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+              0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Состояние фокуса */
+[data-lang]:focus {
+  outline: none;
+}
+
+[data-lang="en"]:focus {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+[data-lang="ua"]:focus {
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.5);
+}
+
+[data-lang="ru"]:focus {
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.5);
+}
+
+/* Анимация при нажатии */
+[data-lang]:active {
+  transform: scale(0.95);
+}
+
+/* Отключение выделения текста */
+[data-lang] {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 640px) {
+  [data-lang] {
+      padding: 0.2rem 0.75rem;
+      font-size: 0.75rem;
+  }
+  
+  .language-buttons {
+      top: 0.5rem;
+      right: 0.5rem;
+  }
+}
+
+/* Style for the header gradient */
+.header-gradient {
+  background: linear-gradient(270deg, #4299e1, #805ad5, #4299e1);
+  background-size: 600% 600%;
+  animation: gradientAnimation 15s ease infinite;
+}
+
+/* Анимация градиента */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Classes for pulse effect */
+.pulse {
+  animation: pulse 3s ease-in-out infinite;
+}
+  
+  
+  .explore-button:hover {
+    background-color: #4a5568;
+  }
+  
+  /* General text and title styles */
+  .title, .section-title, .footer-title {
+    color: #ffffff;
+  }
+  
+  .subtitle, .feature-text {
+    color: #e2e8f0;
+  }
+  
+  /* Feature item styling */
+  .feature-item {
+    padding: 16px;
+    border-radius: 8px;
+    background-color: #1a202c;
+    transition: transform 0.3s ease;
+  }
+  
+  .feature-item:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Footer styles */
+  .footer {
+    background-color: #2d3748;
+  }
+  
+  .social-links a {
+    color: #ffffff;
+    transition: color 0.3s ease;
+  }
+  
+  .social-links a:hover {
+    color: #cbd5e0;
+  }
+  
+/* style.css */
 body {
-  background-color: #f9f9f9;
-  color: #333;
+  background-color: #1a202c;
+  color: #ffffff;
 }
 
 header, footer {
-  background-color: #ffffff;
-  color: #333;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #2d3748;
 }
+
+.pulse {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 
 .main-content {
   transition: filter 0.3s ease-out;
@@ -26,9 +205,6 @@ header, footer {
   max-width: 600px;
   margin: 20px auto;
   padding: 20px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .progress-info {
@@ -42,7 +218,7 @@ header, footer {
 .progress-bar {
   width: 100%;
   height: 30px;
-  background-color: #e0e0e0;
+  background-color: #f0f0f0;
   border-radius: 15px;
   overflow: hidden;
   margin-bottom: 20px;
@@ -51,7 +227,7 @@ header, footer {
 .progress-fill {
   width: 0;
   height: 100%;
-  background-color: #4caf50;
+  background-color: #4287f5;
   transition: width 0.5s ease-out;
 }
 
@@ -70,7 +246,7 @@ header, footer {
 }
 
 .modal-content {
-  background-color: #ffffff;
+  background-color: white;
   padding: 30px;
   border-radius: 15px;
   position: relative;
@@ -127,7 +303,7 @@ header, footer {
 /* Стили для кнопки "Поддержать" */
 .support-button {
   padding: 10px 20px;
-  background-color: #4caf50; /* Зеленый цвет фона */
+  background-color: #4299e1; /* Зеленый цвет фона */
   color: white; /* Белый цвет текста */
   border: none;
   border-radius: 5px;
@@ -139,20 +315,300 @@ header, footer {
 }
 
 .support-button:hover {
-  background-color: #45a049; /* Темно-зеленый цвет при наведении */
+  background-color: #4299e1; /* Темно-зеленый цвет при наведении */
   transform: translateY(-2px); /* Легкий подъем при наведении */
 }
 
 .support-button:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.5); /* Зеленая тень при фокусе */
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6); /* Зеленая тень при фокусе */
 }
 
 .support-button:active {
   transform: scale(0.98); /* Легкое уменьшение при нажатии */
 }
+/* Стили для модального окна - Light Theme с частицами */
+.modal {
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px) saturate(120%);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  perspective: 1000px;
+  overflow: hidden;
+}
 
-/* Стили для кнопок копирования */
+/* Эффект частиц */
+.modal::before {
+  content: '';
+  position: absolute;
+  width: 300%;
+  height: 300%;
+  top: -100%;
+  left: -100%;
+  background-image: 
+    radial-gradient(circle at 70% 40%, rgba(200, 200, 200, 0.1) 10%, transparent 15%),
+    radial-gradient(circle at 30% 60%, rgba(220, 220, 220, 0.1) 10%, transparent 15%);
+  background-size: 150px 150px;
+  animation: particleFlow 40s linear infinite;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+@keyframes particleFlow {
+  0% { transform: rotate(0deg) translate(0, 0); }
+  100% { transform: rotate(360deg) translate(-150px, 150px); }
+}
+
+.modal.active {
+  visibility: visible;
+  opacity: 1;
+  animation: modalFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes modalFadeIn {
+  0% {
+    backdrop-filter: blur(0px) saturate(100%);
+    background-color: rgba(255, 255, 255, 0);
+  }
+  100% {
+    backdrop-filter: blur(12px) saturate(120%);
+    background-color: rgba(255, 255, 255, 0.95);
+  }
+}
+
+.modal-content {
+  background: linear-gradient(145deg, #ffffff, #f5f5f5);
+  padding: 30px;
+  border-radius: 20px;
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 0 40px rgba(0, 123, 255, 0.329);
+  transform: translateY(-50px) scale(0.95) rotateX(-15deg);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.modal-content::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #e0e0e0, #f0f0f0);
+  z-index: -1;
+  animation: borderGlow 6s linear infinite;
+  opacity: 0.2;
+}
+
+@keyframes borderGlow {
+  0% { opacity: 0.1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 0.1; }
+}
+
+.modal.active .modal-content {
+  transform: translateY(0) scale(1) rotateX(0);
+  opacity: 1;
+  animation: contentAppear 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal p {
+  margin: 25px 0;
+  color: rgba(0, 0, 0, 0.85);
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+.modal h2 {
+  margin-bottom: 25px;
+  color: #1a73e8;
+  font-size: 28px;
+  font-weight: 600;
+  padding-bottom: 15px;
+  position: relative;
+}
+
+.modal h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #1a73e8, transparent);
+  border-radius: 2px;
+}
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.144);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.close-button:hover {
+  background: rgba(0, 0, 0, 0.15);
+  transform: rotate(180deg) scale(1.1);
+}
+
+.close-button::before,
+.close-button::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.7);
+  transition: all 0.3s ease;
+}
+
+.close-button::before {
+  transform: rotate(45deg);
+}
+
+.close-button::after {
+  transform: rotate(-45deg);
+}
+
+.close-button:hover::before,
+.close-button:hover::after {
+  background: #1a73e8;
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    width: 95%;
+    padding: 25px;
+  }
+  
+  .modal h2 {
+    font-size: 24px;
+  }
+  
+  .close-button {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* Дополнительная анимация частиц */
+@keyframes particleFloat {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+  100% { transform: translateY(0) rotate(360deg); }
+}
+
+.support-button {
+  position: relative;
+  padding: 16px 36px;
+  background: linear-gradient(135deg, #805ad5 0%, #4299e1 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  margin-top: 20px;
+  box-shadow: 
+    0 8px 24px rgba(59, 130, 246, 0.3),
+    0 4px 12px rgba(0, 0, 0, 0.1);
+  
+  /* Анимация пульсации */
+  animation: pulse 2s infinite;
+}
+
+.support-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: skewX(-30deg);
+  transition: 0.6s;
+}
+
+.support-button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 
+    0 12px 32px rgba(59, 130, 246, 0.4),
+    0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.support-button:hover::after {
+  left: 120%;
+}
+
+.support-button:active {
+  transform: scale(0.95);
+  filter: brightness(0.9);
+}
+
+.support-button:focus {
+  outline: none;
+  box-shadow: 
+    0 0 0 4px rgba(110, 231, 183, 0.3),
+    0 8px 24px rgba(59, 130, 246, 0.4);
+}
+
+/* Анимация сердца (добавить эмодзи ♥ в HTML) */
+.support-button:hover .heart-emoji {
+  animation: heartbeat 1.2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1); }
+  50% { box-shadow: 0 12px 32px rgba(59, 130, 246, 0.4), 0 8px 20px rgba(0, 0, 0, 0.15); }
+  100% { box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1); }
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  15% { transform: scale(1.3); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.15); }
+  60% { transform: scale(1); }
+}
+
+/* Для иконки (добавить в HTML: <span class="button-icon">♥</span>) */
+.button-icon {
+  display: inline-block;
+  margin-left: 10px;
+  transition: transform 0.3s ease;
+}
+
+.support-button:hover .button-icon {
+  transform: translateX(5px);
+}
+
+/* Стили для кнопок копирования - современная версия */
 .copy-button {
   background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
   color: white;
@@ -234,9 +690,9 @@ header, footer {
   backdrop-filter: blur(4px);
 }
 
-/* Анимация пульсации */
-@keyframes pulse {
-  0% {
+/* Новая анимация пульсации */
+@keyframes neonPulse {
+  0%, 100% {
     box-shadow: 0 0 10px rgba(66, 153, 225, 0.4),
                 0 0 20px rgba(128, 90, 213, 0.3),
                 0 0 30px rgba(66, 153, 225, 0.2);
@@ -249,7 +705,7 @@ header, footer {
 }
 
 .support-button {
-  animation: pulse 5.5s infinite ease-in-out,
+  animation: neonPulse 5.5s infinite ease-in-out,
              floating 7.5s infinite ease-in-out;
   transform-origin: center;
 }
@@ -283,164 +739,4 @@ header, footer {
   .copy-button:hover {
     transform: translateY(-3px) scale(1.02);
   }
-}
-
-/* Стили для языковых кнопок */
-.language-buttons {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  display: flex;
-  gap: 0.5rem;
-  z-index: 1000;
-}
-
-[data-lang] {
-  padding: 0.25rem 1rem;
-  border-radius: 9999px;
-  font-weight: 600;
-  font-size: 0.875rem;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-[data-lang="en"] {
-  background-color: #3B82F6;
-  color: white;
-}
-
-[data-lang="en"]:hover {
-  background-color: #2563EB;
-  transform: translateY(-2px);
-}
-
-[data-lang="ua"] {
-  background-color: #F59E0B;
-  color: white;
-}
-
-[data-lang="ua"]:hover {
-  background-color: #D97706;
-  transform: translateY(-2px);
-}
-
-[data-lang="ru"] {
-  background-color: #EF4444;
-  color: white;
-}
-
-[data-lang="ru"]:hover {
-  background-color: #DC2626;
-  transform: translateY(-2px);
-}
-
-[data-lang].active-lang {
-  transform: scale(1.1);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
-              0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
-
-[data-lang]:focus {
-  outline: none;
-}
-
-[data-lang="en"]:focus {
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
-}
-
-[data-lang="ua"]:focus {
-  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.5);
-}
-
-[data-lang="ru"]:focus {
-  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.5);
-}
-
-[data-lang]:active {
-  transform: scale(0.95);
-}
-
-[data-lang] {
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-@media (max-width: 640px) {
-  [data-lang] {
-      padding: 0.2rem 0.75rem;
-      font-size: 0.75rem;
-  }
-  
-  .language-buttons {
-      top: 0.5rem;
-      right: 0.5rem;
-  }
-}
-
-/* Style for the header gradient */
-.header-gradient {
-  background: linear-gradient(270deg, #ffffff, #e0e0e0, #ffffff);
-  background-size: 600% 600%;
-  animation: gradientAnimation 15s ease infinite;
-}
-
-/* Анимация градиента */
-@keyframes gradientAnimation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-/* Classes for pulse effect */
-.pulse {
-  animation: pulse 3s ease-in-out infinite;
-}
-
-.explore-button:hover {
-  background-color: #e0e0e0;
-}
-
-/* General text and title styles */
-.title, .section-title, .footer-title {
-  color: #333;
-}
-
-.subtitle, .feature-text {
-  color: #555;
-}
-
-/* Feature item styling */
-.feature-item {
-  padding: 16px;
-  border-radius: 8px;
-  background-color: #ffffff;
-  transition: transform 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.feature-item:hover {
-  transform: scale(1.05);
-}
-
-/* Footer styles */
-.footer {
-  background-color: #ffffff;
-  color: #333;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.social-links a {
-  color: #333;
-  transition: color 0.3s ease;
-}
-
-.social-links a:hover {
-  color: #555;
 }
