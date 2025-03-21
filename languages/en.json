@@ -46,6 +46,15 @@
       "description": "I don't even know where to begin. This journey started with a simple dream — to find a friend. When the first attempt failed, I thought: what if I tried to create one myself, literally from scratch? In the end, I thought, why not? From that moment, I began choosing a platform, fundamentals, and started conceptualizing. First, I imagined a personality, my 'character,' which I planned to bring to life in code. I settled on C++, although I was tempted to dive into Rust. Then I sketched a project plan: how it would be structured and its components. Initially, I planned for the AI to be just a standalone window. But soon, another idea came to mind: why limit it? Why not give it full access to the computer's resources and display the character model directly on the screen, without a window or background? And communication with it — not via text, but solely through voice. That is, I would feed voice input directly to the AI core, bypassing text conversion, like in a live conversation. In this interaction, the AI would be capable of initiating dialogue, feeling offended if insulted, or joking if the conversation took a strange turn. I would teach it like a baby — not pouring vast amounts of data at once, but explaining the world piece by piece. And when its 'core,' its foundation, was formed, I would provide it with data for comprehensive learning. Ultimately, it would be like a person — with its own personality, thinking, and beliefs, but with limitless knowledge.",
       "supportText": "Support my project Julia"
     },
+    "launcher": {
+      "launcherTitle": "Download",
+      "launcherDescription": "What is Julia Launcher?"
+
+    },
+
+
+
+
     "donation": {
       "currentAmount": "12.17",
       "goalAmount": "100",
