@@ -1,75 +1,241 @@
+/* Глобальные переменные для цветовой схемы */
+:root {
+    --primary-color: #f6bf75;
+    --secondary-color: #d77185;
+    --tertiary-color: #8766ac;
+    --quaternary-color: #4150b1;
+    --text-color: #333;
+    --light-text: #fff;
+    --light-bg: #f8f9fe;
+    --card-bg: rgba(255, 255, 255, 0.8);
+    --shadow-color: rgba(65, 80, 177, 0.2); /* Основано на quaternary-color */
+}
+
 /* Основные стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    background-color: var(--dark-bg);
-    color: var(--text-light);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  }
-  
-  /* Контейнер для контента */
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
-    background-color: var(--dark-surface);
-    border-radius: 1rem;
-    box-shadow: var(--shadow-lg);
-  }
-  
-  /* Заголовки */
-  h1, h2, h3, h4 {
-    color: var(--primary);
-    font-weight: bold;
-    margin-bottom: 1rem;
-  }
-  
-  /* Ссылки */
-  a {
-    color: var(--primary);
-    text-decoration: none;
-    transition: var(--transition-normal);
-  }
-  
-  a:hover {
-    color: var(--primary-dark);
-    text-decoration: underline;
-  }
-  
-  /* Списки */
-  ul, ol {
-    margin-left: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  li {
-    margin-bottom: 0.5rem;
-  }
-  
-  /* Кнопки */
-  button {
-    background-color: var(--primary);
-    color: var(--text-light);
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: var(--transition-normal);
-  }
-  
-  button:hover {
-    background-color: var(--primary-dark);
-  }
-  
-  /* Медиа-запросы */
-  @media (max-width: 640px) {
-    .container {
-      padding: 1rem;
+    background: linear-gradient(135deg, var(--light-bg), #e6f0ff);
+    color: var(--text-color);
+    line-height: 1.6;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Создаем анимированный градиентный фон */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+                              var(--primary-color), 
+                              var(--secondary-color), 
+                              var(--tertiary-color), 
+                              var(--quaternary-color));
+    background-size: 400% 400%;
+    z-index: -1;
+    animation: gradient 15s ease infinite;
+    filter: blur(30px);
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
     }
-    
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Стили заголовков */
+h1, h2, h3, h4 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--primary-color); /* Убрали градиент с текста */
+    text-shadow: 0 0 15px var(--shadow-color);
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+h2 {
+    font-size: 2rem;
+    border-bottom: 2px solid transparent;
+    border-image: linear-gradient(90deg, var(--primary-color), var(--quaternary-color));
+    border-image-slice: 1;
+    padding-bottom: 0.5rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+h4 {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
+/* Стили шапки */
+header {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 20px var(--shadow-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--shadow-color);
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--quaternary-color));
+    border-radius: 20px;
+    z-index: -1;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--light-text);
+}
+
+nav a:hover::before {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Основное содержимое */
+main {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+section {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: 0 8px 25px var(--shadow-color);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px var(--shadow-color);
+}
+
+/* Стили для текста и списков */
+p {
+    margin-bottom: 1.2rem;
+    text-align: justify;
+}
+
+ul, ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+strong {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* Подсвечивание якорных ссылок при переходе */
+section:target {
+    animation: highlight 2s ease;
+}
+
+@keyframes highlight {
+    0% {
+        background-color: rgba(65, 80, 177, 0.2); /* Основано на quaternary-color */
+    }
+    100% {
+        background-color: var(--card-bg);
+    }
+}
+
+/* Стили футера */
+footer {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid var(--shadow-color);
+    margin-top: 3rem;
+}
+
+/* Адаптивные стили */
+@media (max-width: 768px) {
     h1 {
-      font-size: 1.5rem;
+        font-size: 2rem;
     }
     
     h2 {
-      font-size: 1.25rem;
+        font-size: 1.7rem;
     }
-  }
+    
+    nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+    }
+    
+    section {
+        padding: 1.5rem;
+    }
+}
