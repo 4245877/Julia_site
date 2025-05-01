@@ -213,8 +213,8 @@ function checkRequirements() {
     };
 
     const os = document.getElementById('os').value;
-    const cpu = document.getElementById('cpu').value;
-    const gpu = document.getElementById('gpu').value;
+    const cpuInput = document.getElementById('cpu').value.trim().toLowerCase();
+    const gpuInput = document.getElementById('gpu').value.trim().toLowerCase();
     const ram = parseInt(document.getElementById('ram').value);
     const storage = parseInt(document.getElementById('storage').value);
     const microphone = document.getElementById('microphone').checked;
@@ -232,22 +232,22 @@ function checkRequirements() {
         result += 'ОС не соответствует требованиям.<br>';
     }
 
-    const cpuPerformance = cpuModels[cpu] || 0;
+    const cpuPerformance = findModelPerformance(cpuModels, cpuInput);
     if (cpuPerformance >= requirements.cpu.rec) {
         result += 'Процессор соответствует рекомендуемым требованиям.<br>';
     } else if (cpuPerformance >= requirements.cpu.min) {
         result += 'Процессор соответствует минимальным требованиям.<br>';
     } else {
-        result += 'Процессор не соответствует требованиям.<br>';
+        result += 'Процессор не распознан или не соответствует требованиям.<br>';
     }
 
-    const gpuPerformance = gpuModels[gpu] || 0;
+    const gpuPerformance = findModelPerformance(gpuModels, gpuInput);
     if (gpuPerformance >= requirements.gpu.rec) {
         result += 'Видеокарта соответствует рекомендуемым требованиям.<br>';
     } else if (gpuPerformance >= requirements.gpu.min) {
         result += 'Видеокарта соответствует минимальным требованиям.<br>';
     } else {
-        result += 'Видеокарта не соответствует требованиям.<br>';
+        result += 'Видеокарта не распознана или не соответствует требованиям.<br>';
     }
 
     if (ram >= requirements.ram.rec) {
@@ -280,4 +280,15 @@ function checkRequirements() {
     }
 
     document.getElementById('result').innerHTML = result;
+}
+
+function findModelPerformance(models, input) {
+    const inputWords = input.split(' ').filter(word => word.length > 0);
+    for (const model in models) {
+        const modelLower = model.toLowerCase();
+        if (inputWords.every(word => modelLower.includes(word))) {
+            return models[model];
+        }
+    }
+    return 0;
 }
