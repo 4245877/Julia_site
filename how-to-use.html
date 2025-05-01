@@ -106,30 +106,55 @@
             <h2>Сам ИИ</h2>
             <h3>Взаимодействие с ИИ</h3>
             <p>ИИ Julia поддерживает взаимодействие через текстовый или голосовой интерфейс. Вы можете задавать вопросы, давать команды и получать ответы в удобной для вас форме.</p>
-            <h3>Системные требования</h3>
-            <h4>Минимальные</h4>
-            <ul>
-                <li>ОС: Windows 10/11, macOS 11+, Ubuntu 20.04+</li>
-                <li>Процессор: Intel Core i5 13400f или AMD Ryzen 5 5500</li>
-                <li>ОЗУ: 8 ГБ</li>
-                <li>Видеокарта: NVIDIA GTX 1070 или AMD RX 5600</li>
-                <li>Место на диске: 96 ГБ</li>
-            </ul>
-            <h4>Рекомендуемые</h4>
-            <ul>
-                <li>ОС: Windows 11, macOS 12+, Ubuntu 22.04+</li>
-                <li>Процессор: Intel Core i7 12700 или AMD Ryzen 7 3700</li>
-                <li>ОЗУ: 32 ГБ</li>
-                <li>Видеокарта: NVIDIA RTX 3060 или AMD RX 6600</li>
-                <li>Место на диске: 210 ГБ SSD</li>
-            </ul>
-            <h4>Дополнительно</h4>
-            <ul>
-                <li>Микрофон (для голосового взаимодействия)</li>
-                <li>Динамики или наушники</li>
-                <li>Интернет-соединение</li>
-                <li>Веб-камера (для визуальной идентификации)</li>
-            </ul>
+            
+            <h3>Проверьте соответствие вашего оборудования</h3>
+            <form id="requirements-form">
+                <label for="os">Операционная система:</label><br>
+                <select id="os" name="os">
+                    <option value="Windows 10">Windows 10</option>
+                    <option value="Windows 11">Windows 11</option>
+                    <option value="macOS 11">macOS 11</option>
+                    <option value="macOS 12">macOS 12</option>
+                    <option value="Ubuntu 20.04">Ubuntu 20.04</option>
+                    <option value="Ubuntu 22.04">Ubuntu 22.04</option>
+                </select><br>
+    
+                <label for="cpu">Процессор:</label><br>
+                <select id="cpu" name="cpu">
+                    <option value="Intel Core i5 13400f">Intel Core i5 13400f</option>
+                    <option value="AMD Ryzen 5 5500">AMD Ryzen 5 5500</option>
+                    <option value="Intel Core i7 12700">Intel Core i7 12700</option>
+                    <option value="AMD Ryzen 7 3700">AMD Ryzen 7 3700</option>
+                </select><br>
+    
+                <label for="gpu">Видеокарта:</label><br>
+                <select id="gpu" name="gpu">
+                    <option value="NVIDIA GTX 1070">NVIDIA GTX 1070</option>
+                    <option value="AMD RX 5600">AMD RX 5600</option>
+                    <option value="NVIDIA RTX 3060">NVIDIA RTX 3060</option>
+                    <option value="AMD RX 6600">AMD RX 6600</option>
+                </select><br>
+    
+                <label for="ram">ОЗУ (ГБ):</label><br>
+                <input type="number" id="ram" name="ram" min="0"><br>
+    
+                <label for="storage">Место на диске (ГБ):</label><br>
+                <input type="number" id="storage" name="storage" min="0"><br>
+    
+                <label>Дополнительные устройства:</label><br>
+                <input type="checkbox" id="microphone" name="microphone">
+                <label for="microphone">Микрофон</label><br>
+                <input type="checkbox" id="speakers" name="speakers">
+                <label for="speakers">Динамики или наушники</label><br>
+                <input type="checkbox" id="internet" name="internet">
+                <label for="internet">Интернет-соединение</label><br>
+                <input type="checkbox" id="webcam" name="webcam">
+                <label for="webcam">Веб-камера</label><br>
+    
+                <button type="button" onclick="checkRequirements()">Проверить</button>
+            </form>
+            <div id="result"></div>
+    
             <h3>Процесс установки и настройки</h3>
             <ol>
                 <li>Скачайте лаунчер с официального сайта.</li>
@@ -170,5 +195,6 @@
             </div>
         </div>
       </footer>
+<script src="script_help.js" defer></script>
 </body>
 </html>
