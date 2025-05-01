@@ -1,13 +1,13 @@
 /* Глобальные переменные для цветовой схемы */
 :root {
-    --primary-color: #f6bf75;
-    --secondary-color: #d77185;
-    --tertiary-color: #8766ac;
-    --quaternary-color: #4150b1;
-    --text-color: #000; /* Черный текст */
+    --primary-color: #4a90e2;    /* Основной синий */
+    --secondary-color: #50c878;  /* Изумрудно-зеленый */
+    --tertiary-color: #9b59b6;   /* Фиолетовый */
+    --quaternary-color: #f39c12; /* Оранжевый/янтарный */
+    --text-color: #333;          /* Темно-серый текст для лучшей читаемости */
     --light-text: #fff;
-    --light-bg: #fff; /* Непрозрачный белый фон */
-    --card-bg: #fff; /* Непрозрачный белый фон для карточек */
+    --light-bg: #fff;            /* Непрозрачный белый фон */
+    --card-bg: #fff;             /* Непрозрачный белый фон для карточек */
     --shadow-color: rgba(0, 0, 0, 0.1); /* Мягкая тень */
 }
 
@@ -205,7 +205,7 @@ section:target {
 
 /* Стили для футера */
 .bg-gray-800 {
-    background-color: #1f2937; /* Темно-серый фон */
+    background-color: #fff; /* Темно-серый фон */
 }
 
 .py-10 {
