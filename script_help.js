@@ -12,8 +12,8 @@ const requirements = {
         rec: 70
     },
     ram: {
-        min: 8,
-        rec: 32
+        min: 32,
+        rec: 128
     },
     storage: {
         min: 96,
