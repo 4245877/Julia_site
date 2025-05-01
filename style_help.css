@@ -1,0 +1,75 @@
+/* Основные стили */
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  
+  /* Контейнер для контента */
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--dark-surface);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-lg);
+  }
+  
+  /* Заголовки */
+  h1, h2, h3, h4 {
+    color: var(--primary);
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  /* Ссылки */
+  a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: var(--transition-normal);
+  }
+  
+  a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+  }
+  
+  /* Списки */
+  ul, ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  li {
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Кнопки */
+  button {
+    background-color: var(--primary);
+    color: var(--text-light);
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: var(--transition-normal);
+  }
+  
+  button:hover {
+    background-color: var(--primary-dark);
+  }
+  
+  /* Медиа-запросы */
+  @media (max-width: 640px) {
+    .container {
+      padding: 1rem;
+    }
+    
+    h1 {
+      font-size: 1.5rem;
+    }
+    
+    h2 {
+      font-size: 1.25rem;
+    }
+  }
