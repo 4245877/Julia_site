@@ -108,51 +108,30 @@
             <p>ИИ Julia поддерживает взаимодействие через текстовый или голосовой интерфейс. Вы можете задавать вопросы, давать команды и получать ответы в удобной для вас форме.</p>
             
             <h3>Проверьте соответствие вашего оборудования</h3>
-            <form id="requirements-form">
-                <label for="os">Операционная система:</label><br>
-                <select id="os" name="os">
-                    <option value="Windows 10">Windows 10</option>
-                    <option value="Windows 11">Windows 11</option>
-                    <option value="macOS 11">macOS 11</option>
-                    <option value="macOS 12">macOS 12</option>
-                    <option value="Ubuntu 20.04">Ubuntu 20.04</option>
-                    <option value="Ubuntu 22.04">Ubuntu 22.04</option>
-                </select><br>
-    
-                <label for="cpu">Процессор (введите название):</label><br>
-                <input type="text" id="cpu" name="cpu" placeholder="Например, Intel Core i5 13400f"><br>
-    
-                <label for="gpu">Видеокарта (введите название):</label><br>
-                <input type="text" id="gpu" name="gpu" placeholder="Например, NVIDIA GTX 1070"><br>
-    
-                <label for="ram">ОЗУ (ГБ):</label><br>
-                <input type="number" id="ram" name="ram" min="0"><br>
-    
-                <label for="storage">Место на диске (ГБ):</label><br>
-                <input type="number" id="storage" name="storage" min="0"><br>
-    
-                <label>Дополнительные устройства:</label><br>
-                <input type="checkbox" id="microphone" name="microphone">
-                <label for="microphone">Микрофон</label><br>
-                <input type="checkbox" id="speakers" name="speakers">
-                <label for="speakers">Динамики или наушники</label><br>
-                <input type="checkbox" id="internet" name="internet">
-                <label for="internet">Интернет-соединение</label><br>
-                <input type="checkbox" id="webcam" name="webcam">
-                <label for="webcam">Веб-камера</label><br>
-    
-                <button type="button" onclick="checkRequirements()">Проверить</button>
-            </form>
-            <div id="result"></div>
-    
-            <h3>Процесс установки и настройки</h3>
-            <ol>
-                <li>Скачайте лаунчер с официального сайта.</li>
-                <li>Запустите лаунчер и нажмите кнопку "Запуск или инсталляция" для установки ИИ.</li>
-                <li>Перейдите в "Настройки" для конфигурации параметров ИИ.</li>
-                <li>Используйте "Кастомизация внешности" для настройки внешнего вида.</li>
-                <li>Нажмите "Запуск или инсталляция" для запуска ИИ после настройки.</li>
-            </ol>
+            <label for="os">Операционная система:</label>
+    <input type="text" id="os" placeholder="Введите ОС"><br>
+
+    <label for="cpu">Процессор:</label>
+    <input type="text" id="cpu" placeholder="Введите модель процессора">
+    <div id="cpu-suggestions" class="suggestions"></div><br>
+
+    <label for="gpu">Видеокарта:</label>
+    <input type="text" id="gpu" placeholder="Введите модель видеокарты">
+    <div id="gpu-suggestions" class="suggestions"></div><br>
+
+    <label for="ram">ОЗУ (ГБ):</label>
+    <input type="number" id="ram" placeholder="Введите объем ОЗУ"><br>
+
+    <label for="storage">Место на диске (ГБ):</label>
+    <input type="number" id="storage" placeholder="Введите объем диска"><br>
+
+    <label><input type="checkbox" id="microphone"> Микрофон</label><br>
+    <label><input type="checkbox" id="speakers"> Динамики</label><br>
+    <label><input type="checkbox" id="internet"> Интернет</label><br>
+    <label><input type="checkbox" id="webcam"> Веб-камера</label><br>
+
+    <button onclick="checkRequirements()">Проверить</button>
+    <div id="result"></div>
         </section>
     </main>
     <footer class="bg-gray-800 py-10">
