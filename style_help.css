@@ -160,7 +160,7 @@ section {
     padding: 2rem;
     margin: 2rem 0;
     box-shadow: 0 8px 25px var(--shadow-color);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid #0000001a;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -290,7 +290,7 @@ section:target {
 .transition {
     transition-property: all;
     transition-duration: 300ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
 
 /* Дополнительные стили для иконок */
@@ -316,5 +316,3 @@ a:hover svg {
         margin-top: 1rem;
     }
 }
-
- 
