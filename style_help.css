@@ -14,53 +14,80 @@ body {
 }
 
 /* Заголовок с градиентом */
+/* Базовые стили для header (без изменений) */
 header {
     background: linear-gradient(135deg, #2d3748 0%, #4a5568 50%, #2b6cb0 100%);
-    padding: 1rem 0; /* Уменьшенные отступы для компактности */
+    padding: 1rem 0;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     position: sticky;
     top: 0;
     z-index: 100;
-    transition: padding 0.3s ease; /* Плавное сжатие шапки */
+    transition: padding 0.3s ease;
 }
 
 header h1 {
-    font-size: 1.8rem; /* Уменьшенный шрифт для элегантности */
+    font-size: 1.8rem;
     text-align: center;
-    margin-bottom: 0.5rem; /* Меньший отступ снизу */
+    margin-bottom: 0.5rem;
     color: #ffffff;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    transition: font-size 0.3s ease; /* Плавное изменение размера шрифта */
-}
-
-/* Навигация */
-nav {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 1rem;
+    transition: font-size 0.3s ease;
 }
 
 nav ul {
     display: flex;
     justify-content: center;
     list-style: none;
-    gap: 1.5rem; /* Уменьшенное расстояние между элементами */
+    gap: 1.5rem;
+    transition: gap 0.3s ease;
 }
 
 nav ul li a {
     color: #a0aec0;
     text-decoration: none;
     font-weight: 500;
-    padding: 0.3rem 0.8rem; /* Компактные отступы для ссылок */
+    padding: 0.3rem 0.8rem;
     border-radius: 4px;
     transition: all 0.3s ease;
 }
 
-nav ul li a:hover, 
-nav ul li a:focus {
-    color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.1);
-    transform: translateY(-2px); /* Лёгкий подъём при наведении */
+/* Стили для прокрутки */
+header.scrolled {
+    padding: 0.3rem 0;
+}
+
+header.scrolled h1 {
+    font-size: 1.2rem;
+}
+
+header.scrolled nav ul {
+    gap: 0.3rem;
+}
+
+header.scrolled nav ul li a {
+    padding: 0.1rem 0.3rem;
+}
+
+/* Медиа-запрос для мобильных устройств */
+@media (max-width: 768px) {
+    header {
+        padding: 0.5rem 0;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+        margin-bottom: 0.3rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    nav ul li a {
+        padding: 0.2rem 0.5rem;
+    }
 }
 
  
