@@ -45,13 +45,26 @@ const cpuModels = {
     'AMD Ryzen 9 5900XT': 78, 'AMD Ryzen 9 5950X': 80, 'AMD Ryzen 9 7900': 82, 'AMD Ryzen 9 7900X': 85,
     'AMD Ryzen 9 7900X3D': 88, 'AMD Ryzen 9 7950X': 90, 'AMD Ryzen 9 7950X3D': 95, 'AMD Ryzen 9 9900X': 92,
     'AMD Ryzen 9 9950X': 98, 'AMD Ryzen AI 9 365': 65, 'AMD Ryzen AI 9 HX 370': 70,
-    'AMD Ryzen Threadripper 7980X': 98, 'AMD Ryzen Threadripper PRO 7995WX': 100
+    'AMD Ryzen Threadripper 7980X': 98, 'AMD Ryzen Threadripper PRO 7995WX': 100,
+    // Добавленные модели:
+    'Ryzen 7 8845HS': 64,
+    'Ryzen 7 8840HS': 62,
+    'Ryzen 7 8840U': 58,
+    'Ryzen 5 8645HS': 60,
+    'Ryzen 5 8640HS': 58,
+    'Ryzen 5 8640U': 54,
+    'Ryzen 5 8540U': 52,
+    'Ryzen 3 8440U': 48,
+    'Ryzen AI 9 HX 170': 72,
+    'Ryzen AI 9 165': 70,
+    'Ryzen AI 7 160': 66,
+    'Ryzen AI 5 150': 62
 };
 
 const gpuModels = {
     'Intel UHD Graphics 630': 18, 'Intel Iris Xe Graphics': 28, 'Intel Iris Xe MAX': 35, 'Intel ARC B580': 50,
     'Intel ARC A380': 42, 'Intel ARC A580': 55, 'Intel ARC A750': 62, 'Intel ARC A770': 68, 'AMD Radeon Vega 3': 15,
-    'AMD Radeon Vega 8': 22, 'AMD Radeon Vega 10': 27, 'AMD Radeon RX Vega 11': 32, 'NVIDIA GTX 750 Ti': 28,
+    'AMD Radeon Vega 8': 22, 'AMD Radeon 780M' : 37, 'AMD Radeon Vega 10': 27, 'AMD Radeon RX Vega 11': 32, 'NVIDIA GTX 750 Ti': 28,
     'NVIDIA GTX 950': 32, 'NVIDIA GTX 960': 36, 'NVIDIA GTX 970': 42, 'NVIDIA GTX 980': 46, 'NVIDIA GTX 980 Ti': 52,
     'NVIDIA GTX 1050': 35, 'NVIDIA GTX 1050 Ti': 40, 'NVIDIA GTX 1060': 48, 'NVIDIA GTX 1070': 58,
     'NVIDIA GTX 1070 Ti': 62, 'NVIDIA GTX 1080': 68, 'NVIDIA GTX 1080 Ti': 75, 'NVIDIA GTX 1650': 42,
