@@ -87,8 +87,8 @@ const gpuList = Object.keys(gpuModels);
 function filterModels(input, models) {
     const inputWords = input.toLowerCase().split(/\s+/);
     return models.filter(model => {
-        const modelLower = model.toLowerCase();
-        return inputWords.every(word => modelLower.includes(word));
+        const modelWords = model.toLowerCase().split(/[\s-]+/); // Разделяем по пробелам и дефисам
+        return inputWords.every(word => modelWords.some(mWord => mWord === word));
     });
 }
 
