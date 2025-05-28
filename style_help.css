@@ -446,6 +446,7 @@ footer svg {
     }
 }
 
+<<<<<<< HEAD
 #ai {
     background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(31, 31, 31, 0.9) 100%);
 }
@@ -494,6 +495,18 @@ input[type="text"], input[type="number"] {
     to { box-shadow: 0 0 30px rgba(0, 242, 254, 0.6); }
 }
 
+=======
+/* Дополнительные эффекты */
+.glow {
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { box-shadow: 0 0 20px rgba(0, 242, 254, 0.3); }
+    to { box-shadow: 0 0 30px rgba(0, 242, 254, 0.6); }
+}
+
+>>>>>>> c69b064c8db36c25bb4939dbdf1b973ae9b87dc8
 /* Плавная прокрутка */
 html {
     scroll-behavior: smooth;
