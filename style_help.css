@@ -14,13 +14,13 @@
     --purple-gradient: linear-gradient(135deg, #9d50bb 0%, #6e48aa 100%);
     --blue-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     
-    --bg-primary: #0a0a0a;
-    --bg-secondary: #1a1a1a;
-    --bg-card: #1f1f1f;
+    --bg-primary: #EFF3FF;
+    --bg-secondary: #BDD7E7;
+    --bg-card: #6BAED6;
     --text-primary: #ffffff;
     --text-secondary: #b3b3b3;
     --text-accent: #00f2fe;
-    --border-color: #333333;
+    --border-color: #2171B5;
     --shadow-color: rgba(0, 0, 0, 0.5);
     --glow-color: rgba(0, 242, 254, 0.3);
 }
@@ -446,7 +446,6 @@ footer svg {
     }
 }
 
-<<<<<<< HEAD
 #ai {
     background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(31, 31, 31, 0.9) 100%);
 }
@@ -495,18 +494,6 @@ input[type="text"], input[type="number"] {
     to { box-shadow: 0 0 30px rgba(0, 242, 254, 0.6); }
 }
 
-=======
-/* Дополнительные эффекты */
-.glow {
-    animation: glow 2s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-    from { box-shadow: 0 0 20px rgba(0, 242, 254, 0.3); }
-    to { box-shadow: 0 0 30px rgba(0, 242, 254, 0.6); }
-}
-
->>>>>>> c69b064c8db36c25bb4939dbdf1b973ae9b87dc8
 /* Плавная прокрутка */
 html {
     scroll-behavior: smooth;
