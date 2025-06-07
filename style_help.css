@@ -18,10 +18,10 @@
     --bg-secondary: #BDD7E7;
     --bg-card: #6BAED6;
     --text-primary: #ffffff;
-    --text-secondary: #b3b3b3;
+    --text-secondary: #6BAED6;
     --text-accent: #00f2fe;
     --border-color: #2171B5;
-    --shadow-color: rgba(0, 0, 0, 0.5);
+    --shadow-color: #BDD7E7;
     --glow-color: rgba(0, 242, 254, 0.3);
 }
 
@@ -57,7 +57,7 @@ body::before {
 
 /* Header стили */
 header {
-    background: rgba(26, 26, 26, 0.95);
+    background: #2171B5;
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border-color);
     padding: 2rem 0;
