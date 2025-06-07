@@ -152,7 +152,7 @@ header, footer {
 
 /* Кнопка исследования */
 .explore-button:hover {
-  background-color: #4a5568;
+  background-color: #EFF3FF;
 }
 
 /* Стили текста */
@@ -339,7 +339,7 @@ header, footer {
 
 .modal p {
   margin: 1.5rem 0;
-  color: rgba(0, 0, 0, 0.85);
+  color: #BDD7E7;
   line-height: 1.7;
   font-size: 1rem;
 }
