@@ -1,5 +1,4 @@
-/* Современный темный стиль для Julia с градиентами */
-
+/* Сброс стилей и основные настройки */
 * {
     margin: 0;
     padding: 0;
@@ -7,141 +6,120 @@
 }
 
 :root {
-    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    --dark-gradient: linear-gradient(135deg, #232526 0%, #414345 100%);
-    --purple-gradient: linear-gradient(135deg, #9d50bb 0%, #6e48aa 100%);
-    --blue-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    
-    --bg-primary: #0a0a0a;
-    --bg-secondary: #1a1a1a;
-    --bg-card: #1f1f1f;
-    --text-primary: #ffffff;
-    --text-secondary: #b3b3b3;
-    --text-accent: #00f2fe;
-    --border-color: #333333;
-    --shadow-color: rgba(0, 0, 0, 0.5);
-    --glow-color: rgba(0, 242, 254, 0.3);
+    --primary-dark: #081F5C;
+    --primary-medium: #334EAC;
+    --primary-light: #7096D1;
+    --accent-light: #D0E3FF;
+    --accent-lighter: #E7F1FF;
+    --accent-lightest: #F9FCFF;
+    --text-primary: #081F5C;
+    --text-secondary: #334EAC;
+    --shadow-color: rgba(8, 31, 92, 0.1);
+    --border-radius: 12px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
-    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: var(--bg-primary);
-    color: var(--text-primary);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    overflow-x: hidden;
-    position: relative;
+    color: var(--text-primary);
+    background: linear-gradient(135deg, var(--accent-lightest) 0%, var(--accent-lighter) 100%);
+    min-height: 100vh;
 }
 
-/* Анимированный фон */
-body::before {
+/* Заголовок */
+header {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 100%);
+    color: white;
+    padding: 2rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
     content: '';
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 20% 20%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 60%, rgba(0, 242, 254, 0.05) 0%, transparent 50%);
-    z-index: -1;
-    animation: backgroundShift 20s ease-in-out infinite alternate;
-}
-
-@keyframes backgroundShift {
-    0% { transform: translateX(0px) translateY(0px); }
-    100% { transform: translateX(50px) translateY(-50px); }
-}
-
-/* Header стили */
-header {
-    background: rgba(26, 26, 26, 0.95);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border-color);
-    padding: 2rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 4px 30px var(--shadow-color);
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    pointer-events: none;
 }
 
 header h1 {
     text-align: center;
     font-size: 3rem;
     font-weight: 700;
-    background: var(--primary-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
     margin-bottom: 1.5rem;
-    text-shadow: 0 0 30px var(--glow-color);
-    animation: titleGlow 3s ease-in-out infinite alternate;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
 }
 
-@keyframes titleGlow {
-    0% { filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5)); }
-    100% { filter: drop-shadow(0 0 20px rgba(118, 75, 162, 0.8)); }
-}
-
+/* Навигация */
 nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
     gap: 2rem;
+    position: relative;
+    z-index: 1;
 }
 
-nav ul li a {
-    color: var(--text-secondary);
+nav a {
+    color: white;
     text-decoration: none;
     font-weight: 500;
-    padding: 0.8rem 1.5rem;
-    border-radius: 25px;
-    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: var(--transition);
     position: relative;
     overflow: hidden;
 }
 
-nav ul li a::before {
+nav a::before {
     content: '';
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background: var(--accent-gradient);
-    transition: left 0.3s ease;
-    z-index: -1;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
 }
 
-nav ul li a:hover::before {
-    left: 0;
+nav a:hover::before {
+    left: 100%;
 }
 
-nav ul li a:hover {
-    color: var(--text-primary);
+nav a:hover {
+    background: rgba(255, 255, 255, 0.2);
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 242, 254, 0.3);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
-/* Main content */
+/* Основной контент */
 main {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 4rem 2rem;
+    padding: 2rem;
 }
 
 section {
-    margin-bottom: 4rem;
-    background: var(--bg-card);
-    border-radius: 20px;
-    padding: 3rem;
-    border: 1px solid var(--border-color);
+    background: white;
+    margin: 2rem 0;
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
     box-shadow: 0 10px 40px var(--shadow-color);
+    border: 1px solid var(--accent-light);
     position: relative;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: var(--transition);
 }
 
 section::before {
@@ -150,153 +128,133 @@ section::before {
     top: 0;
     left: 0;
     width: 100%;
-    height: 2px;
-    background: var(--primary-gradient);
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-medium), var(--primary-light));
 }
 
 section:hover {
     transform: translateY(-5px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 60px rgba(8, 31, 92, 0.15);
 }
 
+/* Заголовки */
 h2 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    color: var(--text-primary);
+    color: var(--primary-dark);
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
     position: relative;
-    display: inline-block;
+    padding-bottom: 0.5rem;
 }
 
 h2::after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: 0;
     left: 0;
     width: 60px;
     height: 3px;
-    background: var(--secondary-gradient);
+    background: linear-gradient(90deg, var(--primary-medium), var(--primary-light));
     border-radius: 2px;
 }
 
 h3 {
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
-    color: var(--text-accent);
+    color: var(--primary-medium);
+    font-size: 1.6rem;
+    margin: 2rem 0 1rem 0;
     font-weight: 600;
 }
 
 h4 {
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-    color: var(--text-primary);
-    font-weight: 600;
-}
-
-p {
-    margin-bottom: 1.5rem;
-    color: var(--text-secondary);
-    font-size: 1.1rem;
-    line-height: 1.8;
+    color: var(--primary-medium);
+    font-size: 1.3rem;
+    margin: 1.5rem 0 0.75rem 0;
+    font-weight: 500;
 }
 
 /* Списки */
 ol, ul {
-    margin-left: 2rem;
-    margin-bottom: 2rem;
+    margin: 1rem 0 1rem 2rem;
 }
 
-ol li, ul li {
-    margin-bottom: 1rem;
-    color: var(--text-secondary);
-    position: relative;
-    padding-left: 1rem;
+li {
+    margin: 0.5rem 0;
+    line-height: 1.7;
 }
 
-ol li strong, ul li strong {
-    color: var(--text-accent);
+li strong {
+    color: var(--primary-medium);
     font-weight: 600;
 }
 
-ul li::before {
-    content: '▶';
-    color: var(--text-accent);
-    position: absolute;
-    left: -1rem;
-    top: 0;
-}
-
-/* Вложенные списки */
-ul ul {
-    margin-left: 1.5rem;
-    margin-top: 0.5rem;
-}
-
-ul ul li::before {
-    content: '◦';
-    color: var(--text-secondary);
-}
-
-/* Форма проверки требований */
-#ai {
-    background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(31, 31, 31, 0.9) 100%);
+/* Формы */
+.form-group {
+    margin: 1.5rem 0;
+    position: relative;
 }
 
 label {
     display: block;
     margin-bottom: 0.5rem;
-    color: var(--text-primary);
     font-weight: 500;
-    font-size: 1.1rem;
-}
-
-input[type="text"], input[type="number"] {
-    width: 100%;
-    max-width: 400px;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    background: var(--bg-secondary);
-    border: 2px solid var(--border-color);
-    border-radius: 10px;
-    color: var(--text-primary);
+    color: var(--text-secondary);
     font-size: 1rem;
-    transition: all 0.3s ease;
 }
 
-input[type="text"]:focus, input[type="number"]:focus {
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--accent-light);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: var(--transition);
+    background: var(--accent-lightest);
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
     outline: none;
-    border-color: var(--text-accent);
-    box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
-    transform: translateY(-2px);
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(112, 150, 209, 0.2);
+    background: white;
+}
+
+/* Чекбоксы */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.checkbox-container label {
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-weight: 400;
 }
 
 input[type="checkbox"] {
-    margin-right: 0.8rem;
-    transform: scale(1.2);
-    accent-color: var(--text-accent);
+    width: 20px;
+    height: 20px;
+    accent-color: var(--primary-medium);
+    cursor: pointer;
 }
 
-.suggestions {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    max-height: 150px;
-    overflow-y: auto;
-    margin-bottom: 1rem;
-    display: none;
-}
-
-/* Кнопка */
+/* Кнопки */
 button {
-    background: var(--primary-gradient);
-    color: var(--text-primary);
+    background: linear-gradient(135deg, var(--primary-medium) 0%, var(--primary-light) 100%);
+    color: white;
     border: none;
-    padding: 1rem 2.5rem;
-    border-radius: 50px;
+    padding: 1rem 2rem;
     font-size: 1.1rem;
     font-weight: 600;
+    border-radius: var(--border-radius);
     cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 1rem;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(51, 78, 172, 0.3);
     position: relative;
     overflow: hidden;
 }
@@ -308,69 +266,124 @@ button::before {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: var(--secondary-gradient);
-    transition: left 0.3s ease;
-    z-index: -1;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
 }
 
 button:hover::before {
-    left: 0;
+    left: 100%;
 }
 
 button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(51, 78, 172, 0.4);
 }
 
 button:active {
     transform: translateY(0);
 }
 
+/* Результаты */
 #result {
     margin-top: 2rem;
     padding: 1.5rem;
-    border-radius: 10px;
-    background: var(--bg-secondary);
-    border-left: 4px solid var(--text-accent);
+    border-radius: var(--border-radius);
+    background: var(--accent-lighter);
+    border-left: 4px solid var(--primary-light);
     min-height: 50px;
-    animation: fadeIn 0.5s ease;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+/* Подсказки */
+.suggestions {
+    background: white;
+    border: 1px solid var(--accent-light);
+    border-radius: var(--border-radius);
+    max-height: 200px;
+    overflow-y: auto;
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+    box-shadow: 0 4px 20px var(--shadow-color);
 }
 
-/* Footer */
+.suggestions div {
+    padding: 0.75rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.suggestions div:hover {
+    background: var(--accent-lighter);
+    color: var(--primary-dark);
+}
+
+/* Футер */
 footer {
-    background: var(--dark-gradient);
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 100%);
+    color: white;
     padding: 3rem 0;
-    border-top: 1px solid var(--border-color);
     margin-top: 4rem;
+    position: relative;
+    overflow: hidden;
 }
 
-footer .container {
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="footerGrain" width="50" height="50" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="40" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23footerGrain)"/></svg>');
+    pointer-events: none;
+}
+
+.container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
+    position: relative;
+    z-index: 1;
 }
 
 footer .flex {
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 2rem;
 }
 
 footer a {
-    color: var(--text-secondary);
-    transition: all 0.3s ease;
-    padding: 1rem;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+footer a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+footer a:hover::before {
+    opacity: 1;
 }
 
 footer a:hover {
@@ -378,29 +391,29 @@ footer a:hover {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
+footer a svg {
+    transition: var(--transition);
+}
+
+footer a:hover svg {
+    transform: scale(1.2);
+}
+
+/* Цвета для социальных сетей */
 footer a.github:hover {
-    color: #ffffff;
-    background: linear-gradient(135deg, #333 0%, #666 100%);
+    background: rgba(255, 255, 255, 0.2);
 }
 
 footer a.youtube:hover {
-    color: #ff0000;
-    background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+    background: rgba(255, 0, 0, 0.3);
 }
 
 footer a.discord:hover {
-    color: #5865f2;
-    background: linear-gradient(135deg, #5865f2 0%, #4752c4 100%);
+    background: rgba(114, 137, 218, 0.3);
 }
 
 footer a.telegram:hover {
-    color: #0088cc;
-    background: linear-gradient(135deg, #0088cc 0%, #006699 100%);
-}
-
-footer svg {
-    width: 24px;
-    height: 24px;
+    background: rgba(0, 136, 204, 0.3);
 }
 
 /* Адаптивность */
@@ -412,107 +425,78 @@ footer svg {
     nav ul {
         flex-direction: column;
         gap: 1rem;
+        align-items: center;
     }
     
     main {
-        padding: 2rem 1rem;
-    }
-    
-    section {
-        padding: 2rem;
-        margin-bottom: 2rem;
-    }
-    
-    h2 {
-        font-size: 2rem;
-    }
-    
-    footer .flex {
-        gap: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    header h1 {
-        font-size: 1.5rem;
+        padding: 1rem;
     }
     
     section {
         padding: 1.5rem;
     }
     
-    input[type="text"], input[type="number"] {
-        max-width: 100%;
+    h2 {
+        font-size: 1.8rem;
+    }
+    
+    footer .flex {
+        gap: 1rem;
+    }
+    
+    footer a {
+        width: 50px;
+        height: 50px;
     }
 }
 
-#ai {
-    background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(31, 31, 31, 0.9) 100%);
+/* Анимации загрузки */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.form-group {
-    margin-bottom: 1.5rem; /* Заменит <br> для основного отступа */
+section {
+    animation: fadeInUp 0.6s ease-out;
 }
 
-.form-group.checkbox-container {
-    margin-bottom: 1rem; /* Меньший отступ для чекбоксов, если нужно */
+section:nth-child(1) { animation-delay: 0.1s; }
+section:nth-child(2) { animation-delay: 0.2s; }
+section:nth-child(3) { animation-delay: 0.3s; }
+
+/* Дополнительные эффекты для интерактивности */
+input[type="text"]:hover,
+input[type="number"]:hover {
+    border-color: var(--primary-light);
+    background: white;
 }
 
-/* Убедитесь, что у label нет лишнего нижнего отступа, если он уже есть у .form-group */
-.form-group label {
-    /* Если у label уже есть margin-bottom, его можно здесь уменьшить или убрать для checkbox-container */
-    margin-bottom: 0.5rem; /* Это ваш текущий стиль, он может остаться */
-}
-
-.form-group.checkbox-container label {
-    margin-bottom: 0; /* Убираем отступ у метки внутри контейнера чекбокса, если отступ задан .form-group */
-    display: flex; /* Для лучшего выравнивания чекбокса и текста */
-    align-items: center;
-}
-
-
-input[type="text"], input[type="number"] {
-    width: 100%;
-    max-width: 400px;
-    padding: 1rem;
-    /* margin-bottom: 1.5rem; -- можно убрать, если .form-group уже задает отступ */
-    background: var(--bg-secondary);
-    border: 2px solid var(--border-color);
-    border-radius: 10px;
+p {
+    margin: 1rem 0;
+    line-height: 1.7;
     color: var(--text-primary);
-    font-size: 1rem;
-    transition: all 0.3s ease;
 }
 
-/* Дополнительные эффекты */
-.glow {
-    animation: glow 2s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-    from { box-shadow: 0 0 20px rgba(0, 242, 254, 0.3); }
-    to { box-shadow: 0 0 30px rgba(0, 242, 254, 0.6); }
-}
-
-/* Плавная прокрутка */
-html {
-    scroll-behavior: smooth;
-}
-
-/* Кастомный скроллбар */
+/* Стилизация скроллбара */
 ::-webkit-scrollbar {
     width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--bg-secondary);
+    background: var(--accent-lighter);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--primary-gradient);
+    background: var(--primary-light);
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--secondary-gradient);
+    background: var(--primary-medium);
 }
