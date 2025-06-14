@@ -3,232 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Julia - Интеллектуальный AI-Компаньон</title>
-    
-    <meta name="description" content="Julia – это уникальный виртуальный AI-компаньон, способный имитировать человеческий интеллект и эмоции. Узнайте больше о технологиях и функциях проекта.">
-    <meta name="keywords" content="AI-компаньон, искусственный интеллект, Julia, JuliaAI, julia, виртуальный помощник, технологии AI, машинное обучение, C++, Deep Learning, 3D модель">
-    <meta name="author" content="4245877">
-    <meta name="robots" content="index, follow">
-    <meta name="google-site-verification" content="Tl9FVjxmrqwkZmthujRbUlfNyj9DIqujas0TUkC0MzM" />
+    <title>Как пользоваться Julia</title>
+    <link rel="stylesheet" href="style_help.css">
     <link rel="icon" href="Images/Logo1(64).png" type="image/png">
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Julia - Интеллектуальный AI-Компаньон",
-      "url": "https://4245877.github.io/Julia_site/",
-      "logo": "https://4245877.github.io/Julia_site/Images/Logo1(64).png",
-      "applicationCategory": "LifestyleApplication",
-      "operatingSystem": "Windows, macOS, Linux",
-      "description": "Julia – виртуальный AI-компаньон, разработанный для имитации человеческого интеллекта, эмоций и естественного взаимодействия.",
-      "author": {
-        "@type": "Person",
-        "name": "Михаил Головач"
-      }
-    }
-    </script>
-
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.16/tailwind.min.css">
-    <link rel="stylesheet" href="style.css">
-
-    <base href="/Julia_site/">
 </head>
+<body>
+    <header>
+        <h1>Как пользоваться?</h1>
+        <nav>
+            <ul>
+                <li><a href="#launcher">Лаунчер</a></li>
+                <li><a href="#ai">Сам ИИ</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="introduction">
+            <h2>Введение</h2>
+            <p>Julia....</p>
+        </section>
+        <section id="launcher">
+            <h2>Лаунчер</h2>
+            <p>Лаунчер Julia — это основное приложение для управления ИИ. На главной форме лаунчера расположены пять кнопок:</p>
+            <ol>
+                <li><strong>Запуск или инсталляция</strong> — запускает ИИ, если он установлен, или начинает процесс установки.</li>
+                <li><strong>Настройки</strong> — открывает меню для настройки параметров ИИ.</li>
+                <li><strong>Кастомизация внешности</strong> — позволяет изменить внешний вид ИИ.</li>
+                <li><strong>Переход на сайт</strong> — открывает официальный сайт Julia в браузере.</li>
+                <li><strong>Расположение ядра ИИ</strong> — открывает проводник с директорией, где находится ядро ИИ.</li>
+            </ol>
+            
+            <h3>Настройки лаунчера</h3>
+            <p>Лаунчер Julia предоставляет ряд настроек для тонкой конфигурации работы приложения. Ниже приведены основные разделы настроек и их параметры:</p>
+            
+            <h4>Раздел "File and Folder Paths"</h4>
+            <p>В этом разделе указываются пути к различным директориям и файлам, используемым лаунчером:</p>
+            <ul>
+                <li><strong>Installation directory</strong> — путь к директории установки ИИ.</li>
+                <li><strong>Log folder</strong> — путь к папке с логами приложения.</li>
+                <li><strong>External modules paths</strong> — пути к внешним модулям, которые могут быть подключены к ИИ.</li>
+                <li><strong>Change directory</strong> — возможность изменить рабочую директорию лаунчера.</li>
+            </ul>
+            
+            <h4>Раздел "Resource Allocation"</h4>
+            <p>Настройки, связанные с распределением системных ресурсов для работы ИИ:</p>
+            <ul>
+                <li><strong>RAM usage</strong> — ограничение использования оперативной памяти.</li>
+                <li><strong>CPU load limitation</strong> — ограничение нагрузки на процессор.</li>
+                <li><strong>Number of CPU cores to use</strong> — количество ядер процессора, используемых ИИ.</li>
+                <li><strong>CPU load percentage</strong> — процент загрузки процессора.</li>
+                <li><strong>Enable/disable GPU acceleration</strong> — включение/выключение ускорения с помощью GPU.</li>
+                <li><strong>Limit GPU usage (e.g., by percentage)</strong> — ограничение использования GPU (например, в процентах).</li>
+                <li><strong>Select a specific GPU if multiple are available</strong> — выбор конкретного GPU, если их несколько.</li>
+                <li><strong>Maximum download/upload speed</strong> — максимальная скорость загрузки/выгрузки данных.</li>
+            </ul>
+            
+            <h4>Раздел "Startup and Update Settings"</h4>
+            <p>Настройки, касающиеся запуска и обновления лаунчера:</p>
+            <ul>
+                <li><strong>Auto-Start</strong> — автоматический запуск лаунчера при старте системы.</li>
+                <li><strong>Updates Preferences</strong> — предпочтения по обновлениям:
+                    <ul>
+                        <li>Automatic updates — автоматические обновления.</li>
+                        <li>Check for updates on startup — проверка обновлений при запуске.</li>
+                        <li>Manual updates — ручные обновления.</li>
 
-<body class="bg-gray-900 text-white font-sans"> <header class="header-gradient py-20" role="banner">
-    <div class="absolute top-4 right-4 flex space-x-2">
-        <button data-lang="en" aria-label="Switch to English" class="px-2 py-1">EN</button>
-        <button data-lang="ua" aria-label="Switch to Ukrainian" class="px-2 py-1">UA</button>
-        <button data-lang="ru" aria-label="Switch to Russian" class="px-2 py-1">RU</button>
-    </div>
-    <div class="container mx-auto px-4 text-center relative">
-        <h1 id="mainHeading" class="text-4xl font-bold mb-4">AI-компаньон, созданный с непревзойденным интеллектом</h1>
-        <p id="mainDescription" class="text-lg mb-8">Julia – виртуальный AI-компаньон, разработанный для имитации человеческого интеллекта, эмоций и естественного взаимодействия.</p>
-        <a id="featuresLink" href="#features" class="inline-block bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full transition duration-300">Ознакомьтесь с функциями Julia</a>
-    </div>
-</header>
-
-<main> <section id="features" class="py-20" aria-labelledby="features-heading">
-        <div class="container mx-auto px-4">
-            <h2 id="features-heading" class="text-3xl font-bold mb-8 text-center">Ключевые функции</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                <div>
-                    <h3 class="text-2xl font-bold mb-4">Эмуляция мыслительного процесса</h3>
-                    <p>Мыслительные процессы Julia разработаны для имитации человеческих мыслей в реальном времени, создавая плавное и увлекательное взаимодействие.</p>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-bold mb-4">Модуляция голоса</h3>
-                    <p>Julia может изменять свой голос от шепота до громкого крика, передавая эмоциональную глубину через тон и реалистичное выражение мыслей.</p>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-bold mb-4">Варианты настройки</h3>
-                    <p>3D-модель Julia может быть настроена через лаунчер с ползунками для изменения возраста, веса и роста, сохраняя при этом уникальную идентичность.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="bg-gradient-to-r from-gray-800 to-gray-700 py-20" aria-labelledby="tech-heading">
-        <div class="container mx-auto px-4">
-            <h2 id="tech-heading" class="text-3xl font-bold mb-8 text-center">Технологический стек и план развития</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-                <div>
-                    <h3 id="projectTechTitle" class="text-2xl font-bold mb-4">Технологии и Библиотеки</h3>
-                    <ul id="technologies" class="list-disc ml-6 space-y-2">
-                        <li><strong>Deep Learning & AI Core:</strong> LibTorch, TensorFlow C++ API, ONNX Runtime</li>
-                        <li><strong>Data & Numerics:</strong> Eigen, Boost, Apache Arrow, HDF5, ICU</li>
-                        <li><strong>Databases:</strong> PostgreSQL (с libpq)</li>
-                        <li><strong>Speech Recognition & Synthesis:</strong> State-of-the-Art модели (Whisper, VITS)</li>
-                        <li><strong>Computer Vision:</strong> OpenCV, Модели детекции (YOLO)</li>
-                        <li><strong>Graphics & Audio:</strong> OpenGL, OpenAL, Assimp</li>
-                        <li><strong>GUI Frameworks:</strong> Qt или ImGui</li>
-                        <li><strong>Audio/Data Utilities:</strong> libsndfile</li>
-                        <li><strong>Development & DevOps Tools:</strong> Git, Docker, CMake</li>
+                        <li>Choose update branch (Stable, Beta, Nightly) — выбор ветки обновлений (стабильная, бета, ночная сборка).</li>
                     </ul>
-                </div>
-                <div>
-                    <h3 id="roadmapTitle" class="text-2xl font-bold mb-4">Дорожная карта</h3>
-                    <img src="Images/Board.png" alt="Дорожная карта проекта Julia, показывающая этапы разработки." class="w-full rounded-lg shadow-lg" loading="lazy">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="download" class="bg-gray-800 py-20" aria-labelledby="launcherTitle">
-        <div class="container mx-auto px-4">
-            <h2 id="launcherTitle" class="text-3xl font-bold mb-8 text-center">Скачать Julia (лаунчер)</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div>
-                    <h3 id="launcherDescription" class="text-2xl font-bold mb-4">Что такое лаунчер Julia?</h3>
-                    <p class="mb-6">Лаунчер Julia – это приложение, которое позволяет установить, настроить и запустить вашего персонального AI-компаньона. С его помощью вы сможете:</p>
-                    <ul class="list-disc ml-6 space-y-2 mb-8">
-                        <li>Настроить внешний вид Julia, изменяя параметры возраста, роста и веса.</li>
-                        <li>Установить предпочтительные настройки голоса и эмоциональности.</li>
-                        <li>Выбрать режим взаимодействия (голосовой или текстовый).</li>
-                        <li>Контролировать доступ Julia к различным системным ресурсам.</li>
-                        <li>Получать обновления и новые функции автоматически.</li>
+                </li>
+            </ul>
+            
+            <h4>Раздел "Logging and Debugging"</h4>
+            <p>Настройки логирования и отладки:</p>
+            <ul>
+                <li><strong>Log detail level</strong> — уровень детализации логов:
+                    <ul>
+                        <li>Errors — ошибки.</li>
+                        <li>Warnings — предупреждения.</li>
+                        <li>Informational messages — информационные сообщения.</li>
+                        <li>Debugging — отладочная информация.</li>
                     </ul>
-                    <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4 mt-6">
-                        <a href="how-to-use.html" id="howToUseButton" class="inline-block bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-full transition duration-300">Как пользоваться</a>
-                        <a href="#" id="downloadButton" class="inline-block bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-full transition duration-300 flex items-center justify-center">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                            Скачать лаунчер (64 МБ)
-                        </a>
-                    </div>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <img src="Images/Launcher1.png" alt="Интерфейс лаунчера Julia - главный экран." class="rounded-lg shadow-xl" loading="lazy">
-                    <img src="Images/Launcher2.png" alt="Интерфейс лаунчера Julia - настройки внешности." class="rounded-lg shadow-xl" loading="lazy">
-                    <img src="Images/Launcher3.png" alt="Интерфейс лаунчера Julia - настройки голоса." class="rounded-lg shadow-xl" loading="lazy">
-                    <img src="Images/Launcher4.png" alt="Интерфейс лаунчера Julia - системные настройки." class="rounded-lg shadow-xl" loading="lazy">
-                </div>
+                </li>
+                <li><strong>Log format (txt, json, etc)</strong> — формат логов (текстовый, JSON и т.д.).</li>
+                <li><strong>Log Retention</strong> — политика хранения логов.</li>
+            </ul>
+            
+            <h4>Раздел "UI and User Preferences"</h4>
+            <p>Настройки интерфейса и пользовательских предпочтений:</p>
+            <ul>
+                <li><strong>Theme</strong> — выбор темы оформления (светлая, темная и т.д.).</li>
+                <li><strong>Language selection</strong> — выбор языка интерфейса.</li>
+                <li><strong>Hotkeys</strong> — настройка горячих клавиш.</li>
+            </ul>
+            
+            <h4>Раздел "Security"</h4>
+            <p>Настройки безопасности:</p>
+            <ul>
+                <li><strong>Log and Data encryption (if needed)</strong> — шифрование логов и данных (при необходимости).</li>
+                <li><strong>Settings protection with a Password</strong> — защита настроек паролем (для предотвращения случайных изменений).</li>
+            </ul>
+        </section>
+       <section id="ai">
+            <h2>Сам ИИ</h2>
+            <h3>Взаимодействие с ИИ</h3>
+            <p>ИИ Julia поддерживает взаимодействие через текстовый или голосовой интерфейс. Вы можете задавать вопросы, давать команды и получать ответы в удобной для вас форме.</p>
+
+            <h3>Проверьте соответствие вашего оборудования</h3>
+            <div class="form-group">
+                <label for="os">Операционная система:</label>
+                <input type="text" id="os" placeholder="Введите ОС">
             </div>
-            <div class="mt-12 bg-gray-700 p-6 rounded-lg">
-                <h3 id="systemRequirements" class="text-xl font-bold mb-4 text-center">Системные требования</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div>
-                        <h4 class="font-bold mb-2">Минимальные</h4>
-                        <ul class="list-disc ml-6 space-y-1">
-                            <li><strong>ОС:</strong> Windows 10/11, macOS 11+, Ubuntu 20.04+</li>
-                            <li><strong>Процессор:</strong> Intel Core i5-12400f / AMD Ryzen 5 5500</li>
-                            <li><strong>ОЗУ:</strong> 32 ГБ</li>
-                            <li><strong>Видеокарта:</strong> NVIDIA GTX 1050 / AMD RX 470</li>
-                            <li><strong>Место на диске:</strong> 115 ГБ</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="font-bold mb-2">Рекомендуемые</h4>
-                        <ul class="list-disc ml-6 space-y-1">
-                             <li><strong>ОС:</strong> Windows 11, macOS 12+, Ubuntu 22.04+</li>
-                            <li><strong>Процессор:</strong> Intel Core i9-14900kf / AMD Ryzen 9 9950x</li>
-                            <li><strong>ОЗУ:</strong> 128 ГБ</li>
-                            <li><strong>Видеокарта:</strong> NVIDIA Tesla V100 / AMD RX 7900 XTX</li>
-                            <li><strong>Место на диске:</strong> 510 ГБ SSD</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="font-bold mb-2">Дополнительно</h4>
-                        <ul class="list-disc ml-6 space-y-1">
-                            <li>Микрофон (для голосового взаимодействия)</li>
-                            <li>Динамики или наушники</li>
-                            <li>Интернет-соединение</li>
-                            <li>Веб-камера (для визуальной идентификации)</li>
-                        </ul>
-                    </div>
-                </div>
+
+            <div class="form-group">
+                <label for="cpu">Процессор:</label>
+                <input type="text" id="cpu" placeholder="Введите модель процессора">
+                <div id="cpu-suggestions" class="suggestions"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="gpu">Видеокарта:</label>
+                <input type="text" id="gpu" placeholder="Введите модель видеокарты">
+                <div id="gpu-suggestions" class="suggestions"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="ram">ОЗУ (ГБ):</label>
+                <input type="number" id="ram" placeholder="Введите объем ОЗУ">
+            </div>
+
+            <div class="form-group">
+                <label for="storage">Место на диске (ГБ):</label>
+                <input type="number" id="storage" placeholder="Введите объем диска">
+            </div>
+
+            <div class="form-group checkbox-container">
+                <label><input type="checkbox" id="microphone"> Микрофон</label>
+            </div>
+            <div class="form-group checkbox-container">
+                <label><input type="checkbox" id="speakers"> Динамики</label>
+            </div>
+            <div class="form-group checkbox-container">
+                <label><input type="checkbox" id="internet"> Интернет</label>
+            </div>
+            <div class="form-group checkbox-container">
+                <label><input type="checkbox" id="webcam"> Веб-камера</label>
+            </div>
+
+
+            <button onclick="checkRequirements()">Проверить</button>
+            <div id="result"></div>
+        </section>
+    </main>
+    <footer class="bg-gray-800 py-10">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex justify-center space-x-6">
+                <!-- GitHub -->
+                <a href="https://github.com/4245877/Julia" class="github text-white hover:text-white transition duration-300">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58 0-.29-.01-1.06-.02-2.08-3.34.73-4.05-1.61-4.05-1.61-.55-1.4-1.34-1.77-1.34-1.77-1.09-.75.08-.74.08-.74 1.2.09 1.83 1.24 1.83 1.24 1.07 1.84 2.8 1.31 3.48 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.97 0-1.32.47-2.39 1.24-3.23-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23A11.5 11.5 0 0112 6.65c1.02.01 2.05.14 3.01.4 2.28-1.56 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.23 0 4.64-2.81 5.66-5.48 5.95.43.37.81 1.1.81 2.22 0 1.6-.01 2.88-.01 3.27 0 .32.21.7.82.58A12.01 12.01 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                    </svg>
+                </a>
+                <!-- YouTube -->
+                <a href="https://www.youtube.com/@Plarov" class="youtube text-red-500 hover:text-white transition duration-300">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M23.498 6.186c-.293-1.105-1.157-1.973-2.263-2.272C19.242 3.5 12 3.5 12 3.5s-7.242 0-9.235.414C1.66 4.213.797 5.081.503 6.186.187 7.307 0 9.093 0 12s.187 4.693.503 5.814c.294 1.105 1.157 1.973 2.262 2.271C4.758 20.5 12 20.5 12 20.5s7.242 0 9.235-.414c1.106-.298 1.97-1.166 2.263-2.271.315-1.121.502-2.907.502-5.814s-.187-4.693-.502-5.814zM9.545 15.568v-7.136L15.5 12l-5.955 3.568z"/>
+                    </svg>
+                </a>
+                <!-- Discord -->
+                <a href="https://discord.gg/g4eFaxrUap" class="discord text-indigo-500 hover:text-white transition duration-300">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19.27 5.33C17.94 4.71 16.5 4.26 15 4a.09.09 0 0 0-.07.03c-.18.33-.39.76-.53 1.09a16.09 16.09 0 0 0-4.8 0c-.14-.34-.35-.76-.54-1.09c-.01-.02-.04-.03-.07-.03c-1.5.26-2.93.71-4.27 1.33c-.01 0-.02.01-.03.02c-2.72 4.07-3.47 8.03-3.1 11.95c0 .02.01.04.03.05c1.8 1.32 3.53 2.12 5.24 2.65c.03.01.06 0 .07-.02c.4-.55.76-1.13 1.07-1.74c.02-.04 0-.08-.04-.09c-.57-.22-1.11-.48-1.64-.78c-.04-.02-.04-.08-.01-.11c.11-.08.22-.17.33-.25c.02-.02.05-.02.07-.01c3.44 1.57 7.15 1.57 10.55 0c.02-.01.05-.01.07.01c.11.09.22.17.33.26c.04.03.04.09-.01.11c-.52.31-1.07.56-1.64.78c-.04.01-.05.06-.04.09c.32.61.68 1.19 1.07 1.74c.03.01.06.02.09.01c1.72-.53 3.45-1.33 5.25-2.65c.02-.01.03-.03.03-.05c.44-4.53-.73-8.46-3.1-11.95c-.01-.01-.02-.02-.04-.02zM8.52 14.91c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.84 2.12-1.89 2.12zm6.97 0c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.83 2.12-1.89 2.12z"/>
+                    </svg>
+                </a>
+                <!-- Telegram -->
+                <a href="https://t.me/huycorporation" class="telegram text-blue-400 hover:text-white transition duration-300">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+
+                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                    </svg>
+                </a>
             </div>
         </div>
-    </section>
-
-    <section class="py-20" aria-labelledby="developerJourneyTitle">
-        <div class="container mx-auto px-4">
-            <h2 id="developerJourneyTitle" class="text-3xl font-bold mb-8 text-center">Мой путь как разработчика</h2>
-            <div class="flex flex-col items-center max-w-4xl mx-auto">
-                <img src="Images/Developer.png" alt="Михаил Головач, разработчик проекта." class="rounded-full mb-4 w-32 h-32 pulse" loading="lazy">
-                <p id="developerJourneyDescription" class="text-lg mb-4 text-center">Этот путь начался с простой мечты — найти друга. Когда первая попытка оказалась неудачной, я задумался: а что, если попробовать создать его самому, буквально с нуля? И вот, я начал выбирать платформу, основу и концепцию. Я остановился на C++, хотя был соблазн погрузиться в Rust. Потом накидал план проекта... ИИ будет способен начать диалог первым, обидеться, если его оскорбить, или отшутиться. Я буду обучать его, как учат младенца, по крупицам объясняя, как устроен мир. В итоге получится словно человек — со своим характером, мышлением и убеждениями, но с безграничными знаниями.</p>
-                <p id="developerJourneySupportText" class="text-lg font-bold mt-4">- Поддержите мой проект Julia</p>
-            </div>
-            <div class="progress-container mt-8">
-                <div class="progress-info">
-                    <span id="current-amount">12.53</span> $ <span id="of-text">из</span> <span id="goal-amount">100</span> $
-                </div>
-                <div class="progress-bar" role="progressbar" aria-valuenow="12.53" aria-valuemin="0" aria-valuemax="100" aria-labelledby="developerJourneySupportText">
-                    <div class="progress-fill" id="progress-fill" style="width: 12.53%;"></div> </div>
-                <button class="support-button" id="supportButton">Поддержать</button>
-            </div>
-        </div>
-    </section>
-
-    <div class="modal" id="donateModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
-        <div class="modal-content">
-            <button class="close-button" id="closeModalButton" aria-label="Закрыть модальное окно">×</button>
-            <h2 id="modalTitle">Сумма не важна. Буду рад любой поддержке!</h2>
-            <div class="payment-details">
-                <p id="paymentDetailsUAH"><span>Visa (UAH):</span> 4441111042472401</p>
-                <button class="copy-button" data-clipboard-text="4441111042472401">Копировать</button>
-                <p id="paymentDetailsUSD"><span>Visa (USD):</span> 4441111082147673</p>
-                <button class="copy-button" data-clipboard-text="4441111082147673">Копировать</button>
-                <p id="paymentDetailsBTC"><span>Bitcoin:</span> bc1pj4udvfs3tdkjeakkfl2clklztusqllgtgz5c8up0u0lcq7ymnjssexnazw</p>
-                <button class="copy-button" data-clipboard-text="bc1pj4udvfs3tdkjeakkfl2clklztusqllgtgz5c8up0u0lcq7ymnjssexnazw">Копировать</button>
-            </div>
-        </div>
-    </div>
-</main>
-
-<footer class="bg-gray-800 py-10">
-  <div class="container mx-auto px-4 text-center">
-      <h2 class="text-3xl font-bold mb-4 text-white">Следите за развитием Julia</h2>
-      <div class="flex justify-center space-x-4">
-          <!-- GitHub -->
-          <a href="https://github.com/4245877/Julia" class="text-blue-500 hover:text-blue-400 transition duration-300">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58 0-.29-.01-1.06-.02-2.08-3.34.73-4.05-1.61-4.05-1.61-.55-1.4-1.34-1.77-1.34-1.77-1.09-.75.08-.74.08-.74 1.2.09 1.83 1.24 1.83 1.24 1.07 1.84 2.8 1.31 3.48 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.97 0-1.32.47-2.39 1.24-3.23-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23A11.5 11.5 0 0112 6.65c1.02.01 2.05.14 3.01.4 2.28-1.56 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.23 0 4.64-2.81 5.66-5.48 5.95.43.37.81 1.1.81 2.22 0 1.6-.01 2.88-.01 3.27 0 .32.21.7.82.58A12.01 12.01 0 0024 12c0-6.63-5.37-12-12-12z"/>
-              </svg>
-          </a>
-          <!-- YouTube -->
-          <a href="https://www.youtube.com/@Plarov" class="text-red-500 hover:text-red-400 transition duration-300">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M23.498 6.186c-.293-1.105-1.157-1.973-2.263-2.272C19.242 3.5 12 3.5 12 3.5s-7.242 0-9.235.414C1.66 4.213.797 5.081.503 6.186.187 7.307 0 9.093 0 12s.187 4.693.503 5.814c.294 1.105 1.157 1.973 2.262 2.271C4.758 20.5 12 20.5 12 20.5s7.242 0 9.235-.414c1.106-.298 1.97-1.166 2.263-2.271.315-1.121.502-2.907.502-5.814s-.187-4.693-.502-5.814zM9.545 15.568v-7.136L15.5 12l-5.955 3.568z"/>
-              </svg>
-          </a>
-          <!-- Discord -->
-          <a href="https://discord.gg/g4eFaxrUap" class="text-indigo-500 hover:text-indigo-400 transition duration-300">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M19.27 5.33C17.94 4.71 16.5 4.26 15 4a.09.09 0 0 0-.07.03c-.18.33-.39.76-.53 1.09a16.09 16.09 0 0 0-4.8 0c-.14-.34-.35-.76-.54-1.09c-.01-.02-.04-.03-.07-.03c-1.5.26-2.93.71-4.27 1.33c-.01 0-.02.01-.03.02c-2.72 4.07-3.47 8.03-3.1 11.95c0 .02.01.04.03.05c1.8 1.32 3.53 2.12 5.24 2.65c.03.01.06 0 .07-.02c.4-.55.76-1.13 1.07-1.74c.02-.04 0-.08-.04-.09c-.57-.22-1.11-.48-1.64-.78c-.04-.02-.04-.08-.01-.11c.11-.08.22-.17.33-.25c.02-.02.05-.02.07-.01c3.44 1.57 7.15 1.57 10.55 0c.02-.01.05-.01.07.01c.11.09.22.17.33.26c.04.03.04.09-.01.11c-.52.31-1.07.56-1.64.78c-.04.01-.05.06-.04.09c.32.61.68 1.19 1.07 1.74c.03.01.06.02.09.01c1.72-.53 3.45-1.33 5.25-2.65c.02-.01.03-.03.03-.05c.44-4.53-.73-8.46-3.1-11.95c-.01-.01-.02-.02-.04-.02zM8.52 14.91c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.84 2.12-1.89 2.12zm6.97 0c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.83 2.12-1.89 2.12z"/>
-              </svg>
-          </a>
-          <!-- Telegram -->
-          <a href="https://t.me/huycorporation" class="text-blue-400 hover:text-blue-300 transition duration-300">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-              </svg>
-          </a>
-      </div>
-  </div>
-</footer>
-
-<script src="script.js" defer></script>
+    </footer>
+<script src="script_help.js" defer></script>
 </body>
 </html>
