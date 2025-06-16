@@ -1,83 +1,37 @@
-/**
- * =================================================================================================
- * УСОВЕРШЕНСТВОВАННЫЙ СТИЛЬ v2.0
- * =================================================================================================
- * Описание: Этот файл содержит переработанные и улучшенные стили.
- * Подход: Mobile-First, с фокусом на читаемость, адаптивность и современные практики UX/UI.
- * =================================================================================================
- */
-
-/* ==========================================================================
-   1. Переменные и Глобальные Стили (Variables & Global Styles)
-   ========================================================================== */
-
 :root {
-  /* Цветовая палитра (более семантичные имена) */
-  --color-primary: #4299e1;
-  --color-primary-dark: #2563EB;
-  --color-secondary: #805ad5;
-  --color-accent-1: #F59E0B;
-  --color-accent-1-dark: #D97706;
-  --color-accent-2: #EF4444;
-  --color-accent-2-dark: #DC2626;
-
-  /* Фоны и поверхности */
-  --bg-main: #1a202c; /* Более темный фон для лучшего контраста */
-  --bg-surface: #2d3748; /* Фон для карточек, хедера и футера */
-
-  /* Текстовые цвета */
-  --text-primary: #e2e8f0;
-  --text-muted: #a0aec0;
-  --text-on-primary: #ffffff; /* Текст на ярких кнопках */
-
-  /* Тени (добавим плавный переход) */
+  /* Цветовая палитра */
+  --primary: #4299e1;
+  --primary-dark: #2563EB;
+  --secondary: #805ad5;
+  --accent-1: #F59E0B;
+  --accent-2: #EF4444;
+  --dark-bg: #BDD7E7;
+  --dark-surface: #EFF3FF;
+  --text-light: #ffffff;
+  --text-muted: #e2e8f0;
+  
+  /* Тени */
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
   --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
   --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
-
-  /* Типографика */
-  --font-family-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --font-size-base: 1rem; /* 16px */
-  --font-size-sm: 0.875rem; /* 14px */
-  --font-size-lg: 1.125rem; /* 18px */
-
-  /* Скругления */
-  --border-radius-sm: 0.25rem;
-  --border-radius-md: 0.5rem;
-  --border-radius-lg: 1rem;
-  --border-radius-full: 9999px;
-
-  /* Переходы */
-  --transition-fast: all 0.2s ease-in-out;
-  --transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Анимации */
+  --transition-normal: all 0.3s ease;
+  --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Базовые стили */
-*, *::before, *::after {
-  box-sizing: border-box; /* Более предсказуемая блочная модель */
-}
-
 body {
-  background-color: var(--bg-main);
-  color: var(--text-primary);
-  font-family: var(--font-family-sans);
-  font-size: var(--font-size-base);
-  line-height: 1.6;
-  margin: 0;
-  -webkit-font-smoothing: antialiased; /* Более гладкое отображение шрифтов */
-  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--dark-bg);
+  color: var(--text-light);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 header, footer {
-  background-color: var(--bg-surface);
-  padding: 1rem;
+  background-color: var(--dark-surface);
 }
 
-/* ==========================================================================
-   2. Компоненты (Components)
-   ========================================================================== */
-
-/* --- Кнопки выбора языка --- */
+/* Контейнер для языковых кнопок */
 .language-buttons {
   position: fixed;
   top: 1rem;
@@ -87,234 +41,96 @@ header, footer {
   z-index: 1000;
 }
 
-.lang-btn {
-  padding: 0.5rem 1rem; /* Увеличен padding для удобства нажатия */
-  border-radius: var(--border-radius-full);
+/* Общие стили для языковых кнопок */
+[data-lang] {
+  padding: 0.25rem 1rem;
+  border-radius: 9999px;
   font-weight: 600;
-  font-size: var(--font-size-sm);
-  border: 1px solid transparent;
+  font-size: 0.875rem;
+  border: none;
   cursor: pointer;
-  transition: var(--transition-fast);
+  transition: var(--transition-normal);
   user-select: none;
   -webkit-user-select: none;
-  color: var(--text-on-primary);
 }
 
-.lang-btn:hover {
+/* Специфичные стили для кнопок языков */
+[data-lang="en"] {
+  background-color: var(--primary);
+  color: white;
+}
+
+[data-lang="en"]:hover {
+  background-color: var(--primary-dark);
   transform: translateY(-2px);
-  filter: brightness(1.1); /* Более универсальный эффект, чем смена цвета */
 }
 
-.lang-btn:focus-visible { /* Улучшенный фокус для доступности */
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
+[data-lang="ua"] {
+  background-color: var(--accent-1);
+  color: white;
 }
 
-.lang-btn.active-lang {
+[data-lang="ua"]:hover {
+  background-color: #D97706;
+  transform: translateY(-2px);
+}
+
+[data-lang="ru"] {
+  background-color: var(--accent-2);
+  color: white;
+}
+
+[data-lang="ru"]:hover {
+  background-color: #DC2626;
+  transform: translateY(-2px);
+}
+
+/* Активное состояние кнопок */
+[data-lang].active-lang {
   transform: scale(1.1);
   box-shadow: var(--shadow-md);
 }
 
-.lang-btn:active {
-  transform: scale(0.98);
-  filter: brightness(0.9);
+/* Состояние фокуса */
+[data-lang]:focus {
+  outline: none;
 }
 
-/* Цвета для кнопок */
-.lang-btn[data-lang="en"] { background-color: var(--color-primary); }
-.lang-btn[data-lang="en"]:hover { background-color: var(--color-primary-dark); }
-
-.lang-btn[data-lang="ua"] { background-color: var(--color-accent-1); }
-.lang-btn[data-lang="ua"]:hover { background-color: var(--color-accent-1-dark); }
-
-.lang-btn[data-lang="ru"] { background-color: var(--color-accent-2); }
-.lang-btn[data-lang="ru"]:hover { background-color: var(--color-accent-2-dark); }
-
-
-/* --- Прогресс-бар --- */
-.progress-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 1.5rem;
+[data-lang="en"]:focus {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
 }
 
-.progress-info {
-  font-size: var(--font-size-lg);
-  font-weight: bold;
-  margin-bottom: 1rem;
-  text-align: center;
+[data-lang="ua"]:focus {
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.5);
 }
 
-.progress-bar {
-  width: 100%;
-  height: 20px; /* Сделаем чуть тоньше */
-  background-color: var(--bg-surface);
-  border-radius: var(--border-radius-full);
-  overflow: hidden;
+[data-lang="ru"]:focus {
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.5);
 }
 
-.progress-fill {
-  width: 0;
-  height: 100%;
-  background: linear-gradient(90deg, var(--color-secondary), var(--color-primary));
-  transition: width 0.5s ease-out;
-  border-radius: var(--border-radius-full);
+/* Анимация при нажатии */
+[data-lang]:active {
+  transform: scale(0.95);
 }
 
-
-/* --- Модальное окно --- */
-.modal {
-  display: flex;
-  visibility: hidden;
-  opacity: 0;
-  position: fixed;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.7); /* Более стандартное затемнение */
-  backdrop-filter: blur(8px);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  transition: visibility 0s 0.4s, opacity var(--transition-normal); /* Улучшенная логика перехода */
+/* Мобильная адаптация */
+@media (max-width: 640px) {
+  [data-lang] {
+    padding: 0.2rem 0.75rem;
+    font-size: 0.75rem;
+  }
+  
+  .language-buttons {
+    top: 0.5rem;
+    right: 0.5rem;
+  }
 }
 
-.modal.active {
-  visibility: visible;
-  opacity: 1;
-  transition: opacity var(--transition-normal);
-}
-
-.modal-content {
-  background: var(--bg-surface);
-  color: var(--text-primary);
-  padding: 2rem;
-  border-radius: var(--border-radius-lg);
-  position: relative;
-  width: 90%;
-  max-width: 500px;
-  box-shadow: var(--shadow-lg);
-  transform: translateY(20px) scale(0.95);
-  opacity: 0;
-  transition: var(--transition-normal);
-}
-
-.modal.active .modal-content {
-  transform: translateY(0) scale(1);
-  opacity: 1;
-}
-
-.modal h2 {
-  margin-top: 0;
-  margin-bottom: 1.5rem;
-  color: var(--color-primary);
-  font-size: clamp(1.5rem, 5vw, 1.75rem); /* Адаптивный размер шрифта */
-}
-
-.modal p {
-  margin-bottom: 1.5rem;
-  color: var(--text-muted);
-  line-height: 1.7;
-}
-
-.close-button {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  transition: var(--transition-fast);
-  color: var(--text-muted);
-}
-
-.close-button:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: rotate(90deg);
-  color: var(--text-primary);
-}
-
-.close-button svg { /* Используем SVG для иконки - это более гибко */
-  width: 24px;
-  height: 24px;
-}
-
-/* --- Кнопки действий (Поддержка, Копирование) --- */
-.action-button {
-  position: relative;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: var(--border-radius-full);
-  cursor: pointer;
-  font-size: var(--font-size-base);
-  font-weight: 600;
-  overflow: hidden;
-  transition: var(--transition-fast);
-  color: var(--text-on-primary);
-  box-shadow: var(--shadow-md);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.action-button:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-lg);
-}
-
-.action-button:active {
-  transform: translateY(0) scale(0.98);
-  box-shadow: var(--shadow-sm);
-}
-
-.action-button:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-}
-
-/* Уникальные стили для кнопки поддержки */
-.support-button {
-  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);
-  animation: floating 4s infinite ease-in-out; /* Упрощенная, менее навязчивая анимация */
-}
-
-/* Уникальные стили для кнопки копирования */
-.copy-button {
-  background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
-  margin-top: 1rem;
-}
-
-.copy-button .button-icon { /* Для иконки внутри кнопки */
-  margin-left: 0.5rem;
-  transition: transform var(--transition-fast);
-}
-
-.copy-button:hover .button-icon {
-  transform: translateX(3px);
-}
-
-/* ==========================================================================
-   3. Утилиты и Анимации (Utilities & Animations)
-   ========================================================================== */
-
-/* --- Утилиты для размытия --- */
-.main-content.blur {
-  filter: blur(5px);
-  transform: scale(0.98); /* Добавим небольшой зум для глубины */
-  transition: filter 0.3s ease-out, transform 0.3s ease-out;
-}
-
-/* --- Анимации --- */
-@keyframes floating {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
-  100% { transform: translateY(0); }
+/* Header градиент */
+.header-gradient {
+  background: linear-gradient(270deg, var(--primary), var(--secondary), var(--primary));
+  background-size: 600% 600%;
+  animation: gradientAnimation 15s ease infinite;
 }
 
 @keyframes gradientAnimation {
@@ -323,38 +139,489 @@ header, footer {
   100% { background-position: 0% 50%; }
 }
 
-.header-gradient {
-  background: linear-gradient(270deg, var(--primary), var(--secondary), var(--primary));
-  background-size: 400% 400%; /* Оптимизируем размер */
-  animation: gradientAnimation 10s ease infinite;
+/* Анимации */
+.pulse {
+  animation: pulse 3s ease-in-out infinite;
 }
 
-/* ==========================================================================
-   4. Адаптивность (Media Queries - Mobile-First)
-   ========================================================================== */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
 
-/* Планшеты и небольшие десктопы (640px и больше) */
-@media (min-width: 640px) {
-  body {
-    font-size: var(--font-size-lg); /* Немного увеличим базовый шрифт */
+/* Кнопка исследования */
+.explore-button:hover {
+  background-color: #EFF3FF;
+}
+
+/* Стили текста */
+.title, .section-title, .footer-title {
+  color: var(--text-light);
+}
+
+.subtitle, .feature-text {
+  color: var(--text-muted);
+}
+
+/* Стили элементов функций */
+.feature-item {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--dark-bg);
+  transition: transform 0.3s ease;
+}
+
+.feature-item:hover {
+  transform: scale(1.05);
+}
+
+/* Футер */
+.footer {
+  background-color: var(--dark-surface);
+}
+
+.social-links a {
+  color: var(--text-light);
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #cbd5e0;
+}
+
+/* Эффект размытия для основного контента */
+.main-content {
+  transition: filter 0.3s ease-out;
+}
+
+.main-content.blur {
+  filter: blur(5px);
+}
+
+/* Контейнер прогресса */
+.progress-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px;
+  margin: 1.25rem auto;
+  padding: 1.25rem;
+}
+
+.progress-info {
+  font-size: 1.125rem;
+  font-weight: bold;
+  margin-bottom: 0.625rem;
+  text-align: center;
+}
+
+/* Прогресс-бар */
+.progress-bar {
+  width: 100%;
+  height: 30px;
+  background-color: #f0f0f0;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+}
+
+.progress-fill {
+  width: 0;
+  height: 100%;
+  background-color: var(--primary);
+  transition: width 0.5s ease-out;
+}
+
+/* Модальное окно */
+.modal {
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px) saturate(120%);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: var(--transition-smooth);
+  perspective: 1000px;
+  overflow: hidden;
+}
+
+/* Эффект частиц для модального окна */
+.modal::before {
+  content: '';
+  position: absolute;
+  width: 300%;
+  height: 300%;
+  top: -100%;
+  left: -100%;
+  background-image: 
+    radial-gradient(circle at 70% 40%, rgba(200, 200, 200, 0.1) 10%, transparent 15%),
+    radial-gradient(circle at 30% 60%, rgba(220, 220, 220, 0.1) 10%, transparent 15%);
+  background-size: 150px 150px;
+  animation: particleFlow 40s linear infinite;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+@keyframes particleFlow {
+  0% { transform: rotate(0deg) translate(0, 0); }
+  100% { transform: rotate(360deg) translate(-150px, 150px); }
+}
+
+.modal.active {
+  visibility: visible;
+  opacity: 1;
+  animation: modalFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes modalFadeIn {
+  0% {
+    backdrop-filter: blur(0px) saturate(100%);
+    background-color: rgba(255, 255, 255, 0);
   }
-
-  .language-buttons {
-    gap: 1rem;
+  100% {
+    backdrop-filter: blur(12px) saturate(120%);
+    background-color: rgba(255, 255, 255, 0.95);
   }
+}
 
+.modal-content {
+  background: linear-gradient(145deg, #ffffff, #f5f5f5);
+  padding: 1.875rem;
+  border-radius: 20px;
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 0 40px rgba(0, 123, 255, 0.329);
+  transform: translateY(-50px) scale(0.95) rotateX(-15deg);
+  opacity: 0;
+  transition: var(--transition-smooth);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.modal-content::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, #e0e0e0, #f0f0f0);
+  z-index: -1;
+  animation: borderGlow 6s linear infinite;
+  opacity: 0.2;
+}
+
+@keyframes borderGlow {
+  0% { opacity: 0.1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 0.1; }
+}
+
+.modal.active .modal-content {
+  transform: translateY(0) scale(1) rotateX(0);
+  opacity: 1;
+  animation: contentAppear 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes contentAppear {
+  0% {
+    transform: translateY(-50px) scale(0.95) rotateX(-15deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scale(1) rotateX(0);
+    opacity: 1;
+  }
+}
+
+.modal p {
+  margin: 1.5rem 0;
+  color: #BDD7E7;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+.modal h2 {
+  margin-bottom: 1.5rem;
+  color: #1a73e8;
+  font-size: 1.75rem;
+  font-weight: 600;
+  padding-bottom: 0.9375rem;
+  position: relative;
+}
+
+.modal h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #1a73e8, transparent);
+  border-radius: 2px;
+}
+
+/* Кнопка закрытия */
+.close-button {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.144);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.close-button:hover {
+  background: rgba(0, 0, 0, 0.15);
+  transform: rotate(180deg) scale(1.1);
+}
+
+.close-button::before,
+.close-button::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.7);
+  transition: var(--transition-normal);
+}
+
+.close-button::before {
+  transform: rotate(45deg);
+}
+
+.close-button::after {
+  transform: rotate(-45deg);
+}
+
+.close-button:hover::before,
+.close-button:hover::after {
+  background: #1a73e8;
+}
+
+/* Кнопка поддержки */
+.support-button {
+  position: relative;
+  padding: 1rem 2.25rem;
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+  margin-top: 1.25rem;
+  box-shadow: 
+    0 8px 24px rgba(59, 130, 246, 0.3),
+    0 4px 12px rgba(0, 0, 0, 0.1);
+  animation: neonPulse 5.5s infinite ease-in-out,
+             floating 7.5s infinite ease-in-out;
+  transform-origin: center;
+}
+
+.support-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: skewX(-30deg);
+  transition: 0.6s;
+}
+
+.support-button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 
+    0 12px 32px rgba(59, 130, 246, 0.4),
+    0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.support-button:hover::after {
+  left: 120%;
+}
+
+.support-button:active {
+  transform: scale(0.95);
+  filter: brightness(0.9);
+}
+
+.support-button:focus {
+  outline: none;
+  box-shadow: 
+    0 0 0 4px rgba(110, 231, 183, 0.3),
+    0 8px 24px rgba(59, 130, 246, 0.4);
+}
+
+/* Анимации для кнопки поддержки */
+@keyframes neonPulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(66, 153, 225, 0.4),
+                0 0 20px rgba(128, 90, 213, 0.3),
+                0 0 30px rgba(66, 153, 225, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(66, 153, 225, 0.6),
+                0 0 30px rgba(128, 90, 213, 0.4),
+                0 0 40px rgba(66, 153, 225, 0.3);
+  }
+}
+
+@keyframes floating {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.support-button:hover .heart-emoji {
+  animation: heartbeat 1.2s infinite;
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  15% { transform: scale(1.3); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.15); }
+  60% { transform: scale(1); }
+}
+
+/* Иконка в кнопке */
+.button-icon {
+  display: inline-block;
+  margin-left: 10px;
+  transition: transform 0.3s ease;
+}
+
+.support-button:hover .button-icon {
+  transform: translateX(5px);
+}
+
+/* Кнопка копирования */
+.copy-button {
+  background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  margin-top: 0.75rem;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 20px rgba(0, 119, 182, 0.2);
+  transform-style: preserve-3d;
+  animation: slideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.copy-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: var(--transition-smooth);
+}
+
+.copy-button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 119, 182, 0.4);
+}
+
+.copy-button:hover::before {
+  left: 100%;
+}
+
+.copy-button:active {
+  transform: scale(0.96) translateY(2px);
+  box-shadow: 0 3px 15px rgba(0, 119, 182, 0.3);
+}
+
+.copy-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.5),
+    0 4px 25px rgba(0, 119, 182, 0.4);
+}
+
+/* Анимация успешного копирования */
+@keyframes copyFeedback {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+.copy-success::after {
+  content: '✓ Скопировано!';
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(66, 153, 225, 0.9);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  animation: copyFeedback 1.2s ease-out;
+  backdrop-filter: blur(4px);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Медиа-запросы */
+@media (max-width: 480px) {
   .modal-content {
-    padding: 2.5rem;
+    width: 95%;
+    padding: 1.5rem;
   }
-}
-
-/* Большие десктопы (1024px и больше) */
-@media (min-width: 1024px) {
-  header, footer {
-    padding: 1.5rem 2rem;
+  
+  .modal h2 {
+    font-size: 1.5rem;
   }
-
-  .action-button {
-    padding: 1rem 2rem;
+  
+  .close-button {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .support-button {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
   }
 }
