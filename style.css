@@ -5,8 +5,6 @@
   --secondary: #805ad5;
   --accent-1: #F59E0B;
   --accent-2: #EF4444;
-  --accent-1-dark: #D97706;
-  --accent-2-dark: #DC2626;
   --dark-bg: #BDD7E7;
   --dark-surface: #EFF3FF;
   --text-light: #ffffff;
@@ -44,7 +42,6 @@ header, footer {
 }
 
 /* Общие стили для языковых кнопок */
-
 [data-lang] {
   padding: 0.25rem 1rem;
   border-radius: 9999px;
@@ -52,43 +49,40 @@ header, footer {
   font-size: 0.875rem;
   border: none;
   cursor: pointer;
+  transition: var(--transition-normal);
   user-select: none;
   -webkit-user-select: none;
-  /* Используем более производительный transition */
-  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Специфичные стили (устанавливаем цвета через переменные) */
+/* Специфичные стили для кнопок языков */
 [data-lang="en"] {
   background-color: var(--primary);
-  color: var(--text-light); /* Используем переменную */
-  --btn-hover-bg: var(--primary-dark);
-  --btn-focus-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+  color: white;
+}
+
+[data-lang="en"]:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
 }
 
 [data-lang="ua"] {
   background-color: var(--accent-1);
-  color: var(--text-light); /* Используем переменную */
-  --btn-hover-bg: var(--accent-1-dark);
-  --btn-focus-shadow: 0 0 0 3px rgba(245, 158, 11, 0.5);
+  color: white;
+}
+
+[data-lang="ua"]:hover {
+  background-color: #D97706;
+  transform: translateY(-2px);
 }
 
 [data-lang="ru"] {
   background-color: var(--accent-2);
-  color: var(--text-light); /* Используем переменную */
-  --btn-hover-bg: var(--accent-2-dark);
-  --btn-focus-shadow: 0 0 0 3px rgba(239, 68, 68, 0.5);
+  color: white;
 }
 
-/* Общие стили для состояний (теперь они не повторяются!) */
-[data-lang]:hover {
-  background-color: var(--btn-hover-bg); /* Используем локальную переменную */
+[data-lang="ru"]:hover {
+  background-color: #DC2626;
   transform: translateY(-2px);
-}
-
-[data-lang]:focus-visible { /* :focus-visible лучше, чем :focus для доступности */
-  outline: none; /* Убираем, только если есть замена */
-  box-shadow: var(--btn-focus-shadow); /* Используем локальную переменную */
 }
 
 /* Активное состояние кнопок */
@@ -97,10 +91,21 @@ header, footer {
   box-shadow: var(--shadow-md);
 }
 
-/* Анимация при нажатии */
-[data-lang]:active {
-  transform: scale(0.95);
-  transition-duration: 0.1s; /* Делаем нажатие более быстрым */
+/* Состояние фокуса */
+[data-lang]:focus {
+  outline: none;
+}
+
+[data-lang="en"]:focus {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+[data-lang="ua"]:focus {
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.5);
+}
+
+[data-lang="ru"]:focus {
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.5);
 }
 
 /* Анимация при нажатии */
