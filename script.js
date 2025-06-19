@@ -1,8 +1,9 @@
 // --- Глобальные функции для модального окна поддержки ---
+
 function openModal() {
-    const modal = document.getElementById('donateModal'); 
+    const modal = document.getElementById('donateModal');
     if (modal) {
-        modal.hidden = false; 
+        modal.hidden = false;
         modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
     }
@@ -34,8 +35,9 @@ async function copyToClipboard(textToCopy, buttonElement) {
 // --- Класс управления языками ---
 class LanguageManager {
     constructor() {
-        this.currentLang = localStorage.getItem('selectedLanguage') || 'ru';
-        this.supportedLanguages = ['en', 'ru',ua'];
+        // Используем sessionStorage вместо localStorage для временного хранения
+        this.currentLang = sessionStorage.getItem('selectedLanguage') || 'ru';
+        this.supportedLanguages = ['en', 'ru', 'ua']; // ИСПРАВЛЕНО: убрана лишняя запятая
         this.init();
     }
 
@@ -69,21 +71,31 @@ class LanguageManager {
         const translations = await this.loadLanguage(lang);
         if (translations) {
             this.currentLang = lang;
-            localStorage.setItem('selectedLanguage', lang);
+            sessionStorage.setItem('selectedLanguage', lang);
             this.updatePageContent(translations);
         }
     }
 
     updatePageContent(translations) {
         // Обновляем текст на элементах страницы
-        // Пример:
-        // document.getElementById('mainHeading').textContent = translations.mainHeading;
-        // document.getElementById('mainDescription').textContent = translations.mainDescription;
-        // document.getElementById('featuresLink').textContent = translations.featuresLink;
-        // ... и так далее для всех остальных элементов
+        const elements = {
+            'mainHeading': translations.mainHeading,
+            'mainDescription': translations.mainDescription,
+            'featuresLink': translations.featuresLink,
+            'features-heading': translations.featuresHeading,
+            'tech-heading': translations.techHeading,
+            'launcherTitle': translations.launcherTitle,
+            'developerJourneyTitle': translations.developerJourneyTitle
+        };
+
+        Object.keys(elements).forEach(elementId => {
+            const element = document.getElementById(elementId);
+            if (element && elements[elementId]) {
+                element.textContent = elements[elementId];
+            }
+        });
     }
 }
-
 
 // --- Инициализация после полной загрузки DOM ---
 document.addEventListener('DOMContentLoaded', () => {
@@ -104,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- УСТАНОВКА ОБРАБОТЧИКОВ СОБЫТИЙ ---
 
     // 1. Эффект при прокрутке страницы
-    if(header) {
+    if (header) {
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 header.classList.add('scrolled');
@@ -120,8 +132,10 @@ document.addEventListener('DOMContentLoaded', () => {
             event.stopPropagation();
             langDropdownMenu.classList.toggle('show');
         });
-        window.addEventListener('click', () => {
-            if (langDropdownMenu.classList.contains('show')) {
+
+        // ИСПРАВЛЕНО: добавили проверку на клик внутри dropdown
+        document.addEventListener('click', (event) => {
+            if (!langDropdownMenu.contains(event.target) && !langToggleBtn.contains(event.target)) {
                 langDropdownMenu.classList.remove('show');
             }
         });
@@ -129,9 +143,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. Логика мобильного меню "бургер"
     if (mobileMenuBtn && mobileNavMenu) {
-        mobileMenuBtn.addEventListener('click', () => {
+        mobileMenuBtn.addEventListener('click', (event) => {
+            event.stopPropagation();
             mobileMenuBtn.classList.toggle('active');
             mobileNavMenu.classList.toggle('show');
+        });
+
+        // ИСПРАВЛЕНО: закрытие мобильного меню при клике вне его
+        document.addEventListener('click', (event) => {
+            if (!mobileNavMenu.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                mobileMenuBtn.classList.remove('active');
+                mobileNavMenu.classList.remove('show');
+            }
+        });
+
+        // ИСПРАВЛЕНО: закрытие мобильного меню при клике по ссылке
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuBtn.classList.remove('active');
+                mobileNavMenu.classList.remove('show');
+            });
         });
     }
 
@@ -153,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && !donateModal.hidden) {
+        if (event.key === 'Escape' && donateModal && !donateModal.hidden) {
             closeModal();
         }
     });
@@ -167,17 +199,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 7. Инициализация и обработка смены языка
-    const langManager = new LanguageManager(); // Создаем ОДИН экземпляр
+    const langManager = new LanguageManager();
+    
     langOptions.forEach(option => {
         option.addEventListener('click', function(event) {
             event.stopPropagation();
-            const selectedLang = this.getAttribute('data-lang');
-            
+            const selectedLang = this.getAttribute('data-lang').toLowerCase(); // ИСПРАВЛЕНО: приведение к нижнему регистру
+
             // Обновляем UI немедленно
-            currentLangText.textContent = selectedLang.toUpperCase();
+            if (currentLangText) {
+                currentLangText.textContent = selectedLang.toUpperCase();
+            }
+            
             langOptions.forEach(opt => opt.classList.remove('active'));
             this.classList.add('active');
-            langDropdownMenu.classList.remove('show');
+            
+            if (langDropdownMenu) {
+                langDropdownMenu.classList.remove('show');
+            }
 
             // Вызываем менеджер для загрузки и обновления контента
             langManager.loadAndUpdateLanguage(selectedLang);
@@ -185,11 +224,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Обновление UI языка при первоначальной загрузке страницы
-    const activeLang = localStorage.getItem('selectedLanguage') || 'ru';
-    currentLangText.textContent = activeLang.toUpperCase();
+    const activeLang = sessionStorage.getItem('selectedLanguage') || 'ru';
+    if (currentLangText) {
+        currentLangText.textContent = activeLang.toUpperCase();
+    }
+    
     langOptions.forEach(opt => {
         opt.classList.remove('active');
-        if (opt.getAttribute('data-lang').toLowerCase() === activeLang) {
+        if (opt.getAttribute('data-lang').toLowerCase() === activeLang.toLowerCase()) {
             opt.classList.add('active');
         }
     });
@@ -197,9 +239,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // 8. Плавная прокрутка для якорных ссылок
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            if (this.getAttribute('href').length > 1) { 
+            const href = this.getAttribute('href');
+            if (href && href.length > 1) {
                 e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
+                const targetId = href.substring(1);
                 const targetElement = document.getElementById(targetId);
                 if (targetElement) {
                     targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -215,6 +258,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (progressFill) {
         const progressPercentage = Math.min((currentAmount / goalAmount) * 100, 100);
         progressFill.style.width = `${progressPercentage}%`;
-        progressFill.parentElement.setAttribute('aria-valuenow', currentAmount.toFixed(2)); 
+        progressFill.parentElement.setAttribute('aria-valuenow', currentAmount.toFixed(2));
     }
 });
