@@ -1,3 +1,5 @@
+// script.js
+
 // --- Глобальные функции для модального окна поддержки ---
 
 function openModal() {
@@ -35,9 +37,8 @@ async function copyToClipboard(textToCopy, buttonElement) {
 // --- Класс управления языками ---
 class LanguageManager {
     constructor() {
-        // Используем sessionStorage вместо localStorage для временного хранения
         this.currentLang = sessionStorage.getItem('selectedLanguage') || 'ru';
-        this.supportedLanguages = ['en', 'ru', 'ua']; // ИСПРАВЛЕНО: убрана лишняя запятая
+        this.supportedLanguages = ['en', 'ru', 'ua'];
         this.init();
     }
 
@@ -55,7 +56,6 @@ class LanguageManager {
             return null;
         }
         try {
-            // Убедитесь, что у вас есть папка 'languages' с файлами en.json, ru.json, ua.json
             const response = await fetch(`languages/${lang}.json`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -77,7 +77,6 @@ class LanguageManager {
     }
 
     updatePageContent(translations) {
-        // Обновляем текст на элементах страницы
         const elements = {
             'mainHeading': translations.mainHeading,
             'mainDescription': translations.mainDescription,
@@ -112,17 +111,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const donateModal = document.getElementById('donateModal');
     const closeModalButton = document.getElementById('closeModalButton');
     const copyButtons = document.querySelectorAll('.copy-button');
+    
+    // --- НОВАЯ ПЕРЕМЕННАЯ ---
+    // Находим секцию "Обо мне", чтобы сделать ее кликабельной
+    const developerJourneySection = document.getElementById('developerJourneyTitle');
+
 
     // --- УСТАНОВКА ОБРАБОТЧИКОВ СОБЫТИЙ ---
 
     // 1. Эффект при прокрутке страницы
     if (header) {
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+            header.classList.toggle('scrolled', window.scrollY > 50);
         });
     }
 
@@ -133,7 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
             langDropdownMenu.classList.toggle('show');
         });
 
-        // ИСПРАВЛЕНО: добавили проверку на клик внутри dropdown
         document.addEventListener('click', (event) => {
             if (!langDropdownMenu.contains(event.target) && !langToggleBtn.contains(event.target)) {
                 langDropdownMenu.classList.remove('show');
@@ -149,7 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
             mobileNavMenu.classList.toggle('show');
         });
 
-        // ИСПРАВЛЕНО: закрытие мобильного меню при клике вне его
         document.addEventListener('click', (event) => {
             if (!mobileNavMenu.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
                 mobileMenuBtn.classList.remove('active');
@@ -157,7 +155,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // ИСПРАВЛЕНО: закрытие мобильного меню при клике по ссылке
         const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
         mobileNavLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -167,13 +164,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. Открытие модального окна "Поддержать"
+    // 4. Открытие модального окна "Поддержать" (ДВА ОБРАБОТЧИКА)
+    // Обработчик для кнопки в шапке
     if (headerSupportBtn) {
         headerSupportBtn.addEventListener('click', (event) => {
             event.preventDefault();
             openModal();
         });
     }
+    
+    // --- НОВЫЙ КОД ---
+    // Обработчик для секции "Обо мне"
+    if (developerJourneySection) {
+        developerJourneySection.addEventListener('click', () => {
+            openModal();
+        });
+    }
+    // --- КОНЕЦ НОВОГО КОДА ---
 
     // 5. Закрытие модального окна (кнопка, фон, клавиша Esc)
     if (closeModalButton) {
@@ -204,9 +211,8 @@ document.addEventListener('DOMContentLoaded', () => {
     langOptions.forEach(option => {
         option.addEventListener('click', function(event) {
             event.stopPropagation();
-            const selectedLang = this.getAttribute('data-lang').toLowerCase(); // ИСПРАВЛЕНО: приведение к нижнему регистру
+            const selectedLang = this.getAttribute('data-lang').toLowerCase();
 
-            // Обновляем UI немедленно
             if (currentLangText) {
                 currentLangText.textContent = selectedLang.toUpperCase();
             }
@@ -218,12 +224,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 langDropdownMenu.classList.remove('show');
             }
 
-            // Вызываем менеджер для загрузки и обновления контента
             langManager.loadAndUpdateLanguage(selectedLang);
         });
     });
 
-    // Обновление UI языка при первоначальной загрузке страницы
     const activeLang = sessionStorage.getItem('selectedLanguage') || 'ru';
     if (currentLangText) {
         currentLangText.textContent = activeLang.toUpperCase();
