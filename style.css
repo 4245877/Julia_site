@@ -6,14 +6,15 @@
   /* -- Цветовая палитра (Адаптирована под темную тему) -- */
   --primary-blue: #3b82f6;      /* Яркий синий для акцентов */
   --primary-purple: #a855f7;  /* Фиолетовый для градиентов */
-  --primary-cyan: #22d3ee;      /* Голубой для градиентов */
+  --primary-pink: #fb7185; /* Розовый для градиентов (восстановлен для кнопки) */
   
   --brand-gradient: linear-gradient(90deg, var(--primary-purple), var(--primary-blue), var(--primary-cyan));
+  --support-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 
   /* -- Фоны -- */
   --bg-dark-main: #0b0f19;        /* Основной очень темный фон */
-  --bg-dark-surface: rgba(17, 25, 40, 0.7); /* Фон для "стеклянных" панелей */
-  --bg-dark-surface-hover: rgba(23, 33, 53, 0.8); /* Фон при наведении */
+  --bg-dark-surface: rgba(17, 25, 40, 0.75); /* Фон для "стеклянных" панелей */
+  --bg-dark-surface-hover: rgba(23, 33, 53, 0.85); /* Фон при наведении */
   
   /* -- Текст -- */
   --text-light: #e2e8f0;      /* Основной светлый текст */
@@ -35,8 +36,8 @@ body {
   background-color: var(--bg-dark-main);
   color: var(--text-light);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  /* Добавляем отступ сверху, чтобы контент не уезжал под фиксированную шапку */
-  padding-top: 70px; /* Равно высоте шапки .header-container */
+  /* Отступ для контента под фиксированной шапкой. h-20 в Tailwind = 5rem = 80px */
+  padding-top: 80px; 
 }
 
 /* -- Глобальный интерактивный фон -- */
@@ -59,118 +60,112 @@ body {
 /* 1. СТИЛИ ШАПКИ (HEADER)                                           */
 /* =================================================================== */
 
-/* -- Основной контейнер шапки -- */
-.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
+/* Применяем стили напрямую к тегу header, как в вашем HTML */
+header {
     background: var(--bg-dark-surface);
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
     border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     transition: var(--transition-smooth);
-    animation: headerSlideIn 0.6s var(--transition-smooth);
 }
 
-.header.scrolled {
-    background: rgba(17, 25, 40, 0.85);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-bottom-color: rgba(255, 255, 255, 0.18);
+header.scrolled {
+    background: rgba(17, 25, 40, 0.9);
     box-shadow: var(--shadow-lg);
 }
 
-.header-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 70px;
+/* Градиентный текст для логотипа */
+.gradient-text {
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
 }
 
-@keyframes headerSlideIn {
-    from {
-        transform: translateY(-100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+/* Свечение для логотипа */
+.logo-glow {
+  filter: drop-shadow(0 0 15px rgba(96, 165, 250, 0.4));
+  transition: var(--transition-normal);
+}
+.logo-glow:hover {
+  filter: drop-shadow(0 0 25px rgba(96, 165, 250, 0.6));
+  transform: scale(1.05);
 }
 
-/* -- Логотип -- */
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-    filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.2));
-    transition: var(--transition-normal);
-}
-.logo:hover {
-    filter: drop-shadow(0 0 25px rgba(59, 130, 246, 0.4));
-    transform: scale(1.05);
-}
-
-.logo-text {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text-bright);
-}
-
-/* -- Навигация -- */
-.nav-links {
-    display: none; /* Скрываем на мобильных по умолчанию */
-    align-items: center;
-    gap: 2rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-@media (min-width: 768px) {
-  .nav-links {
-    display: flex; /* Показываем на экранах шире 768px */
-  }
-}
-
+/* Ссылки в навигации */
 .nav-link {
-    position: relative;
-    color: var(--text-muted);
-    text-decoration: none;
-    font-weight: 500;
-    padding: 8px 4px;
-    transition: color 0.3s ease, transform 0.3s ease;
-    letter-spacing: 0.5px;
+  position: relative;
+  transition: var(--transition-normal);
 }
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: var(--brand-gradient);
-    border-radius: 2px;
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-}
-
 .nav-link:hover {
-    color: var(--text-bright);
-    transform: translateY(-2px);
+  color: var(--text-bright);
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--brand-gradient);
+  border-radius: 2px;
+  transition: var(--transition-smooth);
+}
+.nav-link:hover::after {
+  width: 100%;
 }
 
-.nav-link:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
+/* Кнопка "Поддержать" */
+.support-btn {
+  background: var(--support-gradient);
+  transition: var(--transition-normal);
 }
+.support-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+/* Выпадающее меню для языков */
+.lang-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 100px;
+  background: rgba(23, 33, 53, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+}
+.lang-dropdown.active { /* Используем .active для показа */
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.lang-option {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  font-weight: 500;
+}
+.lang-option:hover {
+  background: rgba(96, 165, 250, 0.15);
+}
+.lang-option.active {
+  color: var(--primary-blue);
+  font-weight: 700;
+}
+
 
 /* =================================================================== */
 /* 2. МОБИЛЬНОЕ МЕНЮ                                                 */
@@ -178,7 +173,7 @@ body {
 
 /* Кнопка "бургер" */
 .mobile-menu-toggle {
-    display: none; /* Скрыта по умолчанию, покажется через media-query */
+    display: none; 
     flex-direction: column;
     justify-content: space-around;
     width: 24px;
@@ -189,18 +184,24 @@ body {
     padding: 0;
     z-index: 1010;
 }
+@media (max-width: 767px) {
+    .mobile-menu-toggle {
+        display: flex;
+    }
+}
+
 
 .hamburger-line {
     width: 24px;
     height: 2px;
-    background: var(--text-bright); /* Используем новую переменную */
+    background: var(--text-bright);
     border-radius: 10px;
     transition: all 0.3s linear;
     position: relative;
     transform-origin: 1px;
 }
 
-/* Анимация "бургера" в крестик */
+/* Анимация "бургера" в крестик (класс .open из JS) */
 .mobile-menu-toggle.open .hamburger-line:nth-child(1) {
   transform: rotate(45deg);
 }
@@ -214,18 +215,18 @@ body {
 
 /* Контейнер мобильной навигации */
 .mobile-nav {
-    display: none; /* Скрыто по умолчанию */
+    display: none;
     position: absolute;
-    top: 70px; /* Высота шапки */
+    top: 80px; /* Высота шапки */
     left: 0;
     right: 0;
-    background: var(--bg-dark-surface); /* Используем новую переменную */
+    background: var(--bg-dark-surface);
     backdrop-filter: blur(10px);
     padding: 1rem 0;
     border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-.mobile-nav.open {
+.mobile-nav.open { /* Используем .open для показа */
     display: block;
 }
 
@@ -238,37 +239,26 @@ body {
 .mobile-nav-link {
     display: block;
     padding: 1rem;
-    color: var(--text-light); /* Используем новую переменную */
+    color: var(--text-light);
     text-decoration: none;
     font-size: 1.2rem;
     font-weight: 500;
     transition: background-color 0.2s, color 0.2s;
 }
 .mobile-nav-link:hover {
-    background-color: var(--bg-dark-surface-hover); /* Используем новую переменную */
+    background-color: var(--bg-dark-surface-hover);
     color: var(--text-bright);
 }
-
-/* Медиа-запрос для отображения мобильного меню */
-@media (max-width: 767px) {
-    .mobile-menu-toggle {
-        display: flex;
-    }
-    .nav-links {
-        display: none; /* Убедимся, что десктопная навигация скрыта */
-    }
+.support-btn-mobile {
+  color: var(--primary-blue);
+  font-weight: bold;
 }
-
 
 /* =================================================================== */
 /* 3. ОСНОВНОЙ КОНТЕНТ (MAIN)                                        */
 /* =================================================================== */
 
 /* -- Градиентный заголовок -- */
-.header-gradient {
-    background: none;
-}
-
 .header-gradient-text {
     background: var(--brand-gradient);
     -webkit-background-clip: text;
@@ -283,20 +273,6 @@ body {
     to {
         background-position: 200% center;
     }
-}
-
-/* -- Элементы функций -- */
-.feature-item {
-    padding: 1rem;
-    border-radius: 0.5rem;
-    background-color: rgba(23, 33, 53, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.feature-item:hover {
-    transform: translateY(-5px) scale(1.03);
-    background-color: var(--bg-dark-surface-hover);
 }
 
 /* -- Контейнер прогресса -- */
@@ -337,18 +313,19 @@ body {
     opacity: 0;
     position: fixed;
     inset: 0;
-    background-color: rgba(11, 15, 25, 0.5);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background-color: rgba(11, 15, 25, 0.6); /* Чуть темнее фон */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     justify-content: center;
     align-items: center;
-    z-index: 1000;
-    transition: var(--transition-smooth);
+    z-index: 2000; /* Выше, чем шапка */
+    transition: visibility 0s 0.3s, opacity 0.3s ease;
 }
 
 .modal.active {
     visibility: visible;
     opacity: 1;
+    transition: visibility 0s 0s, opacity 0.3s ease;
 }
 
 .modal-content {
@@ -361,7 +338,12 @@ body {
     max-width: 500px;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.5), var(--shadow-glow);
     border: 1px solid rgba(255, 255, 255, 0.15);
+    transform: scale(0.95);
     transition: var(--transition-smooth);
+}
+
+.modal.active .modal-content {
+    transform: scale(1);
 }
 
 .modal h2 {
@@ -370,23 +352,32 @@ body {
     font-size: 1.75rem;
 }
 
-.modal p {
-    margin: 1.5rem 0;
+.modal .payment-details p {
+    margin: 1rem 0 0.5rem;
     color: var(--text-muted);
     line-height: 1.7;
     font-size: 1rem;
+    word-break: break-all;
 }
+
+.modal .payment-details p span {
+    font-weight: bold;
+    color: var(--text-light);
+    display: block;
+}
+
 
 /* -- Кнопка копирования -- */
 .copy-button {
     background: var(--primary-blue);
     color: var(--text-bright);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 0.875rem;
     padding: 0.5rem 1rem;
-    margin-top: 0.75rem;
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
     transition: var(--transition-smooth);
 }
 
@@ -408,27 +399,16 @@ body {
     border-radius: 50%;
     cursor: pointer;
     transition: var(--transition-smooth);
+    color: var(--text-bright);
+    font-size: 1.5rem;
+    line-height: 40px;
+    text-align: center;
 }
 
 .close-button:hover {
     background: rgba(255, 255, 255, 0.2);
     transform: rotate(90deg) scale(1.1);
 }
-
-.close-button::before,
-.close-button::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 20px;
-    height: 2px;
-    background: var(--text-bright);
-    border-radius: 2px;
-}
-
-.close-button::before { transform: translate(-50%, -50%) rotate(45deg); }
-.close-button::after { transform: translate(-50%, -50%) rotate(-45deg); }
 
 @media (max-width: 480px) {
     .modal-content {
@@ -443,64 +423,14 @@ body {
     .close-button {
         width: 36px;
         height: 36px;
+        line-height: 36px;
     }
 }
 
-
 /* =================================================================== */
-/* 5. ПЕРЕКЛЮЧАТЕЛЬ ЯЗЫКОВ                                           */
-/* =================================================================== */
-
-.language-buttons {
-    display: flex;
-    gap: 0.5rem;
-}
-
-/* Общие стили для языковых кнопок */
-[data-lang] {
-    padding: 0.25rem 1rem;
-    border-radius: 9999px;
-    font-weight: 600;
-    font-size: 0.875rem;
-    border: none;
-    cursor: pointer;
-    transition: var(--transition-normal);
-    user-select: none;
-    -webkit-user-select: none;
-}
-
-/* Специфичные стили для кнопок языков */
-[data-lang="en"] { background-color: var(--primary-blue); color: var(--text-bright); }
-[data-lang="en"]:hover { background-color: #2563eb; transform: translateY(-2px); }
-
-[data-lang="ua"] { background-color: #F59E0B; color: var(--text-bright); }
-[data-lang="ua"]:hover { background-color: #D97706; transform: translateY(-2px); }
-
-[data-lang="ru"] { background-color: #EF4444; color: var(--text-bright); }
-[data-lang="ru"]:hover { background-color: #DC2626; transform: translateY(-2px); }
-
-/* Активное состояние кнопок */
-[data-lang].active-lang {
-    transform: scale(1.1);
-    box-shadow: var(--shadow-md);
-}
-
-/* Состояние фокуса */
-[data-lang]:focus { outline: none; }
-[data-lang="en"]:focus { box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); }
-[data-lang="ua"]:focus { box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.5); }
-[data-lang="ru"]:focus { box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.5); }
-
-/* Анимация при нажатии */
-[data-lang]:active {
-    transform: scale(0.95);
-}
-
-/* =================================================================== */
-/* 6. УТИЛИТЫ И АНИМАЦИИ                                             */
+/* 5. УТИЛИТЫ И АНИМАЦИИ                                             */
 /* =================================================================== */
 
-/* Анимация пульсации */
 .pulse {
     animation: pulse 3s ease-in-out infinite;
 }
@@ -509,13 +439,4 @@ body {
     0% { transform: scale(1); }
     50% { transform: scale(1.05); }
     100% { transform: scale(1); }
-}
-
-/* Эффект размытия для основного контента при открытии модального окна */
-.main-content {
-    transition: filter 0.3s ease-out;
-}
-
-.main-content.blur {
-    filter: blur(5px);
 }

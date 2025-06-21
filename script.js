@@ -1,22 +1,23 @@
 // script.js
 
 // --- Глобальные функции для модального окна поддержки ---
-
 function openModal() {
     const modal = document.getElementById('donateModal');
+    const mainContent = document.querySelector('main'); // Для эффекта размытия (опционально)
     if (modal) {
-        modal.hidden = false;
-        modal.setAttribute('aria-hidden', 'false');
+        modal.classList.add('active'); // Используем класс для анимации
         document.body.style.overflow = 'hidden';
+        if (mainContent) mainContent.classList.add('blur'); // Добавляем размытие
     }
 }
 
 function closeModal() {
     const modal = document.getElementById('donateModal');
+    const mainContent = document.querySelector('main'); // Для эффекта размытия (опционально)
     if (modal) {
-        modal.hidden = true;
-        modal.setAttribute('aria-hidden', 'true');
+        modal.classList.remove('active'); // Убираем класс для анимации
         document.body.style.overflow = '';
+        if (mainContent) mainContent.classList.remove('blur'); // Убираем размытие
     }
 }
 
@@ -51,12 +52,13 @@ class LanguageManager {
     }
 
     async loadLanguage(lang) {
-        if (!this.supportedLanguages.includes(lang)) {
+        if (!this.supportedLanguages.includes(lang.toLowerCase())) {
             console.error(`Unsupported language: ${lang}`);
             return null;
         }
         try {
-            const response = await fetch(`languages/${lang}.json`);
+            // Убедимся, что путь к файлу корректный
+            const response = await fetch(`languages/${lang.toLowerCase()}.json`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -70,27 +72,19 @@ class LanguageManager {
     async loadAndUpdateLanguage(lang) {
         const translations = await this.loadLanguage(lang);
         if (translations) {
-            this.currentLang = lang;
-            sessionStorage.setItem('selectedLanguage', lang);
+            this.currentLang = lang.toLowerCase();
+            sessionStorage.setItem('selectedLanguage', this.currentLang);
             this.updatePageContent(translations);
         }
     }
 
     updatePageContent(translations) {
-        const elements = {
-            'mainHeading': translations.mainHeading,
-            'mainDescription': translations.mainDescription,
-            'featuresLink': translations.featuresLink,
-            'features-heading': translations.featuresHeading,
-            'tech-heading': translations.techHeading,
-            'launcherTitle': translations.launcherTitle,
-            'developerJourneyTitle': translations.developerJourneyTitle
-        };
-
-        Object.keys(elements).forEach(elementId => {
-            const element = document.getElementById(elementId);
-            if (element && elements[elementId]) {
-                element.textContent = elements[elementId];
+        // Проходим по всем ключам в файле перевода
+        Object.keys(translations).forEach(key => {
+            const element = document.getElementById(key);
+            if (element) {
+                // Используем innerHTML чтобы поддерживать теги, если они есть в переводе
+                element.innerHTML = translations[key];
             }
         });
     }
@@ -100,28 +94,27 @@ class LanguageManager {
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- ОБЪЯВЛЕНИЕ ПЕРЕМЕННЫХ ---
-    const header = document.querySelector('.header');
+    const header = document.querySelector('header'); // Выбираем по тегу
     const langToggleBtn = document.getElementById('language-toggle-btn');
     const langDropdownMenu = document.getElementById('language-dropdown-menu');
-    const langOptions = document.querySelectorAll('.language-option');
+    const langOptions = document.querySelectorAll('.lang-option');
     const currentLangText = document.getElementById('current-lang-text');
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileNavMenu = document.getElementById('mobile-nav-menu');
     const headerSupportBtn = document.getElementById('header-support-btn');
+    const mobileSupportBtn = document.getElementById('mobile-support-btn'); // Кнопка в мобильном меню
+    const developerJourneySection = document.getElementById('developerJourneyTitle');
     const donateModal = document.getElementById('donateModal');
     const closeModalButton = document.getElementById('closeModalButton');
     const copyButtons = document.querySelectorAll('.copy-button');
     
-    // --- НОВАЯ ПЕРЕМЕННАЯ ---
-    // Находим секцию "Обо мне", чтобы сделать ее кликабельной
-    const developerJourneySection = document.getElementById('developerJourneyTitle');
-
 
     // --- УСТАНОВКА ОБРАБОТЧИКОВ СОБЫТИЙ ---
 
     // 1. Эффект при прокрутке страницы
     if (header) {
         window.addEventListener('scroll', () => {
+            // h-20 в Tailwind это 5rem, что примерно 80px. Сделаем триггер поменьше.
             header.classList.toggle('scrolled', window.scrollY > 50);
         });
     }
@@ -130,58 +123,59 @@ document.addEventListener('DOMContentLoaded', () => {
     if (langToggleBtn && langDropdownMenu) {
         langToggleBtn.addEventListener('click', (event) => {
             event.stopPropagation();
-            langDropdownMenu.classList.toggle('show');
+            langDropdownMenu.classList.toggle('active'); // Используем .active
         });
 
-        document.addEventListener('click', (event) => {
-            if (!langDropdownMenu.contains(event.target) && !langToggleBtn.contains(event.target)) {
-                langDropdownMenu.classList.remove('show');
-            }
+        document.addEventListener('click', () => {
+            langDropdownMenu.classList.remove('active'); // Закрываем при клике в любом месте
         });
     }
-
+    
     // 3. Логика мобильного меню "бургер"
     if (mobileMenuBtn && mobileNavMenu) {
         mobileMenuBtn.addEventListener('click', (event) => {
             event.stopPropagation();
-            mobileMenuBtn.classList.toggle('active');
-            mobileNavMenu.classList.toggle('show');
-        });
-
-        document.addEventListener('click', (event) => {
-            if (!mobileNavMenu.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
-                mobileMenuBtn.classList.remove('active');
-                mobileNavMenu.classList.remove('show');
-            }
+            // Синхронизируем классы: .open для обоих элементов
+            mobileMenuBtn.classList.toggle('open');
+            mobileNavMenu.classList.toggle('open');
         });
 
         const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
         mobileNavLinks.forEach(link => {
             link.addEventListener('click', () => {
-                mobileMenuBtn.classList.remove('active');
-                mobileNavMenu.classList.remove('show');
+                mobileMenuBtn.classList.remove('open');
+                mobileNavMenu.classList.remove('open');
             });
         });
     }
 
-    // 4. Открытие модального окна "Поддержать" (ДВА ОБРАБОТЧИКА)
-    // Обработчик для кнопки в шапке
+    // 4. Открытие модального окна "Поддержать"
     if (headerSupportBtn) {
         headerSupportBtn.addEventListener('click', (event) => {
             event.preventDefault();
             openModal();
         });
     }
-    
-    // --- НОВЫЙ КОД ---
-    // Обработчик для секции "Обо мне"
-    if (developerJourneySection) {
-        developerJourneySection.addEventListener('click', () => {
+    if (mobileSupportBtn) {
+        mobileSupportBtn.addEventListener('click', (event) => {
+            event.preventDefault();
             openModal();
         });
     }
-    // --- КОНЕЦ НОВОГО КОДА ---
-
+    if(developerJourneySection) {
+        // Сделаем кликабельной всю секцию "Обо мне"
+        const parentSection = developerJourneySection.closest('section');
+        if (parentSection) {
+            parentSection.style.cursor = 'pointer';
+            parentSection.addEventListener('click', (event) => {
+                // Предотвращаем открытие окна при клике на ссылку внутри секции
+                if (event.target.tagName !== 'A') {
+                    openModal();
+                }
+            });
+        }
+    }
+    
     // 5. Закрытие модального окна (кнопка, фон, клавиша Esc)
     if (closeModalButton) {
         closeModalButton.addEventListener('click', closeModal);
@@ -192,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && donateModal && !donateModal.hidden) {
+        if (event.key === 'Escape' && donateModal && donateModal.classList.contains('active')) {
             closeModal();
         }
     });
@@ -213,29 +207,29 @@ document.addEventListener('DOMContentLoaded', () => {
             event.stopPropagation();
             const selectedLang = this.getAttribute('data-lang').toLowerCase();
 
-            if (currentLangText) {
-                currentLangText.textContent = selectedLang.toUpperCase();
-            }
-            
-            langOptions.forEach(opt => opt.classList.remove('active'));
-            this.classList.add('active');
-            
-            if (langDropdownMenu) {
-                langDropdownMenu.classList.remove('show');
-            }
-
-            langManager.loadAndUpdateLanguage(selectedLang);
+            langManager.loadAndUpdateLanguage(selectedLang).then(() => {
+                if (currentLangText) {
+                    currentLangText.textContent = selectedLang.toUpperCase();
+                }
+                
+                langOptions.forEach(opt => opt.classList.remove('active'));
+                this.classList.add('active');
+                
+                if (langDropdownMenu) {
+                    langDropdownMenu.classList.remove('active');
+                }
+            });
         });
     });
 
+    // Установка активного языка при загрузке страницы
     const activeLang = sessionStorage.getItem('selectedLanguage') || 'ru';
     if (currentLangText) {
         currentLangText.textContent = activeLang.toUpperCase();
     }
-    
     langOptions.forEach(opt => {
         opt.classList.remove('active');
-        if (opt.getAttribute('data-lang').toLowerCase() === activeLang.toLowerCase()) {
+        if (opt.getAttribute('data-lang').toLowerCase() === activeLang) {
             opt.classList.add('active');
         }
     });
@@ -246,22 +240,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const href = this.getAttribute('href');
             if (href && href.length > 1) {
                 e.preventDefault();
-                const targetId = href.substring(1);
-                const targetElement = document.getElementById(targetId);
+                const targetElement = document.getElementById(href.substring(1));
                 if (targetElement) {
                     targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             }
         });
     });
-
-    // 9. Инициализация прогресс-бара
-    const currentAmount = 12.53;
-    const goalAmount = 100;
-    const progressFill = document.getElementById('progress-fill');
-    if (progressFill) {
-        const progressPercentage = Math.min((currentAmount / goalAmount) * 100, 100);
-        progressFill.style.width = `${progressPercentage}%`;
-        progressFill.parentElement.setAttribute('aria-valuenow', currentAmount.toFixed(2));
-    }
 });
