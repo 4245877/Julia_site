@@ -40,43 +40,53 @@
 
 <body class="bg-gray-900 text-white font-sans">
  <div class="interactive-bg"></div>
-<header class="header">
-    <div class="header-container">
-        <a href="#" class="logo">
-            <div class="logo-icon">
-                <img src="Images/Logo1(64).png" alt="Логотип проекта Julia" class="logo-image">
-            </div>
-            <span class="logo-text">Julia</span>
-        </a>
-        <nav class="nav">
-            <ul class="nav-links">
-                <li><a href="#features" class="nav-link">Функции</a></li>
-                <li><a href="#tech-heading" class="nav-link">Технологии</a></li>
-                <li><a href="#download" class="nav-link">Скачать</a></li>
-                <li><a href="#developerJourneyTitle" class="nav-link">Обо мне</a></li>
-            </ul>
-        </nav>
-
-        <div class="header-actions">
-            <div class="language-selector">
-                <button class="language-toggle" id="language-toggle-btn" aria-label="Выбрать язык">
-                    <span id="current-lang-text">RU</span>
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="language-dropdown" id="language-dropdown-menu">
-                    <div class="language-option" data-lang="EN">EN</div>
-                    <div class="language-option" data-lang="UA">UA</div>
-                    <div class="language-option active" data-lang="RU">RU</div>
+<header class="glass-morphism fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between h-20"> <a href="#" class="flex items-center space-x-3">
+                <div class="logo-glow">
+                    <img src="Images/Logo1(64).png" alt="Логотип проекта Julia" class="h-10 w-10">
                 </div>
-            </div>
-            <a href="#" class="support-btn" id="header-support-btn">Поддержать</a>
-        </div>
+                <div>
+                    <h1 class="text-xl font-bold gradient-text">Julia</h1>
+                    <p class="text-xs text-gray-400">AI Companion</p>
+                </div>
+            </a>
+            
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="#features" class="nav-link text-sm font-medium text-gray-300">Функции</a>
+                <a href="#tech-heading" class="nav-link text-sm font-medium text-gray-300">Технологии</a>
+                <a href="#download" class="nav-link text-sm font-medium text-gray-300">Скачать</a>
+                <a href="#developerJourneyTitle" class="nav-link text-sm font-medium text-gray-300">Обо мне</a>
+            </nav>
+            
+            <div class="flex items-center space-x-4">
+                
+                <a href="#" id="header-support-btn" class="support-btn hidden sm:flex items-center px-4 py-2 rounded-full text-sm font-medium text-white">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                    </svg>
+                    Поддержать
+                </a>
+                
+                <div class="relative" id="language-selector-container">
+                    <button id="language-toggle-btn" class="flex items-center p-2 rounded-full hover:bg-gray-700 transition-colors">
+                        <span id="current-lang-text" class="font-semibold text-sm mr-1">RU</span>
+                        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="language-dropdown-menu" class="lang-dropdown">
+                        <div class="lang-option" data-lang="EN">EN</div>
+                        <div class="lang-option" data-lang="UA">UA</div>
+                        <div class="lang-option active" data-lang="RU">RU</div>
+                    </div>
+                </div>
 
-        <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Открыть меню">
-            <div class="hamburger-line"></div>
-            <div class="hamburger-line"></div>
-            <div class="hamburger-line"></div>
-        </button>
+                <button id="mobile-menu-btn" class="mobile-menu-toggle md:hidden p-2 rounded-lg hover:bg-gray-800 transition-colors">
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                </button>
+            </div>
+        </div>
     </div>
 
     <div class="mobile-nav" id="mobile-nav-menu">
@@ -85,6 +95,7 @@
             <li><a href="#tech-heading" class="mobile-nav-link">Технологии</a></li>
             <li><a href="#download" class="mobile-nav-link">Скачать</a></li>
             <li><a href="#developerJourneyTitle" class="mobile-nav-link">Обо мне</a></li>
+            <li><a href="#" id="mobile-support-btn" class="mobile-nav-link support-btn-mobile">Поддержать</a></li>
         </ul>
     </div>
 </header>

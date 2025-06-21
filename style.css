@@ -5,13 +5,13 @@
 :root {
   /* -- Цветовая палитра (Адаптирована под темную тему) -- */
   --primary-blue: #3b82f6;      /* Яркий синий для акцентов */
-  --primary-purple: #a855f7;   /* Фиолетовый для градиентов */
+  --primary-purple: #a855f7;  /* Фиолетовый для градиентов */
   --primary-cyan: #22d3ee;      /* Голубой для градиентов */
   
   --brand-gradient: linear-gradient(90deg, var(--primary-purple), var(--primary-blue), var(--primary-cyan));
 
   /* -- Фоны -- */
-  --bg-dark-main: #0b0f19;      /* Основной очень темный фон */
+  --bg-dark-main: #0b0f19;        /* Основной очень темный фон */
   --bg-dark-surface: rgba(17, 25, 40, 0.7); /* Фон для "стеклянных" панелей */
   --bg-dark-surface-hover: rgba(23, 33, 53, 0.8); /* Фон при наведении */
   
@@ -35,6 +35,8 @@ body {
   background-color: var(--bg-dark-main);
   color: var(--text-light);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  /* Добавляем отступ сверху, чтобы контент не уезжал под фиксированную шапку */
+  padding-top: 70px; /* Равно высоте шапки .header-container */
 }
 
 /* -- Глобальный интерактивный фон -- */
@@ -107,6 +109,12 @@ body {
     align-items: center;
     gap: 12px;
     text-decoration: none;
+    filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.2));
+    transition: var(--transition-normal);
+}
+.logo:hover {
+    filter: drop-shadow(0 0 25px rgba(59, 130, 246, 0.4));
+    transform: scale(1.05);
 }
 
 .logo-text {
@@ -117,12 +125,17 @@ body {
 
 /* -- Навигация -- */
 .nav-links {
-    display: flex;
+    display: none; /* Скрываем на мобильных по умолчанию */
     align-items: center;
     gap: 2rem;
     list-style: none;
     margin: 0;
     padding: 0;
+}
+@media (min-width: 768px) {
+  .nav-links {
+    display: flex; /* Показываем на экранах шире 768px */
+  }
 }
 
 .nav-link {
@@ -160,7 +173,95 @@ body {
 }
 
 /* =================================================================== */
-/* 2. ОСНОВНОЙ КОНТЕНТ (MAIN)                                        */
+/* 2. МОБИЛЬНОЕ МЕНЮ                                                 */
+/* =================================================================== */
+
+/* Кнопка "бургер" */
+.mobile-menu-toggle {
+    display: none; /* Скрыта по умолчанию, покажется через media-query */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1010;
+}
+
+.hamburger-line {
+    width: 24px;
+    height: 2px;
+    background: var(--text-bright); /* Используем новую переменную */
+    border-radius: 10px;
+    transition: all 0.3s linear;
+    position: relative;
+    transform-origin: 1px;
+}
+
+/* Анимация "бургера" в крестик */
+.mobile-menu-toggle.open .hamburger-line:nth-child(1) {
+  transform: rotate(45deg);
+}
+.mobile-menu-toggle.open .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: translateX(20px);
+}
+.mobile-menu-toggle.open .hamburger-line:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+/* Контейнер мобильной навигации */
+.mobile-nav {
+    display: none; /* Скрыто по умолчанию */
+    position: absolute;
+    top: 70px; /* Высота шапки */
+    left: 0;
+    right: 0;
+    background: var(--bg-dark-surface); /* Используем новую переменную */
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.mobile-nav.open {
+    display: block;
+}
+
+.mobile-nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+.mobile-nav-link {
+    display: block;
+    padding: 1rem;
+    color: var(--text-light); /* Используем новую переменную */
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    transition: background-color 0.2s, color 0.2s;
+}
+.mobile-nav-link:hover {
+    background-color: var(--bg-dark-surface-hover); /* Используем новую переменную */
+    color: var(--text-bright);
+}
+
+/* Медиа-запрос для отображения мобильного меню */
+@media (max-width: 767px) {
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    .nav-links {
+        display: none; /* Убедимся, что десктопная навигация скрыта */
+    }
+}
+
+
+/* =================================================================== */
+/* 3. ОСНОВНОЙ КОНТЕНТ (MAIN)                                        */
 /* =================================================================== */
 
 /* -- Градиентный заголовок -- */
@@ -227,7 +328,7 @@ body {
 }
 
 /* =================================================================== */
-/* 3. МОДАЛЬНОЕ ОКНО (АДАПТИРОВАНО ПОД ТЕМНУЮ ТЕМУ)                   */
+/* 4. МОДАЛЬНОЕ ОКНО                                                 */
 /* =================================================================== */
 
 .modal {
@@ -318,147 +419,103 @@ body {
 .close-button::after {
     content: '';
     position: absolute;
+    left: 50%;
+    top: 50%;
     width: 20px;
     height: 2px;
     background: var(--text-bright);
     border-radius: 2px;
 }
 
-.close-button::before { transform: rotate(45deg); }
-.close-button::after { transform: rotate(-45deg); }
+.close-button::before { transform: translate(-50%, -50%) rotate(45deg); }
+.close-button::after { transform: translate(-50%, -50%) rotate(-45deg); }
+
+@media (max-width: 480px) {
+    .modal-content {
+        width: 95%;
+        padding: 1.5rem;
+    }
+    
+    .modal h2 {
+        font-size: 1.5rem;
+    }
+    
+    .close-button {
+        width: 36px;
+        height: 36px;
+    }
+}
+
 
 /* =================================================================== */
-/* 4. ДОПОЛНИТЕЛЬНЫЕ СТИЛИ ИЗ ОРИГИНАЛА (БЕЗ КОНФЛИКТОВ)             */
+/* 5. ПЕРЕКЛЮЧАТЕЛЬ ЯЗЫКОВ                                           */
 /* =================================================================== */
 
-/* Контейнер для языковых кнопок */
 .language-buttons {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  display: flex;
-  gap: 0.5rem;
-  z-index: 1000;
+    display: flex;
+    gap: 0.5rem;
 }
 
 /* Общие стили для языковых кнопок */
 [data-lang] {
-  padding: 0.25rem 1rem;
-  border-radius: 9999px;
-  font-weight: 600;
-  font-size: 0.875rem;
-  border: none;
-  cursor: pointer;
-  transition: var(--transition-normal);
-  user-select: none;
-  -webkit-user-select: none;
+    padding: 0.25rem 1rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 /* Специфичные стили для кнопок языков */
-[data-lang="en"] {
-  background-color: var(--primary-blue);
-  color: var(--text-bright);
-}
+[data-lang="en"] { background-color: var(--primary-blue); color: var(--text-bright); }
+[data-lang="en"]:hover { background-color: #2563eb; transform: translateY(-2px); }
 
-[data-lang="en"]:hover {
-  background-color: #2563eb;
-  transform: translateY(-2px);
-}
+[data-lang="ua"] { background-color: #F59E0B; color: var(--text-bright); }
+[data-lang="ua"]:hover { background-color: #D97706; transform: translateY(-2px); }
 
-[data-lang="ua"] {
-  background-color: #F59E0B;
-  color: var(--text-bright);
-}
-
-[data-lang="ua"]:hover {
-  background-color: #D97706;
-  transform: translateY(-2px);
-}
-
-[data-lang="ru"] {
-  background-color: #EF4444;
-  color: var(--text-bright);
-}
-
-[data-lang="ru"]:hover {
-  background-color: #DC2626;
-  transform: translateY(-2px);
-}
+[data-lang="ru"] { background-color: #EF4444; color: var(--text-bright); }
+[data-lang="ru"]:hover { background-color: #DC2626; transform: translateY(-2px); }
 
 /* Активное состояние кнопок */
 [data-lang].active-lang {
-  transform: scale(1.1);
-  box-shadow: var(--shadow-md);
+    transform: scale(1.1);
+    box-shadow: var(--shadow-md);
 }
 
 /* Состояние фокуса */
-[data-lang]:focus {
-  outline: none;
-}
-
-[data-lang="en"]:focus {
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
-}
-
-[data-lang="ua"]:focus {
-  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.5);
-}
-
-[data-lang="ru"]:focus {
-  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.5);
-}
+[data-lang]:focus { outline: none; }
+[data-lang="en"]:focus { box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); }
+[data-lang="ua"]:focus { box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.5); }
+[data-lang="ru"]:focus { box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.5); }
 
 /* Анимация при нажатии */
 [data-lang]:active {
-  transform: scale(0.95);
+    transform: scale(0.95);
 }
 
-/* Мобильная адаптация */
-@media (max-width: 640px) {
-  [data-lang] {
-    padding: 0.2rem 0.75rem;
-    font-size: 0.75rem;
-  }
-  
-  .language-buttons {
-    top: 0.5rem;
-    right: 0.5rem;
-  }
-}
+/* =================================================================== */
+/* 6. УТИЛИТЫ И АНИМАЦИИ                                             */
+/* =================================================================== */
 
-/* Анимации */
+/* Анимация пульсации */
 .pulse {
-  animation: pulse 3s ease-in-out infinite;
+    animation: pulse 3s ease-in-out infinite;
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
 }
 
-/* Эффект размытия для основного контента */
+/* Эффект размытия для основного контента при открытии модального окна */
 .main-content {
-  transition: filter 0.3s ease-out;
+    transition: filter 0.3s ease-out;
 }
 
 .main-content.blur {
-  filter: blur(5px);
-}
-
-/* Медиа-запросы для модального окна */
-@media (max-width: 480px) {
-  .modal-content {
-    width: 95%;
-    padding: 1.5rem;
-  }
-  
-  .modal h2 {
-    font-size: 1.5rem;
-  }
-  
-  .close-button {
-    width: 36px;
-    height: 36px;
-  }
+    filter: blur(5px);
 }
