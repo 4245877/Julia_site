@@ -49,10 +49,6 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: clamp(2.5rem, 5vw, 4rem);
   line-height: 1.1;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 h2 {
@@ -296,9 +292,11 @@ ul li:hover::before {
   transform: scale(1.2);
 }
 
+
 /* Launcher Section */
 .bg-gray-800 {
-  background: var(--primary-dark);
+  /* background: var(--primary-dark); <-- Закомментируйте или удалите эту строку */
+  background-color: #EFD3C5; /* <-- И добавьте новое свойство с нужным цветом */
   position: relative;
 }
 
