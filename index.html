@@ -64,32 +64,73 @@
     <div class="container mx-auto px-4">
       <h2 id="techStackTitle" class="text-3xl font-bold mb-8">Технологический стек</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
-          <h3 id="whatDrivesTitle" class="text-2xl font-bold mb-4">Что движет Julia</h3>
-          <ul id="technologies" class="list-disc ml-6 space-y-2">
-            <li>OpenGL</li>
-            <li>Assimp</li>
-            <li>YOLO</li>
-            <li>PostgreSQL</li>
-            <li>CMU Sphinx</li>
-            <li>OpenCV</li>
-            <li>OpenAL</li>
-            <li>Rasa / BotPress</li>
-            <li>WaveGlow</li>
-            <li>Festival</li>
-            <li>ONNX</li>
-            <li>TensorFlow</li>
-            <li>UI/UX дизайн</li>
-            <li>Docker</li>
-            <li>Git</li>
-            <li>UI/UX дизайн</li>
-            <li>Машинное обучение</ли>
-            <li>Компьютерные науки</ли>
-            <li>Интеграция с оборудованием</ли>
-            <li>Рекуррентные нейронные сети</ли>
-            <li>Генеративные состязательные сети</ли>
-          </ul>
-        </div>
+          <div>
+              <h3 id="whatDrivesTitle" class="text-2xl font-bold mb-4">Что движет Julia</h3>
+
+              <h4 class="text-xl font-semibold mt-4 mb-2">Высокопроизводительные вычисления и оптимизация</h4>
+              <ul class="list-disc ml-6 space-y-2">
+                  <li><strong>CUDA (NVIDIA):</strong> Платформа для параллельных вычислений на графических процессорах NVIDIA, позволяющая значительно ускорить обучение моделей.</li>
+                  <li><strong>NVIDIA TensorRT:</strong> Оптимизатор и среда выполнения для нейронных сетей, повышающая их производительность на GPU от NVIDIA.</li>
+                  <li><strong>OpenMP:</strong> Стандарт для распараллеливания программ на многоядерных процессорах.</li>
+                  <li><strong>Intel TBB (Threading Building Blocks):</strong> Библиотека C++ для создания параллельных приложений, оптимизированных для процессоров Intel.</li>
+                  <li><strong>AMD Optimizing CPU Libraries (AOCL):</strong> Набор оптимизированных библиотек для высокопроизводительных вычислений на процессорах AMD.</li>
+              </ul>
+
+              <h4 class="text-xl font-semibold mt-4 mb-2">Машинное обучение и искусственный интеллект</h4>
+              <ul class="list-disc ml-6 space-y-2">
+                  <li><strong>TensorFlow & LibTorch (C++):</strong> Основополагающие фреймворки для создания и обучения моделей машинного обучения.</li>
+                  <li><strong>ONNX (Open Neural Network Exchange):</strong> Открытый формат для обмена моделями между различными фреймворками (например, TensorFlow, PyTorch).</li>
+                  <li><strong>Dlib:</strong> Современная библиотека на C++ для машинного обучения и компьютерного зрения.</li>
+                  <li><strong>OpenCV:</strong> Библиотека для компьютерного зрения в реальном времени.</li>
+                  <li><strong>YOLO (You Only Look Once):</strong> Алгоритм для обнаружения объектов на изображениях в реальном времени.</li>
+                  <li><strong>Рекуррентные нейронные сети (RNN):</strong> Архитектура сетей для работы с последовательными данными, такими как текст или звук.</li>
+                  <li><strong>Генеративные состязательные сети (GAN):</strong> Модели для генерации нового контента (изображений, текста).</li>
+              </ul>
+
+              <h4 class="text-xl font-semibold mt-4 mb-2">Обработка данных и графика</h4>
+              <ul class="list-disc ml-6 space-y-2">
+                  <li><strong>OpenGL:</strong> Стандарт для создания 2D и 3D-графики.</li>
+                  <li><strong>Assimp (Open Asset Import Library):</strong> Библиотека для импорта различных форматов 3D-моделей.</li>
+                  <li><strong>Boost.Graph Library:</strong> Часть библиотек Boost для работы со структурами данных графов.</li>
+                  <li><strong>PostgreSQL:</strong> Мощная и надежная система управления базами данных.</li>
+                  <li><strong>OpenAL:</strong> Кроссплатформенный API для работы с 3D-аудио.</li>
+                  <li><strong>PortAudio:</strong> Кроссплатформенная библиотека для ввода/вывода аудио.</li>
+              </ul>
+              
+              <h4 class="text-xl font-semibold mt-4 mb-2">Разговорный ИИ и обработка естественного языка (NLP)</h4>
+              <ul class="list-disc ml-6 space-y-2">
+                  <li><strong>Rasa / BotPress:</strong> Платформы для создания и развертывания чат-ботов и виртуальных ассистентов.</li>
+                  <li><strong>CMU Sphinx:</strong> Система для распознавания речи.</li>
+                  <li><strong>Festival:</strong> Система для синтеза речи (преобразования текста в речь).</li>
+                  <li><strong>WaveGlow:</strong> Модель для высококачественного синтеза речи на основе нейронных сетей.</li>
+              </ul>
+
+              <h4 class="text-xl font-semibold mt-4 mb-2">Ключевые наборы данных (Datasets)</h4>
+              <ul class="list-disc ml-6 space-y-2">
+                  <li><strong>Wikipedia (дамп всей Википедии):</strong> Огромная база знаний для обучения языковых моделей.</li>
+                  <li><strong>The Pile:</strong> Крупный текстовый датасет объемом 825 ГБ, используемый для обучения больших языковых моделей.</li>
+                  <li><strong>Natural Questions (Google):</strong> Набор данных с реальными вопросами пользователей и ответами на них.</li>
+                  <li><strong>SQuAD (Stanford Question Answering Dataset):</strong> Популярный датасет для обучения моделей ответам на вопросы по тексту.</li>
+                  <li><strong>PersonaChat:</strong> Набор данных для обучения чат-ботов, способных поддерживать диалог с определенной "личностью".</li>
+                  <li><strong>DailyDialog:</strong> Датасет с повседневными диалогами для улучшения качества разговорного ИИ.</li>
+                  <li><strong>GSM8K (Grade School Math 8K):</strong> Набор математических задач для начальной школы, используемый для проверки логических способностей моделей.</li>
+                  <li><strong>BIG-Bench (Beyond the Imitation Game Benchmark):</strong> Комплексный набор тестов для оценки возможностей современных моделей ИИ.</li>
+              </ul>
+
+              <h4 class="text-xl font-semibold mt-4 mb-2">Инструменты разработки и DevOps</h4>
+              <ul class="list-disc ml-6 space-y-2">
+                  <li><strong>Git:</strong> Система контроля версий для отслеживания изменений в коде.</li>
+                  <li><strong>Docker:</strong> Платформа для контейнеризации приложений, обеспечивающая их стабильную работу в любой среде.</li>
+              </ul>
+
+              <h4 class="text-xl font-semibold mt-4 mb-2">Фундаментальные области</h4>
+              <ul class="list-disc ml-6 space-y-2">
+                  <li><strong>Компьютерные науки (Computer Science):</strong> Теоретическая основа всего проекта.</li>
+                  <li><strong>Машинное обучение (Machine Learning):</strong> Основная технология для создания интеллектуальных систем.</li>
+                  <li><strong>UI/UX дизайн:</strong> Проектирование интуитивно понятного и удобного пользовательского интерфейса.</li>
+                  <li><strong>Интеграция с оборудованием:</strong> Обеспечение взаимодействия программного обеспечения с физическими устройствами.</li>
+              </ul>
+          </div>
         <div>
           <h3 id="roadmapTitle" class="text-2xl font-bold mb-4">Дорожная карта разработки</h3>
           <div class="flex justify-center">
