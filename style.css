@@ -369,6 +369,7 @@ section + section::before {
     linear-gradient(#fff 0 0);
   mask-composite: exclude;
   -webkit-mask-composite: destination-out;
+  pointer-events: none; /* << ДОБАВЛЕНО: Это исправляет проблему с наведением, позволяя мыши "проходить" сквозь этот слой. */
 }
 
 .grid > div h3 {
@@ -413,6 +414,9 @@ ul li {
   padding: 0.5rem 0 0.5rem 2rem;
   margin-bottom: 0.5rem;
   transition: var(--transition-smooth);
+  /* Стили, перенесенные из :hover для постоянной видимости */
+  color: var(--primary-red);
+  transform: translateX(5px);
 }
 
 ul li::before {
@@ -420,10 +424,11 @@ ul li::before {
   position: absolute;
   left: 0;
   top: 50%;
-  transform: translateY(-50%);
-  color: var(--accent-coral);
   font-size: 1.5rem;
   transition: var(--transition-smooth);
+  /* Стили, перенесенные из :hover для постоянной видимости */
+  color: var(--gold-accent);
+  transform: translateY(-50%) rotate(180deg);
 }
 
 ul li:hover {
