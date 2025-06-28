@@ -13,6 +13,10 @@
   --black: #000000;
   --shadow-color: rgba(75, 14, 16, 0.3);
   --glow-red: rgba(195, 61, 46, 0.5);
+
+  --gradient-primary: linear-gradient(135deg, #7A1F2A 0%, #520C17 50%, #AD5B67 100%);
+  --gradient-soft: linear-gradient(180deg, rgba(239, 211, 197, 0.1) 0%, rgba(173, 91, 103, 0.05) 100%);
+  --text-light: #F7EFEA;
 }
 
 /* Reset and Base Styles */
@@ -61,6 +65,7 @@ h1 {
   font-size: 3.5rem;
   line-height: 1.1;
   text-shadow: 2px 2px 4px var(--shadow-color);
+  color: var(--primary-red); 
   background: linear-gradient(135deg, var(--primary-red), var(--accent-coral));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -237,9 +242,7 @@ header p {
 }
 
 .card:hover {
-  transform: translateY(-8px);
   border-color: var(--accent-coral);
-  box-shadow: 0 15px 40px var(--shadow-color);
 }
 
 /* Section Styles */
@@ -310,7 +313,19 @@ img:hover {
   transform: scale(1.05);
   box-shadow: 0 15px 40px var(--shadow-color);
 }
+.hover-lift, .hover-scale {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+.hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px var(--shadow-color);
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px var(--shadow-color);
+}
 .rounded-full {
   border-radius: 50% !important;
 }
@@ -381,8 +396,8 @@ img:hover {
 }
 
 @keyframes shimmer {
-  0% { left: -100%; }
-  100% { left: 100%; }
+  0% { left: -150%; } 
+  100% { left: 150%; }
 }
 
 .support-button {
@@ -478,33 +493,50 @@ img:hover {
   color: var(--white);
 }
 
-/* Footer Styles */
+/* Footer */
 footer {
-  background: linear-gradient(135deg, var(--dark-burgundy), var(--black));
-  color: var(--light-sand);
-  position: relative;
-  overflow: hidden;
+  /* Устанавливает фон с использованием градиентной переменной */
+  background: var(--gradient-primary);
+  /* Необходимо для корректного позиционирования псевдоэлемента ::before */
+  position: relative; 
 }
 
+/* Псевдоэлемент для создания эффекта наложения */
 footer::before {
-  content: '';
-  position: absolute;
+  content: ''; /* Обязательное свойство для ::before и ::after */
+  position: absolute; /* Позиционируется относительно футера */
   top: 0;
   left: 0;
   right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent-coral), var(--gold-accent), var(--accent-coral));
+  bottom: 0;
+  /* Применяет мягкий градиент поверх основного фона */
+  background: var(--gradient-soft);
+  /* Делает наложение полупрозрачным */
+  opacity: 0.1; 
 }
 
+/* Стили для всех дочерних элементов футера */
+footer * {
+  /* Позиционируем поверх псевдоэлемента ::before */
+  position: relative; 
+  z-index: 1;
+  /* Устанавливаем светлый цвет текста для всех элементов */
+  color: var(--text-light); 
+}
+
+/* Стили для ссылок в футере */
 footer a {
-  transition: all 0.3s ease;
+  /* Плавный переход для всех анимируемых свойств */
+  transition: all 0.3s ease; 
 }
 
+/* Стили для ссылок при наведении курсора */
 footer a:hover {
+  /* Немного приподнимаем и увеличиваем ссылку */
   transform: translateY(-3px) scale(1.1);
-  filter: drop-shadow(0 5px 10px var(--glow-red));
+  /* Делаем ссылку немного ярче */
+  filter: brightness(1.2); 
 }
-
 /* Responsive Design */
 @media (max-width: 768px) {
   h1 {
@@ -573,6 +605,7 @@ footer a:hover {
 
 /* Custom Utility Classes */
 .text-gradient {
+  color: var(--primary-red);
   background: linear-gradient(135deg, var(--primary-red), var(--accent-coral));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
