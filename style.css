@@ -1,627 +1,662 @@
+/*
+    Julia AI-Companion - Yor Forger Style CSS (Enhanced Version)
+    Современный дизайн в стилистике Йор Форджер из Spy x Family
+*/
+
+/* CSS Custom Properties (Variables) */
 :root {
-  /* Цветовая палитра */
-  --primary: #4299e1;
-  --primary-dark: #2563EB;
-  --secondary: #805ad5;
-  --accent-1: #F59E0B;
-  --accent-2: #EF4444;
-  --dark-bg: #BDD7E7;
-  --dark-surface: #EFF3FF;
-  --text-light: #ffffff;
-  --text-muted: #e2e8f0;
+  /* Основная цветовая палитра Йор Форджер */
+  --primary-red: #8B1C24;      /* Основной красный - для CTA и важных акцентов */
+  --accent-coral: #C33D2E;      /* Кораллово-красный - для ссылок и интерактивных элементов */
+  --dark-burgundy: #4A0E10;    /* Тёмно-бордовый - для hover и заголовков */
+  --pastel-pink: #D67E7A;      /* Пастельно-розовый - мягкие карточки */
+  --light-sand: #F2E9E1;       /* Светло-песочный - основной фон */
+  --graphite: #353535;         /* Графитовый - основной текст */
+  --gold-accent: #DAA520;      /* Золотой акцент - декоративные детали */
   
-  /* Тени */
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
-  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+  /* Дополнительные цвета для баланса */
+  --shadow-dark: #2A2A2A;      /* Тёмно-серый для теней */
+  --white: #FFFFFF;           /* Белый для контрастных элементов */
+  --black-overlay: rgba(0, 0, 0, 0.7); /* Полупрозрачный чёрный */
+  
+  /* Градиенты в стиле аниме */
+  --gradient-header: linear-gradient(135deg, var(--primary-red) 0%, var(--dark-burgundy) 50%, var(--accent-coral) 100%);
+  --gradient-soft: linear-gradient(145deg, var(--pastel-pink) 0%, var(--light-sand) 100%);
+  --gradient-gold: linear-gradient(90deg, var(--gold-accent) 0%, #F4D03F 100%);
+  
+  /* Тени и эффекты */
+  --shadow-soft: 0 4px 20px rgba(139, 28, 36, 0.15);
+  --shadow-medium: 0 8px 30px rgba(139, 28, 36, 0.25);
+  --shadow-strong: 0 12px 40px rgba(139, 28, 36, 0.35);
+  --shadow-anime: 0 0 30px rgba(218, 165, 32, 0.3);
   
   /* Анимации */
-  --transition-normal: all 0.3s ease;
-  --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Базовые стили */
-body {
-  background-color: var(--dark-bg);
-  color: var(--text-light);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-}
-
-header, footer {
-  background-color: var(--dark-surface);
-}
-
-/* Контейнер для языковых кнопок */
-.language-buttons {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  display: flex;
-  gap: 0.5rem;
-  z-index: 1000;
-}
-
-/* Общие стили для языковых кнопок */
-[data-lang] {
-  padding: 0.25rem 1rem;
-  border-radius: 9999px;
-  font-weight: 600;
-  font-size: 0.875rem;
-  border: none;
-  cursor: pointer;
-  transition: var(--transition-normal);
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-/* Специфичные стили для кнопок языков */
-[data-lang="en"] {
-  background-color: var(--primary);
-  color: white;
-}
-
-[data-lang="en"]:hover {
-  background-color: var(--primary-dark);
-  transform: translateY(-2px);
-}
-
-[data-lang="ua"] {
-  background-color: var(--accent-1);
-  color: white;
-}
-
-[data-lang="ua"]:hover {
-  background-color: #D97706;
-  transform: translateY(-2px);
-}
-
-[data-lang="ru"] {
-  background-color: var(--accent-2);
-  color: white;
-}
-
-[data-lang="ru"]:hover {
-  background-color: #DC2626;
-  transform: translateY(-2px);
-}
-
-/* Активное состояние кнопок */
-[data-lang].active-lang {
-  transform: scale(1.1);
-  box-shadow: var(--shadow-md);
-}
-
-/* Состояние фокуса */
-[data-lang]:focus {
-  outline: none;
-}
-
-[data-lang="en"]:focus {
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
-}
-
-[data-lang="ua"]:focus {
-  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.5);
-}
-
-[data-lang="ru"]:focus {
-  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.5);
-}
-
-/* Анимация при нажатии */
-[data-lang]:active {
-  transform: scale(0.95);
-}
-
-/* Мобильная адаптация */
-@media (max-width: 640px) {
-  [data-lang] {
-    padding: 0.2rem 0.75rem;
-    font-size: 0.75rem;
-  }
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   
-  .language-buttons {
-    top: 0.5rem;
-    right: 0.5rem;
-  }
+  /* Типографика */
+  --font-heading: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
 }
 
-/* Header градиент */
+/* =============================================================================
+   Базовые стили и сброс
+   ============================================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  line-height: 1.6;
+  color: var(--graphite);
+  background-color: var(--light-sand);
+  overflow-x: hidden;
+}
+
+/* Улучшенная типографика */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  color: var(--dark-burgundy);
+  text-shadow: 0 2px 4px rgba(139, 28, 36, 0.1);
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.5rem; }
+h3 { font-size: 2rem; }
+h4 { font-size: 1.5rem; }
+
+p {
+  margin-bottom: 1rem;
+}
+
+/* =============================================================================
+   Заголовок сайта (Header) - Без изменений
+   ============================================================================= */
+
 .header-gradient {
-  background: linear-gradient(270deg, var(--primary), var(--secondary), var(--primary));
-  background-size: 600% 600%;
-  animation: gradientAnimation 15s ease infinite;
-}
-
-@keyframes gradientAnimation {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Анимации */
-.pulse {
-  animation: pulse 3s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-
-/* Кнопка исследования */
-.explore-button:hover {
-  background-color: #EFF3FF;
-}
-
-/* Стили текста */
-.title, .section-title, .footer-title {
-  color: var(--text-light);
-}
-
-.subtitle, .feature-text {
-  color: var(--text-muted);
-}
-
-/* Стили элементов функций */
-.feature-item {
-  padding: 1rem;
-  border-radius: 0.5rem;
-  background-color: var(--dark-bg);
-  transition: transform 0.3s ease;
-}
-
-.feature-item:hover {
-  transform: scale(1.05);
-}
-
-/* Футер */
-.footer {
-  background-color: var(--dark-surface);
-}
-
-.social-links a {
-  color: var(--text-light);
-  transition: color 0.3s ease;
-}
-
-.social-links a:hover {
-  color: #cbd5e0;
-}
-
-/* Эффект размытия для основного контента */
-.main-content {
-  transition: filter 0.3s ease-out;
-}
-
-.main-content.blur {
-  filter: blur(5px);
-}
-
-/* Контейнер прогресса */
-.progress-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 600px;
-  margin: 1.25rem auto;
-  padding: 1.25rem;
-}
-
-.progress-info {
-  font-size: 1.125rem;
-  font-weight: bold;
-  margin-bottom: 0.625rem;
-  text-align: center;
-}
-
-/* Прогресс-бар */
-.progress-bar {
-  width: 100%;
-  height: 30px;
-  background-color: #f0f0f0;
-  border-radius: 15px;
-  overflow: hidden;
-  margin-bottom: 1.25rem;
-}
-
-.progress-fill {
-  width: 0;
-  height: 100%;
-  background-color: var(--primary);
-  transition: width 0.5s ease-out;
-}
-
-/* Модальное окно */
-.modal {
-  display: flex;
-  visibility: hidden;
-  opacity: 0;
-  position: fixed;
-  inset: 0;
-  background-color: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px) saturate(120%);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  transition: var(--transition-smooth);
-  perspective: 1000px;
-  overflow: hidden;
-}
-
-/* Эффект частиц для модального окна */
-.modal::before {
-  content: '';
-  position: absolute;
-  width: 300%;
-  height: 300%;
-  top: -100%;
-  left: -100%;
-  background-image: 
-    radial-gradient(circle at 70% 40%, rgba(200, 200, 200, 0.1) 10%, transparent 15%),
-    radial-gradient(circle at 30% 60%, rgba(220, 220, 220, 0.1) 10%, transparent 15%);
-  background-size: 150px 150px;
-  animation: particleFlow 40s linear infinite;
-  opacity: 0.4;
-  pointer-events: none;
-}
-
-@keyframes particleFlow {
-  0% { transform: rotate(0deg) translate(0, 0); }
-  100% { transform: rotate(360deg) translate(-150px, 150px); }
-}
-
-.modal.active {
-  visibility: visible;
-  opacity: 1;
-  animation: modalFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@keyframes modalFadeIn {
-  0% {
-    backdrop-filter: blur(0px) saturate(100%);
-    background-color: rgba(255, 255, 255, 0);
-  }
-  100% {
-    backdrop-filter: blur(12px) saturate(120%);
-    background-color: rgba(255, 255, 255, 0.95);
-  }
-}
-
-.modal-content {
-  background: linear-gradient(145deg, #ffffff, #f5f5f5);
-  padding: 1.875rem;
-  border-radius: 20px;
+  background: var(--gradient-header);
   position: relative;
-  width: 90%;
-  max-width: 500px;
-  box-shadow: 0 0 40px rgba(0, 123, 255, 0.329);
-  transform: translateY(-50px) scale(0.95) rotateX(-15deg);
-  opacity: 0;
-  transition: var(--transition-smooth);
-  border: 1px solid rgba(0, 0, 0, 0.08);
   overflow: hidden;
-}
-
-.modal-content::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  background: linear-gradient(45deg, #e0e0e0, #f0f0f0);
-  z-index: -1;
-  animation: borderGlow 6s linear infinite;
-  opacity: 0.2;
-}
-
-@keyframes borderGlow {
-  0% { opacity: 0.1; }
-  50% { opacity: 0.3; }
-  100% { opacity: 0.1; }
-}
-
-.modal.active .modal-content {
-  transform: translateY(0) scale(1) rotateX(0);
-  opacity: 1;
-  animation: contentAppear 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@keyframes contentAppear {
-  0% {
-    transform: translateY(-50px) scale(0.95) rotateX(-15deg);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0) scale(1) rotateX(0);
-    opacity: 1;
-  }
-}
-
-.modal p {
-  margin: 1.5rem 0;
-  color: #BDD7E7;
-  line-height: 1.7;
-  font-size: 1rem;
-}
-
-.modal h2 {
-  margin-bottom: 1.5rem;
-  color: #1a73e8;
-  font-size: 1.75rem;
-  font-weight: 600;
-  padding-bottom: 0.9375rem;
-  position: relative;
-}
-
-.modal h2::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, #1a73e8, transparent);
-  border-radius: 2px;
-}
-
-/* Кнопка закрытия */
-.close-button {
-  position: absolute;
-  top: 1.25rem;
-  right: 1.25rem;
-  width: 40px;
-  height: 40px;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.144);
-  cursor: pointer;
-  transition: var(--transition-smooth);
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  text-align: center; /* Добавлено для центрирования контента */
 }
 
-.close-button:hover {
-  background: rgba(0, 0, 0, 0.15);
-  transform: rotate(180deg) scale(1.1);
-}
-
-.close-button::before,
-.close-button::after {
+.header-gradient::before {
   content: '';
   position: absolute;
-  width: 20px;
-  height: 2px;
-  background: rgba(0, 0, 0, 0.7);
-  transition: var(--transition-normal);
-}
-
-.close-button::before {
-  transform: rotate(45deg);
-}
-
-.close-button::after {
-  transform: rotate(-45deg);
-}
-
-.close-button:hover::before,
-.close-button:hover::after {
-  background: #1a73e8;
-}
-
-/* Кнопка поддержки */
-.support-button {
-  position: relative;
-  padding: 1rem 2.25rem;
-  background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
-  color: white;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  font-size: 1.2rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  overflow: hidden;
-  transition: var(--transition-smooth);
-  margin-top: 1.25rem;
-  box-shadow: 
-    0 8px 24px rgba(59, 130, 246, 0.3),
-    0 4px 12px rgba(0, 0, 0, 0.1);
-  animation: neonPulse 5.5s infinite ease-in-out,
-             floating 7.5s infinite ease-in-out;
-  transform-origin: center;
-}
-
-.support-button::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.1);
-  transform: skewX(-30deg);
-  transition: 0.6s;
-}
-
-.support-button:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 
-    0 12px 32px rgba(59, 130, 246, 0.4),
-    0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-.support-button:hover::after {
-  left: 120%;
-}
-
-.support-button:active {
-  transform: scale(0.95);
-  filter: brightness(0.9);
-}
-
-.support-button:focus {
-  outline: none;
-  box-shadow: 
-    0 0 0 4px rgba(110, 231, 183, 0.3),
-    0 8px 24px rgba(59, 130, 246, 0.4);
-}
-
-/* Анимации для кнопки поддержки */
-@keyframes neonPulse {
-  0%, 100% {
-    box-shadow: 0 0 10px rgba(66, 153, 225, 0.4),
-                0 0 20px rgba(128, 90, 213, 0.3),
-                0 0 30px rgba(66, 153, 225, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(66, 153, 225, 0.6),
-                0 0 30px rgba(128, 90, 213, 0.4),
-                0 0 40px rgba(66, 153, 225, 0.3);
-  }
-}
-
-@keyframes floating {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-
-.support-button:hover .heart-emoji {
-  animation: heartbeat 1.2s infinite;
-}
-
-@keyframes heartbeat {
-  0% { transform: scale(1); }
-  15% { transform: scale(1.3); }
-  30% { transform: scale(1); }
-  45% { transform: scale(1.15); }
-  60% { transform: scale(1); }
-}
-
-/* Иконка в кнопке */
-.button-icon {
-  display: inline-block;
-  margin-left: 10px;
-  transition: transform 0.3s ease;
-}
-
-.support-button:hover .button-icon {
-  transform: translateX(5px);
-}
-
-/* Кнопка копирования */
-.copy-button {
-  background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
-  color: white;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 0.875rem;
-  padding: 0.5rem 1rem;
-  margin-top: 0.75rem;
-  position: relative;
-  overflow: hidden;
-  transition: var(--transition-smooth);
-  box-shadow: 0 4px 20px rgba(0, 119, 182, 0.2);
-  transform-style: preserve-3d;
-  animation: slideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.copy-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    120deg,
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: repeating-linear-gradient(
+    45deg,
     transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
+    transparent 2px,
+    rgba(218, 165, 32, 0.1) 2px,
+    rgba(218, 165, 32, 0.1) 4px
   );
+  animation: float 20s linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateX(-50px) translateY(-50px); }
+  100% { transform: translateX(50px) translateY(50px); }
+}
+
+.header-gradient .container {
+  position: relative;
+  z-index: 2;
+}
+
+.header-gradient h1 {
+  color: var(--white);
+  font-size: clamp(2rem, 5vw, 4rem);
+  text-shadow: 0 4px 8px var(--shadow-dark);
+  margin-bottom: 1.5rem;
+  animation: slideInUp 1s ease-out;
+}
+
+.header-gradient p {
+  color: var(--light-sand);
+  font-size: 1.2rem;
+  max-width: 700px; /* Ограничиваем ширину для лучшей читаемости */
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+  animation: slideInUp 1s ease-out 0.3s both;
+}
+
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.header-gradient .absolute { z-index: 10; }
+
+.header-gradient button[data-lang] {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid var(--white);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  margin: 0 0.25rem;
+  border-radius: 25px;
+  font-weight: 600;
   transition: var(--transition-smooth);
+  backdrop-filter: blur(10px);
+}
+
+.header-gradient button[data-lang]:hover {
+  background: var(--white);
+  color: var(--primary-red);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+}
+
+/* =============================================================================
+   Кнопки и интерактивные элементы - Без существенных изменений
+   ============================================================================= */
+
+.bg-gray-800 {
+  background: var(--primary-red) !important;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition-bounce);
+}
+
+.bg-gray-800:hover {
+  background: var(--dark-burgundy) !important;
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-medium);
+}
+
+.bg-blue-600 {
+  background: var(--accent-coral) !important;
+  border: none;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition-smooth);
+}
+
+.bg-blue-600:hover {
+  background: var(--primary-red) !important;
+  transform: scale(1.05);
+  box-shadow: var(--shadow-medium);
+}
+
+.copy-button {
+  background: var(--gold-accent);
+  color: var(--white);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  box-shadow: var(--shadow-soft);
 }
 
 .copy-button:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 8px 25px rgba(0, 119, 182, 0.4);
+  background: var(--primary-red);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
 }
 
-.copy-button:hover::before {
-  left: 100%;
+/* =============================================================================
+   Секции контента (УЛУЧШЕНО)
+   ============================================================================= */
+
+section {
+  padding: 6rem 0; /* Увеличили отступы для "воздуха" */
+  position: relative;
 }
 
-.copy-button:active {
-  transform: scale(0.96) translateY(2px);
-  box-shadow: 0 3px 15px rgba(0, 119, 182, 0.3);
-}
-
-.copy-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.5),
-    0 4px 25px rgba(0, 119, 182, 0.4);
-}
-
-/* Анимация успешного копирования */
-@keyframes copyFeedback {
-  0% {
-    opacity: 0;
-    transform: translateY(0);
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-}
-
-.copy-success::after {
-  content: '✓ Скопировано!';
+/* Элегантный разделитель между секциями */
+section + section::before {
+  content: '';
   position: absolute;
-  top: -25px;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(66, 153, 225, 0.9);
-  padding: 4px 12px;
+  width: 80%;
+  max-width: 800px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--pastel-pink), transparent);
+}
+
+.bg-gradient-to-r {
+  background: var(--gradient-soft) !important;
+  position: relative;
+}
+
+/* Улучшенный фон с паттерном */
+.bg-gradient-to-r::after { /* Изменено с ::before на ::after во избежание конфликтов */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C33D2E' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.bg-gray-800 {
+  background: var(--dark-burgundy) !important;
+  color: var(--light-sand);
+}
+
+/* =============================================================================
+   Карточки и контейнеры (ПЕРЕРАБОТАНО)
+   ============================================================================= */
+
+/* Карточки функций в стиле "Тернистой Принцессы" */
+.grid > div {
+  background: var(--white);
+  padding: 2.5rem 2rem; /* Увеличили внутренние отступы */
+  border-radius: 16px; /* Чуть больше скругления */
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition-smooth);
+  border: 1px solid var(--light-sand);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Золотая "роза" в углу как декоративный элемент */
+.grid > div::before {
+  content: '🌹';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  font-size: 4rem;
+  opacity: 0.05;
+  transform: rotate(-30deg);
+  transition: var(--transition-smooth);
+}
+
+.grid > div:hover {
+  transform: translateY(-12px) scale(1.02); /* Более выраженный эффект */
+  box-shadow: var(--shadow-strong);
+  border-color: var(--accent-coral);
+}
+
+.grid > div:hover::before {
+  opacity: 0.2;
+  transform: rotate(0deg) scale(1.1);
+}
+
+
+.grid > div h3 {
+  color: var(--primary-red);
+  margin-bottom: 1rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+/* Изящное подчеркивание заголовка */
+.grid > div h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: var(--gradient-gold);
+    transition: var(--transition-smooth);
+}
+
+.grid > div:hover h3::after {
+    width: 100%;
+}
+
+/* Технологический стек */
+.bg-gray-700 {
+  background: rgba(255, 255, 255, 0.7) !important; /* Более мягкий фон */
+  color: var(--graphite) !important;
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-medium);
+  border: 1px solid var(--pastel-pink);
+  backdrop-filter: blur(5px); /* Эффект матового стекла */
+}
+
+/* Списки технологий со стилизованными маркерами */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  position: relative;
+  padding: 0.5rem 0 0.5rem 2rem;
+  margin-bottom: 0.5rem;
+  transition: var(--transition-smooth);
+}
+
+/* Маркер-стилет */
+ul li::before {
+  content: '❖'; /* Символ, похожий на её серьгу или острие */
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--accent-coral);
+  font-size: 1.5rem;
+  transition: var(--transition-smooth);
+}
+
+ul li:hover {
+  color: var(--primary-red);
+  transform: translateX(5px);
+}
+
+ul li:hover::before {
+    color: var(--gold-accent);
+    transform: translateY(-50%) rotate(180deg);
+}
+
+ul li strong {
+  color: var(--dark-burgundy);
+}
+
+/* =============================================================================
+   Системные требования (УЛУЧШЕНО)
+   ============================================================================= */
+
+.system-requirements {
+  background: linear-gradient(135deg, var(--white), var(--light-sand));
+  border-radius: 16px;
+  padding: 2.5rem;
+  margin-top: 2rem;
+  box-shadow: var(--shadow-soft);
+  border: none;
+  border-left: 5px solid var(--gold-accent);
+  position: relative;
+}
+
+.system-requirements h4 {
+  color: var(--primary-red);
+  border-bottom: 2px solid var(--pastel-pink);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* =============================================================================
+   Прогресс-бар для поддержки (Без изменений)
+   ============================================================================= */
+
+.progress-container {
+  background: var(--white);
+  padding: 2rem;
   border-radius: 20px;
-  font-size: 12px;
-  animation: copyFeedback 1.2s ease-out;
-  backdrop-filter: blur(4px);
+  margin: 2rem 0;
+  box-shadow: var(--shadow-medium);
+  text-align: center;
+  border: 3px solid var(--pastel-pink);
+}
+.progress-info {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-red);
+  margin-bottom: 1rem;
+}
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  background: var(--light-sand);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid var(--accent-coral);
+  margin-bottom: 1.5rem;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--gradient-gold);
+  width: 12.53%;
+  transition: width 1s ease-in-out;
+  position: relative;
+}
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shimmer 2s infinite;
+}
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.support-button {
+  background: var(--primary-red);
+  color: var(--white);
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition-bounce);
+  box-shadow: var(--shadow-soft);
+}
+.support-button:hover {
+  background: var(--dark-burgundy);
+  transform: scale(1.1);
+  box-shadow: var(--shadow-strong);
 }
 
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+/* =============================================================================
+   Модальное окно (Без изменений)
+   ============================================================================= */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--black-overlay);
+  backdrop-filter: blur(10px);
+}
+.modal-content {
+  background: var(--white);
+  margin: 10% auto;
+  padding: 2rem;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: var(--shadow-strong);
+  border: 3px solid var(--primary-red);
+  animation: modalSlideIn 0.5s ease-out;
+}
+@keyframes modalSlideIn {
+  from { opacity: 0; transform: translateY(-50px) scale(0.8); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--accent-coral);
+  color: var(--white);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+.close-button:hover {
+  background: var(--primary-red);
+  transform: scale(1.1);
+}
+.payment-details { margin-top: 1rem; }
+.payment-details p {
+  background: var(--light-sand);
+  padding: 1rem;
+  border-radius: 10px;
+  margin: 1rem 0;
+  border-left: 4px solid var(--gold-accent);
+  font-family: monospace;
+  word-break: break-all;
 }
 
-/* Медиа-запросы */
-@media (max-width: 480px) {
+/* =============================================================================
+   Изображения и медиа (УЛУЧШЕНО)
+   ============================================================================= */
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px; /* Единый стиль скругления */
+  transition: var(--transition-smooth);
+  box-shadow: var(--shadow-soft); /* Тень по умолчанию */
+}
+
+img:hover {
+  transform: scale(1.03); /* Немного уменьшил масштаб для изящности */
+  box-shadow: var(--shadow-medium);
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+  border: 4px solid var(--gold-accent);
+  box-shadow: var(--shadow-anime);
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(218, 165, 32, 0.7); }
+  70% { box-shadow: 0 0 0 20px rgba(218, 165, 32, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(218, 165, 32, 0); }
+}
+
+/* =============================================================================
+   Футер (УЛУЧШЕНО)
+   ============================================================================= */
+
+footer {
+  background: var(--dark-burgundy) !important;
+  color: var(--light-sand);
+  position: relative;
+  padding: 3rem 0; /* Добавили отступов */
+  text-align: center;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-gold);
+}
+
+footer a {
+  display: inline-block; /* Для корректного применения transform */
+  transition: var(--transition-smooth);
+  padding: 0.5rem;
+  margin: 0 0.5rem; /* Добавили отступов между иконками */
+  border-radius: 50%;
+}
+
+footer a:hover {
+  background: var(--primary-red);
+  transform: translateY(-5px); /* Увеличили сдвиг */
+  box-shadow: var(--shadow-soft);
+}
+
+/* =============================================================================
+   Адаптивность (Без изменений)
+   ============================================================================= */
+
+@media (max-width: 768px) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.8rem; }
+  h3 { font-size: 1.5rem; }
+  
+  .header-gradient {
+    padding: 2rem 0;
+    min-height: 80vh;
+  }
+  
+  section {
+    padding: 4rem 0; /* Скорректировали отступы для мобильных */
+  }
+  
+  .grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  
   .modal-content {
+    margin: 20% auto;
     width: 95%;
-    padding: 1.5rem;
   }
-  
-  .modal h2 {
-    font-size: 1.5rem;
-  }
-  
-  .close-button {
-    width: 36px;
-    height: 36px;
-  }
+}
+
+@media (max-width: 480px) {
+  .progress-info { font-size: 1.2rem; }
   
   .support-button {
+    padding: 0.8rem 1.5rem;
     font-size: 1rem;
-    padding: 0.75rem 1.5rem;
   }
+  
+  .header-gradient h1 { font-size: 1.8rem; }
+  
+  .header-gradient p { font-size: 1rem; }
 }
+
+/* =============================================================================
+   Дополнительные анимации и эффекты (Без изменений)
+   ============================================================================= */
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 20px rgba(139, 28, 36, 0.5); }
+  to { box-shadow: 0 0 30px rgba(218, 165, 32, 0.8); }
+}
+
+/* Стилизация скроллбара в стиле Йор */
+::-webkit-scrollbar { width: 12px; }
+::-webkit-scrollbar-track { background: var(--light-sand); }
+::-webkit-scrollbar-thumb {
+  background: var(--gradient-gold);
+  border-radius: 6px;
+  border: 2px solid var(--light-sand); /* Добавляет рамку для контраста */
+}
+::-webkit-scrollbar-thumb:hover { background: var(--primary-red); }
