@@ -1,29 +1,48 @@
 // Глобальные функции для модального окна
 function openModal() {
-    const modal = document.querySelector('.modal');
+    // Находим модальное окно по его ID
+    const modal = document.getElementById('donateModal');
     if (modal) {
-        modal.classList.add('active');
+        // Меняем display и добавляем класс для анимации
+        modal.style.display = 'flex';
+        // Небольшая задержка, чтобы браузер успел применить display,
+        // а затем сработала анимация opacity
+        setTimeout(() => {
+            modal.classList.add('active');
+        }, 10);
         document.body.style.overflow = 'hidden'; // Предотвращаем прокрутку фона
     }
 }
 
 function closeModal() {
-    const modal = document.querySelector('.modal.active');
+    // Находим модальное окно по его ID
+    const modal = document.getElementById('donateModal');
     if (modal) {
+        // Убираем класс для запуска анимации исчезновения
         modal.classList.remove('active');
+        // Ждем окончания анимации перед тем как скрыть окно
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 500); // Время должно совпадать с transition в CSS
         document.body.style.overflow = ''; // Возвращаем прокрутку
     }
 }
 
 // Функция для копирования текста в буфер обмена
 function copyToClipboard(text) {
-  const textarea = document.createElement('textarea');
-  textarea.value = text;
-  document.body.appendChild(textarea);
-  textarea.select();
-  document.execCommand('copy');
-  document.body.removeChild(textarea);
-  alert('Скопировано: ' + text);
+  navigator.clipboard.writeText(text).then(() => {
+    alert('Скопировано: ' + text);
+  }).catch(err => {
+    console.error('Ошибка копирования: ', err);
+    // Резервный метод для старых браузеров
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+    alert('Скопировано: ' + text);
+  });
 }
 
 // Класс управления языками
@@ -266,19 +285,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-// Закрытие модального окна при клике вне его
-document.querySelectorAll('.modal').forEach(modal => {
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
+    // Закрытие модального окна при клике вне его
+    document.querySelectorAll('.modal').forEach(modal => {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    });
+
+
+    // Закрытие модального окна при нажатии клавиши Esc
+    document.addEventListener('keydown', (e) => {
+        const modal = document.getElementById('donateModal');
+        // Проверяем, что окно видимо (имеет класс active)
+        if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
             closeModal();
         }
     });
-});
-
-// Закрытие модального окна при нажатии клавиши Esc
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && document.querySelector('.modal.active')) {
-        closeModal();
-    }
-});
 });

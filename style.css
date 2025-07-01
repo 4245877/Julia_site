@@ -546,7 +546,7 @@ ul li strong {
    ============================================================================= */
 
 .modal {
-  display: none;
+  display: none; /* Изначально окно скрыто */
   position: fixed;
   z-index: 1000;
   left: 0;
@@ -555,11 +555,18 @@ ul li strong {
   height: 100%;
   background: var(--black-overlay);
   backdrop-filter: blur(10px);
+  /* Добавляем transition для плавного появления */
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
-
+.modal.active {
+    display: flex; /* Используем flex для центрирования */
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
 .modal-content {
   background: var(--white);
-  margin: 10% auto;
   padding: 2rem;
   border-radius: 20px;
   width: 90%;
