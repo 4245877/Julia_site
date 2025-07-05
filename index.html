@@ -75,89 +75,112 @@
     </div>
   </section>
 
-  <section id="character-customization" class="py-20 px-6 bg-gray-800 text-white">
-    <div class="container mx-auto">
-      <!-- Заголовок -->
-      <h2 class="text-4xl font-bold mb-4" data-i18n="section.characterCustomization.title">Создайте идеального героя под свой вкус</h2>
-      <!-- Вступление -->
-      <p class="text-lg mb-8" data-i18n="section.characterCustomization.intro">
-        Выбирайте готовые образы знаменитых аниме‑персонажей или создавайте уникальные модели с нуля — от черт лица до характера и стилистики рендеринга.
-      </p>
+<section id="character-customization" class="py-20 px-6 bg-gray-800 text-white">
+  <div class="container mx-auto">
+    <!-- Заголовок -->
+    <h2 class="text-4xl font-bold mb-4" data-i18n="section.characterCustomization.title">Создайте идеальную вайфу под свой вкус</h2>
+    <!-- Вступление -->
+    <p class="text-lg mb-8" data-i18n="section.characterCustomization.intro">
+      Выбирайте из широкого каталога готовых образов или создавайте свою уникальную вайфу — от внешности до характера и стиля отрисовки.
+    </p>
 
-      <!-- Галерея готовых персонажей -->
-      <div class="mb-12">
-        <h3 class="text-2xl font-semibold mb-4" data-i18n="section.characterCustomization.presetsTitle">Готовые образы</h3>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
-          <!-- Пример карточки персонажа -->
-          <div class="flex flex-col items-center">
-            <img src="Images/Characters/Raphtalia.png" alt="Raphtalia" class="w-24 h-24 rounded-full mb-2 shadow-lg">
-            <span class="text-sm">Raphtalia</span>
-          </div>
-          <!-- Повторите для других персонажей -->
-          <div class="flex flex-col items-center">
-            <img src="Images/Characters/YorForger.png" alt="Yor Forger" class="w-24 h-24 rounded-full mb-2 shadow-lg">
-            <span class="text-sm">Yor Forger</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <img src="Images/Characters/RoxyMigurdia.png" alt="Roxy Migurdia" class="w-24 h-24 rounded-full mb-2 shadow-lg">
-            <span class="text-sm">Roxy Migurdia</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <img src="Images/Characters/Friren.png" alt="Friren" class="w-24 h-24 rounded-full mb-2 shadow-lg">
-            <span class="text-sm">Friren</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <img src="Images/Characters/Emilia.png" alt="Emilia" class="w-24 h-24 rounded-full mb-2 shadow-lg">
-            <span class="text-sm">Emilia</span>
-          </div>
+    <!-- Галерея готовых персонажей -->
+    <div class="mb-12">
+      <h3 class="text-2xl font-semibold mb-4" data-i18n="section.characterCustomization.presetsTitle">Готовые вайфу</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-6">
+        <!-- Примеры персонажей -->
+        <div class="flex flex-col items-center">
+          <img src="Images/Characters/Raphtalia.png" alt="Raphtalia" class="w-24 h-24 rounded-full mb-2 shadow-lg">
+          <span class="text-sm">Raphtalia</span>
         </div>
-      </div>
-
-      <!-- Настройки рендеринга -->
-      <div class="mb-12">
-        <h3 class="text-2xl font-semibold mb-4" data-i18n="section.characterCustomization.renderStylesTitle">Стиль отрисовки</h3>
-        <div class="flex space-x-4">
-          <button class="px-4 py-2 bg-gray-700 rounded-lg hover:bg-gray-600 transition" data-style="3d" data-i18n="section.characterCustomization.style3d">3D-модель</button>
-          <button class="px-4 py-2 bg-gray-700 rounded-lg hover:bg-gray-600 transition" data-style="raytracing" data-i18n="section.characterCustomization.styleRay">Ray Tracing</button>
-          <button class="px-4 py-2 bg-gray-700 rounded-lg hover:bg-gray-600 transition" data-style="2d" data-i18n="section.characterCustomization.style2d">2D-аниме</button>
+        <div class="flex flex-col items-center">
+          <img src="Images/Characters/YorForger.png" alt="Yor Forger" class="w-24 h-24 rounded-full mb-2 shadow-lg">
+          <span class="text-sm">Yor Forger</span>
         </div>
-        <div id="render-preview" class="mt-6 w-full h-64 bg-gray-900 rounded-lg flex items-center justify-center text-gray-500">
-          <!-- Здесь появится превью персонажа -->
-          Превью персонажа
+        <div class="flex flex-col items-center">
+          <img src="Images/Characters/RoxyMigurdia.png" alt="Roxy Migurdia" class="w-24 h-24 rounded-full mb-2 shadow-lg">
+          <span class="text-sm">Roxy</span>
         </div>
-      </div>
-
-      <!-- Интерактивные параметры -->
-      <div class="mb-12">
-        <h3 class="text-2xl font-semibold mb-4" data-i18n="section.characterCustomization.customParamsTitle">Интерактивные параметры</h3>
-        <div class="space-y-6">
-          <div>
-            <label class="block mb-1">Возраст</label>
-            <input type="range" min="10" max="100" value="25" class="w-full">
-          </div>
-          <div>
-            <label class="block mb-1">Роста</label>
-            <input type="range" min="140" max="210" value="170" class="w-full">
-          </div>
-          <div>
-            <label class="block mb-1">Характер</label>
-            <select class="w-full bg-gray-700 rounded-lg p-2">
-              <option>Добрый и заботливый</option>
-              <option>Загадочный интроверт</option>
-              <option>Боевой авантюрист</option>
-            </select>
-          </div>
+        <div class="flex flex-col items-center">
+          <img src="Images/Characters/Friren.png" alt="Friren" class="w-24 h-24 rounded-full mb-2 shadow-lg">
+          <span class="text-sm">Friren</span>
         </div>
-      </div>
-
-      <!-- Призыв к действию -->
-      <div class="text-center">
-        <a href="#" class="inline-block bg-blue-600 hover:bg-blue-500 text-white font-semibold px-8 py-3 rounded-full shadow-lg transition" data-i18n="section.characterCustomization.cta">Начать создавать</a>
+        <div class="flex flex-col items-center">
+          <img src="Images/Characters/Emilia.png" alt="Emilia" class="w-24 h-24 rounded-full mb-2 shadow-lg">
+          <span class="text-sm">Emilia</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <img src="Images/Characters/Rem.png" alt="Rem" class="w-24 h-24 rounded-full mb-2 shadow-lg">
+          <span class="text-sm">Rem</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <img src="Images/Characters/ZeroTwo.png" alt="Zero Two" class="w-24 h-24 rounded-full mb-2 shadow-lg">
+          <span class="text-sm">Zero Two</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <img src="Images/Characters/Asuna.png" alt="Asuna" class="w-24 h-24 rounded-full mb-2 shadow-lg">
+          <span class="text-sm">Asuna</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <img src="Images/Characters/Nezuko.png" alt="Nezuko" class="w-24 h-24 rounded-full mb-2 shadow-lg">
+          <span class="text-sm">Nezuko</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <img src="Images/Characters/Hinata.png" alt="Hinata" class="w-24 h-24 rounded-full mb-2 shadow-lg">
+          <span class="text-sm">Hinata</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <img src="Images/Characters/Mikasa.png" alt="Mikasa" class="w-24 h-24 rounded-full mb-2 shadow-lg">
+          <span class="text-sm">Mikasa</span>
+        </div>
       </div>
     </div>
-  </section>
 
+    <!-- Настройки рендеринга -->
+    <div class="mb-12">
+      <h3 class="text-2xl font-semibold mb-4" data-i18n="section.characterCustomization.renderStylesTitle">Стиль отрисовки</h3>
+      <div class="flex flex-wrap gap-4">
+        <button class="px-4 py-2 bg-gray-700 rounded-lg hover:bg-gray-600 transition" data-style="3d" data-i18n="section.characterCustomization.style3d">3D-модель</button>
+        <button class="px-4 py-2 bg-gray-700 rounded-lg hover:bg-gray-600 transition" data-style="raytracing" data-i18n="section.characterCustomization.styleRay">Ray Tracing</button>
+        <button class="px-4 py-2 bg-gray-700 rounded-lg hover:bg-gray-600 transition" data-style="2d" data-i18n="section.characterCustomization.style2d">2D-аниме</button>
+      </div>
+      <div id="render-preview" class="mt-6 w-full h-64 bg-gray-900 rounded-lg flex items-center justify-center text-gray-500">
+        <!-- Здесь появится превью персонажа -->
+        Превью вайфу
+      </div>
+    </div>
 
+    <!-- Интерактивные параметры -->
+    <div class="mb-12">
+      <h3 class="text-2xl font-semibold mb-4" data-i18n="section.characterCustomization.customParamsTitle">Интерактивные параметры</h3>
+      <div class="space-y-6">
+        <div>
+          <label class="block mb-1" data-i18n="section.characterCustomization.age">Возраст</label>
+          <input type="range" min="10" max="100" value="25" class="w-full">
+        </div>
+        <div>
+          <label class="block mb-1" data-i18n="section.characterCustomization.height">Рост</label>
+          <input type="range" min="140" max="210" value="170" class="w-full">
+        </div>
+        <div>
+          <label class="block mb-1" data-i18n="section.characterCustomization.personality">Тип личности</label>
+          <select class="w-full bg-gray-700 rounded-lg p-2">
+            <option data-i18n="section.characterCustomization.personality.caring">Добрая и заботливая</option>
+            <option data-i18n="section.characterCustomization.personality.introvert">Загадочная интровертка</option>
+            <option data-i18n="section.characterCustomization.personality.adventurer">Ришая авантюристка</option>
+            <option data-i18n="section.characterCustomization.personality.tsundere">Цундэрэ</option>
+            <option data-i18n="section.characterCustomization.personality.kuudere">Куудэрэ</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Призыв к действию -->
+    <div class="text-center">
+      <a href="#" class="inline-block bg-pink-600 hover:bg-pink-500 text-white font-semibold px-8 py-3 rounded-full shadow-lg transition" data-i18n="section.characterCustomization.cta">Начать создавать свою вайфу</a>
+    </div>
+  </div>
+</section>
 
 
   <section class="bg-gradient-to-r from-gray-800 to-gray-700 py-20">
