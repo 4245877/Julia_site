@@ -450,7 +450,9 @@ p {
 }
 
 .bg-gray-700 li {
+    position: relative;
     padding: 0.25rem 0;
+    padding-left: 1.75rem; 
     color: var(--light-sand);
     font-size: 0.9rem;
 }
@@ -654,11 +656,11 @@ p {
     transform: translateY(-2px);
 }
 
-/* Footer */
+/* Footer - Вторая, более решительная попытка уменьшения */
 footer {
     background: var(--primary-red);
     color: var(--light-sand);
-    padding: 2rem 0;
+    padding: 1.5rem 0 2rem; /* Оставляем немного воздуха сверху, но можно сделать и 1rem */
     text-align: center;
     position: relative;
 }
@@ -673,21 +675,34 @@ footer::before {
     background: var(--gradient-gold);
 }
 
+/* Уменьшаем отступы между элементами до минимума */
 footer h2 {
     color: var(--white);
-    margin-bottom: 2rem;
+    margin-bottom: 0.75rem; /* Резко уменьшен нижний отступ */
 }
 
+/* * Это новое правило! 
+ * Оно убирает стандартный большой отступ у параграфа (например, с текстом копирайта),
+ * если он есть в футере. Это частая причина "лишней" высоты.
+*/
+footer p {
+    margin-bottom: 1rem; /* Контролируем отступ для параграфов */
+    padding: 0;
+    font-size: 0.9rem; /* Можно сделать текст копирайта чуть меньше */
+}
+
+/* Убираем верхний отступ у контейнера с иконками */
 footer .flex {
     display: flex;
     justify-content: center;
     gap: 1rem;
-    margin-top: 2rem;
+    margin-top: 0.75rem; /* Резко уменьшен верхний отступ */
 }
 
+/* Стили для ссылок-иконок оставляем (они уже уменьшены) */
 footer a {
     display: inline-block;
-    padding: 0.95rem;
+    padding: 0.75rem;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.1);
     color: var(--white);
