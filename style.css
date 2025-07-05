@@ -258,6 +258,385 @@ p {
     line-height: 1.6;
 }
 
+
+/* Character Customization Section */
+#character-customization {
+    background: var(--dark-burgundy);
+    color: var(--white);
+    padding: var(--section-padding) 0;
+    position: relative;
+    overflow: hidden;
+}
+
+#character-customization::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23C33D2E' fill-opacity='0.03'%3E%3Cpath d='M20 20c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm0 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z'/%3E%3C/g%3E%3C/svg%3E");
+    animation: float 25s linear infinite reverse;
+    z-index: 1;
+}
+
+#character-customization .container {
+    position: relative;
+    z-index: 2;
+}
+
+#character-customization h2 {
+    color: var(--white);
+    text-align: center;
+    margin-bottom: 2rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+#character-customization > .container > p {
+    text-align: center;
+    color: var(--light-sand);
+    font-size: 1.2rem;
+    margin-bottom: 4rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Character Presets Section */
+#character-customization .mb-12 h3 {
+    color: var(--gold-accent);
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+/* Character Grid */
+#character-customization .grid {
+    display: grid;
+    justify-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+#character-customization .grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+#character-customization .sm\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+#character-customization .md\:grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+#character-customization .gap-6 {
+    gap: 1.5rem;
+}
+
+/* Character Card */
+#character-customization .flex.flex-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    border: 2px solid transparent;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    min-width: 120px;
+}
+
+#character-customization .flex.flex-col:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--gold-accent);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-anime);
+}
+
+#character-customization .flex.flex-col.active {
+    background: rgba(218, 165, 32, 0.2);
+    border-color: var(--gold-accent);
+    box-shadow: var(--shadow-anime);
+}
+
+/* Character Avatar */
+#character-customization .w-24.h-24 {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    border: 3px solid var(--pastel-pink);
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition-smooth);
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+#character-customization .flex.flex-col:hover .w-24.h-24 {
+    border-color: var(--gold-accent);
+    transform: scale(1.1);
+}
+
+#character-customization .text-sm {
+    font-size: 0.9rem;
+    color: var(--light-sand);
+    font-weight: 600;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+/* Render Styles Section */
+#character-customization .flex.space-x-4 {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+#character-customization .space-x-4 > * {
+    margin-left: 0;
+}
+
+#character-customization .px-4.py-2 {
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid var(--accent-coral);
+    border-radius: 25px;
+    color: var(--white);
+    font-weight: 600;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+}
+
+#character-customization .px-4.py-2:hover {
+    background: var(--accent-coral);
+    border-color: var(--gold-accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+
+#character-customization .px-4.py-2.active {
+    background: var(--primary-red);
+    border-color: var(--gold-accent);
+    box-shadow: var(--shadow-soft);
+}
+
+/* Render Preview */
+#render-preview {
+    width: 100%;
+    height: 16rem;
+    background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--light-sand);
+    font-size: 1.1rem;
+    border: 3px solid var(--accent-coral);
+    box-shadow: inset 0 4px 10px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+#render-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(218, 165, 32, 0.2), transparent);
+    animation: shimmer 3s infinite;
+}
+
+/* Custom Parameters Section */
+#character-customization .space-y-6 {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+#character-customization .space-y-6 > div {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition-smooth);
+}
+
+#character-customization .space-y-6 > div:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--pastel-pink);
+}
+
+#character-customization label {
+    display: block;
+    color: var(--gold-accent);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+/* Range Input Styling */
+#character-customization input[type="range"] {
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(to right, var(--accent-coral), var(--primary-red));
+    border-radius: 5px;
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+#character-customization input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--gold-accent);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    transition: var(--transition-smooth);
+}
+
+#character-customization input[type="range"]::-webkit-slider-thumb:hover {
+    background: var(--white);
+    transform: scale(1.2);
+}
+
+#character-customization input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: var(--gold-accent);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+/* Select Styling */
+#character-customization select {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    padding: 1rem;
+    border: 2px solid var(--accent-coral);
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23FFFFFF' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.5rem;
+}
+
+#character-customization select:hover {
+    border-color: var(--gold-accent);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+#character-customization select:focus {
+    outline: none;
+    border-color: var(--gold-accent);
+    box-shadow: 0 0 0 3px rgba(218, 165, 32, 0.2);
+}
+
+#character-customization option {
+    background: var(--dark-burgundy);
+    color: var(--white);
+    padding: 0.5rem;
+}
+
+/* CTA Button */
+#character-customization .text-center {
+    text-align: center;
+    margin-top: 4rem;
+}
+
+#character-customization .inline-block {
+    display: inline-block;
+    background: var(--gradient-gold);
+    color: var(--dark-burgundy);
+    padding: 1.25rem 3rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.2rem;
+    transition: var(--transition-bounce);
+    box-shadow: var(--shadow-strong);
+    border: 3px solid transparent;
+}
+
+#character-customization .inline-block:hover {
+    background: var(--white);
+    color: var(--primary-red);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: var(--shadow-anime);
+    border-color: var(--gold-accent);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #character-customization .md\:grid-cols-5 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    
+    #character-customization .sm\:grid-cols-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    
+    #character-customization .flex.space-x-4 {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    #character-customization .px-4.py-2 {
+        width: 100%;
+        max-width: 200px;
+        text-align: center;
+    }
+    
+    #render-preview {
+        height: 12rem;
+    }
+    
+    #character-customization .space-y-6 > div {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #character-customization .grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    
+    #character-customization .flex.flex-col {
+        min-width: 100px;
+        padding: 1rem;
+    }
+    
+    #character-customization .w-24.h-24 {
+        width: 4.5rem;
+        height: 4.5rem;
+    }
+    
+    #character-customization .space-y-6 > div {
+        padding: 1rem;
+    }
+    
+    #character-customization .inline-block {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+}
+
 /* Tech Stack Section */
 .bg-gradient-to-r {
     background: var(--gradient-soft);
