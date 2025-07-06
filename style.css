@@ -161,7 +161,13 @@ p {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
-
+.section-container {
+  margin-bottom: 20px; /* Отступ снизу для разделения секций */
+  padding: 20px; /* Внутренние отступы для контента */
+  background: var(--white); /* Белый фон для контраста */
+  border-radius: 10px; /* Скругленные углы */
+  box-shadow: var(--shadow-soft); /* Мягкая тень для глубины */
+}
 /* CTA Button */
 .header-gradient .inline-block {
     display: inline-block;
