@@ -847,12 +847,7 @@ p {
     padding: 5rem 0;
 }
 
-.py-20:nth-of-type(4) {
-    background: var(--white);
-    text-align: center;
-    color: var(--graphite);
-}
-
+ 
 .py-20:nth-of-type(4) h2 {
     color: var(--primary-red);
 }
