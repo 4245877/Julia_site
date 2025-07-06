@@ -158,31 +158,207 @@
         </div>
       </div>
 
-      <!-- Интерактивные параметры -->
-      <div class="mb-12">
-        <h3 class="text-2xl font-semibold mb-4" data-i18n="section.characterCustomization.customParamsTitle">Интерактивные параметры</h3>
-        <div class="space-y-6">
-          <div>
-            <label class="block mb-1" data-i18n="section.characterCustomization.age">Возраст</label>
-            <input type="range" min="10" max="100" value="25" class="w-full">
-          </div>
-          <div>
-            <label class="block mb-1" data-i18n="section.characterCustomization.height">Рост</label>
-            <input type="range" min="140" max="210" value="170" class="w-full">
-          </div>
-          <div>
-            <label class="block mb-1" data-i18n="section.characterCustomization.personality">Тип личности</label>
-            <select class="w-full bg-gray-700 rounded-lg p-2">
-              <option value="yamadere" title="Добрая и заботливая">Ямадере (добрая и заботливая)</option>
-              <option value="dandere" title="Застенчивая интровертка">Дандере (застенчивая интровертка)</option>
-              <option value="genki-dere" title="Энергичная авантюристка">Гэнки-дэре (энергичная авантюристка)</option>
-              <option value="tsundere" title="С виду холодна, но тёплая внутри">Цундэрэ (с виду холодна, но тёплая внутри)</option>
-              <option value="kuudere" title="Сдержанная и хладнокровная">Куудэрэ (сдержанная и хладнокровная)</option>
-            </select>
-          </div>
-        </div>
-      </div>
 
+<!-- Basic Settings -->
+            <div class="customization-section">
+                <h3 class="section-title">🔧 Основные настройки</h3>
+                
+                <div class="subsection">
+                    <h4 class="subsection-title">🧍‍♀️ Внешний вид</h4>
+                    
+                    <div class="form-group">
+                        <label for="age">Возраст</label>
+                        <select class="select-input" id="age">
+                            <option value="16">16 лет</option>
+                            <option value="18">18 лет</option>
+                            <option value="20">20 лет</option>
+                            <option value="22">22 года</option>
+                            <option value="25" selected>25 лет</option>
+                            <option value="28">28 лет</option>
+                            <option value="30">30 лет</option>
+                            <option value="35">35 лет</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="height">Рост (см)</label>
+                        <input type="number" class="number-input" id="height" min="140" max="200" value="165" placeholder="165">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Цвет волос</label>
+                        <div class="color-palette">
+                            <div class="color-option" style="background: #8B4513;" data-color="brown"></div>
+                            <div class="color-option" style="background: #000000;" data-color="black"></div>
+                            <div class="color-option" style="background: #FFD700;" data-color="blonde"></div>
+                            <div class="color-option" style="background: #B22222;" data-color="red"></div>
+                            <div class="color-option" style="background: #4169E1;" data-color="blue"></div>
+                            <div class="color-option" style="background: #9370DB;" data-color="purple"></div>
+                            <div class="color-option" style="background: #FF69B4;" data-color="pink"></div>
+                            <div class="color-option" style="background: #90EE90;" data-color="green"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Цвет глаз</label>
+                        <div class="color-palette">
+                            <div class="color-option" style="background: #8B4513;" data-color="brown"></div>
+                            <div class="color-option" style="background: #4169E1;" data-color="blue"></div>
+                            <div class="color-option" style="background: #228B22;" data-color="green"></div>
+                            <div class="color-option" style="background: #808080;" data-color="gray"></div>
+                            <div class="color-option" style="background: #9370DB;" data-color="purple"></div>
+                            <div class="color-option" style="background: #FF69B4;" data-color="pink"></div>
+                            <div class="color-option" style="background: #FFD700;" data-color="gold"></div>
+                            <div class="color-option" style="background: #B22222;" data-color="red"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <h4 class="subsection-title">🧠 Тип личности</h4>
+                    
+                    <div class="form-group">
+                        <label for="temperament">Темперамент</label>
+                        <input type="range" class="range-input" id="temperament" min="0" max="100" value="50">
+                        <div class="range-labels">
+                            <span>Спокойная</span>
+                            <span>Энергичная</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="empathy">Эмпатия</label>
+                        <input type="range" class="range-input" id="empathy" min="0" max="100" value="70">
+                        <div class="range-labels">
+                            <span>Низкая</span>
+                            <span>Высокая</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="formality">Формальность речи</label>
+                        <input type="range" class="range-input" id="formality" min="0" max="100" value="30">
+                        <div class="range-labels">
+                            <span>Дружелюбная</span>
+                            <span>Официальная</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="personality-type">Архетип</label>
+                        <select class="select-input" id="personality-type">
+                            <option value="yamadere">Ямадере (добрая и заботливая)</option>
+                            <option value="dandere">Дандере (застенчивая интровертка)</option>
+                            <option value="genki-dere">Гэнки-дэре (энергичная авантюристка)</option>
+                            <option value="tsundere">Цундэрэ (холодная снаружи, тёплая внутри)</option>
+                            <option value="kuudere">Куудэрэ (сдержанная и хладнокровная)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <h4 class="subsection-title">🎙️ Голос</h4>
+                    
+                    <div class="form-group">
+                        <label for="voice-pitch">Тембр</label>
+                        <input type="range" class="range-input" id="voice-pitch" min="0" max="100" value="60">
+                        <div class="range-labels">
+                            <span>Низкий</span>
+                            <span>Высокий</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="speech-speed">Темп речи</label>
+                        <input type="range" class="range-input" id="speech-speed" min="0" max="100" value="50">
+                        <div class="range-labels">
+                            <span>Медленный</span>
+                            <span>Быстрый</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="accent">Акцент</label>
+                        <select class="select-input" id="accent">
+                            <option value="neutral">Нейтральный</option>
+                            <option value="russian">Русский</option>
+                            <option value="ukrainian">Украинский</option>
+                            <option value="american">Американский</option>
+                            <option value="british">Британский</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <h4 class="subsection-title">🎭 Поведение</h4>
+                    
+                    <div class="form-group">
+                        <label for="initiative">Инициативность</label>
+                        <input type="range" class="range-input" id="initiative" min="0" max="100" value="40">
+                        <div class="range-labels">
+                            <span>Реагирует на запросы</span>
+                            <span>Сама ведёт диалог</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="humor">Чувство юмора</label>
+                        <input type="range" class="range-input" id="humor" min="0" max="100" value="60">
+                        <div class="range-labels">
+                            <span>Сдержанное</span>
+                            <span>Игривое</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ <!-- Advanced Options Toggle -->
+            <button class="advanced-toggle" onclick="toggleAdvanced()">
+                <span>💡 Дополнительные опции</span>
+                <span id="toggle-icon">▼</span>
+            </button>
+
+            <!-- Advanced Options -->
+            <div class="advanced-options" id="advanced-options">
+                <div class="customization-section">
+                    <h3 class="section-title">💡 Расширенные настройки</h3>
+                    
+                    <div class="form-group">
+                        <label for="creativity">Креативность</label>
+                        <input type="range" class="range-input" id="creativity" min="0" max="100" value="50">
+                        <div class="range-labels">
+                            <span>Логичная</span>
+                            <span>Творческая</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="realism">Реализм ошибок</label>
+                        <input type="range" class="range-input" id="realism" min="0" max="100" value="30">
+                        <div class="range-labels">
+                            <span>Идеальная</span>
+                            <span>Как человек</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="knowledge">Глубина знаний</label>
+                        <input type="range" class="range-input" id="knowledge" min="0" max="100" value="80">
+                        <div class="range-labels">
+                            <span>Базовая</span>
+                            <span>Экспертная</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="memory">Объём памяти</label>
+                        <input type="range" class="range-input" id="memory" min="0" max="100" value="70">
+                        <div class="range-labels">
+                            <span>Короткая</span>
+                            <span>Долгая</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
       <!-- Призыв к действию -->
       <div class="text-center">
         <a href="#" class="inline-block bg-pink-600 hover:bg-pink-500 text-white font-semibold px-8 py-3 rounded-full shadow-lg transition" data-i18n="section.characterCustomization.cta">Начать создавать свою вайфу</a>

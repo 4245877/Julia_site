@@ -303,4 +303,61 @@ document.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }
     });
+    
+});
+// character-customization.js
+document.addEventListener('DOMContentLoaded', function() {
+  // Load character presets
+  const characters = [
+    { name: "Raphtalia", image: "Images/Characters/2D/Raphtalia.jpg" },
+    { name: "Yor Forger", image: "Images/Characters/2D/YorForger.jpg" },
+    { name: "Roxy Migurdia", image: "Images/Characters/2D/RoxyMigurdia.jpg" },
+    { name: "Friren", image: "Images/Characters/2D/Friren.jpg" },
+    { name: "Emilia", image: "Images/Characters/2D/Emilia.jpg" },
+    { name: "Zero Two", image: "Images/Characters/2D/Zero Two.jpg" },
+    { name: "Asuna", image: "Images/Characters/2D/Asuna.jpg" },
+    { name: "Nezuko", image: "Images/Characters/2D/Nezuko.jpg" },
+    { name: "Hinata", image: "Images/Characters/2D/Hinata.jpg" }
+  ];
+
+  const container = document.getElementById('character-presets');
+  characters.forEach(char => {
+    const card = document.createElement('div');
+    card.className = 'character-card';
+    card.innerHTML = `
+      <img src="${char.image}" alt="${char.name}">
+      <span>${char.name}</span>
+    `;
+    container.appendChild(card);
+  });
+
+  // Render style buttons
+  const renderButtons = document.querySelectorAll('.render-controls button');
+  renderButtons.forEach(btn => {
+    btn.addEventListener('click', function() {
+      renderButtons.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      // Здесь будет логика обновления превью
+    });
+  });
+
+  // Color pickers
+  const colorOptions = document.querySelectorAll('.color-option');
+  colorOptions.forEach(option => {
+    option.addEventListener('click', function() {
+      const group = this.closest('.form-group');
+      group.querySelectorAll('.color-option').forEach(o => o.classList.remove('selected'));
+      this.classList.add('selected');
+    });
+  });
+
+  // Advanced toggle
+  const advancedToggle = document.getElementById('advanced-toggle');
+  const advancedOptions = document.getElementById('advanced-options');
+  const toggleIcon = document.getElementById('toggle-icon');
+  
+  advancedToggle.addEventListener('click', function() {
+    advancedOptions.classList.toggle('active');
+    toggleIcon.textContent = advancedOptions.classList.contains('active') ? '▲' : '▼';
+  });
 });
