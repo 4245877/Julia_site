@@ -68,28 +68,26 @@
     </div>
   </header>
 
-  <div class="section-container">
- 
-      <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold mb-8">Ключевые функции</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <h3 class="text-2xl font-bold mb-4">Эмуляция мыслительного процесса в реальном времени</h3>
-            <p>Мыслительные процессы Julia разработаны для имитации человеческих мыслей в реальном времени, создавая плавное и увлекательное взаимодействие.</p>
-          </div>
-          <div>
-            <h3 class="text-2xl font-bold mb-4">Модуляция голоса</h3>
-            <p>Julia может изменять свой голос от шепота до громкого крика, передавая эмоциональную глубину через тон, анимацию и реалистичное выражение мыслей.</p>
-          </div>
-          <div>
-            <h3 class="text-2xl font-bold mb-4">Варианты настройки</h3>
-            <p>3D-модель Julia может быть настроена через лаунчер с ползунками для изменения возраста, веса и роста.</p>
-          </div>
-        </div>
-      </div>
- 
 
-  </section>
+ <section id="features" class="py-20 px-6 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center">Ключевые функции</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Эмуляция мыслительного процесса в реальном времени</h3>
+                    <p>Мыслительные процессы Julia разработаны для имитации человеческих мыслей в реальном времени, создавая плавное и увлекательное взаимодействие.</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Модуляция голоса</h3>
+                    <p>Julia может изменять свой голос от шепота до громкого крика, передавая эмоциональную глубину через тон, анимацию и реалистичное выражение мыслей.</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Варианты настройки</h3>
+                    <p>3D-модель Julia может быть настроена через лаунчер с ползунками для изменения возраста, веса и роста.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
   <section id="character-customization" class="py-20 px-6 bg-gray-800 text-white">
@@ -145,7 +143,7 @@
           </div>
         </div>
       </div>
-
+      
       <!-- Настройки рендеринга -->
       <div class="mb-12">
         <h3 class="text-2xl font-semibold mb-4" data-i18n="section.characterCustomization.renderStylesTitle">Стиль отрисовки</h3>
@@ -378,22 +376,21 @@
     </div>
  </div>
 
-  <!-- Модальное окно -->
-
-  <div class="modal" id="donateModal">
-    <div class="modal-content">
-         <button class="close-button" onclick="closeModal()">&times;</button>
-         <h2 id="modalTitle">Сума не важна. Буду рад любой поддержке!</h2>
-         <div class="payment-details">
-           <p id="paymentDetailsUAH"><span>Visa:</span> 4441111042472401 UAH</p>
-           <button class="copy-button" onclick="copyToClipboard('4441111042472401')">Copy</button>
-           <p id="paymentDetailsUSD"><span>Visa:</span> 4441111082147673 USD</p>
-           <button class="copy-button" onclick="copyToClipboard('4441111082147673')">Copy</button>
-           <p id="paymentDetailsBTC"><span>Bitcoin:</span> bc1pj4udvfs3tdkjeakkfl2clklztusqllgtgz5c8up0u0lcq7ymnjssexnazw</p>
-           <button class="copy-button" onclick="copyToClipboard('bc1pj4udvfs3tdkjeakkfl2clklztusqllgtgz5c8up0u0lcq7ymnjssexnazw')">Copy</button>
-         </div>
-     </div>
-   </div>
+    <!-- Модальное окно -->
+    <div class="modal" id="donateModal">
+      <div class="modal-content">
+          <button class="close-button" onclick="closeModal()">&times;</button>
+          <h2 id="modalTitle">Сума не важна. Буду рад любой поддержке!</h2>
+          <div class="payment-details">
+            <p id="paymentDetailsUAH"><span>Visa:</span> 4441111042472401 UAH</p>
+            <button class="copy-button" onclick="copyToClipboard('4441111042472401')">Copy</button>
+            <p id="paymentDetailsUSD"><span>Visa:</span> 4441111082147673 USD</p>
+            <button class="copy-button" onclick="copyToClipboard('4441111082147673')">Copy</button>
+            <p id="paymentDetailsBTC"><span>Bitcoin:</span> bc1pj4udvfs3tdkjeakkfl2clklztusqllgtgz5c8up0u0lcq7ymnjssexnazw</p>
+            <button class="copy-button" onclick="copyToClipboard('bc1pj4udvfs3tdkjeakkfl2clklztusqllgtgz5c8up0u0lcq7ymnjssexnazw')">Copy</button>
+          </div>
+      </div>
+    </div>
  </section>
 
 <footer class="bg-gray-800 py-10">
