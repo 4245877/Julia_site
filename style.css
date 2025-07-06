@@ -855,7 +855,9 @@ p {
 .py-20:nth-of-type(4) p {
     color: var(--graphite);
 }
-
+.bg-light {
+    background: var(--light-sand); 
+}
 .pulse {
     width: 150px;
     height: 150px;
