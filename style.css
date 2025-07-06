@@ -49,7 +49,7 @@ body {
 }
 
 .text-white {
-    color: var(--white);
+    color: var(--dark-burgundy);
 }
 
 .container {
@@ -62,7 +62,7 @@ body {
 h1, h2, h3, h4 {
     font-weight: 700;
     line-height: 1.2;
-    color: var(--white);
+    color: var(--dark-burgundy);
     margin-bottom: 1rem;
 }
 
@@ -853,7 +853,7 @@ p {
 }
 
 .py-20:nth-of-type(4) p {
-    color: var(--graphite);
+    color: var(--white);
 }
 .bg-light {
     background: var(--light-sand); 
