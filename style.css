@@ -642,6 +642,44 @@ p {
         font-size: 1rem;
     }
 }
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    color: var(--light-sand);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.color-palette {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.color-option {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    position: relative;
+}
+
+.color-option:hover {
+    border-color: var(--white);
+    transform: scale(1.1);
+}
+
+.color-option.active {
+    border-color: var(--gold-accent);
+    box-shadow: 0 0 0 2px var(--gold-accent);
+}
+
 
 /* Tech Stack Section */
 .bg-gradient-to-r {
