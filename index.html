@@ -56,7 +56,7 @@
 <body class="bg-gray-900 text-white">
   
   <header class="header-gradient py-20">
-    <div class="absolute top-4 right-4 flex space-x-2">
+  <div class="absolute top-4 right-4 flex space-x-2 z-50">
       <button data-lang="en">EN</button>
       <button data-lang="ua">UA</button>
       <button data-lang="ru">RU</button>
@@ -93,7 +93,7 @@
   <section id="character-customization" class="py-20 px-6 bg-gray-800 text-white">
     <div class="container mx-auto">
       <!-- Заголовок -->
-      <h2 class="text-4xl font-bold mb-4" data-i18n="section.characterCustomization.title">Создайте идеальную вайфу под свой вкус</h2>
+      <h2 class="text-4xl font-bold mb-4">Создайте идеальную вайфу под свой вкус</h2>
       <!-- Вступление -->
       <p class="text-lg mb-8" data-i18n="section.characterCustomization.intro">
         Выбирайте из широкого каталога готовых образов или создавайте свою уникальную вайфу — от внешности до характера и стиля отрисовки.
@@ -173,11 +173,11 @@
           <div>
             <label class="block mb-1" data-i18n="section.characterCustomization.personality">Тип личности</label>
             <select class="w-full bg-gray-700 rounded-lg p-2">
-              <option data-i18n="section.characterCustomization.personality.caring">Добрая и заботливая</option>
-              <option data-i18n="section.characterCustomization.personality.introvert">Загадочная интровертка</option>
-              <option data-i18n="section.characterCustomization.personality.adventurer">Ришая авантюристка</option>
-              <option data-i18n="section.characterCustomization.personality.tsundere">Цундэрэ</option>
-              <option data-i18n="section.characterCustomization.personality.kuudere">Куудэрэ</option>
+              <option value="yamadere" title="Добрая и заботливая">Ямадере (добрая и заботливая)</option>
+              <option value="dandere" title="Застенчивая интровертка">Дандере (застенчивая интровертка)</option>
+              <option value="genki-dere" title="Энергичная авантюристка">Гэнки-дэре (энергичная авантюристка)</option>
+              <option value="tsundere" title="С виду холодна, но тёплая внутри">Цундэрэ (с виду холодна, но тёплая внутри)</option>
+              <option value="kuudere" title="Сдержанная и хладнокровная">Куудэрэ (сдержанная и хладнокровная)</option>
             </select>
           </div>
         </div>
