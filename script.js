@@ -391,3 +391,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+/**
+ * Функция для переключения видимости дополнительных опций.
+ */
+function toggleAdvanced() {
+    const options = document.getElementById('advanced-options');
+    const icon = document.getElementById('toggle-icon');
+
+    const isShown = options.classList.toggle('show');
+
+    if (isShown) {
+        icon.style.transform = 'rotate(180deg)'; // Стрелка вверх
+    } else {
+        icon.style.transform = 'rotate(0deg)';   // Стрелка вниз
+    }
+}
+
+// Твой существующий код для слайдеров
+document.addEventListener('DOMContentLoaded', () => {
+    const sliders = document.querySelectorAll('input[type="range"]');
+
+    const updateSliderOutput = (slider) => {
+        const output = document.querySelector(`output[for="${slider.id}"]`);
+        if (output) {
+            let value = slider.value;
+            if (slider.id === 'height') {
+                value += ' см';
+            }
+            output.textContent = value;
+        }
+    };
+
+    sliders.forEach(slider => {
+        updateSliderOutput(slider);
+        slider.addEventListener('input', (event) => {
+            updateSliderOutput(event.target);
+        });
+    });
+});

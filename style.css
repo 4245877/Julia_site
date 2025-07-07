@@ -712,6 +712,50 @@ p {
     cursor: pointer;
 }
 
+/* --- Стили для дополнительных опций --- */
+
+/* Кнопка для переключения видимости */
+.advanced-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--gold-accent);
+    padding: 0.8rem 1.5rem;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.advanced-toggle:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--gold-accent);
+}
+
+#toggle-icon {
+    transition: transform 0.3s ease;
+}
+
+/* Контейнер с расширенными настройками */
+.advanced-options {
+    display: none; /* Скрываем блок по умолчанию */
+    margin-top: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem 2rem 2rem;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden; /* Предотвращает выпадение контента */
+}
+
+/* Класс для отображения блока через JS */
+.advanced-options.show {
+    display: block;
+}
+
 /* Tech Stack Section */
 .bg-gradient-to-r {
     background: var(--gradient-soft);

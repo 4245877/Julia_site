@@ -221,10 +221,7 @@
                   </div>
           </div>
       </div>
-      
-          
-
-         </div>
+ 
       <div class="subsection">
           <h4 class="subsection-title">🧠 Тип личности</h4>
           
@@ -265,10 +262,18 @@
           </div>
           
           <div class="form-group">
-              <label for="personality-type">Архетип</label>
+
+            <label for="personality-type">Архетип</label>
               <select class="select-input" id="personality-type">
-                  </select>
-          </div>
+                  <option value="yamadere">Ямадере (добрая и заботливая)</option>
+                  <option value="dandere">Дандере (застенчивая интровертка)</option>
+                  <option value="genki-dere">Гэнки-дэре (энергичная авантюристка)</option>
+                  <option value="tsundere">Цундэрэ (холодная снаружи, тёплая внутри)</option>
+                   <option value="kuudere">Куудэрэ (сдержанная и хладнокровная)</option>
+              </select>
+
+            </div>
+
       </div>
       
       <div class="subsection">
@@ -315,64 +320,7 @@
       </div>
   </div>
 
-  <button class="advanced-toggle" onclick="toggleAdvanced()">
-      <span>💡 Дополнительные опции</span>
-      <span id="toggle-icon">▼</span>
-  </button>
-
-  <div class="advanced-options" id="advanced-options">
-      <div class="customization-section">
-          <h3 class="section-title">💡 Расширенные настройки</h3>
-          
-          <div class="form-group">
-              <div class="flex justify-between items-center">
-                  <label for="creativity" class="mb-0">Креативность</label>
-                  <output for="creativity" class="font-semibold text-white">50</output>
-              </div>
-              <input type="range" class="range-input" id="creativity" min="0" max="100" value="50">
-              <div class="range-labels">
-                  <span>Логичная</span>
-                  <span>Творческая</span>
-              </div>
-          </div>
-          
-          <div class="form-group">
-              <div class="flex justify-between items-center">
-                  <label for="realism" class="mb-0">Реализм ошибок</label>
-                  <output for="realism" class="font-semibold text-white">30</output>
-              </div>
-              <input type="range" class="range-input" id="realism" min="0" max="100" value="30">
-              <div class="range-labels">
-                  <span>Идеальная</span>
-                  <span>Как человек</span>
-              </div>
-          </div>
-          
-          <div class="form-group">
-              <div class="flex justify-between items-center">
-                  <label for="knowledge" class="mb-0">Глубина знаний</label>
-                  <output for="knowledge" class="font-semibold text-white">80</output>
-              </div>
-              <input type="range" class="range-input" id="knowledge" min="0" max="100" value="80">
-              <div class="range-labels">
-                  <span>Базовая</span>
-                  <span>Экспертная</span>
-              </div>
-          </div>
-          
-          <div class="form-group">
-              <div class="flex justify-between items-center">
-                  <label for="memory" class="mb-0">Объём памяти</label>
-                  <output for="memory" class="font-semibold text-white">70</output>
-              </div>
-              <input type="range" class="range-input" id="memory" min="0" max="100" value="70">
-              <div class="range-labels">
-                  <span>Короткая</span>
-                  <span>Долгая</span>
-              </div>
-          </div>
-      </div>
-  </div>
+ 
  <!-- Advanced Options Toggle -->
             <button class="advanced-toggle" onclick="toggleAdvanced()">
                 <span>💡 Дополнительные опции</span>
