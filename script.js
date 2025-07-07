@@ -361,3 +361,33 @@ document.addEventListener('DOMContentLoaded', function() {
     toggleIcon.textContent = advancedOptions.classList.contains('active') ? '▲' : '▼';
   });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Находим все ползунки на странице
+    const sliders = document.querySelectorAll('input[type="range"]');
+
+    // Функция для обновления значения в <output>
+    const updateSliderOutput = (slider) => {
+        // Находим связанный с ползунком элемент <output> по атрибуту 'for'
+        const output = document.querySelector(`output[for="${slider.id}"]`);
+        if (output) {
+            let value = slider.value;
+            // Для ползунка роста добавляем "см"
+            if (slider.id === 'height') {
+                value += ' см';
+            }
+            output.textContent = value;
+        }
+    };
+
+    // Проходим по каждому ползунку
+    sliders.forEach(slider => {
+        // Устанавливаем начальное значение при загрузке страницы
+        updateSliderOutput(slider);
+
+        // Добавляем слушатель события 'input', чтобы обновлять значение при движении
+        slider.addEventListener('input', (event) => {
+            updateSliderOutput(event.target);
+        });
+    });
+});

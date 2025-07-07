@@ -62,7 +62,7 @@ body {
 h1, h2, h3, h4 {
     font-weight: 700;
     line-height: 1.2;
-    color: var(--dark-burgundy);
+    color: var(--white);
     margin-bottom: 1rem;
 }
 
@@ -679,7 +679,38 @@ p {
     border-color: var(--gold-accent);
     box-shadow: 0 0 0 2px var(--gold-accent);
 }
+/* Стили для контейнера с метками (min/max) под ползунком */
+.range-labels {
+    display: flex;
+    justify-content: space-between; /* Размещает элементы по краям */
+    margin-top: 0.25rem; /* Небольшой отступ сверху */
+    color: var(--light-sand);
+    font-size: 0.9rem;
+}
 
+/* Убираем нижний отступ у заголовков, которые теперь находятся в flex-контейнере */
+.form-group .flex label {
+    margin-bottom: 0;
+}
+
+/* Стили для элемента output, который показывает текущее значение */
+.form-group output {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--gold-accent); /* Используем цвет акцента для значения */
+}
+
+/* Применяем стили ко всем input типа range */
+.range-input {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 8px;
+    background: linear-gradient(to right, var(--accent-coral), var(--primary-red));
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
 
 /* Tech Stack Section */
 .bg-gradient-to-r {
