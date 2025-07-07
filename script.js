@@ -430,3 +430,56 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// Этот код будет выполнен после того, как вся страница загрузится
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // --- 1. Находим нужные элементы на странице ---
+    
+    // Находим контейнер с кнопками стилей
+    const styleButtonsContainer = document.getElementById('style-buttons');
+    // Находим галерею с персонажами
+    const characterGallery = document.getElementById('character-gallery');
+    // Получаем все изображения персонажей внутри галереи
+    const characterImages = characterGallery.querySelectorAll('img');
+
+    // --- 2. Добавляем обработчик событий на кнопки ---
+
+    // Прослушиваем клики внутри контейнера с кнопками
+    styleButtonsContainer.addEventListener('click', (event) => {
+      
+      // Проверяем, что кликнули именно по кнопке со стилем
+      const button = event.target.closest('button[data-style]');
+      if (!button) {
+        return; // Если клик был не по кнопке, ничего не делаем
+      }
+
+      // --- 3. Обновляем изображения ---
+
+      // Получаем новый стиль из атрибута data-style кнопки
+      // Например, "Photorealism" или "3D"
+      const newStyle = button.dataset.style;
+
+      // Проходим по каждому изображению в галерее
+      characterImages.forEach(image => {
+        // Получаем текущий путь к изображению (атрибут src)
+        // Например: "Images/Characters/2D/Raphtalia.jpg"
+        const currentSrc = image.src;
+
+        // Разбиваем путь на части по символу "/"
+        const parts = currentSrc.split('/');
+        
+        // Ожидаемая структура пути: [... , "Images", "Characters", "СТИЛЬ", "ИМЯ_ФАЙЛА.jpg"]
+        // Мы меняем предпоследнюю часть (индекс parts.length - 2) на новый стиль
+        if (parts.length > 2) {
+          parts[parts.length - 2] = newStyle;
+
+          // Собираем новый путь обратно в одну строку
+          const newSrc = parts.join('/');
+
+          // Присваиваем изображению новый путь
+          image.src = newSrc;
+        }
+      });
+    });
+  });
