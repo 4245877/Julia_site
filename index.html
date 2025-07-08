@@ -259,17 +259,6 @@
               </div>
           </div>
           <div class="form-group">
-            <div class="flex justify-between items-center">
-                  <label for="attachment" class="mb-0">Привязанность</label>
-                  <output for="attachment" class="font-semibold text-white">30</output>
-               </div>
-               <input type="range" class="range-input" id="attachment" min="0" max="100" value="30">
-                 <div class="range-labels">
-                    <span>Низкая</span>
-                    <span>Высокая</span>
-                  </div>
-            </div>
-          <div class="form-group">
 
             <label for="personality-type">Архетип</label>
               <select class="select-input" id="personality-type">
@@ -339,7 +328,17 @@
             <div class="advanced-options" id="advanced-options">
                 <div class="customization-section">
                     <h3 class="section-title">💡 Расширенные настройки</h3>
-                    
+                    <div class="form-group">
+                      <div class="flex justify-between items-center">
+                        <label for="attachment" class="mb-0">Привязанность</label>
+                        <output for="attachment" class="font-semibold text-white">30</output>
+                      </div>
+                      <input type="range" class="range-input" id="attachment" min="0" max="100" value="30">
+                      <div class="range-labels">
+                         <span>Низкая</span>
+                         <span>Высокая</span>
+                      </div>
+                    </div>
                     <div class="form-group">
                         <label for="creativity">Креативность</label>
                         <input type="range" class="range-input" id="creativity" min="0" max="100" value="50">
