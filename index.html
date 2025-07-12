@@ -56,11 +56,11 @@
 <body class="bg-gray-900 text-white">
   
   <header class="header-gradient py-20">
-  <div class="absolute top-4 right-4 flex space-x-2 z-50">
+    <div class="lang-switcher absolute top-4 right-4 flex space-x-2 z-50">
       <button data-lang="en">EN</button>
       <button data-lang="ua">UA</button>
       <button data-lang="ru">RU</button>
-  </div>
+    </div>
     <div class="container mx-auto px-4 text-center relative">
       <h1 data-translate-key="header.title" class="text-4xl font-bold mb-4">AI-компаньон, созданный с непревзойденным интеллектом</h1>
       <p button data-translate-key="header.cta" class="text-lg mb-8">Julia – виртуальный AI-компаньон, разработанный для имитации человеческого интеллекта, эмоций и естественного взаимодействия.</p>
@@ -566,22 +566,23 @@
       <div class="progress-bar">
           <div class="progress-fill" id="progress-fill"></div>
       </div>
-      <button class="support-button" data-action="open-modal"">Поддержать</button>
+        <button class="support-button" data-action="open-modal">Поддержать</button>
     </div>
  </div>
 
     <!-- Модальное окно -->
     <div class="modal" id="donateModal">
       <div class="modal-content">
-          <button class="close-button" onclick="closeModal()">&times;</button>
+
+        <button class="close-button">×</button>
           <h2 id="modalTitle">Сума не важна. Буду рад любой поддержке!</h2>
           <div class="payment-details">
             <p id="paymentDetailsUAH"><span>Visa:</span> 4441111042472401 UAH</p>
-            <button class="copy-button" onclick="copyToClipboard('4441111042472401')">Copy</button>
+            <button class="copy-button" data-copy="4441111042472401" data-translate-key="donation.copybtn">Copy</button>
             <p id="paymentDetailsUSD"><span>Visa:</span> 4441111082147673 USD</p>
-            <button class="copy-button" onclick="copyToClipboard('4441111082147673')">Copy</button>
+            <button class="copy-button" data-copy="4441111082147673" data-translate-key="donation.copybtn">Copy</button>
             <p id="paymentDetailsBTC"><span>Bitcoin:</span> bc1pj4udvfs3tdkjeakkfl2clklztusqllgtgz5c8up0u0lcq7ymnjssexnazw</p>
-            <button class="copy-button" onclick="copyToClipboard('bc1pj4udvfs3tdkjeakkfl2clklztusqllgtgz5c8up0u0lcq7ymnjssexnazw')">Copy</button>
+            <button class="copy-button" data-copy="bc1pj4udvfs3tdkjeakkfl2clklztusqllgtgz5c8up0u0lcq7ymnjssexnazw" data-translate-key="donation.copybtn">Copy</button>
           </div>
       </div>
     </div>
