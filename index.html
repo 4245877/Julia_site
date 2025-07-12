@@ -62,9 +62,9 @@
       <button data-lang="ru">RU</button>
   </div>
     <div class="container mx-auto px-4 text-center relative">
-      <h1 id="mainHeading" class="text-4xl font-bold mb-4">AI-компаньон, созданный с непревзойденным интеллектом</h1>
-      <p id="mainDescription" class="text-lg mb-8">Julia – виртуальный AI-компаньон, разработанный для имитации человеческого интеллекта, эмоций и естественного взаимодействия.</p>
-      <a id="featuresLink" href="#features" class="inline-block bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full transition duration-300">Ознакомьтесь с функциями Julia</a>
+      <h1 data-translate-key="header.title" class="text-4xl font-bold mb-4">AI-компаньон, созданный с непревзойденным интеллектом</h1>
+      <p button data-translate-key="header.cta" class="text-lg mb-8">Julia – виртуальный AI-компаньон, разработанный для имитации человеческого интеллекта, эмоций и естественного взаимодействия.</p>
+      <a button data-translate-key="header.cta" href="#features" class="inline-block bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full transition duration-300">Ознакомьтесь с функциями Julia</a>
     </div>
   </header>
 
@@ -104,39 +104,39 @@
     <h3 class="text-2xl font-semibold mb-4" data-i18n="section.characterCustomization.presetsTitle">Готовые вайфу</h3>
     <div id="character-gallery" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-6">
       <div class="flex flex-col items-center">
-        <img src="Images/Characters/2D/Raphtalia.jpg" alt="Raphtalia" class="w-24 h-24 rounded-full mb-2 shadow-lg">
+     <img src="Images/Characters/2D/Raphtalia.jpg" alt="Raphtalia" data-char-name="Raphtalia">
         <span class="text-sm">Raphtalia</span>
       </div>
       <div class="flex flex-col items-center">
-        <img src="Images/Characters/2D/YorForger.jpg" alt="Yor Forger" class="w-24 h-24 rounded-full mb-2 shadow-lg">
+        <img src="Images/Characters/2D/YorForger.jpg" alt="Yor Forger" data-char-name="YorForger">
         <span class="text-sm">Yor</span>
       </div>
       <div class="flex flex-col items-center">
-        <img src="Images/Characters/2D/RoxyMigurdia.jpg" alt="Roxy Migurdia" class="w-24 h-24 rounded-full mb-2 shadow-lg">
+        <img src="Images/Characters/2D/RoxyMigurdia.jpg" alt="Roxy Migurdia" data-char-name="RoxyMigurdia">
         <span class="text-sm">Roxy</span>
       </div>
       <div class="flex flex-col items-center">
-        <img src="Images/Characters/2D/Friren.jpg" alt="Friren" class="w-24 h-24 rounded-full mb-2 shadow-lg">
+        <img src="Images/Characters/2D/Friren.jpg" alt="Friren" data-char-name="Friren">
         <span class="text-sm">Friren</span>
       </div>
       <div class="flex flex-col items-center">
-        <img src="Images/Characters/2D/Emilia.jpg" alt="Emilia" class="w-24 h-24 rounded-full mb-2 shadow-lg">
+        <img src="Images/Characters/2D/Emilia.jpg" alt="Emilia" data-char-name="Emilia">
         <span class="text-sm">Emilia</span>
       </div>
       <div class="flex flex-col items-center">
-        <img src="Images/Characters/2D/Zero Two.jpg" alt="Zero Two" class="w-24 h-24 rounded-full mb-2 shadow-lg">
+        <img src="Images/Characters/2D/Zero Two.jpg" alt="Zero Two" data-char-name="ZeroTwo">
         <span class="text-sm">Zero Two</span>
       </div>
       <div class="flex flex-col items-center">
-        <img src="Images/Characters/2D/Asuna.jpg" alt="Asuna" class="w-24 h-24 rounded-full mb-2 shadow-lg">
+        <img src="Images/Characters/2D/Asuna.jpg" alt="Asuna" data-char-name="Asuna">
         <span class="text-sm">Asuna</span>
       </div>
       <div class="flex flex-col items-center">
-        <img src="Images/Characters/2D/Nezuko.jpg" alt="Nezuko" class="w-24 h-24 rounded-full mb-2 shadow-lg">
+        <img src="Images/Characters/2D/Nezuko.jpg" alt="Nezuko" data-char-name="Nezuko">
         <span class="text-sm">Nezuko</span>
       </div>
       <div class="flex flex-col items-center">
-        <img src="Images/Characters/2D/Hinata.jpg" alt="Hinata" class="w-24 h-24 rounded-full mb-2 shadow-lg">
+        <img src="Images/Characters/2D/Hinata.jpg" alt="Hinata" data-char-name="Hinata">
         <span class="text-sm">Hinata</span>
       </div>
     </div>
@@ -183,7 +183,8 @@
                   <label for="height" class="mb-0" data-i18n="section.characterCustomization.height">Рост</label>
                   <output for="height" class="font-semibold text-white">170 см</output>
               </div>
-              <input class="w-full range-input" type="range" id="height" min="140" max="210" value="170">
+                <input type="range" id="height" min="140" max="210" value="165" data-unit="см">
+                <output for="height">165</output>
               <div class="range-labels">
                   <span>140 см</span>
                   <span>210 см</span>
@@ -565,7 +566,7 @@
       <div class="progress-bar">
           <div class="progress-fill" id="progress-fill"></div>
       </div>
-      <button class="support-button" onclick="openModal()">Поддержать</button>
+      <button class="support-button" data-action="open-modal"">Поддержать</button>
     </div>
  </div>
 

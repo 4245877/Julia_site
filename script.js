@@ -1,485 +1,251 @@
-// Глобальные функции для модального окна
-function openModal() {
-    // Находим модальное окно по его ID
-    const modal = document.getElementById('donateModal');
-    if (modal) {
-        // Меняем display и добавляем класс для анимации
-        modal.style.display = 'flex';
-        // Небольшая задержка, чтобы браузер успел применить display,
-        // а затем сработала анимация opacity
-        setTimeout(() => {
-            modal.classList.add('active');
-        }, 10);
-        document.body.style.overflow = 'hidden'; // Предотвращаем прокрутку фона
-    }
-}
+/**
+ * @file Единый скрипт для управления всей интерактивностью страницы.
+ * @description Включает управление модальным окном, языками, кастомизацией персонажей и другими элементами.
+ */
 
-function closeModal() {
-    // Находим модальное окно по его ID
-    const modal = document.getElementById('donateModal');
-    if (modal) {
-        // Убираем класс для запуска анимации исчезновения
-        modal.classList.remove('active');
-        // Ждем окончания анимации перед тем как скрыть окно
-        setTimeout(() => {
-            modal.style.display = 'none';
-        }, 500); // Время должно совпадать с transition в CSS
-        document.body.style.overflow = ''; // Возвращаем прокрутку
-    }
-}
-
-// Функция для копирования текста в буфер обмена
-function copyToClipboard(text) {
-  navigator.clipboard.writeText(text).then(() => {
-    alert('Скопировано: ' + text);
-  }).catch(err => {
-    console.error('Ошибка копирования: ', err);
-    // Резервный метод для старых браузеров
-    const textarea = document.createElement('textarea');
-    textarea.value = text;
-    document.body.appendChild(textarea);
-    textarea.select();
-    document.execCommand('copy');
-    document.body.removeChild(textarea);
-    alert('Скопировано: ' + text);
-  });
-}
-
-// Класс управления языками
-class LanguageManager {
-    constructor() {
-        this.currentLang = localStorage.getItem('selectedLanguage') || 'ru';
-        this.supportedLanguages = ['en', 'ru', 'ua'];
-        
-        // Удаляем все предыдущие классы active-lang
-        this.supportedLanguages.forEach(lang => {
-            const button = document.querySelector(`[data-lang="${lang}"]`);
-            if (button) {
-                button.classList.remove('active-lang');
-            }
-        });
-
-        // Добавляем класс active-lang текущему языку
-        const activeLangButton = document.querySelector(`[data-lang="${this.currentLang}"]`);
-        if (activeLangButton) {
-            activeLangButton.classList.add('active-lang');
-        }
-        
-        this.init();
-    }
-
-    async init() {
-        // Добавляем обработчики для кнопок языка
-        this.supportedLanguages.forEach(lang => {
-            const langButton = document.querySelector(`[data-lang="${lang}"]`);
-            if (langButton) {
-                langButton.addEventListener('click', () => this.changeLanguage(lang));
-            }
-        });
-
-        try {
-            await this.loadAndUpdateLanguage(this.currentLang);
-        } catch (error) {
-            console.error('Initialization error:', error); 
-            // Убираем alert, чтобы не беспокоить пользователя
-        }
-    }
-
-    async loadLanguage(lang) {
-        if (!this.supportedLanguages.includes(lang)) {
-            console.error(`Unsupported language: ${lang}`);
-            return null;
-        }
-
-        try {
-            const response = await fetch(`languages/${lang}.json`);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return await response.json();
-        } catch (error) {
-            console.error('Error loading language file:', error);
-            return null; // Возвращаем null в случае ошибки
-        }
-    }
-
-    changeLanguage(lang) { // Убираем async
-        // Удаляем класс active-lang у предыдущего активного языка
-        const oldLangButton = document.querySelector(`[data-lang="${this.currentLang}"]`);
-        if (oldLangButton) {
-            oldLangButton.classList.remove('active-lang');
-        }
-
-        // Добавляем класс active-lang новому активному языку
-        const newLangButton = document.querySelector(`[data-lang="${lang}"]`);
-        if (newLangButton) {
-            newLangButton.classList.add('active-lang');
-        }
-
-        this.loadAndUpdateLanguage(lang); // Убираем await
-    }
-
-    async loadAndUpdateLanguage(lang) {
-        const translations = await this.loadLanguage(lang);
-        if (translations) { // Добавляем проверку
-            this.currentLang = lang;
-            localStorage.setItem('selectedLanguage', lang);
-            this.updatePageContent(translations);
-        }
-    }
-
-    updatePageContent(translations) {
-        // Обновление элементов с переводом
-        document.getElementById('mainHeading').textContent = translations.header.title;
-        document.getElementById('mainDescription').textContent = translations.header.subtitle;
-        document.getElementById('featuresLink').textContent = translations.header.cta;
-
-        const sectionTitles = {
-            'features': translations.features.sectionTitle,
-            'techStack': translations.techStack.sectionTitle,
-            'developerJourney': translations.developerJourney.sectionTitle
-        };
-
-        Object.entries(sectionTitles).forEach(([id, title]) => {
-            const sectionTitleElement = document.querySelector(`#${id} h2`);
-            if (sectionTitleElement) {
-                sectionTitleElement.textContent = title;
-            }
-        });
-
-        const featureTitles = document.querySelectorAll('#features h3');
-        if (featureTitles.length >= 3) {
-            featureTitles[0].textContent = translations.features.feature1Title;
-            featureTitles[1].textContent = translations.features.feature2Title;
-            featureTitles[2].textContent = translations.features.feature3Title;
-
-            const featureDescriptions = document.querySelectorAll('#features p');
-            if (featureDescriptions.length >= 3) {
-                featureDescriptions[0].textContent = translations.features.feature1Description;
-                featureDescriptions[1].textContent = translations.features.feature2Description;
-                featureDescriptions[2].textContent = translations.features.feature3Description;
-            }
-        }
-
-        const techStackTitle = document.getElementById('techStackTitle');
-        if (techStackTitle) {
-            techStackTitle.textContent = translations.techStack.sectionTitle;
-        }
-
-        const whatDrivesTitle = document.getElementById('whatDrivesTitle');
-        if (whatDrivesTitle) {
-            whatDrivesTitle.textContent = translations.techStack.whatDrivesTitle;
-        }
-
-        const roadmapTitle = document.getElementById('roadmapTitle');
-        if (roadmapTitle) {
-            roadmapTitle.textContent = translations.techStack.roadmapTitle;
-        }
-
-        const techStackList = document.getElementById('techStackList');
-        if (techStackList) {
-            techStackList.innerHTML = '';
-            translations.techStack.technologies.forEach(tech => {
-                const li = document.createElement('li');
-                li.textContent = tech;
-                techStackList.appendChild(li);
-            });
-        }
-
-        const developerJourneyTitle = document.getElementById('developerJourneyTitle');
-        if (developerJourneyTitle) {
-            developerJourneyTitle.textContent = translations.developerJourney.sectionTitle;
-        }
-
-        const developerJourneyDescription = document.getElementById('developerJourneyDescription');
-        if (developerJourneyDescription) {
-            developerJourneyDescription.textContent = translations.developerJourney.description;
-        }
-
-        const developerJourneySupportText = document.getElementById('developerJourneySupportText');
-        if (developerJourneySupportText) {
-            developerJourneySupportText.textContent = translations.developerJourney.supportText;
-        }
-
-        const footerTitle = document.querySelector('footer h2');
-        if (footerTitle) {
-            footerTitle.textContent = translations.footer.text;
-        }
-
-        // Обновление текста в модальном окне
-        const modalTitle = document.getElementById('modalTitle');
-        if (modalTitle) {
-            modalTitle.textContent = translations.donation.modalTitle;
-        }
-
-        const paymentDetailsUAH = document.getElementById('paymentDetailsUAH');
-        if (paymentDetailsUAH) {
-            paymentDetailsUAH.textContent = translations.donation.paymentDetailsUAH;
-        }
-
-        const paymentDetailsUSD = document.getElementById('paymentDetailsUSD');
-        if (paymentDetailsUSD) {
-            paymentDetailsUSD.textContent = translations.donation.paymentDetailsUSD;
-        }
-
-        const paymentDetailsBTC = document.getElementById('paymentDetailsBTC');
-        if (paymentDetailsBTC) {
-            paymentDetailsBTC.textContent = translations.donation.paymentDetailsBTC;
-        }
-
-        // Обновление текста кнопок копирования
-        const copyButtons = document.querySelectorAll('.copy-button');
-        copyButtons.forEach(button => {
-            button.textContent = translations.donation.copybtn;
-        });
-
-        // Обновление текста кнопки пожертвования
-        const donateButton = document.querySelector('.progress-container button');
-        if (donateButton) {
-            donateButton.textContent = translations.donation.buttonText;
-        }
-
-        // Обновление текущей суммы и цели
-        const currentAmountElement = document.getElementById('current-amount');
-        const goalAmountElement = document.getElementById('goal-amount');
-        const ofTextElement = document.getElementById('of-text');
-        if (currentAmountElement && goalAmountElement && ofTextElement) {
-            currentAmountElement.textContent = translations.donation.currentAmount;
-            goalAmountElement.textContent = translations.donation.goalAmount;
-            ofTextElement.textContent = translations.donation.of;
-        }
-    }
-}
-
-// Инициализация после полной загрузки DOM
+// Ждем, пока вся структура страницы (DOM) будет готова
 document.addEventListener('DOMContentLoaded', () => {
-    // Обработка плавной прокрутки
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
-            
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
 
-    // Инициализация языкового менеджера
-    const languageManager = new LanguageManager();
+    // --- ОБЩИЕ ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ---
 
-    // Инициализация прогресс-бара
-    const currentAmount = 12.53; // Изначальная сумма
-    const goalAmount = 100; // Цель
-    const progressFill = document.getElementById('progress-fill');
-    const currentAmountElement = document.getElementById('current-amount');
+    /**
+     * Переключает активный класс для группы элементов.
+     * @param {Element} target - Элемент, на котором произошло событие (который должен стать активным).
+     * @param {string} containerSelector - Селектор родительского контейнера.
+     * @param {string} itemSelector - Селектор для всех элементов в группе.
+     * @param {string} activeClass - CSS-класс для активного состояния.
+     */
+    function handleActiveClass(target, containerSelector, itemSelector, activeClass = 'active') {
+        const container = target.closest(containerSelector);
+        if (!container) return;
 
-    if (progressFill && currentAmountElement) {
-        const progressPercentage = Math.min((currentAmount / goalAmount) * 100, 100);
-        progressFill.style.width = `${progressPercentage}%`;
-        currentAmountElement.textContent = currentAmount.toFixed(2);
+        container.querySelectorAll(itemSelector).forEach(btn => btn.classList.remove(activeClass));
+        target.classList.add(activeClass);
     }
 
+    /**
+     * Получает вложенное значение из объекта по строковому ключу (например, 'header.title').
+     * @param {object} obj - Объект для поиска.
+     * @param {string} key - Строковый ключ.
+     * @returns {string|null} - Найденное значение или null.
+     */
+    function getNestedTranslation(obj, key) {
+        return key.split('.').reduce((acc, part) => acc && acc[part] ? acc[part] : null, obj);
+    }
 
-    // Закрытие модального окна при клике вне его
-    document.querySelectorAll('.modal').forEach(modal => {
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                closeModal();
-            }
+    // --- УПРАВЛЕНИЕ МОДАЛЬНЫМ ОКНОМ ---
+
+    const modal = document.getElementById('donateModal');
+
+    function openModal() {
+        if (!modal) return;
+        document.body.style.overflow = 'hidden';
+        modal.style.display = 'flex';
+        // Небольшая задержка, чтобы браузер успел применить display, перед добавлением класса для анимации
+        setTimeout(() => modal.classList.add('active'), 10);
+    }
+
+    function closeModal() {
+        if (!modal) return;
+        document.body.style.overflow = '';
+        modal.classList.remove('active');
+
+        // Ждем окончания CSS-анимации, чтобы скрыть элемент.
+        // { once: true } автоматически удаляет обработчик после первого выполнения.
+        modal.addEventListener('transitionend', () => {
+            modal.style.display = 'none';
+        }, { once: true });
+    }
+
+    // Назначаем обработчики на все элементы, которые должны открывать модальное окно
+    document.querySelectorAll('[data-action="open-modal"]').forEach(btn => btn.addEventListener('click', openModal));
+
+    // Закрытие модального окна
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal(); // Клик по фону (оверлею)
         });
-    });
-
-
-    // Закрытие модального окна при нажатии клавиши Esc
+        document.querySelector('.modal .close-button')?.addEventListener('click', closeModal); // Клик по кнопке закрытия
+    }
     document.addEventListener('keydown', (e) => {
-        const modal = document.getElementById('donateModal');
-        // Проверяем, что окно видимо (имеет класс active)
-        if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+        if (e.key === 'Escape' && modal?.classList.contains('active')) {
             closeModal();
         }
     });
-    
-});
-// character-customization.js
-document.addEventListener('DOMContentLoaded', function() {
-  // Load character presets
-  const characters = [
-    { name: "Raphtalia", image: "Images/Characters/2D/Raphtalia.jpg" },
-    { name: "Yor Forger", image: "Images/Characters/2D/YorForger.jpg" },
-    { name: "Roxy Migurdia", image: "Images/Characters/2D/RoxyMigurdia.jpg" },
-    { name: "Friren", image: "Images/Characters/2D/Friren.jpg" },
-    { name: "Emilia", image: "Images/Characters/2D/Emilia.jpg" },
-    { name: "Zero Two", image: "Images/Characters/2D/Zero Two.jpg" },
-    { name: "Asuna", image: "Images/Characters/2D/Asuna.jpg" },
-    { name: "Nezuko", image: "Images/Characters/2D/Nezuko.jpg" },
-    { name: "Hinata", image: "Images/Characters/2D/Hinata.jpg" }
-  ];
 
-  const container = document.getElementById('character-presets');
-  characters.forEach(char => {
-    const card = document.createElement('div');
-    card.className = 'character-card';
-    card.innerHTML = `
-      <img src="${char.image}" alt="${char.name}">
-      <span>${char.name}</span>
-    `;
-    container.appendChild(card);
-  });
+    // --- КОПИРОВАНИЕ В БУФЕР ОБМЕНА ---
 
-  // Render style buttons
-  const renderButtons = document.querySelectorAll('.render-controls button');
-  renderButtons.forEach(btn => {
-    btn.addEventListener('click', function() {
-      renderButtons.forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-      // Здесь будет логика обновления превью
-    });
-  });
-
-  // Color pickers
-  const colorOptions = document.querySelectorAll('.color-option');
-  colorOptions.forEach(option => {
-    option.addEventListener('click', function() {
-      const group = this.closest('.form-group');
-      group.querySelectorAll('.color-option').forEach(o => o.classList.remove('selected'));
-      this.classList.add('selected');
-    });
-  });
-
-  // Advanced toggle
-  const advancedToggle = document.getElementById('advanced-toggle');
-  const advancedOptions = document.getElementById('advanced-options');
-  const toggleIcon = document.getElementById('toggle-icon');
-  
-  advancedToggle.addEventListener('click', function() {
-    advancedOptions.classList.toggle('active');
-    toggleIcon.textContent = advancedOptions.classList.contains('active') ? '▲' : '▼';
-  });
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Находим все ползунки на странице
-    const sliders = document.querySelectorAll('input[type="range"]');
-
-    // Функция для обновления значения в <output>
-    const updateSliderOutput = (slider) => {
-        // Находим связанный с ползунком элемент <output> по атрибуту 'for'
-        const output = document.querySelector(`output[for="${slider.id}"]`);
-        if (output) {
-            let value = slider.value;
-            // Для ползунка роста добавляем "см"
-            if (slider.id === 'height') {
-                value += ' см';
-            }
-            output.textContent = value;
-        }
-    };
-
-    // Проходим по каждому ползунку
-    sliders.forEach(slider => {
-        // Устанавливаем начальное значение при загрузке страницы
-        updateSliderOutput(slider);
-
-        // Добавляем слушатель события 'input', чтобы обновлять значение при движении
-        slider.addEventListener('input', (event) => {
-            updateSliderOutput(event.target);
-        });
-    });
-});
-
-/**
- * Функция для переключения видимости дополнительных опций.
- */
-function toggleAdvanced() {
-    const options = document.getElementById('advanced-options');
-    const icon = document.getElementById('toggle-icon');
-
-    const isShown = options.classList.toggle('show');
-
-    if (isShown) {
-        icon.style.transform = 'rotate(180deg)'; // Стрелка вверх
-    } else {
-        icon.style.transform = 'rotate(0deg)';   // Стрелка вниз
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text)
+            .then(() => alert(`Скопировано: ${text}`))
+            .catch(err => {
+                console.error('Ошибка копирования: ', err);
+                alert('Не удалось скопировать.');
+            });
     }
-}
 
-// Твой существующий код для слайдеров
-document.addEventListener('DOMContentLoaded', () => {
-    const sliders = document.querySelectorAll('input[type="range"]');
-
-    const updateSliderOutput = (slider) => {
-        const output = document.querySelector(`output[for="${slider.id}"]`);
-        if (output) {
-            let value = slider.value;
-            if (slider.id === 'height') {
-                value += ' см';
-            }
-            output.textContent = value;
-        }
-    };
-
-    sliders.forEach(slider => {
-        updateSliderOutput(slider);
-        slider.addEventListener('input', (event) => {
-            updateSliderOutput(event.target);
+    document.querySelectorAll('[data-copy]').forEach(element => {
+        element.addEventListener('click', () => {
+            const textToCopy = element.dataset.copy;
+            copyToClipboard(textToCopy);
         });
     });
-});
 
-// Этот код будет выполнен после того, как вся страница загрузится
-  document.addEventListener('DOMContentLoaded', () => {
+    // --- СИСТЕМА ПЕРЕВОДА ---
 
-    // --- 1. Находим нужные элементы на странице ---
-    
-    // Находим контейнер с кнопками стилей
-    const styleButtonsContainer = document.getElementById('style-buttons');
-    // Находим галерею с персонажами
-    const characterGallery = document.getElementById('character-gallery');
-    // Получаем все изображения персонажей внутри галереи
-    const characterImages = characterGallery.querySelectorAll('img');
-
-    // --- 2. Добавляем обработчик событий на кнопки ---
-
-    // Прослушиваем клики внутри контейнера с кнопками
-    styleButtonsContainer.addEventListener('click', (event) => {
-      
-      // Проверяем, что кликнули именно по кнопке со стилем
-      const button = event.target.closest('button[data-style]');
-      if (!button) {
-        return; // Если клик был не по кнопке, ничего не делаем
-      }
-
-      // --- 3. Обновляем изображения ---
-
-      // Получаем новый стиль из атрибута data-style кнопки
-      // Например, "Photorealism" или "3D"
-      const newStyle = button.dataset.style;
-
-      // Проходим по каждому изображению в галерее
-      characterImages.forEach(image => {
-        // Получаем текущий путь к изображению (атрибут src)
-        // Например: "Images/Characters/2D/Raphtalia.jpg"
-        const currentSrc = image.src;
-
-        // Разбиваем путь на части по символу "/"
-        const parts = currentSrc.split('/');
-        
-        // Ожидаемая структура пути: [... , "Images", "Characters", "СТИЛЬ", "ИМЯ_ФАЙЛА.jpg"]
-        // Мы меняем предпоследнюю часть (индекс parts.length - 2) на новый стиль
-        if (parts.length > 2) {
-          parts[parts.length - 2] = newStyle;
-
-          // Собираем новый путь обратно в одну строку
-          const newSrc = parts.join('/');
-
-          // Присваиваем изображению новый путь
-          image.src = newSrc;
+    class LanguageManager {
+        constructor(supportedLanguages = ['en', 'ru', 'ua']) {
+            this.supportedLanguages = supportedLanguages;
+            this.currentLang = localStorage.getItem('selectedLanguage') || 'ru';
+            this.translations = {};
+            this.init();
         }
-      });
+
+        async init() {
+            document.querySelector(`.lang-switcher [data-lang="${this.currentLang}"]`)?.classList.add('active-lang');
+
+            document.querySelector('.lang-switcher')?.addEventListener('click', (e) => {
+                const langButton = e.target.closest('[data-lang]');
+                if (langButton) {
+                    this.changeLanguage(langButton.dataset.lang);
+                    handleActiveClass(langButton, '.lang-switcher', '[data-lang]', 'active-lang');
+                }
+            });
+
+            await this.loadAndUpdateLanguage(this.currentLang);
+        }
+
+        async loadLanguage(lang) {
+            if (this.translations[lang]) {
+                return this.translations[lang];
+            }
+            try {
+                const response = await fetch(`languages/${lang}.json`);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const data = await response.json();
+                this.translations[lang] = data; // Кэшируем переводы
+                return data;
+            } catch (error) {
+                console.error(`Error loading language file for ${lang}:`, error);
+                return null;
+            }
+        }
+
+        async changeLanguage(lang) {
+            if (lang === this.currentLang || !this.supportedLanguages.includes(lang)) return;
+            this.currentLang = lang;
+            localStorage.setItem('selectedLanguage', lang);
+            await this.loadAndUpdateLanguage(lang);
+        }
+
+        async loadAndUpdateLanguage(lang) {
+            const translations = await this.loadLanguage(lang);
+            if (translations) {
+                this.updatePageContent(translations);
+            }
+        }
+
+        updatePageContent(translations) {
+            document.querySelectorAll('[data-translate-key]').forEach(element => {
+                const key = element.dataset.translateKey;
+                const value = getNestedTranslation(translations, key);
+
+                if (value) {
+                    // Обработка специальных случаев
+                    if (key === 'techStack.technologies' && Array.isArray(value)) {
+                        element.innerHTML = value.map(tech => `<li>${tech}</li>`).join('');
+                    } else {
+                        element.textContent = value;
+                    }
+                } else {
+                    console.warn(`Translation key not found: ${key}`);
+                }
+            });
+        }
+    }
+
+    // Инициализация менеджера языков
+    new LanguageManager(['en', 'ru', 'ua']);
+
+    // --- ПЛАВНАЯ ПРОКРУТКА ---
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
+        });
     });
-  });
+
+    // --- ПРОГРЕСС-БАР ---
+
+    const progressFill = document.getElementById('progress-fill');
+    if (progressFill) {
+        const currentAmount = parseFloat(progressFill.dataset.current || '0');
+        const goalAmount = parseFloat(progressFill.dataset.goal || '100');
+        const progressPercentage = Math.min((currentAmount / goalAmount) * 100, 100);
+        progressFill.style.width = `${progressPercentage}%`;
+    }
+
+    // --- КАСТОМИЗАЦИЯ ПЕРСОНАЖЕЙ ---
+
+    // Переключение стилей рендера (2D / 3D / Photorealism)
+    const styleButtonsContainer = document.getElementById('style-buttons');
+    if (styleButtonsContainer) {
+        styleButtonsContainer.addEventListener('click', (e) => {
+            const button = e.target.closest('button[data-style]');
+            if (!button) return;
+
+            handleActiveClass(button, '#style-buttons', 'button');
+
+            const newStyle = button.dataset.style;
+            document.querySelectorAll('#character-gallery img[data-char-name]').forEach(image => {
+                const charName = image.dataset.charName;
+                // Предполагаем, что расширение файла всегда .jpg для простоты
+                image.src = `Images/Characters/${newStyle}/${charName}.jpg`;
+            });
+        });
+    }
+
+    // Переключение цветов
+    document.querySelectorAll('.color-options').forEach(container => {
+        container.addEventListener('click', (e) => {
+            const colorOption = e.target.closest('.color-option');
+            if (colorOption) {
+                handleActiveClass(colorOption, '.color-options', '.color-option', 'selected');
+            }
+        });
+    });
+
+
+    // Раскрытие "продвинутых" настроек
+    const advancedToggle = document.getElementById('advanced-toggle');
+    if (advancedToggle) {
+        advancedToggle.addEventListener('click', () => {
+            const advancedOptions = document.getElementById('advanced-options');
+            const toggleIcon = document.getElementById('toggle-icon');
+            if (!advancedOptions || !toggleIcon) return;
+
+            const isActive = advancedOptions.classList.toggle('active');
+            toggleIcon.textContent = isActive ? '▲' : '▼';
+        });
+    }
+
+    // Обновление значений слайдеров
+    const sliders = document.querySelectorAll('input[type="range"]');
+    sliders.forEach(slider => {
+        const output = document.querySelector(`output[for="${slider.id}"]`);
+        if (!output) return;
+
+        const updateSliderOutput = () => {
+            let value = slider.value;
+            if (slider.dataset.unit) {
+                value += ` ${slider.dataset.unit}`;
+            }
+            output.textContent = value;
+        };
+
+        slider.addEventListener('input', updateSliderOutput);
+        updateSliderOutput(); // Устанавливаем начальное значение
+    });
+});
