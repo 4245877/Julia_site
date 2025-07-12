@@ -750,7 +750,9 @@ p {
     border: 1px solid rgba(255, 255, 255, 0.1);
     overflow: hidden; /* Предотвращает выпадение контента */
 }
-
+.advanced-options.active {
+    display: block; /* Показываем блок, когда он активен */
+}
 /* Класс для отображения блока через JS */
 .advanced-options.show {
     display: block;
