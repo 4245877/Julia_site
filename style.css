@@ -205,10 +205,6 @@ p {
     color: transparent;
 }
 
-.grid {
-    display: grid;
-}
-
 .grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
 }
@@ -752,10 +748,6 @@ p {
 }
 .advanced-options.active {
     display: block; /* Показываем блок, когда он активен */
-}
-/* Класс для отображения блока через JS */
-.advanced-options.show {
-    display: block;
 }
 
 /* Tech Stack Section */
