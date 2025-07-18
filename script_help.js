@@ -226,3 +226,156 @@ window.addEventListener('scroll', function() {
         header.classList.remove('scrolled');
     }
 });
+
+ // Прогресс-бар прокрутки
+        window.addEventListener('scroll', function() {
+            const scrolled = (window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        // Плавная прокрутка к якорям
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Анимация появления элементов при прокрутке
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card-hover').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Функция проверки системных требований
+        function checkRequirements() {
+            const os = document.querySelector('input[placeholder*="Windows"]').value;
+            const cpu = document.querySelector('input[placeholder*="Intel"]').value;
+            const gpu = document.querySelector('input[placeholder*="NVIDIA"]').value;
+            const ram = document.querySelector('input[placeholder="8"]').value;
+            const storage = document.querySelector('input[placeholder="50"]').value;
+            
+            const microphone = document.querySelector('input[type="checkbox"]').checked;
+            const speakers = document.querySelectorAll('input[type="checkbox"]')[1].checked;
+            const internet = document.querySelectorAll('input[type="checkbox"]')[2].checked;
+            const webcam = document.querySelectorAll('input[type="checkbox"]')[3].checked;
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.classList.remove('hidden');
+
+            let score = 0;
+            let messages = [];
+
+            // Проверка основных компонентов
+            if (os) score += 20;
+            if (cpu) score += 20;
+            if (gpu) score += 20;
+            if (ram && parseInt(ram) >= 8) score += 20;
+            if (storage && parseInt(storage) >= 50) score += 20;
+
+            // Определение статуса
+            if (score >= 80) {
+                resultDiv.className = 'mt-4 p-4 rounded-lg bg-green-100 border border-green-300';
+                resultDiv.innerHTML = `
+                    <div class="flex items-center space-x-2">
+                        <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        <h4 class="text-lg font-semibold text-green-800">Отлично! Ваша система полностью совместима с Julia</h4>
+                    </div>
+                    <p class="text-green-700 mt-2">Все системные требования выполнены. Вы можете установить и использовать Julia без ограничений.</p>
+                `;
+            } else if (score >= 60) {
+                resultDiv.className = 'mt-4 p-4 rounded-lg bg-yellow-100 border border-yellow-300';
+                resultDiv.innerHTML = `
+                    <div class="flex items-center space-x-2">
+                        <svg class="w-6 h-6 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                        </svg>
+                        <h4 class="text-lg font-semibold text-yellow-800">Частично совместимо</h4>
+                    </div>
+                    <p class="text-yellow-700 mt-2">Ваша система может запустить Julia, но некоторые функции могут работать с ограничениями. Рекомендуется обновить компоненты.</p>
+                `;
+            } else {
+                resultDiv.className = 'mt-4 p-4 rounded-lg bg-red-100 border border-red-300';
+                resultDiv.innerHTML = `
+                    <div class="flex items-center space-x-2">
+                        <svg class="w-6 h-6 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                        </svg>
+                        <h4 class="text-lg font-semibold text-red-800">Требуется обновление системы</h4>
+                    </div>
+                    <p class="text-red-700 mt-2">Ваша система не соответствует минимальным требованиям. Пожалуйста, обновите компоненты для корректной работы Julia.</p>
+                `;
+            }
+
+            // Анимация результата
+            resultDiv.style.opacity = '0';
+            resultDiv.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                resultDiv.style.transition = 'all 0.5s ease';
+                resultDiv.style.opacity = '1';
+                resultDiv.style.transform = 'translateY(0)';
+            }, 100);
+        }
+
+        // Добавляем эффекты при загрузке страницы
+        window.addEventListener('load', function() {
+            document.querySelectorAll('.fade-in').forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    el.style.transition = 'all 0.6s ease';
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+
+        // Эффект параллакса для hero-секции
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.gradient-bg');
+            const speed = scrolled * 0.5;
+            parallax.style.transform = `translateY(${speed}px)`;
+        });
+
+        // Подсветка активного пункта навигации
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+                if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        });

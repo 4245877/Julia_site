@@ -1,502 +1,469 @@
-/* Сброс стилей и основные настройки */
+/* Стиль Рафталии для сайта Julia */
+/* Символизирует путь от уязвимости к силе, сочетая тепло, земность и строгость */
+
+/* Цветовая палитра Рафталии */
+:root {
+    --forest-oak: #8C4A2F;        /* Лесной дуб - основной цвет */
+    --copper-gleam: #C97C5D;      /* Медный отлив - акцент */
+    --deep-chocolate: #553D2E;     /* Глубокий шоколад - текст */
+    --pastel-beige: #ECD9C6;      /* Пастельный беж - карточки */
+    --coral-white: #F4E1D2;       /* Коралл-белый - фон */
+    --suede-moss: #4C7A50;        /* Замшевый мох - природа */
+    --blazing-amber: #D14836;     /* Пылающий янтарь - энергия */
+    
+    /* Дополнительные оттенки для градиентов */
+    --oak-shadow: #6B3621;
+    --copper-light: #E59A7B;
+    --beige-light: #F2E8DC;
+    --moss-dark: #3A5A3E;
+    --amber-glow: #F25C47;
+}
+
+/* Базовые стили */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-:root {
-    --primary-dark: #081F5C;
-    --primary-medium: #334EAC;
-    --primary-light: #7096D1;
-    --accent-light: #D0E3FF;
-    --accent-lighter: #E7F1FF;
-    --accent-lightest: #F9FCFF;
-    --text-primary: #081F5C;
-    --text-secondary: #334EAC;
-    --shadow-color: rgba(8, 31, 92, 0.1);
-    --border-radius: 12px;
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    color: var(--text-primary);
-    background: linear-gradient(135deg, var(--accent-lightest) 0%, var(--accent-lighter) 100%);
+    color: var(--deep-chocolate);
+    background: linear-gradient(135deg, var(--coral-white) 0%, var(--beige-light) 100%);
     min-height: 100vh;
-}
-
-/* Заголовок */
-header {
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 100%);
-    color: white;
-    padding: 2rem 0;
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
-header::before {
+/* Фоновая текстура, напоминающая мех */
+body::before {
     content: '';
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-    pointer-events: none;
-}
-
-header h1 {
-    text-align: center;
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    position: relative;
-    z-index: 1;
-}
-
-/* Навигация */
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    position: relative;
-    z-index: 1;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1.1rem;
-    padding: 0.75rem 1.5rem;
-    border-radius: var(--border-radius);
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: var(--transition);
-    position: relative;
-    overflow: hidden;
-}
-
-nav a::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(140, 74, 47, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(201, 124, 93, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 40% 60%, rgba(76, 122, 80, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
 }
 
-nav a:hover::before {
-    left: 100%;
+/* Плавная прокрутка */
+.smooth-scroll {
+    scroll-behavior: smooth;
 }
 
-nav a:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-}
-
-/* Основной контент */
-main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-}
-
-section {
-    background: white;
-    margin: 2rem 0;
-    padding: 2.5rem;
-    border-radius: var(--border-radius);
-    box-shadow: 0 10px 40px var(--shadow-color);
-    border: 1px solid var(--accent-light);
-    position: relative;
-    overflow: hidden;
-    transition: var(--transition);
-}
-
-section::before {
-    content: '';
-    position: absolute;
+/* Прогресс-бар в стиле Рафталии */
+.progress-bar {
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--primary-medium), var(--primary-light));
+    background: linear-gradient(90deg, var(--forest-oak), var(--copper-gleam), var(--blazing-amber));
+    z-index: 1000;
+    transition: width 0.3s ease;
+    box-shadow: 0 2px 4px rgba(140, 74, 47, 0.3);
 }
 
-section:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 60px rgba(8, 31, 92, 0.15);
-}
-
-/* Заголовки */
-h2 {
-    color: var(--primary-dark);
-    font-size: 2.2rem;
-    margin-bottom: 1.5rem;
-    font-weight: 600;
-    position: relative;
-    padding-bottom: 0.5rem;
-}
-
-h2::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, var(--primary-medium), var(--primary-light));
-    border-radius: 2px;
-}
-
-h3 {
-    color: var(--primary-medium);
-    font-size: 1.6rem;
-    margin: 2rem 0 1rem 0;
-    font-weight: 600;
-}
-
-h4 {
-    color: var(--primary-medium);
-    font-size: 1.3rem;
-    margin: 1.5rem 0 0.75rem 0;
-    font-weight: 500;
-}
-
-/* Списки */
-ol, ul {
-    margin: 1rem 0 1rem 2rem;
-}
-
-li {
-    margin: 0.5rem 0;
-    line-height: 1.7;
-}
-
-li strong {
-    color: var(--primary-medium);
-    font-weight: 600;
-}
-
-/* Формы */
-.form-group {
-    margin: 1.5rem 0;
-    position: relative;
-}
-
-label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    color: var(--text-secondary);
-    font-size: 1rem;
-}
-
-input[type="text"],
-input[type="number"] {
-    width: 100%;
-    padding: 1rem;
-    border: 2px solid var(--accent-light);
-    border-radius: var(--border-radius);
-    font-size: 1rem;
-    transition: var(--transition);
-    background: var(--accent-lightest);
-}
-
-input[type="text"]:focus,
-input[type="number"]:focus {
-    outline: none;
-    border-color: var(--primary-light);
-    box-shadow: 0 0 0 3px rgba(112, 150, 209, 0.2);
-    background: white;
-}
-
-/* Чекбоксы */
-.checkbox-container {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.checkbox-container label {
-    margin-bottom: 0;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-    font-weight: 400;
-}
-
-input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    accent-color: var(--primary-medium);
-    cursor: pointer;
-}
-
-/* Кнопки */
-button {
-    background: linear-gradient(135deg, var(--primary-medium) 0%, var(--primary-light) 100%);
-    color: white;
-    border: none;
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    transition: var(--transition);
-    box-shadow: 0 4px 15px rgba(51, 78, 172, 0.3);
+/* Градиентный фон заголовка */
+.gradient-bg {
+    background: linear-gradient(135deg, 
+        var(--forest-oak) 0%, 
+        var(--oak-shadow) 25%, 
+        var(--copper-gleam) 50%, 
+        var(--suede-moss) 75%, 
+        var(--moss-dark) 100%);
     position: relative;
     overflow: hidden;
 }
 
-button::before {
+.gradient-bg::before {
     content: '';
     position: absolute;
     top: 0;
-    left: -100%;
+    left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.6s;
-}
-
-button:hover::before {
-    left: 100%;
-}
-
-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(51, 78, 172, 0.4);
-}
-
-button:active {
-    transform: translateY(0);
-}
-
-/* Результаты */
-#result {
-    margin-top: 2rem;
-    padding: 1.5rem;
-    border-radius: var(--border-radius);
-    background: var(--accent-lighter);
-    border-left: 4px solid var(--primary-light);
-    min-height: 50px;
-    display: flex;
-    align-items: center;
-    font-weight: 500;
-}
-
-/* Подсказки */
-.suggestions {
-    background: white;
-    border: 1px solid var(--accent-light);
-    border-radius: var(--border-radius);
-    max-height: 200px;
-    overflow-y: auto;
-    position: absolute;
-    width: 100%;
-    z-index: 100;
-    box-shadow: 0 4px 20px var(--shadow-color);
-}
-
-.suggestions div {
-    padding: 0.75rem;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.suggestions div:hover {
-    background: var(--accent-lighter);
-    color: var(--primary-dark);
-}
-
-/* Футер */
-footer {
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 100%);
-    color: white;
-    padding: 3rem 0;
-    margin-top: 4rem;
-    position: relative;
-    overflow: hidden;
-}
-
-footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="footerGrain" width="50" height="50" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="40" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23footerGrain)"/></svg>');
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="2" height="2" patternUnits="userSpaceOnUse"><rect width="2" height="2" fill="%23000" opacity="0.05"/><circle cx="1" cy="1" r="0.5" fill="%23fff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.6;
     pointer-events: none;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    position: relative;
-    z-index: 1;
+/* Анимация для заголовков */
+.floating-animation {
+    animation: floating 3s ease-in-out infinite;
 }
 
-footer .flex {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
+@keyframes floating {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
 }
 
-footer a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: var(--transition);
-    position: relative;
-    overflow: hidden;
-}
-
-footer a::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+/* Анимация появления */
+.fade-in {
     opacity: 0;
-    transition: var(--transition);
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease-out forwards;
 }
 
-footer a:hover::before {
-    opacity: 1;
-}
-
-footer a:hover {
-    transform: translateY(-5px) scale(1.1);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-footer a svg {
-    transition: var(--transition);
-}
-
-footer a:hover svg {
-    transform: scale(1.2);
-}
-
-/* Цвета для социальных сетей */
-footer a.github:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-footer a.youtube:hover {
-    background: rgba(255, 0, 0, 0.3);
-}
-
-footer a.discord:hover {
-    background: rgba(114, 137, 218, 0.3);
-}
-
-footer a.telegram:hover {
-    background: rgba(0, 136, 204, 0.3);
-}
-
-/* Адаптивность */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 2rem;
-    }
-    
-    nav ul {
-        flex-direction: column;
-        gap: 1rem;
-        align-items: center;
-    }
-    
-    main {
-        padding: 1rem;
-    }
-    
-    section {
-        padding: 1.5rem;
-    }
-    
-    h2 {
-        font-size: 1.8rem;
-    }
-    
-    footer .flex {
-        gap: 1rem;
-    }
-    
-    footer a {
-        width: 50px;
-        height: 50px;
-    }
-}
-
-/* Анимации загрузки */
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-section {
-    animation: fadeInUp 0.6s ease-out;
+/* Стили для навигации */
+.nav-link {
+    position: relative;
+    transition: all 0.3s ease;
+    text-decoration: none;
 }
 
-section:nth-child(1) { animation-delay: 0.1s; }
-section:nth-child(2) { animation-delay: 0.2s; }
-section:nth-child(3) { animation-delay: 0.3s; }
-
-/* Дополнительные эффекты для интерактивности */
-input[type="text"]:hover,
-input[type="number"]:hover {
-    border-color: var(--primary-light);
-    background: white;
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--blazing-amber), var(--amber-glow));
+    transition: width 0.3s ease;
 }
 
-p {
-    margin: 1rem 0;
-    line-height: 1.7;
-    color: var(--text-primary);
+.nav-link:hover::after {
+    width: 100%;
 }
 
-/* Стилизация скроллбара */
+.nav-link:hover {
+    color: var(--blazing-amber) !important;
+    transform: translateY(-2px);
+}
+
+/* Секционные карточки */
+.section-card {
+    background: linear-gradient(135deg, var(--pastel-beige) 0%, var(--beige-light) 100%);
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin: 2rem 0;
+    box-shadow: 
+        0 10px 30px rgba(140, 74, 47, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(140, 74, 47, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.section-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--forest-oak), var(--copper-gleam), var(--suede-moss));
+}
+
+/* Эффект наведения для карточек */
+.card-hover {
+    transition: all 0.4s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 
+        0 20px 40px rgba(140, 74, 47, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* Градиентный текст */
+.gradient-text {
+    background: linear-gradient(135deg, var(--forest-oak), var(--copper-gleam), var(--blazing-amber));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    position: relative;
+}
+
+/* Стили для кнопок */
+.btn-primary {
+    background: linear-gradient(135deg, var(--copper-gleam), var(--blazing-amber));
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 8px 20px rgba(201, 124, 93, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 12px 25px rgba(201, 124, 93, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-primary:active {
+    transform: translateY(-1px);
+}
+
+/* Стили для форм */
+.input-modern {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid rgba(140, 74, 47, 0.2);
+    border-radius: 12px;
+    background: rgba(236, 217, 198, 0.3);
+    color: var(--deep-chocolate);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.input-modern:focus {
+    outline: none;
+    border-color: var(--copper-gleam);
+    background: rgba(236, 217, 198, 0.5);
+    box-shadow: 
+        0 0 0 4px rgba(201, 124, 93, 0.1),
+        inset 0 2px 4px rgba(140, 74, 47, 0.1);
+}
+
+.input-modern::placeholder {
+    color: rgba(85, 61, 46, 0.6);
+}
+
+/* Стили для чекбоксов */
+input[type="checkbox"] {
+    appearance: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid var(--copper-gleam);
+    border-radius: 6px;
+    background: var(--coral-white);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+input[type="checkbox"]:checked {
+    background: var(--copper-gleam);
+    border-color: var(--forest-oak);
+}
+
+input[type="checkbox"]:checked::before {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* Социальные иконки */
+.social-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--forest-oak), var(--copper-gleam));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.social-icon:hover::before {
+    opacity: 0.2;
+}
+
+.social-icon:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 10px 25px rgba(140, 74, 47, 0.3);
+}
+
+/* Результат проверки */
+#result {
+    border-radius: 12px;
+    border: 2px solid var(--suede-moss);
+    background: linear-gradient(135deg, var(--pastel-beige), var(--beige-light));
+    color: var(--deep-chocolate);
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+}
+
+#result::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--suede-moss), var(--copper-gleam));
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .section-card {
+        padding: 1.5rem;
+        margin: 1rem 0;
+    }
+    
+    .gradient-text {
+        font-size: 2rem;
+    }
+    
+    .btn-primary {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* Кастомные эффекты для элементов интерфейса */
+.feature-card {
+    background: linear-gradient(135deg, var(--coral-white) 0%, var(--pastel-beige) 100%);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid rgba(140, 74, 47, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--forest-oak), var(--copper-gleam));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover::before {
+    transform: scaleX(1);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(140, 74, 47, 0.15);
+}
+
+/* Декоративные элементы */
+.decorative-line {
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--forest-oak), var(--copper-gleam), var(--blazing-amber));
+    margin: 2rem auto;
+    border-radius: 2px;
+    position: relative;
+}
+
+.decorative-line::before,
+.decorative-line::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    background: var(--blazing-amber);
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+
+.decorative-line::before {
+    left: -15px;
+}
+
+.decorative-line::after {
+    right: -15px;
+}
+
+/* Анимация для интерактивных элементов */
+.interactive-element {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.interactive-element:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+/* Стили для скроллбара */
 ::-webkit-scrollbar {
     width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--accent-lighter);
+    background: var(--coral-white);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--primary-light);
+    background: linear-gradient(180deg, var(--forest-oak), var(--copper-gleam));
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--primary-medium);
+    background: linear-gradient(180deg, var(--copper-gleam), var(--blazing-amber));
+}
+
+/* Дополнительные утилиты */
+.text-raphtalia {
+    color: var(--forest-oak);
+}
+
+.bg-raphtalia {
+    background: var(--pastel-beige);
+}
+
+.border-raphtalia {
+    border-color: var(--copper-gleam);
+}
+
+.shadow-raphtalia {
+    box-shadow: 0 10px 25px rgba(140, 74, 47, 0.15);
 }
