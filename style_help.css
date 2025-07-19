@@ -296,6 +296,29 @@ body::before {
   opacity: 1;
 }
 
+.suggestions-container {
+    display: none;
+    position: absolute;
+    border: 1px solid #ddd;
+    background-color: white;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.suggestions-container div {
+    padding: 10px;
+    cursor: pointer;
+}
+.suggestions-container div:hover {
+    background-color: #f0f0f0;
+}
+.nav-link.active {
+    border-bottom: 2px solid white;
+}
+
 /* Адаптивная типографика */
 h1 {
   font-size: clamp(2.5rem, 5vw, 4rem);

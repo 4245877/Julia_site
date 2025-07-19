@@ -1,27 +1,14 @@
-const requirements = {
-    os: {
-        min: ['Windows 10', 'Windows 11', 'macOS 11', 'macOS 12', 'Ubuntu 20.04', 'Ubuntu 22.04'],
-        rec: ['Windows 11', 'macOS 12', 'Ubuntu 22.04']
-    },
-    cpu: {
-        min: 50,
-        rec: 80
-    },
-    gpu: {
-        min: 40,
-        rec: 70
-    },
-    ram: {
-        min: 32,
-        rec: 128
-    },
-    storage: {
-        min: 96,
-        rec: 210
-    }
-};
+document.addEventListener('DOMContentLoaded', () => {
 
-const cpuModels = {
+    // Объекты с требованиями и моделями (остаются без изменений)
+    const requirements = {
+        os: { min: ['Windows 10', 'Windows 11', 'macOS 11', 'macOS 12', 'Ubuntu 20.04', 'Ubuntu 22.04'], rec: ['Windows 11', 'macOS 12', 'Ubuntu 22.04'] },
+        cpu: { min: 50, rec: 80 },
+        gpu: { min: 40, rec: 70 },
+        ram: { min: 32, rec: 128 },
+        storage: { min: 96, rec: 210 }
+    };
+    const cpuModels = {
     'Intel Core i3-10100': 15, 'Intel Core i3-10100T': 12, 'Intel Core i3-10300': 18, 'Intel Core i3-10320': 20,
     'Intel Core i3-12100': 25, 'Intel Core i3-12100F': 24, 'Intel Core i3-12300': 28, 'Intel Core i5-10400': 35,
     'Intel Core i5-10400F': 34, 'Intel Core i5-10500': 38, 'Intel Core i5-10600': 40, 'Intel Core i5-10600K': 42,
@@ -80,302 +67,186 @@ const gpuModels = {
     'AMD RX 7900': 85, 'AMD RX 7900 GRE': 90, 'AMD RX 7900 XT': 95, 'AMD RX 7900 XTX': 100,
     'NVIDIA Tesla K80': 40, 'NVIDIA Tesla P100': 50, 'NVIDIA Tesla V100': 60, 'NVIDIA Tesla A100': 75
 };
+    const cpuList = Object.keys(cpuModels);
+    const gpuList = Object.keys(gpuModels);
 
-const cpuList = Object.keys(cpuModels);
-const gpuList = Object.keys(gpuModels);
+    // Логика автодополнения (suggestions)
+    function setupAutocomplete(inputId, suggestionsId, modelList) {
+        const inputField = document.getElementById(inputId);
+        const suggestionsContainer = document.getElementById(suggestionsId);
+        
+        if (!inputField || !suggestionsContainer) return;
 
-function filterModels(input, models) {
-    const inputWords = input.toLowerCase().split(/\s+/);
-    return models.filter(model => {
-        const modelWords = model.toLowerCase().split(/[\s-]+/); // Разделяем по пробелам и дефисам
-        return inputWords.every(word => modelWords.some(mWord => mWord === word));
-    });
-}
-
-function displaySuggestions(suggestions, container, inputField) {
-    container.innerHTML = '';
-    if (suggestions.length > 0) {
-        const limitedSuggestions = suggestions.slice(0, 10);
-        limitedSuggestions.forEach(suggestion => {
-            const div = document.createElement('div');
-            div.textContent = suggestion;
-            div.addEventListener('click', () => {
-                inputField.value = suggestion;
-                container.style.display = 'none';
-            });
-            container.appendChild(div);
-        });
-        container.style.display = 'block';
-    } else {
-        container.style.display = 'none';
-    }
-}
-
-const cpuInput = document.getElementById('cpu');
-const cpuSuggestions = document.getElementById('cpu-suggestions');
-cpuInput.addEventListener('input', () => {
-    const input = cpuInput.value.trim();
-    if (input.length > 0) {
-        const suggestions = filterModels(input, cpuList);
-        displaySuggestions(suggestions, cpuSuggestions, cpuInput);
-    } else {
-        cpuSuggestions.style.display = 'none';
-    }
-});
-
-const gpuInput = document.getElementById('gpu');
-const gpuSuggestions = document.getElementById('gpu-suggestions');
-gpuInput.addEventListener('input', () => {
-    const input = gpuInput.value.trim();
-    if (input.length > 0) {
-        const suggestions = filterModels(input, gpuList);
-        displaySuggestions(suggestions, gpuSuggestions, gpuInput);
-    } else {
-        gpuSuggestions.style.display = 'none';
-    }
-});
-
-cpuInput.addEventListener('blur', () => {
-    setTimeout(() => {
-        cpuSuggestions.style.display = 'none';
-    }, 200);
-});
-
-gpuInput.addEventListener('blur', () => {
-    setTimeout(() => {
-        gpuSuggestions.style.display = 'none';
-    }, 200);
-});
-
-function checkRequirements() {
-    const os = document.getElementById('os').value;
-    const cpu = document.getElementById('cpu').value;
-    const gpu = document.getElementById('gpu').value;
-    const ram = parseInt(document.getElementById('ram').value) || 0;
-    const storage = parseInt(document.getElementById('storage').value) || 0;
-    const microphone = document.getElementById('microphone').checked;
-    const speakers = document.getElementById('speakers').checked;
-    const internet = document.getElementById('internet').checked;
-    const webcam = document.getElementById('webcam').checked;
-
-    let result = '';
-
-    if (requirements.os.rec.includes(os)) {
-        result += 'ОС соответствует рекомендуемым требованиям.<br>';
-    } else if (requirements.os.min.includes(os)) {
-        result += 'ОС соответствует минимальным требованиям.<br>';
-    } else {
-        result += 'ОС не соответствует требованиям.<br>';
-    }
-
-    const cpuPerformance = cpuModels[cpu] || 0;
-    if (cpuPerformance >= requirements.cpu.rec) {
-        result += 'Процессор соответствует рекомендуемым требованиям.<br>';
-    } else if (cpuPerformance >= requirements.cpu.min) {
-        result += 'Процессор соответствует минимальным требованиям.<br>';
-    } else {
-        result += 'Процессор не соответствует требованиям.<br>';
-    }
-
-    const gpuPerformance = gpuModels[gpu] || 0;
-    if (gpuPerformance >= requirements.gpu.rec) {
-        result += 'Видеокарта соответствует рекомендуемым требованиям.<br>';
-    } else if (gpuPerformance >= requirements.gpu.min) {
-        result += 'Видеокарта соответствует минимальным требованиям.<br>';
-    } else {
-        result += 'Видеокарта не соответствует требованиям.<br>';
-    }
-
-    if (ram >= requirements.ram.rec) {
-        result += 'ОЗУ соответствует рекомендуемым требованиям.<br>';
-    } else if (ram >= requirements.ram.min) {
-        result += 'ОЗУ соответствует минимальным требованиям.<br>';
-    } else {
-        result += 'ОЗУ не соответствует требованиям.<br>';
-    }
-
-    if (storage >= requirements.storage.rec) {
-        result += 'Место на диске соответствует рекомендуемым требованиям.<br>';
-    } else if (storage >= requirements.storage.min) {
-        result += 'Место на диске соответствует минимальным требованиям.<br>';
-    } else {
-        result += 'Место на диске не соответствует требованиям.<br>';
-    }
-
-    if (!microphone) {
-        result += 'Микрофон необходим для голосового взаимодействия.<br>';
-    }
-    if (!speakers) {
-        result += 'Динамики или наушники необходимы для аудио вывода.<br>';
-    }
-    if (!internet) {
-        result += 'Интернет-соединение необходимо для работы ИИ.<br>';
-    }
-    if (!webcam) {
-        result += 'Веб-камера рекомендуется для визуальной идентификации.<br>';
-    }
-
-    document.getElementById('result').innerHTML = result;
-}
-
-window.addEventListener('scroll', function() {
-    const header = document.querySelector('header');
-    if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
-});
-
- // Прогресс-бар прокрутки
-        window.addEventListener('scroll', function() {
-            const scrolled = (window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-            document.getElementById('progressBar').style.width = scrolled + '%';
-        });
-
-        // Плавная прокрутка к якорям
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+        inputField.addEventListener('input', () => {
+            const input = inputField.value.trim().toLowerCase();
+            if (input.length > 0) {
+                const filteredModels = modelList.filter(model => model.toLowerCase().includes(input)).slice(0, 10);
+                
+                suggestionsContainer.innerHTML = '';
+                if (filteredModels.length > 0) {
+                    filteredModels.forEach(suggestion => {
+                        const div = document.createElement('div');
+                        div.textContent = suggestion;
+                        div.addEventListener('click', () => {
+                            inputField.value = suggestion;
+                            suggestionsContainer.style.display = 'none';
+                        });
+                        suggestionsContainer.appendChild(div);
                     });
+                    suggestionsContainer.style.display = 'block';
+                } else {
+                    suggestionsContainer.style.display = 'none';
                 }
-            });
-        });
-
-        // Анимация появления элементов при прокрутке
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.card-hover').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Функция проверки системных требований
-        function checkRequirements() {
-            const os = document.querySelector('input[placeholder*="Windows"]').value;
-            const cpu = document.querySelector('input[placeholder*="Intel"]').value;
-            const gpu = document.querySelector('input[placeholder*="NVIDIA"]').value;
-            const ram = document.querySelector('input[placeholder="8"]').value;
-            const storage = document.querySelector('input[placeholder="50"]').value;
-            
-            const microphone = document.querySelector('input[type="checkbox"]').checked;
-            const speakers = document.querySelectorAll('input[type="checkbox"]')[1].checked;
-            const internet = document.querySelectorAll('input[type="checkbox"]')[2].checked;
-            const webcam = document.querySelectorAll('input[type="checkbox"]')[3].checked;
-
-            const resultDiv = document.getElementById('result');
-            resultDiv.classList.remove('hidden');
-
-            let score = 0;
-            let messages = [];
-
-            // Проверка основных компонентов
-            if (os) score += 20;
-            if (cpu) score += 20;
-            if (gpu) score += 20;
-            if (ram && parseInt(ram) >= 8) score += 20;
-            if (storage && parseInt(storage) >= 50) score += 20;
-
-            // Определение статуса
-            if (score >= 80) {
-                resultDiv.className = 'mt-4 p-4 rounded-lg bg-green-100 border border-green-300';
-                resultDiv.innerHTML = `
-                    <div class="flex items-center space-x-2">
-                        <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                        </svg>
-                        <h4 class="text-lg font-semibold text-green-800">Отлично! Ваша система полностью совместима с Julia</h4>
-                    </div>
-                    <p class="text-green-700 mt-2">Все системные требования выполнены. Вы можете установить и использовать Julia без ограничений.</p>
-                `;
-            } else if (score >= 60) {
-                resultDiv.className = 'mt-4 p-4 rounded-lg bg-yellow-100 border border-yellow-300';
-                resultDiv.innerHTML = `
-                    <div class="flex items-center space-x-2">
-                        <svg class="w-6 h-6 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                        </svg>
-                        <h4 class="text-lg font-semibold text-yellow-800">Частично совместимо</h4>
-                    </div>
-                    <p class="text-yellow-700 mt-2">Ваша система может запустить Julia, но некоторые функции могут работать с ограничениями. Рекомендуется обновить компоненты.</p>
-                `;
             } else {
-                resultDiv.className = 'mt-4 p-4 rounded-lg bg-red-100 border border-red-300';
-                resultDiv.innerHTML = `
-                    <div class="flex items-center space-x-2">
-                        <svg class="w-6 h-6 text-red-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
-                        </svg>
-                        <h4 class="text-lg font-semibold text-red-800">Требуется обновление системы</h4>
-                    </div>
-                    <p class="text-red-700 mt-2">Ваша система не соответствует минимальным требованиям. Пожалуйста, обновите компоненты для корректной работы Julia.</p>
-                `;
+                suggestionsContainer.style.display = 'none';
             }
+        });
 
-            // Анимация результата
-            resultDiv.style.opacity = '0';
-            resultDiv.style.transform = 'translateY(20px)';
-            setTimeout(() => {
-                resultDiv.style.transition = 'all 0.5s ease';
-                resultDiv.style.opacity = '1';
-                resultDiv.style.transform = 'translateY(0)';
-            }, 100);
+        inputField.addEventListener('blur', () => {
+            setTimeout(() => { suggestionsContainer.style.display = 'none'; }, 200);
+        });
+    }
+
+    setupAutocomplete('cpu', 'cpu-suggestions', cpuList);
+    setupAutocomplete('gpu', 'gpu-suggestions', gpuList);
+
+    // Глобальная функция проверки требований (привязана к window, чтобы onclick работал)
+    window.checkRequirements = function() {
+        const os = document.getElementById('os').value;
+        const cpu = document.getElementById('cpu').value;
+        const gpu = document.getElementById('gpu').value;
+        const ram = parseInt(document.getElementById('ram').value) || 0;
+        const storage = parseInt(document.getElementById('storage').value) || 0;
+        const microphone = document.getElementById('microphone').checked;
+        const speakers = document.getElementById('speakers').checked;
+        const internet = document.getElementById('internet').checked;
+        const webcam = document.getElementById('webcam').checked;
+
+        let messages = [];
+        let totalScore = 0;
+        const maxScore = 5;
+
+        // Проверка ОС
+        if (requirements.os.rec.some(recOs => os.toLowerCase().includes(recOs.toLowerCase().split(' ')[0]))) {
+            messages.push('<span class="text-green-600 font-semibold">✔ ОС:</span> Соответствует рекомендуемым требованиям.');
+            totalScore++;
+        } else if (requirements.os.min.some(minOs => os.toLowerCase().includes(minOs.toLowerCase().split(' ')[0]))) {
+            messages.push('<span class="text-yellow-600 font-semibold">✔ ОС:</span> Соответствует минимальным требованиям.');
+            totalScore += 0.5;
+        } else {
+            messages.push('<span class="text-red-600 font-semibold">✖ ОС:</span> Не соответствует требованиям.');
         }
 
-        // Добавляем эффекты при загрузке страницы
-        window.addEventListener('load', function() {
-            document.querySelectorAll('.fade-in').forEach((el, index) => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    el.style.transition = 'all 0.6s ease';
-                    el.style.opacity = '1';
-                    el.style.transform = 'translateY(0)';
-                }, index * 200);
-            });
-        });
+        // Проверка CPU
+        const cpuPerformance = cpuModels[cpu] || 0;
+        if (cpuPerformance >= requirements.cpu.rec) {
+             messages.push('<span class="text-green-600 font-semibold">✔ Процессор:</span> Соответствует рекомендуемым требованиям.');
+             totalScore++;
+        } else if (cpuPerformance >= requirements.cpu.min) {
+            messages.push('<span class="text-yellow-600 font-semibold">✔ Процессор:</span> Соответствует минимальным требованиям.');
+            totalScore += 0.5;
+        } else {
+            messages.push('<span class="text-red-600 font-semibold">✖ Процессор:</span> Не соответствует требованиям.');
+        }
 
-        // Эффект параллакса для hero-секции
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelector('.gradient-bg');
-            const speed = scrolled * 0.5;
-            parallax.style.transform = `translateY(${speed}px)`;
-        });
+        // Проверка GPU
+        const gpuPerformance = gpuModels[gpu] || 0;
+        if (gpuPerformance >= requirements.gpu.rec) {
+             messages.push('<span class="text-green-600 font-semibold">✔ Видеокарта:</span> Соответствует рекомендуемым требованиям.');
+             totalScore++;
+        } else if (gpuPerformance >= requirements.gpu.min) {
+            messages.push('<span class="text-yellow-600 font-semibold">✔ Видеокарта:</span> Соответствует минимальным требованиям.');
+            totalScore += 0.5;
+        } else {
+            messages.push('<span class="text-red-600 font-semibold">✖ Видеокарта:</span> Не соответствует требованиям.');
+        }
 
-        // Подсветка активного пункта навигации
-        window.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('nav a[href^="#"]');
-            
-            let currentSection = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                const sectionHeight = section.offsetHeight;
-                if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
-                    currentSection = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${currentSection}`) {
-                    link.classList.add('active');
-                }
-            });
+        // Проверка RAM
+        if (ram >= requirements.ram.rec) {
+            messages.push('<span class="text-green-600 font-semibold">✔ ОЗУ:</span> Соответствует рекомендуемым требованиям.');
+            totalScore++;
+        } else if (ram >= requirements.ram.min) {
+            messages.push('<span class="text-yellow-600 font-semibold">✔ ОЗУ:</span> Соответствует минимальным требованиям.');
+            totalScore += 0.5;
+        } else {
+            messages.push('<span class="text-red-600 font-semibold">✖ ОЗУ:</span> Не соответствует требованиям.');
+        }
+
+        // Проверка Storage
+        if (storage >= requirements.storage.rec) {
+            messages.push('<span class="text-green-600 font-semibold">✔ Место на диске:</span> Соответствует рекомендуемым требованиям.');
+            totalScore++;
+        } else if (storage >= requirements.storage.min) {
+            messages.push('<span class="text-yellow-600 font-semibold">✔ Место на диске:</span> Соответствует минимальным требованиям.');
+            totalScore += 0.5;
+        } else {
+            messages.push('<span class="text-red-600 font-semibold">✖ Место на диске:</span> Не соответствует требованиям.');
+        }
+
+        // Проверка периферии
+        if (!microphone) messages.push('<span class="text-yellow-600 font-semibold">! Микрофон:</span> Необходим для голосового взаимодействия.');
+        if (!internet) messages.push('<span class="text-red-600 font-semibold">! Интернет:</span> Критически необходим для работы ИИ.');
+
+        const resultDiv = document.getElementById('result');
+        let statusHTML = '';
+        if (totalScore >= 4) {
+             statusHTML = `<div class="p-4 rounded-lg bg-green-100 border border-green-300"><h4 class="font-bold text-green-800">Отлично! Система полностью совместима.</h4>`;
+        } else if (totalScore >= 2) {
+            statusHTML = `<div class="p-4 rounded-lg bg-yellow-100 border border-yellow-300"><h4 class="font-bold text-yellow-800">Частично совместимо.</h4>`;
+        } else {
+            statusHTML = `<div class="p-4 rounded-lg bg-red-100 border border-red-300"><h4 class="font-bold text-red-800">Требуется обновление.</h4>`;
+        }
+        
+        resultDiv.innerHTML = statusHTML + `<ul class="list-none mt-2 space-y-1">${messages.map(m => `<li>${m}</li>`).join('')}</ul></div>`;
+        resultDiv.classList.remove('hidden');
+    }
+
+    // Прогресс-бар прокрутки
+    window.addEventListener('scroll', () => {
+        const scrolled = (window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        document.getElementById('progressBar').style.width = scrolled + '%';
+    });
+
+    // Плавная прокрутка к якорям
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         });
+    });
+
+    // Анимация появления элементов при прокрутке
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    
+    document.querySelectorAll('.section-card').forEach(el => observer.observe(el));
+
+    // Подсветка активного пункта навигации
+    window.addEventListener('scroll', () => {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
+        let currentSection = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100;
+            if (window.pageYOffset >= sectionTop) {
+                currentSection = section.getAttribute('id');
+            }
+        });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${currentSection}`) {
+                link.classList.add('active');
+            }
+        });
+    });
+});
