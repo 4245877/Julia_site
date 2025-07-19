@@ -1,469 +1,439 @@
-/* Стиль Рафталии для сайта Julia */
-/* Символизирует путь от уязвимости к силе, сочетая тепло, земность и строгость */
+/* Стиль Рафталии - Современный дизайн в тематике персонажа */
 
-/* Цветовая палитра Рафталии */
 :root {
-    --forest-oak: #8C4A2F;        /* Лесной дуб - основной цвет */
-    --copper-gleam: #C97C5D;      /* Медный отлив - акцент */
-    --deep-chocolate: #553D2E;     /* Глубокий шоколад - текст */
-    --pastel-beige: #ECD9C6;      /* Пастельный беж - карточки */
-    --coral-white: #F4E1D2;       /* Коралл-белый - фон */
-    --suede-moss: #4C7A50;        /* Замшевый мох - природа */
-    --blazing-amber: #D14836;     /* Пылающий янтарь - энергия */
+  /* Светлая тема - основная */
+  --bg-primary: #FDF6E3;
+  --bg-secondary: #FFFFFF;
+  --text-primary: #5D4037;
+  --text-secondary: #616161;
+  --accent-primary: #B71C1C;
+  --accent-subtle: #CE93D8;
+  
+  /* Дополнительные цвета для градиентов и эффектов */
+  --earth-warm: #8D6E63;
+  --earth-light: #BCAAA4;
+  --earth-deep: #4E342E;
+  --shield-silver: #CFD8DC;
+  --loyalty-gold: #FFB74D;
+  
+  /* Тени и границы */
+  --shadow-light: rgba(93, 64, 55, 0.1);
+  --shadow-medium: rgba(93, 64, 55, 0.15);
+  --shadow-strong: rgba(93, 64, 55, 0.25);
+  --border-subtle: rgba(93, 64, 55, 0.12);
+}
+
+/* Темная тема */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #211E1C;
+    --bg-secondary: #3E2723;
+    --text-primary: #E0E0E0;
+    --text-secondary: #BDBDBD;
+    --accent-primary: #E57373;
+    --accent-subtle: #AB47BC;
     
-    /* Дополнительные оттенки для градиентов */
-    --oak-shadow: #6B3621;
-    --copper-light: #E59A7B;
-    --beige-light: #F2E8DC;
-    --moss-dark: #3A5A3E;
-    --amber-glow: #F25C47;
+    --earth-warm: #A1887F;
+    --earth-light: #D7CCC8;
+    --earth-deep: #795548;
+    --shield-silver: #90A4AE;
+    --loyalty-gold: #FFCC02;
+    
+    --shadow-light: rgba(0, 0, 0, 0.3);
+    --shadow-medium: rgba(0, 0, 0, 0.4);
+    --shadow-strong: rgba(0, 0, 0, 0.6);
+    --border-subtle: rgba(224, 224, 224, 0.12);
+  }
 }
 
 /* Базовые стили */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: var(--deep-chocolate);
-    background: linear-gradient(135deg, var(--coral-white) 0%, var(--beige-light) 100%);
-    min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  font-size: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Фоновая текстура, напоминающая мех */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 20% 20%, rgba(140, 74, 47, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(201, 124, 93, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 40% 60%, rgba(76, 122, 80, 0.03) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: -1;
-}
-
-/* Плавная прокрутка */
-.smooth-scroll {
-    scroll-behavior: smooth;
-}
-
-/* Прогресс-бар в стиле Рафталии */
+/* Прогресс бар */
 .progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--forest-oak), var(--copper-gleam), var(--blazing-amber));
-    z-index: 1000;
-    transition: width 0.3s ease;
-    box-shadow: 0 2px 4px rgba(140, 74, 47, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-primary), var(--loyalty-gold), var(--accent-subtle));
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+  box-shadow: 0 2px 8px var(--shadow-medium);
 }
 
-/* Градиентный фон заголовка */
+/* Героический заголовок */
 .gradient-bg {
-    background: linear-gradient(135deg, 
-        var(--forest-oak) 0%, 
-        var(--oak-shadow) 25%, 
-        var(--copper-gleam) 50%, 
-        var(--suede-moss) 75%, 
-        var(--moss-dark) 100%);
-    position: relative;
-    overflow: hidden;
+  background: linear-gradient(135deg, 
+    var(--earth-deep) 0%, 
+    var(--earth-warm) 30%, 
+    var(--accent-primary) 70%, 
+    var(--earth-deep) 100%
+  );
+  position: relative;
+  overflow: hidden;
 }
 
 .gradient-bg::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="2" height="2" patternUnits="userSpaceOnUse"><rect width="2" height="2" fill="%23000" opacity="0.05"/><circle cx="1" cy="1" r="0.5" fill="%23fff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-    opacity: 0.6;
-    pointer-events: none;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1" fill="white" opacity="0.08"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.12"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+  opacity: 0.3;
 }
 
-/* Анимация для заголовков */
-.floating-animation {
-    animation: floating 3s ease-in-out infinite;
-}
-
+/* Плавающая анимация для заголовков */
 @keyframes floating {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-10px) rotate(0.5deg); }
+  66% { transform: translateY(5px) rotate(-0.5deg); }
 }
 
-/* Анимация появления */
-.fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 1s ease-out forwards;
-}
-
-@keyframes fadeInUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Стили для навигации */
-.nav-link {
-    position: relative;
-    transition: all 0.3s ease;
-    text-decoration: none;
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--blazing-amber), var(--amber-glow));
-    transition: width 0.3s ease;
-}
-
-.nav-link:hover::after {
-    width: 100%;
-}
-
-.nav-link:hover {
-    color: var(--blazing-amber) !important;
-    transform: translateY(-2px);
-}
-
-/* Секционные карточки */
-.section-card {
-    background: linear-gradient(135deg, var(--pastel-beige) 0%, var(--beige-light) 100%);
-    border-radius: 20px;
-    padding: 2.5rem;
-    margin: 2rem 0;
-    box-shadow: 
-        0 10px 30px rgba(140, 74, 47, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    border: 2px solid rgba(140, 74, 47, 0.1);
-    position: relative;
-    overflow: hidden;
-}
-
-.section-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, var(--forest-oak), var(--copper-gleam), var(--suede-moss));
-}
-
-/* Эффект наведения для карточек */
-.card-hover {
-    transition: all 0.4s ease;
-}
-
-.card-hover:hover {
-    transform: translateY(-8px);
-    box-shadow: 
-        0 20px 40px rgba(140, 74, 47, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+.floating-animation {
+  animation: floating 6s ease-in-out infinite;
 }
 
 /* Градиентный текст */
 .gradient-text {
-    background: linear-gradient(135deg, var(--forest-oak), var(--copper-gleam), var(--blazing-amber));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 700;
-    position: relative;
+  background: linear-gradient(135deg, var(--accent-primary), var(--earth-warm), var(--accent-subtle));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  position: relative;
 }
 
-/* Стили для кнопок */
+/* Навигация */
+.nav-link {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--loyalty-gold), var(--accent-subtle));
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-50%);
+  border-radius: 1px;
+}
+
+.nav-link:hover::before {
+  width: 100%;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Карточки секций */
+.section-card {
+  background: var(--bg-secondary);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 
+    0 4px 20px var(--shadow-light),
+    0 1px 3px var(--shadow-medium);
+  border: 1px solid var(--border-subtle);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-primary), var(--loyalty-gold), var(--accent-subtle));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 
+    0 12px 40px var(--shadow-medium),
+    0 4px 12px var(--shadow-light);
+}
+
+.card-hover:hover::before {
+  opacity: 1;
+}
+
+/* Анимации появления */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+}
+
+.fade-in:nth-child(1) { animation-delay: 0.1s; }
+.fade-in:nth-child(2) { animation-delay: 0.2s; }
+.fade-in:nth-child(3) { animation-delay: 0.3s; }
+.fade-in:nth-child(4) { animation-delay: 0.4s; }
+
+/* Кнопки в стиле Рафталии */
 .btn-primary {
-    background: linear-gradient(135deg, var(--copper-gleam), var(--blazing-amber));
-    color: white;
-    border: none;
-    padding: 1rem 2rem;
-    border-radius: 12px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 
-        0 8px 20px rgba(201, 124, 93, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    position: relative;
-    overflow: hidden;
+  background: linear-gradient(135deg, var(--accent-primary), var(--earth-warm));
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px var(--shadow-medium);
 }
 
 .btn-primary::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s ease;
-}
-
-.btn-primary:hover::before {
-    left: 100%;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
 }
 
 .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 
-        0 12px 25px rgba(201, 124, 93, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px var(--shadow-strong);
+}
+
+.btn-primary:hover::before {
+  left: 100%;
 }
 
 .btn-primary:active {
-    transform: translateY(-1px);
+  transform: translateY(0);
 }
 
-/* Стили для форм */
+/* Поля ввода */
 .input-modern {
-    width: 100%;
-    padding: 1rem;
-    border: 2px solid rgba(140, 74, 47, 0.2);
-    border-radius: 12px;
-    background: rgba(236, 217, 198, 0.3);
-    color: var(--deep-chocolate);
-    font-size: 1rem;
-    transition: all 0.3s ease;
+  width: 100%;
+  padding: 0.875rem 1.25rem;
+  border: 2px solid var(--border-subtle);
+  border-radius: 12px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
 }
 
 .input-modern:focus {
-    outline: none;
-    border-color: var(--copper-gleam);
-    background: rgba(236, 217, 198, 0.5);
-    box-shadow: 
-        0 0 0 4px rgba(201, 124, 93, 0.1),
-        inset 0 2px 4px rgba(140, 74, 47, 0.1);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(183, 28, 28, 0.1);
+  transform: translateY(-1px);
 }
 
 .input-modern::placeholder {
-    color: rgba(85, 61, 46, 0.6);
+  color: var(--text-secondary);
+  opacity: 0.7;
 }
 
-/* Стили для чекбоксов */
+/* Чекбоксы в стиле Рафталии */
 input[type="checkbox"] {
-    appearance: none;
-    width: 1.25rem;
-    height: 1.25rem;
-    border: 2px solid var(--copper-gleam);
-    border-radius: 6px;
-    background: var(--coral-white);
-    cursor: pointer;
-    position: relative;
-    transition: all 0.3s ease;
+  appearance: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid var(--earth-warm);
+  border-radius: 4px;
+  background: var(--bg-secondary);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 input[type="checkbox"]:checked {
-    background: var(--copper-gleam);
-    border-color: var(--forest-oak);
+  background: linear-gradient(135deg, var(--accent-primary), var(--earth-warm));
+  border-color: var(--accent-primary);
 }
 
 input[type="checkbox"]:checked::before {
-    content: '✓';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-weight: bold;
-    font-size: 0.9rem;
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  font-size: 0.875rem;
+}
+
+input[type="checkbox"]:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px var(--shadow-medium);
 }
 
 /* Социальные иконки */
 .social-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
 }
 
 .social-icon::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, var(--forest-oak), var(--copper-gleam));
-    opacity: 0;
-    transition: opacity 0.3s ease;
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translate(-50%, -50%);
 }
 
 .social-icon:hover::before {
-    opacity: 0.2;
+  width: 100%;
+  height: 100%;
 }
 
 .social-icon:hover {
-    transform: translateY(-5px) scale(1.1);
-    box-shadow: 0 10px 25px rgba(140, 74, 47, 0.3);
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 8px 20px var(--shadow-strong);
 }
 
-/* Результат проверки */
+/* Результаты проверки системы */
 #result {
-    border-radius: 12px;
-    border: 2px solid var(--suede-moss);
-    background: linear-gradient(135deg, var(--pastel-beige), var(--beige-light));
-    color: var(--deep-chocolate);
-    font-weight: 600;
-    position: relative;
-    overflow: hidden;
+  border-radius: 12px;
+  border: 2px solid var(--border-subtle);
+  background: var(--bg-secondary);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-#result::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, var(--suede-moss), var(--copper-gleam));
+#result.success {
+  background: linear-gradient(135deg, #E8F5E8, #C8E6C9);
+  border-color: #4CAF50;
+  color: #2E7D32;
 }
 
-/* Адаптивность */
+#result.warning {
+  background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
+  border-color: #FF9800;
+  color: #E65100;
+}
+
+#result.error {
+  background: linear-gradient(135deg, #FFEBEE, #FFCDD2);
+  border-color: #F44336;
+  color: #C62828;
+}
+
+/* Плавная прокрутка */
+html {
+  scroll-behavior: smooth;
+}
+
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* Отзывчивость */
 @media (max-width: 768px) {
-    .section-card {
-        padding: 1.5rem;
-        margin: 1rem 0;
-    }
-    
-    .gradient-text {
-        font-size: 2rem;
-    }
-    
-    .btn-primary {
-        padding: 0.8rem 1.5rem;
-        font-size: 1rem;
-    }
-}
-
-/* Кастомные эффекты для элементов интерфейса */
-.feature-card {
-    background: linear-gradient(135deg, var(--coral-white) 0%, var(--pastel-beige) 100%);
-    border-radius: 16px;
+  .section-card {
     padding: 1.5rem;
-    border: 1px solid rgba(140, 74, 47, 0.1);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+    margin: 0 1rem;
+  }
+  
+  .btn-primary {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .floating-animation {
+    animation: none;
+  }
+  
+  .gradient-bg {
+    padding: 2rem 0;
+  }
 }
 
-.feature-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, var(--forest-oak), var(--copper-gleam));
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
+/* Скрытые элементы */
+.hidden {
+  display: none !important;
 }
 
-.feature-card:hover::before {
-    transform: scaleX(1);
+/* Дополнительные утилиты для создания атмосферы Рафталии */
+.earth-texture {
+  background: linear-gradient(135deg, 
+    var(--earth-light) 0%, 
+    var(--bg-secondary) 50%, 
+    var(--earth-warm) 100%
+  );
 }
 
-.feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(140, 74, 47, 0.15);
+.shield-glow {
+  box-shadow: 
+    0 0 20px var(--shield-silver),
+    0 4px 15px var(--shadow-medium);
 }
 
-/* Декоративные элементы */
-.decorative-line {
-    width: 100px;
-    height: 3px;
-    background: linear-gradient(90deg, var(--forest-oak), var(--copper-gleam), var(--blazing-amber));
-    margin: 2rem auto;
-    border-radius: 2px;
-    position: relative;
+.loyalty-accent {
+  border-left: 4px solid var(--loyalty-gold);
+  padding-left: 1rem;
 }
 
-.decorative-line::before,
-.decorative-line::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 8px;
-    height: 8px;
-    background: var(--blazing-amber);
-    border-radius: 50%;
-    transform: translateY(-50%);
+/* Анимация для особых эффектов */
+@keyframes pulseGlow {
+  0%, 100% { 
+    box-shadow: 0 0 5px var(--accent-primary);
+  }
+  50% { 
+    box-shadow: 0 0 20px var(--accent-primary), 0 0 30px var(--loyalty-gold);
+  }
 }
 
-.decorative-line::before {
-    left: -15px;
-}
-
-.decorative-line::after {
-    right: -15px;
-}
-
-/* Анимация для интерактивных элементов */
-.interactive-element {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.interactive-element:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.1);
-}
-
-/* Стили для скроллбара */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--coral-white);
-}
-
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, var(--forest-oak), var(--copper-gleam));
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, var(--copper-gleam), var(--blazing-amber));
-}
-
-/* Дополнительные утилиты */
-.text-raphtalia {
-    color: var(--forest-oak);
-}
-
-.bg-raphtalia {
-    background: var(--pastel-beige);
-}
-
-.border-raphtalia {
-    border-color: var(--copper-gleam);
-}
-
-.shadow-raphtalia {
-    box-shadow: 0 10px 25px rgba(140, 74, 47, 0.15);
+.pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
 }
