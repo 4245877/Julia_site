@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -22,6 +22,10 @@
   }
 }
 </script>
+<!-- Google Pay SDK -->
+<script async
+        src="https://pay.google.com/gp/p/js/pay.js"
+        onload="onGooglePayLoaded()"></script>
 
 
 
@@ -584,6 +588,8 @@
             <p id="paymentDetailsBTC"><span>Bitcoin:</span> bc1pj4udvfs3tdkjeakkfl2clklztusqllgtgz5c8up0u0lcq7ymnjssexnazw</p>
             <button class="copy-button" data-copy="bc1pj4udvfs3tdkjeakkfl2clklztusqllgtgz5c8up0u0lcq7ymnjssexnazw" data-translate-key="donation.copybtn">Copy</button>
           </div>
+
+          <div id="googlePayButtonContainer" style="margin-top: 16px;"></div>
       </div>
     </div>
  </section>

@@ -249,3 +249,94 @@ document.addEventListener('DOMContentLoaded', () => {
         updateSliderOutput(); // Устанавливаем начальное значение
     });
 });
+
+
+const GOOGLE_PAY_MERCHANT_ID = 'BCR2DN4TX7L47DYQ';
+
+let paymentsClient = null;
+
+// Вызывается при загрузке SDK (onload в теге <script>)
+function onGooglePayLoaded() {
+  paymentsClient = new google.payments.api.PaymentsClient({
+    environment: 'TEST'
+  });
+
+  paymentsClient.isReadyToPay({
+    apiVersion: 2,
+    apiVersionMinor: 0,
+    allowedPaymentMethods: [{
+      type: 'CARD',
+      parameters: {
+        allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+        allowedCardNetworks: ['VISA', 'MASTERCARD']
+      }
+    }]
+  })
+  .then(response => {
+    if (response.result) {
+      renderGooglePayButton();
+    }
+  })
+  .catch(err => console.error('isReadyToPay error:', err));
+}
+
+// Рендерим кнопку в контейнере
+function renderGooglePayButton() {
+  const button = paymentsClient.createButton({
+    onClick: onGooglePayButtonClicked,
+    buttonColor: 'default',
+    buttonType: 'long'
+  });
+  document.getElementById('googlePayButtonContainer')
+          .appendChild(button);
+}
+
+// Обработчик клика по кнопке
+function onGooglePayButtonClicked() {
+  const paymentDataRequest = {
+    apiVersion: 2,
+    apiVersionMinor: 0,
+    merchantInfo: {
+      merchantId: GOOGLE_PAY_MERCHANT_ID,
+      merchantName: 'Ваш Сайт Пожертвований'
+    },
+    allowedPaymentMethods: [{
+      type: 'CARD',
+      tokenizationSpecification: {
+        type: 'PAYMENT_GATEWAY',
+        parameters: {
+          gateway: 'stripe',
+          gatewayMerchantId: 'pk_test_51RmwviQpWvUMxetMCSPlWnam13h1UNZVVBhVY56StZSpDuf9AX0SBLTDvzpR60qU0y76T1TjREdjoaYa1vRFDc9Y00IkuT5FNY' // его ID
+        }
+      },
+      parameters: {
+        allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+        allowedCardNetworks: ['VISA', 'MASTERCARD']
+      }
+    }],
+    transactionInfo: {
+      totalPriceStatus: 'ESTIMATED',   // т.к. сумма пожертвования может меняться
+      totalPrice: '1.00',              // минимальная сумма; в реальности можно динамически подставить
+      currencyCode: 'UAH'
+    }
+  };
+
+  paymentsClient.loadPaymentData(paymentDataRequest)
+    .then(paymentData => {
+      // Здесь отправляем token на ваш сервер для завершения транзакции
+      return fetch('/process-donation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(paymentData)
+      });
+    })
+    .then(res => res.json())
+    .then(result => {
+      if (result.success) {
+        alert('Дякуємо за вашу підтримку!');
+      } else {
+        alert('Помилка при оплаті: ' + result.error);
+      }
+    })
+    .catch(err => console.error('loadPaymentData error:', err));
+}
