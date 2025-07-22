@@ -296,24 +296,43 @@ body::before {
   opacity: 1;
 }
 
+/* === НОВЫЕ СТИЛИ ДЛЯ ПОДСКАЗОК === */
+
+/* Контейнер для выпадающего списка */
 .suggestions-container {
-    display: none;
-    position: absolute;
-    border: 1px solid #ddd;
-    background-color: white;
-    width: 100%;
-    max-height: 200px;
+    display: none; /* Изначально скрыт */
+    position: absolute; /* Позиционирование относительно родителя с class="relative" */
+    top: 100%;      /* Сразу под полем ввода */
+    left: 0;
+    right: 0;
+    z-index: 10;    /* Поверх других элементов */
+
+    /* Стилизация в духе темы */
+    background: rgba(245, 240, 232, 0.9); /* Тот же фон, что и у карточек */
+    backdrop-filter: blur(10px);         /* Размытие для "стеклянного" эффекта */
+    border: 2px solid var(--deep-wine);  /* Рамка в цвет фокуса инпута */
+    border-top: none;                    /* Убираем верхнюю рамку для слияния с инпутом */
+    border-radius: 0 0 12px 12px;        /* Скругляем только нижние углы, как у инпута */
+    box-shadow: var(--shadow-soft);      /* Тень из твоей темы */
+
+    /* Для длинных списков */
+    max-height: 220px;
     overflow-y: auto;
-    z-index: 1000;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-.suggestions-container div {
-    padding: 10px;
+
+/* Отдельный элемент в списке подсказок */
+.suggestion-item {
+    padding: 12px 16px; /* Такие же отступы, как в .input-modern */
+    color: var(--dark-plum);
     cursor: pointer;
+    font-weight: 500;
+    transition: background-color var(--transition-quick); /* Плавный переход из темы */
 }
-.suggestions-container div:hover {
-    background-color: #f0f0f0;
+
+/* Эффект при наведении на подсказку */
+.suggestion-item:hover {
+    /* Легкий фон в цвет акцента */
+    background-color: rgba(158, 66, 77, 0.1); 
 }
 .nav-link.active {
     border-bottom: 2px solid white;

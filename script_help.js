@@ -229,24 +229,25 @@ const gpuModels = {
     
     document.querySelectorAll('.section-card').forEach(el => observer.observe(el));
 
-    // Подсветка активного пункта навигации
-    window.addEventListener('scroll', () => {
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('nav a[href^="#"]');
-        let currentSection = '';
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 100;
-            if (window.pageYOffset >= sectionTop) {
-                currentSection = section.getAttribute('id');
+   const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    const sections = document.querySelectorAll('section[id]');
+
+    const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('active');
+                    }
+                });
             }
         });
-        
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${currentSection}`) {
-                link.classList.add('active');
-            }
-        });
+    }, { 
+        rootMargin: '-50% 0px -50% 0px', // Срабатывает, когда секция находится в центре экрана
+        threshold: 0 
     });
+
+    sections.forEach(section => navObserver.observe(section));
 });
