@@ -5,13 +5,13 @@
       "cta": "Explore Julia's features"
     },
     "features": {
-      "sectionTitle": "Key Features",
-      "feature1Title": "Real-time Thought Process Emulation",
-      "feature1Description": "Julia's thought processes are designed to mimic human thinking in real-time, creating smooth and engaging interactions.",
-      "feature2Title": "Voice Modulation",
-      "feature2Description": "Julia can change her voice from a whisper to a shout, conveying emotional depth through tone, animation, and realistic expressions of thought.",
-      "feature3Title": "Customization Options",
-      "feature3Description": "Julia's 3D model can be customized through a launcher with sliders to adjust age, weight, and height while maintaining a unique and consistent identity."
+    "sectionTitle": "Key Features",
+    "feature1Title": "Personality Creation",
+    "feature1Description": "You create a unique AI companion by defining its biography and character traits, which shape its individuality.",
+    "feature2Title": "Interactive Learning",
+    "feature2Description": "The AI learns in real-time through communication with you, remembering and using new information in context.",
+    "feature3Title": "Physical Embodiment",
+    "feature3Description": "You can bring the created AI companion into the real world using a customizable robot."
     },
     "techStack": {
       "sectionTitle": "Technology Stack",
