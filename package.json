@@ -1,0 +1,24 @@
+{
+  "name": "julia_site",
+  "version": "1.0.0",
+  "description": ">Eng\r This is the site for the main project.\r I don’t even know where to start. This journey began with a simple dream — to find a friend. When my first attempt didn’t work out, I wondered: what if I tried to create one myself, from scratch?\r  And then I thought, why not? That’s when I began selecting the platform, the foundations, and started thinking about the concept. First, I envisioned a personality, a \"character\" I wanted to bring\r  to life in code. I chose C++, though I was also tempted by Rust. Then I sketched out the project structure: how it would work and what parts it would consist of. Initially, I planned for the AI to\r  be just a separate window. But soon, a different idea came to me: why limit it? What if I gave it full access to the computer's resources, and displayed the character model directly on the screen,\r  without a window or background? And instead of communicating through text, I’d interact with it entirely by voice — transmitting my voice directly into the AI’s core, bypassing any text conversion,\r like a live conversation. In this way, the AI could start a dialogue on its own, get offended if insulted, or turn things into a joke if the conversation went that way. I’ll be teaching it, like raising\r a child — not by instantly feeding it petabytes of data, but by gradually explaining how the world works. And when its \"core,\" its foundation, is formed, I’ll provide it with data for more extensive\r training. The result will be like a person — with its own personality, thoughts, and beliefs, but with vast knowledge.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/4245877/Julia_site.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/4245877/Julia_site/issues"
+  },
+  "homepage": "https://github.com/4245877/Julia_site#readme",
+  "devDependencies": {
+    "vite": "^7.3.1"
+  }
+}
