@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Julia - Интеллектуальный AI-Компаньон",
+  "url": "https://4245877.github.io/Julia_site/",
+  "image": "https://4245877.github.io/Julia_site/Images/OGImage.png",
+  "logo": "https://4245877.github.io/Julia_site/Images/Logo-256.png",
+
+  "applicationCategory": "BusinessApplication",  
+  "operatingSystem": "Web",  
+
+  "offers": {
+    "@type": "Offer",
+    "price": "0.00",
+    "priceCurrency": "USD",
+    "url": "https://4245877.github.io/Julia_site/",
+    "availability": "https://schema.org/InStock"
+  }
+}
+</script>
+<!-- Google Pay SDK -->
+<script async
+        src="https://pay.google.com/gp/p/js/pay.js"
+        onload="onGooglePayLoaded()"></script>
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Julia – это уникальный виртуальный AI-компаньон, способный имитировать человеческий интеллект, эмоции и взаимодействие. Узнайте больше о функциях и технологиях, которые делают её уникальной.">
+    <meta name="keywords" content="AI-компаньон, julia ai компаньон, искусственный интеллект, Julia, JuliaAI, julia, julia AI, Julia ai, ИИ юля, Юля ИИ, ИИ Юля, Юлия ИИ, Юльчик ИИ, 4245877, 4233800, виртуальный помощник, технологии AI, машинное обучение, OpenGL, TensorFlow, Rasa, виртуальная личность">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="4245877">
+    <link rel="icon" href="Images/Logo-256.png" type="image/png">
+    <meta name="google-site-verification" content="Tl9FVjxmrqwkZmthujRbUlfNyj9DIqujas0TUkC0MzM" />
+    <meta property="og:type" content="website">
+
+    <meta property="og:title" content="Julia - Интеллектуальный AI-Компаньон">
+    <meta property="og:description" content="Julia – это уникальный виртуальный AI-компаньон, способный имитировать человеческий интеллект, эмоции и взаимодействие.">
+    <meta property="og:url" content="https://4245877.github.io/Julia_site/">
+    <meta property="og:site_name" content="Julia AI">
+    <meta property="og:image" content="https://4245877.github.io/Julia_site/Images/OGImage.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Julia - Интеллектуальный AI-Компаньон">
+    <meta name="twitter:description" content="Julia – это уникальный виртуальный AI-компаньон, способный имитировать человеческий интеллект, эмоции и взаимодействие.">
+    <meta name="twitter:image" content="https://4245877.github.io/Julia_site/Images/OGImage.png">
+    <title>Julia - Интеллектуальный AI-Компаньон</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.16/tailwind.min.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  
+<body class="bg-gray-900 text-white">
+  
+  <header class="header-gradient py-20">
+    <div class="lang-switcher absolute top-4 right-4 flex space-x-2 z-50">
+      <button data-lang="en">EN</button>
+      <button data-lang="ua">UA</button>
+      <button data-lang="ru">RU</button>
+    </div>
+    <div class="container mx-auto px-4 text-center relative">
+      <h1 data-translate-key="header.title" class="text-4xl font-bold mb-4">AI-компаньон, созданный с непревзойденным интеллектом</h1>
+      <p data-translate-key="header.subtitle" class="text-lg mb-8">Julia – виртуальный AI-компаньон, разработанный для имитации человеческого интеллекта, эмоций и естественного взаимодействия.</p>
+      <a data-translate-key="header.cta" href="#features" class="inline-block bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full transition duration-300">Ознакомьтесь с функциями Julia</a>
+    </div>
+  </header>
+
+
+ <section id="features" class="py-20 px-6 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center">Ключевые функции</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Создание личности</h3>
+                    <p>Вы создаете уникального ИИ-компаньона, прописывая его биографию и характер, на основе которых формируется его индивидуальность.</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Интерактивное обучение</h3>
+                    <p>ИИ обучается в реальном времени через общение с вами, запоминая и используя новую информацию в контексте.</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Физическое воплощение</h3>
+                    <p>Вы можете перенести созданного ИИ-компаньона в реальный мир с помощью настраиваемого робота.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+  <section id="character-customization" class="py-20 px-6 bg-gray-800 text-white">
+    <div class="container mx-auto">
+      <!-- Заголовок -->
+      <h2 class="text-4xl font-bold mb-4">Создайте идеальную вайфу под свой вкус</h2>
+      <!-- Вступление -->
+      <p class="text-lg mb-8" data-i18n="section.characterCustomization.intro">
+        Выбирайте из широкого каталога готовых образов или создавайте свою уникальную вайфу — от внешности до характера и стиля отрисовки.
+      </p>
+
+      <!-- Галерея готовых персонажей -->
+      <div class="mb-12">
+      <h3 class="text-2xl font-semibold mb-4" data-i18n="section.characterCustomization.presetsTitle">Готовые вайфу</h3>
+      <div id="character-gallery" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-6">
+      <div class="flex flex-col items-center">
+      <img src="Images/Characters/2D/Raphtalia.jpg" alt="Raphtalia" data-char-name="Raphtalia">
+          <span class="text-sm">Raphtalia</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <img src="Images/Characters/2D/YorForger.jpg" alt="Yor Forger" data-char-name="YorForger">
+          <span class="text-sm">Yor</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <img src="Images/Characters/2D/RoxyMigurdia.jpg" alt="Roxy Migurdia" data-char-name="RoxyMigurdia">
+          <span class="text-sm">Roxy</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <img src="Images/Characters/2D/Friren.jpg" alt="Friren" data-char-name="Friren">
+          <span class="text-sm">Friren</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <img src="Images/Characters/2D/Emilia.jpg" alt="Emilia" data-char-name="Emilia">
+          <span class="text-sm">Emilia</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <img src="Images/Characters/2D/Zero Two.jpg" alt="Zero Two" data-char-name="Zero Two">
+          <span class="text-sm">Zero Two</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <img src="Images/Characters/2D/Asuna.jpg" alt="Asuna" data-char-name="Asuna">
+          <span class="text-sm">Asuna</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <img src="Images/Characters/2D/Nezuko.jpg" alt="Nezuko" data-char-name="Nezuko">
+          <span class="text-sm">Nezuko</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <img src="Images/Characters/2D/Hinata.jpg" alt="Hinata" data-char-name="Hinata">
+          <span class="text-sm">Hinata</span>
+        </div>
+      </div>
+  </div>
+
+  <div class="mb-12">
+    <h3 class="text-2xl font-semibold mb-4" data-i18n="section.characterCustomization.renderStylesTitle">Стиль отрисовки</h3>
+    <div id="style-buttons" class="flex flex-wrap gap-4">
+      <button class="px-4 py-2 bg-gray-700 rounded-lg hover:bg-gray-600 transition" data-style="3D" data-i18n="section.characterCustomization.style3d">3D-модель</button>
+      <button class="px-4 py-2 bg-gray-700 rounded-lg hover:bg-gray-600 transition" data-style="2D" data-i18n="section.characterCustomization.style2d">2D-аниме</button>
+      <button class="px-4 py-2 bg-gray-700 rounded-lg hover:bg-gray-600 transition" data-style="Hyperrealism" data-i18n="section.characterCustomization.styleHyperrealism">Гиперреализм</button>
+      <button class="px-4 py-2 bg-gray-700 rounded-lg hover:bg-gray-600 transition" data-style="Photorealism" data-i18n="section.characterCustomization.stylePhotorealism">Фотореализм</button>
+    </div>
+        <div id="render-preview" class="mt-6 w-full h-64 bg-gray-900 rounded-lg flex items-center justify-center text-gray-500">
+          <!-- Здесь появится превью персонажа -->
+          Превью вайфу
+        </div>
+  </div>
+
+
+<!-- Basic Settings -->
+  <div class="customization-section">
+      <h3 class="section-title">🔧 Основные настройки</h3>
+      
+      <div class="subsection">
+          <h4 class="subsection-title">🧍‍♀️ Внешний вид</h4>
+          
+          <div class="form-group">
+              <label for="age">Возраст</label>
+              <select class="select-input" id="age">
+                  <option value="16">16 лет</option>
+                  <option value="18">18 лет</option>
+                  <option value="20">20 лет</option>
+                  <option value="22">22 года</option>
+                  <option value="25" selected>25 лет</option>
+                  <option value="28">28 лет</option>
+                  <option value="30">30 лет</option>
+                  <option value="35">35 лет</option>
+              </select>
+          </div>
+          
+          <div class="form-group">
+              <div class="flex justify-between items-center">
+                  <label for="height" class="mb-0" data-i18n="section.characterCustomization.height">Рост</label>
+                  <output for="height" class="font-semibold text-white">170 см</output>
+              </div>
+                <input type="range" id="height" min="140" max="210" value="165" data-unit="см">
+                <output for="height">165</output>
+              <div class="range-labels">
+                  <span>140 см</span>
+                  <span>210 см</span>
+              </div>
+          </div>
+
+          <div class="form-group">
+              <label>Цвет волос</label>
+              <div class="color-palette color-options" id="hair-color-palette">
+                <div class="color-option" style="background: #8B4513;" data-color="brown"></div>
+                    <div class="color-option" style="background: #000000;" data-color="black"></div>
+                    <div class="color-option" style="background: #FFD700;" data-color="blonde"></div>
+                    <div class="color-option" style="background: #B22222;" data-color="red"></div>
+                    <div class="color-option" style="background: #4169E1;" data-color="blue"></div>
+                    <div class="color-option" style="background: #9370DB;" data-color="purple"></div>
+                    <div class="color-option" style="background: #FF69B4;" data-color="pink"></div>
+                    <div class="color-option" style="background: #eeeeee;" data-color="green"></div>
+                    <div class="color-option" style="background: #90EE90;" data-color="green"></div>
+                 </div>
+              </div>
+
+          <div class="form-group">
+              <label>Цвет глаз</label>
+              <div class="color-palette color-options" id="eye-color-palette">
+                <div class="color-option" style="background: #8B4513;" data-color="brown"></div>
+                  <div class="color-option" style="background: #4169E1;" data-color="blue"></div>
+                  <div class="color-option" style="background: #228B22;" data-color="green"></div>
+                  <div class="color-option" style="background: #808080;" data-color="gray"></div>
+                  <div class="color-option" style="background: #9370DB;" data-color="purple"></div>
+                  <div class="color-option" style="background: #FF69B4;" data-color="pink"></div>
+                  <div class="color-option" style="background: #FFD700;" data-color="gold"></div>
+                  <div class="color-option" style="background: #B22222;" data-color="red"></div>
+                  </div>
+          </div>
+      </div>
+ 
+      <div class="subsection">
+          <h4 class="subsection-title">🧠 Тип личности</h4>
+          
+          <div class="form-group">
+              <div class="flex justify-between items-center">
+                  <label for="temperament" class="mb-0">Темперамент</label>
+                  <output for="temperament" class="font-semibold text-white">50</output>
+              </div>
+              <input type="range" class="range-input" id="temperament" min="0" max="100" value="50">
+              <div class="range-labels">
+                  <span>Спокойная</span>
+                  <span>Энергичная</span>
+              </div>
+          </div>
+          
+          <div class="form-group">
+              <div class="flex justify-between items-center">
+                  <label for="empathy" class="mb-0">Эмпатия</label>
+                  <output for="empathy" class="font-semibold text-white">70</output>
+              </div>
+              <input type="range" class="range-input" id="empathy" min="0" max="100" value="70">
+              <div class="range-labels">
+                  <span>Низкая</span>
+                  <span>Высокая</span>
+              </div>
+          </div>
+          
+          <div class="form-group">
+              <div class="flex justify-between items-center">
+                  <label for="formality" class="mb-0">Формальность речи</label>
+                  <output for="formality" class="font-semibold text-white">30</output>
+              </div>
+              <input type="range" class="range-input" id="formality" min="0" max="100" value="30">
+              <div class="range-labels">
+                  <span>Дружелюбная</span>
+                  <span>Официальная</span>
+              </div>
+          </div>
+          <div class="form-group">
+
+            <label for="personality-type">Архетип</label>
+              <select class="select-input" id="personality-type">
+                  <option value="yamadere">Ямадере (добрая и заботливая)</option>
+                  <option value="dandere">Дандере (застенчивая интровертка)</option>
+                  <option value="genki-dere">Гэнки-дэре (энергичная авантюристка)</option>
+                  <option value="tsundere">Цундэрэ (холодная снаружи, тёплая внутри)</option>
+                   <option value="kuudere">Куудэрэ (сдержанная и хладнокровная)</option>
+              </select>
+
+            </div>
+
+      </div>
+      
+      <div class="subsection">
+          <h4 class="subsection-title">🎙️ Голос</h4>
+          
+          <div class="form-group">
+              <div class="flex justify-between items-center">
+                  <label for="voice-pitch" class="mb-0">Тембр</label>
+                  <output for="voice-pitch" class="font-semibold text-white">60</output>
+              </div>
+              <input type="range" class="range-input" id="voice-pitch" min="0" max="100" value="60">
+              <div class="range-labels">
+                  <span>Низкий</span>
+                  <span>Высокий</span>
+              </div>
+          </div>
+          
+          <div class="form-group">
+              <div class="flex justify-between items-center">
+                  <label for="speech-speed" class="mb-0">Темп речи</label>
+                  <output for="speech-speed" class="font-semibold text-white">50</output>
+              </div>
+              <input type="range" class="range-input" id="speech-speed" min="0" max="100" value="50">
+              <div class="range-labels">
+                  <span>Медленный</span>
+                  <span>Быстрый</span>
+              </div>
+          </div>
+          
+          <div class="form-group">
+              <label for="accent">Акцент</label>
+              <select class="select-input" id="accent">
+                  <option value="none" selected>Без акцента</option>
+                  <option value="russian">Русский</option>
+                  <option value="ukrainian">Украинский</option>
+                  <option value="belarusian">Белорусский</option>
+                  <option value="british">Британский</option>
+                  <option value="american">Американский</option>
+                  <option value="french">Французский</option>
+                  <option value="japanese">Японский</option>
+                  <option value="caucasian">Кавказский</option>
+              </select>
+          </div>
+      </div>
+  </div>
+
+ 
+ <!-- Advanced Options Toggle -->
+            <button id="advanced-toggle" class="advanced-toggle">
+              <span data-translate-key="customization.advancedToggle">💡 Дополнительные опции</span>
+              <span id="toggle-icon">▼</span>
+            </button>
+
+            <!-- Advanced Options -->
+            <div class="advanced-options" id="advanced-options">
+                <div class="customization-section">
+                    <h3 class="section-title">💡 Расширенные настройки</h3>
+                    <div class="form-group">
+                      <div class="flex justify-between items-center">
+                        <label for="attachment" class="mb-0">Привязанность</label>
+                        <output for="attachment" class="font-semibold text-white">30</output>
+                      </div>
+                      <input type="range" class="range-input" id="attachment" min="0" max="100" value="30">
+                      <div class="range-labels">
+                         <span>Низкая</span>
+                         <span>Высокая</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="creativity">Креативность</label>
+                        <input type="range" class="range-input" id="creativity" min="0" max="100" value="50">
+                        <div class="range-labels">
+                            <span>Логичная</span>
+                            <span>Творческая</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="realism">Реализм ошибок</label>
+                        <input type="range" class="range-input" id="realism" min="0" max="100" value="30">
+                        <div class="range-labels">
+                            <span>Идеальная</span>
+                            <span>Как человек</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="knowledge">Глубина знаний</label>
+                        <input type="range" class="range-input" id="knowledge" min="0" max="100" value="80">
+                        <div class="range-labels">
+                            <span>Базовая</span>
+                            <span>Экспертная</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="memory">Объём памяти</label>
+                        <input type="range" class="range-input" id="memory" min="0" max="100" value="70">
+                        <div class="range-labels">
+                            <span>Короткая</span>
+                            <span>Долгая</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      <!-- Призыв к действию -->
+      <div class="text-center">
+        <a href="#" class="inline-block bg-pink-600 hover:bg-pink-500 text-white font-semibold px-8 py-3 rounded-full shadow-lg transition" data-i18n="section.characterCustomization.cta">Начать создавать свою вайфу</a>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="bg-gradient-to-r from-gray-800 to-gray-700 py-20">
+    <div class="container mx-auto px-4">
+      <h2 id="techStackTitle" class="text-3xl font-bold mb-8">Технологический стек</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <h3 id="whatDrivesTitle" class="text-2xl font-bold mb-4">Что движет Julia</h3>
+
+          <h4 class="text-xl font-semibold mt-4 mb-2">Высокопроизводительные вычисления</h4>
+          <ul class="list-disc ml-6 space-y-2">
+            <li>CUDA (NVIDIA)</li>
+            <li>NVIDIA TensorRT</li>
+            <li>OpenMP</li>
+            <li>Intel TBB</li>
+            <li>AMD AOCL</li>
+          </ul>
+
+          <h4 class="text-xl font-semibold mt-4 mb-2">Машинное обучение и ИИ</h4>
+          <ul class="list-disc ml-6 space-y-2">
+            <li>TensorFlow & LibTorch</li>
+            <li>ONNX</li>
+            <li>Dlib</li>
+            <li>OpenCV</li>
+            <li>YOLO</li>
+            <li>RNN</li>
+            <li>GAN</li>
+          </ul>
+
+          <h4 class="text-xl font-semibold mt-4 mb-2">Данные и графика</h4>
+          <ul class="list-disc ml-6 space-y-2">
+            <li>OpenGL</li>
+            <li>GLM</li>
+            <li>Assimp</li>
+            <li>SFML</li>
+            <li>Boost.Graph</li>
+            <li>PostgreSQL</li>
+            <li>OpenAL</li>
+            <li>PortAudio</li>
+          </ul>
+
+          <h4 class="text-xl font-semibold mt-4 mb-2">Разговорный ИИ и NLP</h4>
+          <ul class="list-disc ml-6 space-y-2">
+            <li>Rasa / BotPress</li>
+            <li>CMU Sphinx</li>
+            <li>Festival</li>
+            <li>WaveGlow</li>
+          </ul>
+
+          <h4 class="text-xl font-semibold mt-4 mb-2">Ключевые датасеты</h4>
+          <ul class="list-disc ml-6 space-y-2">
+            <li>Wikipedia</li>
+            <li>The Pile</li>
+            <li>Natural Questions</li>
+            <li>SQuAD</li>
+            <li>PersonaChat</li>
+            <li>DailyDialog</li>
+            <li>GSM8K</li>
+            <li>BIG‑Bench</li>
+          </ul>
+
+          <h4 class="text-xl font-semibold mt-4 mb-2">DevOps</h4>
+          <ul class="list-disc ml-6 space-y-2">
+            <li>Git</li>
+            <li>Docker</li>
+          </ul>
+
+          <h4 class="text-xl font-semibold mt-4 mb-2">Фундаментальные области</h4>
+          <ul class="list-disc ml-6 space-y-2">
+            <li>Computer Science</li>
+            <li>Machine Learning</li>
+            <li>UI/UX дизайн</li>
+            <li>Интеграция с оборудованием</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 id="roadmapTitle" class="text-2xl font-bold mb-4">Дорожная карта разработки</h3>
+          <div class="flex justify-center">
+            <img src="Images/Board.png" alt="Дорожная карта" class="w-full rounded-lg shadow-lg">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="bg-gray-800 py-20">
+    <div class="container mx-auto px-4">
+      <h2 id="launcherTitle" class="text-3xl font-bold mb-8 text-center">Скачать Julia (лаунчер)</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h3 id="launcherDescription" class="text-2xl font-bold mb-4">Что такое лаунчер Julia?</h3>
+          <p class="mb-6">Лаунчер Julia – это приложение, которое позволяет установить, настроить и запустить вашего персонального AI-компаньона. С помощью лаунчера вы сможете:</p>
+          <ul class="list-disc ml-6 space-y-2 mb-8">
+            <li>Настроить внешний вид Julia, изменяя параметры возраста, роста и веса</li>
+            <li>Установить предпочтительные настройки голоса и эмоциональности</li>
+            <li>Выбрать режим взаимодействия (голосовой или текстовый)</li>
+            <li>Контролировать доступ Julia к различным системным ресурсам</li>
+            <li>Получать обновления и новые функции автоматически</li>
+          </ul>
+          <div class="flex justify-center md:justify-start mt-6">
+            <a href="how-to-use.html" id="howToUseButton" class="inline-block bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-full transition duration-300 flex items-center">
+              Как пользоваться
+            </a>
+          </div>
+          <div class="flex justify-center md:justify-start mt-6">
+            <a href="#" id="downloadButton" class="inline-block bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-full transition duration-300 flex items-center">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+              </svg>
+              Скачать лаунчер (64 МБ)
+            </a>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="rounded-lg overflow-hidden shadow-xl">
+            <img src="Images/Launcher1.png" alt="Интерфейс лаунчера Julia - главный экран" class="w-full h-auto">
+          </div>
+          <div class="rounded-lg overflow-hidden shadow-xl">
+            <img src="Images/Launcher2.png" alt="Интерфейс лаунчера Julia - настройки внешности" class="w-full h-auto">
+          </div>
+          <div class="rounded-lg overflow-hidden shadow-xl">
+            <img src="Images/Launcher3.png" alt="Интерфейс лаунчера Julia - настройки голоса" class="w-full h-auto">
+          </div>
+          <div class="rounded-lg overflow-hidden shadow-xl">
+            <img src="Images/Launcher4.png" alt="Интерфейс лаунчера Julia - системные настройки" class="w-full h-auto">
+          </div>
+        </div>
+      </div>
+      <div class="mt-12 bg-gray-700 p-6 rounded-lg">
+        <h3 id="systemRequirements" class="text-xl font-bold mb-4">Системные требования💀</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div>
+            <h4 class="font-bold mb-2">Минимальные</h4>
+            <ul class="list-disc ml-6 space-y-1">
+              <li>ОС: Windows 10/11, macOS 11+, Ubuntu 20.04+</li>
+              <li>Процессор: AMD Ryzen 7 7900 / Intel Core Ultra 9 285K</li>
+              <li>Видеокарта: NVIDIA RTX 5080 / 2 × Tesla V100 / 2 × AMD RX 7900 XTX</li>
+              <li>ОЗУ: 256 GB DDR4‑3600 MHz (CL16‑19‑19‑39)</li>
+              <li>Хранилище:
+                <ul class="list-inside list-disc ml-4">
+                  <li>512 GB NVMe PCIe Gen4 M.2</li>
+                  <li>Послед. чтение: до 5 000 МБ/с</li>
+                  <li>Запись: до 4 400 МБ/с</li>
+                  <li>TBW: 600 TB</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="font-bold mb-2">Рекомендуемые</h4>
+            <ul class="list-disc ml-6 space-y-1">
+              <li>ОС: Windows 11, macOS 12+, Ubuntu 22.04+</li>
+              <li>Процессор: AMD Ryzen Threadripper 7970X / Intel Xeon 6741P</li>
+              <li>ВидеокартЫ:2 × NVIDIA H200 / ≥ 6 × AMD RX 9070</li>
+              <li>ОЗУ: 256 GB DDR5‑7200 MHz (CL32‑40‑40‑96)</li>
+              <li>Хранилище:
+                <ul class="list-inside list-disc ml-4">
+                  <li>20 TB NVMe PCIe Gen4 M.2</li>
+                  <li>Послед. чтение: до 9 000 МБ/с</li>
+                  <li>Запись: до 4 400 МБ/с</li>
+                  <li>TBW: 2 400 TB</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="font-bold mb-2">Дополнительно</h4>
+            <ul class="list-disc ml-6 space-y-1">
+              <li>Микрофон (для голосового взаимодействия)</li>
+              <li>Динамики или наушники</li>
+              <li>Интернет-соединение</li>
+              <li>Веб-камера (для визуальной идентификации)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section class="py-20 bg-light">
+    <div class="container mx-auto px-4">
+    <h2 id="developerJourneyTitle" class="text-3xl font-bold mb-8" style="color: var(--dark-burgundy);">Мой путь как разработчика</h2>
+      <div class="flex flex-col items-center">
+        <img src="Images/Developer.png" alt="Михаил Головач" class="rounded-full mb-4 pulse">
+        <p id="developerJourneyDescription" class="text-lg mb-4">Этот проект берет начало в простой мечте — обретении верного спутника. Неудачная первая попытка подтолкнула меня к более амбициозному решению: сконструировать такого собеседника самостоятельно, «с нуля». В качестве программной основы был выбран язык C++ — несмотря на привлекательность Rust — что позволило обеспечить детальный контроль над ресурсами и производительностью. Далее был сформирован архитектурный план системы: компоненты генерации речи, обработки естественного языка и управления эмоциями. Предполагается, что ИИ сможет не только инициировать диалог, но и демонстрировать «чувство собственного достоинства» — например, обижаться на грубость собеседника или реагировать шуткой. Обучение будет организовано по аналогии с воспитанием младенца: идея заключается в поэтапном введении понятий о мире, передаче знаний «порциями» и постепенном наращивании сложных когнитивных моделей. В конечном итоге система должна приобрести черты, характерные для человека — индивидуальность, способность к рассуждению и выработке собственных убеждений — при этом обладая практически неограниченным доступом к информации.</p>
+        <p id="developerJourneySupportText" class="text-lg font-bold">- Поддержите мой проект Julia</p>
+      </div>
+    
+    <div class="progress-container">
+      <div class="progress-info">
+          <span id="current-amount">12.53</span> $ <span id="of-text">из</span> <span id="goal-amount">100</span> $
+      </div>
+      <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+      </div>
+        <button class="support-button" data-action="open-modal">Поддержать</button>
+    </div>
+ </div>
+
+    <!-- Модальное окно -->
+    <div class="modal" id="donateModal">
+      <div class="modal-content">
+
+        <button class="close-button">×</button>
+          <h2 id="modalTitle">Сума не важна. Буду рад любой поддержке!</h2>
+          <div class="payment-details">
+            <p id="paymentDetailsUAH"><span>Visa:</span> 4441111042472401 UAH</p>
+            <button class="copy-button" data-copy="4441111042472401" data-translate-key="donation.copybtn">Copy</button>
+            <p id="paymentDetailsUSD"><span>Visa:</span> 4441111082147673 USD</p>
+            <button class="copy-button" data-copy="4441111082147673" data-translate-key="donation.copybtn">Copy</button>
+            <p id="paymentDetailsBTC"><span>Bitcoin:</span> bc1pj4udvfs3tdkjeakkfl2clklztusqllgtgz5c8up0u0lcq7ymnjssexnazw</p>
+            <button class="copy-button" data-copy="bc1pj4udvfs3tdkjeakkfl2clklztusqllgtgz5c8up0u0lcq7ymnjssexnazw" data-translate-key="donation.copybtn">Copy</button>
+          </div>
+
+          <div id="googlePayButtonContainer" style="margin-top: 16px;"></div>
+      </div>
+    </div>
+ </section>
+
+<footer class="bg-gray-800 py-10">
+  <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-4 text-white">Следите за развитием Julia</h2>
+      <div class="flex justify-center space-x-4">
+          <!-- GitHub -->
+          <a href="https://github.com/4245877/Julia" class="text-blue-500 hover:text-blue-400 transition duration-300">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58 0-.29-.01-1.06-.02-2.08-3.34.73-4.05-1.61-4.05-1.61-.55-1.4-1.34-1.77-1.34-1.77-1.09-.75.08-.74.08-.74 1.2.09 1.83 1.24 1.83 1.24 1.07 1.84 2.8 1.31 3.48 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.97 0-1.32.47-2.39 1.24-3.23-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23A11.5 11.5 0 0112 6.65c1.02.01 2.05.14 3.01.4 2.28-1.56 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.23 0 4.64-2.81 5.66-5.48 5.95.43.37.81 1.1.81 2.22 0 1.6-.01 2.88-.01 3.27 0 .32.21.7.82.58A12.01 12.01 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+          </a>
+          <!-- YouTube -->
+          <a href="https://www.youtube.com/@Plarov" class="text-red-500 hover:text-red-400 transition duration-300">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M23.498 6.186c-.293-1.105-1.157-1.973-2.263-2.272C19.242 3.5 12 3.5 12 3.5s-7.242 0-9.235.414C1.66 4.213.797 5.081.503 6.186.187 7.307 0 9.093 0 12s.187 4.693.503 5.814c.294 1.105 1.157 1.973 2.262 2.271C4.758 20.5 12 20.5 12 20.5s7.242 0 9.235-.414c1.106-.298 1.97-1.166 2.263-2.271.315-1.121.502-2.907.502-5.814s-.187-4.693-.502-5.814zM9.545 15.568v-7.136L15.5 12l-5.955 3.568z"/>
+              </svg>
+          </a>
+          <!-- Discord -->
+          <a href="https://discord.gg/g4eFaxrUap" class="text-indigo-500 hover:text-indigo-400 transition duration-300">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M19.27 5.33C17.94 4.71 16.5 4.26 15 4a.09.09 0 0 0-.07.03c-.18.33-.39.76-.53 1.09a16.09 16.09 0 0 0-4.8 0c-.14-.34-.35-.76-.54-1.09c-.01-.02-.04-.03-.07-.03c-1.5.26-2.93.71-4.27 1.33c-.01 0-.02.01-.03.02c-2.72 4.07-3.47 8.03-3.1 11.95c0 .02.01.04.03.05c1.8 1.32 3.53 2.12 5.24 2.65c.03.01.06 0 .07-.02c.4-.55.76-1.13 1.07-1.74c.02-.04 0-.08-.04-.09c-.57-.22-1.11-.48-1.64-.78c-.04-.02-.04-.08-.01-.11c.11-.08.22-.17.33-.25c.02-.02.05-.02.07-.01c3.44 1.57 7.15 1.57 10.55 0c.02-.01.05-.01.07.01c.11.09.22.17.33.26c.04.03.04.09-.01.11c-.52.31-1.07.56-1.64.78c-.04.01-.05.06-.04.09c.32.61.68 1.19 1.07 1.74c.03.01.06.02.09.01c1.72-.53 3.45-1.33 5.25-2.65c.02-.01.03-.03.03-.05c.44-4.53-.73-8.46-3.1-11.95c-.01-.01-.02-.02-.04-.02zM8.52 14.91c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.84 2.12-1.89 2.12zm6.97 0c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.83 2.12-1.89 2.12z"/>
+              </svg>
+          </a>
+          <!-- Telegram -->
+          <a href="https://t.me/huycorporation" class="text-blue-400 hover:text-blue-300 transition duration-300">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+              </svg>
+          </a>
+      </div>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
