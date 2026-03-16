@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Как пользоваться Julia</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/styles/pages/index.css">
-    <link rel="icon" href="Images/Logo-256.png" type="image/png">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/pages/help.css">
+    <link rel="icon" href="/Images/Logo-256.png" type="image/png">
 </head>
 <body class="smooth-scroll bg-gray-50">
     <div class="progress-bar" id="progressBar"></div>
@@ -164,75 +165,75 @@
         </section>
 
         <!-- ИИ-ассистент -->
-    <section id="ai" class="fade-in">
-        <div class="section-card card-hover">
-            <h2 class="text-4xl font-bold gradient-text mb-8">🤖 ИИ-ассистент Julia</h2>
-            
-            <div class="bg-gradient-to-r from-orange-50 to-red-50 p-6 rounded-xl mb-8">
-                <h3 class="text-2xl font-semibold mb-6 text-orange-800">🔧 Проверка системных требований</h3>
-                <p class="text-gray-600 mb-6">Убедитесь, что ваше оборудование соответствует требованиям для работы Julia:</p>
+        <section id="ai" class="fade-in">
+            <div class="section-card card-hover">
+                <h2 class="text-4xl font-bold gradient-text mb-8">🤖 ИИ-ассистент Julia</h2>
                 
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Операционная система</label>
-                            <input type="text" **id="os"** class="input-modern" placeholder="Windows 10/11, macOS, Linux">
+                <div class="bg-gradient-to-r from-orange-50 to-red-50 p-6 rounded-xl mb-8">
+                    <h3 class="text-2xl font-semibold mb-6 text-orange-800">🔧 Проверка системных требований</h3>
+                    <p class="text-gray-600 mb-6">Убедитесь, что ваше оборудование соответствует требованиям для работы Julia:</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Операционная система</label>
+                                <input type="text" id="os" class="input-modern" placeholder="Windows 10/11, macOS, Linux">
+                            </div>
+                            
+                            <div class="relative">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Процессор</label>
+                                <input type="text" id="cpu" class="input-modern" placeholder="Intel Core i5 / AMD Ryzen 5" autocomplete="off">
+                                <div id="cpu-suggestions" class="suggestions-container"></div>
+                            </div>
+                            
+                            <div class="relative">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Видеокарта</label>
+                                <input type="text" id="gpu" class="input-modern" placeholder="NVIDIA GTX 1060 / AMD RX 580" autocomplete="off">
+                                <div id="gpu-suggestions" class="suggestions-container"></div>
+                            </div>
                         </div>
                         
-                        <div **class="relative"**>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Процессор</label>
-                            <input type="text" **id="cpu"** class="input-modern" placeholder="Intel Core i5 / AMD Ryzen 5" autocomplete="off">
-                            <div **id="cpu-suggestions"** class="suggestions-container"></div>
-                        </div>
-                        
-                        <div **class="relative"**>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Видеокарта</label>
-                            <input type="text" **id="gpu"** class="input-modern" placeholder="NVIDIA GTX 1060 / AMD RX 580" autocomplete="off">
-                            <div **id="gpu-suggestions"** class="suggestions-container"></div>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">ОЗУ (ГБ)</label>
+                                <input type="number" id="ram" class="input-modern" placeholder="8" min="4">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Место на диске (ГБ)</label>
+                                <input type="number" id="storage" class="input-modern" placeholder="50" min="10">
+                            </div>
+                            
+                            <div class="space-y-3 pt-2">
+                                <label class="flex items-center space-x-3">
+                                    <input type="checkbox" id="microphone" class="w-5 h-5 text-purple-600 rounded focus:ring-purple-500">
+                                    <span class="text-gray-700">Микрофон</span>
+                                </label>
+                                <label class="flex items-center space-x-3">
+                                    <input type="checkbox" id="speakers" class="w-5 h-5 text-purple-600 rounded focus:ring-purple-500">
+                                    <span class="text-gray-700">Динамики</span>
+                                </label>
+                                <label class="flex items-center space-x-3">
+                                    <input type="checkbox" id="internet" class="w-5 h-5 text-purple-600 rounded focus:ring-purple-500">
+                                    <span class="text-gray-700">Интернет</span>
+                                </label>
+                                <label class="flex items-center space-x-3">
+                                    <input type="checkbox" id="webcam" class="w-5 h-5 text-purple-600 rounded focus:ring-purple-500">
+                                    <span class="text-gray-700">Веб-камера</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">ОЗУ (ГБ)</label>
-                            <input type="number" **id="ram"** class="input-modern" placeholder="8" min="4">
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Место на диске (ГБ)</label>
-                            <input type="number" **id="storage"** class="input-modern" placeholder="50" min="10">
-                        </div>
-                        
-                        <div class="space-y-3 pt-2">
-                            <label class="flex items-center space-x-3">
-                                <input type="checkbox" **id="microphone"** class="w-5 h-5 text-purple-600 rounded focus:ring-purple-500">
-                                <span class="text-gray-700">Микрофон</span>
-                            </label>
-                            <label class="flex items-center space-x-3">
-                                <input type="checkbox" **id="speakers"** class="w-5 h-5 text-purple-600 rounded focus:ring-purple-500">
-                                <span class="text-gray-700">Динамики</span>
-                            </label>
-                            <label class="flex items-center space-x-3">
-                                <input type="checkbox" **id="internet"** class="w-5 h-5 text-purple-600 rounded focus:ring-purple-500">
-                                <span class="text-gray-700">Интернет</span>
-                            </label>
-                            <label class="flex items-center space-x-3">
-                                <input type="checkbox" **id="webcam"** class="w-5 h-5 text-purple-600 rounded focus:ring-purple-500">
-                                <span class="text-gray-700">Веб-камера</span>
-                            </label>
-                        </div>
+                    <div class="mt-8 text-center">
+                        <button class="btn-primary" onclick="checkRequirements()">
+                            🔍 Проверить совместимость
+                        </button>
+                        <div id="result" class="mt-4 p-4 rounded-lg hidden text-left"></div>
                     </div>
                 </div>
-                
-                <div class="mt-8 text-center">
-                    <button class="btn-primary" onclick="checkRequirements()">
-                        🔍 Проверить совместимость
-                    </button>
-                    <div id="result" class="mt-4 p-4 rounded-lg hidden text-left"></div>
-                </div>
             </div>
-        </div>
-    </section>
+        </section>
     </main>
 
     <!-- Footer -->
@@ -274,6 +275,6 @@
             </div>
         </div>
     </footer>
-<script src="script_help.js" defer></script>
+    <script type="module" src="/js/how-to-use.js"></script>
 </body>
 </html>
