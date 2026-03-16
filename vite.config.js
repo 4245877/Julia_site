@@ -1,7 +1,8 @@
 import { defineConfig } from "vite";
 import { resolve } from "node:path";
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  base: command === "build" ? "/Julia_site/" : "/",
   root: resolve(__dirname, "src"),
   publicDir: resolve(__dirname, "public"),
   build: {
@@ -14,4 +15,4 @@ export default defineConfig({
       },
     },
   },
-});
+}));

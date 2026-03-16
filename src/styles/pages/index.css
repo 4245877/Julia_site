@@ -1145,60 +1145,6 @@ p {
     transform: translateY(-2px);
 }
 
-/* Footer - Вторая, более решительная попытка уменьшения */
-footer {
-    background: var(--primary-red);
-    color: var(--light-sand);
-    padding: 1.5rem 0 2rem; /* Оставляем немного воздуха сверху, но можно сделать и 1rem */
-    text-align: center;
-    position: relative;
-}
-
-footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--gradient-gold);
-}
-
-footer h2 {
-    color: var(--white);
-    margin-bottom: 0.75rem;  
-}
-
-
-footer p {
-    margin-bottom: 1rem; /* Контролируем отступ для параграфов */
-    padding: 0;
-    font-size: 0.9rem; /* Можно сделать текст копирайта чуть меньше */
-}
-
-footer .flex {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 0.75rem; /* Резко уменьшен верхний отступ */
-}
-
-/* Стили для ссылок-иконок оставляем (они уже уменьшены) */
-footer a {
-    display: inline-block;
-    padding: 0.75rem;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--white);
-    transition: var(--transition-smooth);
-    text-decoration: none;
-}
-
-footer a:hover {
-    background: var(--white);
-    color: var(--primary-red);
-    transform: translateY(-3px);
-}
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -1228,10 +1174,7 @@ footer a:hover {
         flex-direction: column;
         gap: 1rem;
     }
-    
-    footer .flex {
-        flex-wrap: wrap;
-    }
+
     
     :root {
         --section-padding: 80px;

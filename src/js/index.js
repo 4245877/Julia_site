@@ -340,3 +340,10 @@ function onGooglePayButtonClicked() {
     })
     .catch(err => console.error('loadPaymentData error:', err));
 }
+
+
+import { injectFooter } from "./core/partials.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+  injectFooter();
+});
