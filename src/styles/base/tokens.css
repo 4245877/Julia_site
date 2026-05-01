@@ -1,47 +1,60 @@
 :root {
-  /* Main palette */
-  --primary-red: #8b1c24;
-  --accent-coral: #c33d2e;
-  --dark-burgundy: #4a0e10;
-  --pastel-pink: #d67e7a;
-  --light-sand: #f2e9e1;
-  --graphite: #353535;
-  --gold-accent: #daa520;
+  /* Unified Julia AI theme */
+  --color-bg: #080b14;
+  --color-bg-soft: #0d1220;
+  --color-surface: #121827;
+  --color-surface-soft: #182033;
+  --color-surface-glass: rgba(255, 255, 255, 0.06);
 
-  /* Neutral colors */
+  --color-text: #f8fafc;
+  --color-muted: #cbd5e1;
+  --color-muted-soft: #94a3b8;
+
+  --color-border: rgba(255, 255, 255, 0.12);
+  --color-border-strong: rgba(125, 211, 252, 0.35);
+
+  --color-accent: #38bdf8;
+  --color-accent-hover: #7dd3fc;
+  --color-accent-deep: #2563eb;
+  --color-violet: #8b5cf6;
+
+  --color-danger: #ef4444;
+  --color-success: #22c55e;
+
   --white: #ffffff;
   --black: #000000;
-  --black-overlay: rgba(0, 0, 0, 0.7);
+  --black-overlay: rgba(0, 0, 0, 0.72);
 
-
+  /* Backward compatibility with old CSS variable names */
+  --primary-red: var(--color-accent-deep);
+  --accent-coral: var(--color-accent);
+  --dark-burgundy: var(--color-bg);
+  --pastel-pink: var(--color-border-strong);
+  --light-sand: var(--color-muted);
+  --graphite: var(--color-text);
+  --gold-accent: var(--color-accent);
 
   /* Gradients */
-  --gradient-header: linear-gradient(
-    135deg,
-    var(--primary-red) 0%,
-    var(--dark-burgundy) 50%,
-    var(--accent-coral) 100%
-  );
+  --gradient-header:
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.24), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(139, 92, 246, 0.22), transparent 36%),
+    linear-gradient(135deg, #080b14 0%, #101827 48%, #0b1020 100%);
 
-  --gradient-soft: linear-gradient(
-    145deg,
-    var(--pastel-pink) 0%,
-    var(--light-sand) 100%
-  );
+  --gradient-soft:
+    linear-gradient(145deg, rgba(56, 189, 248, 0.12), rgba(139, 92, 246, 0.1));
 
-  --gradient-gold: linear-gradient(
-    90deg,
-    var(--gold-accent) 0%,
-    #f4d03f 100%
-  );
+  --gradient-gold:
+    linear-gradient(90deg, var(--color-accent) 0%, var(--color-violet) 100%);
+
+  --gradient-button:
+    linear-gradient(135deg, var(--color-accent-deep), var(--color-accent));
 
   /* Shadows */
-  --shadow-dark: #2a2a2a;
-
-  --shadow-soft: 0 4px 20px rgba(139, 28, 36, 0.15);
-  --shadow-medium: 0 8px 30px rgba(139, 28, 36, 0.25);
-  --shadow-strong: 0 12px 40px rgba(139, 28, 36, 0.35);
-  --shadow-anime: 0 0 30px rgba(218, 165, 32, 0.3);
+  --shadow-dark: #030712;
+  --shadow-soft: 0 16px 40px rgba(0, 0, 0, 0.22);
+  --shadow-medium: 0 22px 60px rgba(0, 0, 0, 0.28);
+  --shadow-strong: 0 28px 80px rgba(0, 0, 0, 0.38);
+  --shadow-anime: 0 0 34px rgba(56, 189, 248, 0.25);
 
   /* Radius */
   --radius-sm: 6px;
@@ -52,9 +65,8 @@
   /* Transitions */
   --transition-fast: 160ms ease;
   --transition-base: 240ms ease;
-
-  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --transition-smooth: all 0.3s ease;
+  --transition-bounce: all 0.3s ease;
 
   /* Layout */
   --container-width: 1200px;

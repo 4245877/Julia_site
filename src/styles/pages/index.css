@@ -1430,3 +1430,417 @@ button {
   background: var(--dark-burgundy);
   color: var(--white);
 }
+
+/* =========================================================
+   FINAL JULIA THEME FIX
+   One visual system for the whole homepage
+   ========================================================= */
+
+body {
+  background: var(--color-bg) !important;
+  color: var(--color-text) !important;
+}
+
+/* Tailwind color bridge */
+.bg-gray-900,
+.bg-gray-800,
+.bg-gray-700 {
+  background: transparent !important;
+}
+
+.text-white {
+  color: var(--color-text) !important;
+}
+
+.text-gray-200,
+.text-gray-300,
+.text-gray-500 {
+  color: var(--color-muted) !important;
+}
+
+.text-blue-300 {
+  color: var(--color-accent) !important;
+}
+
+.bg-blue-600 {
+  background: var(--gradient-button) !important;
+}
+
+.hover\:bg-blue-500:hover,
+.hover\:bg-gray-700:hover,
+.hover\:bg-gray-600:hover {
+  background: var(--color-accent-hover) !important;
+  color: #06111f !important;
+}
+
+/* Global sections */
+section {
+  background: var(--color-bg) !important;
+  color: var(--color-text) !important;
+}
+
+section:nth-of-type(even) {
+  background: var(--color-bg-soft) !important;
+}
+
+/* Hero */
+.header-gradient {
+  background: var(--gradient-header) !important;
+  color: var(--color-text) !important;
+}
+
+.header-gradient::before {
+  opacity: 0.45;
+}
+
+.header-gradient h1 {
+  color: var(--color-text) !important;
+  text-shadow: none !important;
+}
+
+.header-gradient p {
+  color: var(--color-muted) !important;
+}
+
+.header-gradient .uppercase {
+  color: var(--color-accent) !important;
+}
+
+/* Hero buttons */
+.header-gradient a.inline-block {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: var(--color-text) !important;
+  border: 1px solid var(--color-border) !important;
+  box-shadow: var(--shadow-soft) !important;
+  backdrop-filter: blur(12px);
+}
+
+.header-gradient a.inline-block:first-of-type {
+  background: var(--gradient-button) !important;
+  color: #06111f !important;
+  border-color: rgba(125, 211, 252, 0.55) !important;
+}
+
+.header-gradient a.inline-block:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: var(--shadow-medium) !important;
+}
+
+/* Language switcher */
+.lang-switcher button,
+.header-gradient button {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: var(--color-text) !important;
+  border: 1px solid var(--color-border) !important;
+  box-shadow: none !important;
+}
+
+.lang-switcher button:hover,
+.lang-switcher button.active-lang,
+.lang-switcher button.is-active {
+  background: var(--color-accent) !important;
+  color: #06111f !important;
+  border-color: var(--color-accent) !important;
+}
+
+/* Cards */
+#architecture .grid > div,
+#roadmap .grid > div,
+#features .grid > div,
+#launcher .bg-gray-800,
+#launcher .bg-gray-900,
+#character-customization .grid > div,
+#character-customization .bg-gray-900,
+.customization-section,
+.advanced-options,
+.progress-container {
+  background: var(--color-surface-glass) !important;
+  color: var(--color-text) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-xl) !important;
+  box-shadow: var(--shadow-soft) !important;
+  backdrop-filter: blur(14px);
+}
+
+/* Card hover */
+#architecture .grid > div,
+#roadmap .grid > div,
+#features .grid > div,
+#character-customization .grid > div {
+  transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+#architecture .grid > div:hover,
+#roadmap .grid > div:hover,
+#features .grid > div:hover,
+#character-customization .grid > div:hover {
+  transform: translateY(-5px) !important;
+  border-color: var(--color-border-strong) !important;
+  box-shadow: var(--shadow-medium) !important;
+}
+
+/* Titles */
+h1,
+h2,
+h3,
+h4 {
+  color: var(--color-text) !important;
+}
+
+#features h2,
+#developerJourneyTitle {
+  background: none !important;
+  -webkit-text-fill-color: currentColor !important;
+  color: var(--color-text) !important;
+}
+
+#features h3,
+#character-customization h3,
+.section-title,
+.subsection-title {
+  color: var(--color-text) !important;
+}
+
+p,
+li {
+  color: var(--color-muted) !important;
+}
+
+/* Tech stack gradient section */
+.bg-gradient-to-r,
+.bg-gradient-to-r.from-gray-800.to-gray-700 {
+  background:
+    radial-gradient(circle at top right, rgba(139, 92, 246, 0.16), transparent 32%),
+    var(--color-bg-soft) !important;
+}
+
+/* Character customization */
+#character-customization {
+  background:
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 34%),
+    var(--color-bg) !important;
+}
+
+#character-customization::before {
+  opacity: 0.25;
+}
+
+#style-buttons button,
+.advanced-toggle {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: var(--color-text) !important;
+  border: 1px solid var(--color-border) !important;
+}
+
+#style-buttons button:hover,
+#style-buttons button.active,
+.advanced-toggle:hover {
+  background: rgba(56, 189, 248, 0.16) !important;
+  border-color: var(--color-border-strong) !important;
+  color: var(--color-text) !important;
+}
+
+#render-preview {
+  background:
+    radial-gradient(circle at center, rgba(56, 189, 248, 0.16), transparent 42%),
+    var(--color-surface) !important;
+  color: var(--color-muted) !important;
+  border: 1px solid var(--color-border) !important;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.24) !important;
+}
+
+/* Forms */
+.form-group label,
+#character-customization label {
+  color: var(--color-muted) !important;
+}
+
+.form-group output {
+  color: var(--color-accent) !important;
+}
+
+.select-input,
+#character-customization select {
+  background: var(--color-surface) !important;
+  color: var(--color-text) !important;
+  border: 1px solid var(--color-border) !important;
+}
+
+.select-input:focus,
+#character-customization select:focus {
+  outline: none !important;
+  border-color: var(--color-accent) !important;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.16) !important;
+}
+
+.select-input option,
+#character-customization option {
+  background: var(--color-surface) !important;
+  color: var(--color-text) !important;
+}
+
+.range-input,
+#character-customization input[type="range"] {
+  background: linear-gradient(to right, var(--color-accent-deep), var(--color-accent)) !important;
+}
+
+#character-customization input[type="range"]::-webkit-slider-thumb {
+  background: var(--color-text) !important;
+  border: 3px solid var(--color-accent) !important;
+}
+
+#character-customization input[type="range"]::-moz-range-thumb {
+  background: var(--color-text) !important;
+  border: 3px solid var(--color-accent) !important;
+}
+
+.range-labels {
+  color: var(--color-muted-soft) !important;
+}
+
+/* Color dots */
+.color-option.active,
+.color-option.selected,
+.color-option:hover {
+  border-color: var(--color-accent) !important;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.35) !important;
+}
+
+/* Launcher */
+#launcher {
+  background: var(--color-bg) !important;
+}
+
+#launcher .rounded-lg.overflow-hidden {
+  background: var(--color-surface) !important;
+  border: 1px solid var(--color-border) !important;
+  box-shadow: var(--shadow-soft) !important;
+}
+
+/* Developer / donation section */
+.bg-light {
+  background:
+    radial-gradient(circle at top, rgba(56, 189, 248, 0.1), transparent 34%),
+    var(--color-bg-soft) !important;
+  color: var(--color-text) !important;
+}
+
+.bg-light h2,
+.bg-light p,
+.bg-light strong {
+  color: var(--color-text) !important;
+}
+
+.pulse {
+  border-color: var(--color-accent) !important;
+  box-shadow: var(--shadow-anime) !important;
+}
+
+.progress-container {
+  max-width: 760px;
+  background: var(--color-surface-glass) !important;
+}
+
+.progress-info {
+  color: var(--color-text) !important;
+}
+
+.progress-bar {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid var(--color-border) !important;
+}
+
+.progress-fill {
+  background: var(--gradient-gold) !important;
+}
+
+.support-button,
+.copy-button {
+  background: var(--gradient-button) !important;
+  color: #06111f !important;
+  border: 0 !important;
+  box-shadow: var(--shadow-soft) !important;
+}
+
+.support-button:hover,
+.copy-button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-medium) !important;
+}
+
+/* Modal */
+.modal {
+  background: rgba(3, 7, 18, 0.78) !important;
+}
+
+.modal-content {
+  background: var(--color-surface) !important;
+  color: var(--color-text) !important;
+  border: 1px solid var(--color-border) !important;
+}
+
+.modal-content h2 {
+  color: var(--color-text) !important;
+}
+
+.payment-details p {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: var(--color-muted) !important;
+  border-left-color: var(--color-accent) !important;
+}
+
+.close-button {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: var(--color-text) !important;
+  border: 1px solid var(--color-border) !important;
+}
+
+.close-button:hover {
+  background: var(--color-danger) !important;
+  color: var(--white) !important;
+}
+
+/* Footer */
+footer {
+  background: var(--color-bg) !important;
+  color: var(--color-muted) !important;
+  border-top: 1px solid var(--color-border);
+}
+
+footer::before {
+  background: var(--gradient-gold) !important;
+}
+
+footer h2,
+footer h3 {
+  color: var(--color-text) !important;
+}
+
+footer a {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: var(--color-text) !important;
+}
+
+footer a:hover {
+  background: var(--color-accent) !important;
+  color: #06111f !important;
+}
+
+/* Mobile polish */
+@media (max-width: 768px) {
+  .header-gradient {
+    padding-top: 7rem !important;
+    padding-bottom: 5rem !important;
+  }
+
+  .header-gradient a.inline-block {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .customization-section,
+  .advanced-options,
+  .progress-container {
+    border-radius: var(--radius-lg) !important;
+  }
+}
