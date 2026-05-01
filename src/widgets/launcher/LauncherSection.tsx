@@ -3,6 +3,7 @@ import { ButtonLink } from "@/shared/ui/Button";
 import { Container } from "@/shared/ui/Container";
 import { Section } from "@/shared/ui/Section";
 import { SystemRequirements } from "@/widgets/launcher/SystemRequirements";
+import styles from "./LauncherSection.module.css";
 
 const launcherImages = [
   {
@@ -25,58 +26,91 @@ const launcherImages = [
 
 export function LauncherSection() {
   return (
-    <Section id="launcher" className="bg-slate-950">
+    <Section id="launcher" className={styles.section}>
+      <span className={styles.thornBar} aria-hidden="true" />
+      <span className={styles.thornBarGold} aria-hidden="true" />
+
       <Container>
-        <h2 className="mb-8 text-center text-3xl font-bold md:text-4xl">
-          Скачать Julia Launcher
-        </h2>
+        <div className={styles.inner}>
+          <header className={styles.header}>
+            <p className={styles.eyebrow}>Julia Launcher</p>
 
-        <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2">
-          <div>
-            <h3 className="mb-4 text-2xl font-bold">Что такое лаунчер Julia?</h3>
+            <h2 className={styles.title}>
+              Скачать <em>Julia Launcher</em>
+            </h2>
 
-            <p className="mb-6 leading-8 text-slate-300">
-              Julia Launcher — приложение для установки, настройки и запуска
-              локальных модулей Julia. Через него можно управлять конфигурацией
-              системы, интерфейсным профилем, голосовым взаимодействием,
-              обновлениями и уровнем доступа к ресурсам устройства.
-            </p>
+            <div className={styles.titleRule} aria-hidden="true">
+              <span className={styles.titleRuleDiamond} />
+            </div>
+          </header>
 
-            <ul className="mb-8 ml-6 list-disc space-y-2 text-slate-200">
-              <li>Настраивать визуальное представление, голос и стиль речи Julia</li>
-              <li>Выбирать режим взаимодействия: текстовый, голосовой или мультимодальный</li>
-              <li>Управлять локальными моделями, памятью, профилями и обновлениями</li>
-              <li>Контролировать доступ к микрофону, камере, файлам и внешним сервисам</li>
-              <li>Запускать системные модули с учётом возможностей x86-оборудования</li>
-            </ul>
+          <div className={styles.body}>
+            <div className={styles.textCol}>
+              <h3 className={styles.subtitle}>Что такое лаунчер Julia?</h3>
 
-            <div className="flex flex-col gap-4 sm:flex-row">
-              <ButtonLink href="/how-to-use">Как пользоваться</ButtonLink>
-              <ButtonLink href="#" variant="secondary">
-                Скачать лаунчер
-              </ButtonLink>
+              <p className={styles.description}>
+                Julia Launcher — приложение для установки, настройки и запуска
+                локальных модулей Julia. Через него можно управлять конфигурацией
+                системы, интерфейсным профилем, голосовым взаимодействием,
+                обновлениями и уровнем доступа к ресурсам устройства.
+              </p>
+
+              <ul className={styles.featureList}>
+                <li className={styles.featureItem}>
+                  Настраивать визуальное представление, голос и стиль речи Julia
+                </li>
+                <li className={styles.featureItem}>
+                  Выбирать режим взаимодействия: текстовый, голосовой или
+                  мультимодальный
+                </li>
+                <li className={styles.featureItem}>
+                  Управлять локальными моделями, памятью, профилями и обновлениями
+                </li>
+                <li className={styles.featureItem}>
+                  Контролировать доступ к микрофону, камере, файлам и внешним
+                  сервисам
+                </li>
+                <li className={styles.featureItem}>
+                  Запускать системные модули с учётом возможностей x86-оборудования
+                </li>
+              </ul>
+
+              <div className={styles.actions}>
+                <ButtonLink href="/how-to-use" className={styles.btnPrimary}>
+                  Как пользоваться
+                </ButtonLink>
+
+                <ButtonLink
+                  href="#"
+                  variant="secondary"
+                  className={styles.btnDownload}
+                >
+                  Скачать лаунчер
+                </ButtonLink>
+              </div>
+            </div>
+
+            <div className={styles.imageCol}>
+              <div className={styles.imageGrid}>
+                {launcherImages.map((image) => (
+                  <div key={image.src} className={styles.imageCard}>
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      width={520}
+                      height={360}
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            {launcherImages.map((image) => (
-              <div
-                key={image.src}
-                className="overflow-hidden rounded-2xl border border-white/10 bg-slate-900 shadow-xl"
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  width={520}
-                  height={360}
-                  className="h-auto w-full"
-                />
-              </div>
-            ))}
+          <div className={styles.systemReqs}>
+            <SystemRequirements />
           </div>
         </div>
-
-        <SystemRequirements />
       </Container>
     </Section>
   );

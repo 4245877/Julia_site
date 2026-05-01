@@ -1,0 +1,383 @@
+/* ============================================================
+   FOOTER.MODULE.CSS — Yor Forger Aesthetic
+   "Thorn Princess" — Julia AI Footer
+   ============================================================ */
+
+/* ── Root Footer Shell ───────────────────────────────────── */
+.footer {
+  position: relative;
+  background: var(--bg-surface, #231010);
+  border-top: 1px solid var(--border-subtle, rgba(139, 28, 36, 0.22));
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* ── Decorative top border glow ──────────────────────────── */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(139, 28, 36, 0.0) 5%,
+    rgba(195, 61, 46, 0.55) 30%,
+    rgba(218, 165, 32, 0.45) 50%,
+    rgba(195, 61, 46, 0.55) 70%,
+    rgba(139, 28, 36, 0.0) 95%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* ── Thorn cross-hatch texture overlay ───────────────────── */
+.footer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 38px,
+      rgba(139, 28, 36, 0.03) 38px,
+      rgba(139, 28, 36, 0.03) 39px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 38px,
+      rgba(139, 28, 36, 0.03) 38px,
+      rgba(139, 28, 36, 0.03) 39px
+    );
+}
+
+/* ── Main inner wrapper ───────────────────────────────────── */
+.inner {
+  position: relative;
+  z-index: 1;
+  padding: var(--space-8, 2rem) var(--space-8, 2rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6, 1.5rem);
+  max-width: var(--container-lg, 1120px);
+  margin-inline: auto;
+}
+
+/* ── Top row: brand + nav ─────────────────────────────────── */
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8, 2rem);
+  flex-wrap: wrap;
+}
+
+/* ── Brand mark ───────────────────────────────────────────── */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 0.75rem);
+  text-decoration: none;
+  group: true;
+}
+
+.brandMark {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  background: var(--accent-primary, #8B1C24);
+  border-radius: var(--radius-sm, 4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  /* Blade-cut corner */
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%);
+  transition: box-shadow var(--duration-base, 220ms) var(--ease-smooth, cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.brand:hover .brandMark {
+  box-shadow: var(--shadow-glow-md, 0 0 28px rgba(195, 61, 46, 0.28));
+}
+
+.brandMarkInner {
+  width: 16px;
+  height: 16px;
+  position: relative;
+}
+
+/* Thorn icon — SVG cross shape */
+.brandMarkInner::before,
+.brandMarkInner::after {
+  content: '';
+  position: absolute;
+  background: var(--color-parchment, #F2E9E1);
+  border-radius: 1px;
+}
+.brandMarkInner::before {
+  width: 2px;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.brandMarkInner::after {
+  width: 100%;
+  height: 2px;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.brandText {
+  font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+  font-size: var(--text-xl, 1.75rem);
+  font-weight: var(--weight-light, 300);
+  letter-spacing: 0.04em;
+  color: var(--text-primary, #F2E9E1);
+  line-height: 1;
+  transition: color var(--duration-fast, 120ms) var(--ease-smooth, cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.brand:hover .brandText {
+  color: var(--color-parchment, #F2E9E1);
+}
+
+.brandSub {
+  font-family: var(--font-body, 'DM Sans', system-ui, sans-serif);
+  font-size: var(--text-xs, 0.72rem);
+  font-weight: var(--weight-bold, 600);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted, rgba(242, 233, 225, 0.38));
+  display: block;
+  margin-top: 2px;
+}
+
+/* ── Navigation links ─────────────────────────────────────── */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1, 0.25rem);
+  flex-wrap: wrap;
+}
+
+.navLink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 0.5rem);
+  padding: var(--space-2, 0.5rem) var(--space-4, 1rem);
+  border-radius: var(--radius-md, 8px);
+  font-family: var(--font-body, 'DM Sans', system-ui, sans-serif);
+  font-size: var(--text-sm, 0.85rem);
+  font-weight: var(--weight-medium, 500);
+  letter-spacing: 0.02em;
+  color: var(--text-secondary, rgba(242, 233, 225, 0.65));
+  text-decoration: none;
+  transition:
+    color      var(--duration-fast, 120ms) var(--ease-smooth, cubic-bezier(0.4, 0, 0.2, 1)),
+    background var(--duration-fast, 120ms) var(--ease-smooth, cubic-bezier(0.4, 0, 0.2, 1));
+  white-space: nowrap;
+}
+
+.navLink:hover {
+  color: var(--text-primary, #F2E9E1);
+  background: var(--bg-hover, rgba(139, 28, 36, 0.14));
+}
+
+/* Animated underline thorn bar */
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  left: var(--space-4, 1rem);
+  right: var(--space-4, 1rem);
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent-primary, #8B1C24), var(--color-gold, #DAA520));
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--duration-base, 220ms) var(--ease-out-quart, cubic-bezier(0.25, 1, 0.5, 1));
+}
+
+.navLink:hover::after {
+  transform: scaleX(1);
+}
+
+/* ── Divider ornament ─────────────────────────────────────── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4, 1rem);
+  color: var(--text-muted, rgba(242, 233, 225, 0.38));
+  font-size: var(--text-xs, 0.72rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: var(--font-body, 'DM Sans', system-ui, sans-serif);
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--border-subtle, rgba(139, 28, 36, 0.22)),
+    var(--border-default, rgba(139, 28, 36, 0.40)),
+    var(--border-subtle, rgba(139, 28, 36, 0.22)),
+    transparent
+  );
+}
+
+.dividerOrn {
+  color: var(--border-default, rgba(139, 28, 36, 0.40));
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  /* Subtle gold shimmer animation */
+  animation: goldShimmer 3s ease-in-out infinite;
+}
+
+/* ── Bottom row: copyright + meta ─────────────────────────── */
+.bottomRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4, 1rem);
+  flex-wrap: wrap;
+}
+
+.copyright {
+  font-family: var(--font-body, 'DM Sans', system-ui, sans-serif);
+  font-size: var(--text-xs, 0.72rem);
+  color: var(--text-muted, rgba(242, 233, 225, 0.38));
+  letter-spacing: 0.03em;
+  line-height: var(--leading-snug, 1.45);
+}
+
+.copyright em {
+  font-style: normal;
+  color: var(--color-blush, #D67E7A);
+  font-weight: var(--weight-medium, 500);
+}
+
+/* ── Status pill ──────────────────────────────────────────── */
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 0.5rem);
+  padding: 3px 10px 3px 8px;
+  background: rgba(74, 120, 60, 0.10);
+  border: 1px solid rgba(74, 120, 60, 0.28);
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-body, 'DM Sans', system-ui, sans-serif);
+  font-size: var(--text-xs, 0.72rem);
+  font-weight: var(--weight-bold, 600);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #7EC870;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #7EC870;
+  box-shadow: 0 0 0 0 rgba(126, 200, 112, 0.4);
+  animation: thornPulse 2.2s ease-in-out infinite;
+}
+
+/* Reuse pulse but green */
+@keyframes thornPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(126, 200, 112, 0.0); }
+  50%       { box-shadow: 0 0 0 5px rgba(126, 200, 112, 0.18); }
+}
+
+@keyframes goldShimmer {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.45; }
+}
+
+/* ── Tagline row (optional accent phrase) ─────────────────── */
+.tagline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3, 0.75rem);
+  font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+  font-size: var(--text-sm, 0.85rem);
+  font-style: italic;
+  font-weight: var(--weight-light, 300);
+  color: var(--text-muted, rgba(242, 233, 225, 0.38));
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+.taglineSep {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--border-default, rgba(139, 28, 36, 0.40));
+  flex-shrink: 0;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .inner {
+    padding: var(--space-6, 1.5rem) var(--space-4, 1rem);
+    gap: var(--space-5, 1.25rem);
+  }
+
+  .topRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-5, 1.25rem);
+  }
+
+  .nav {
+    gap: var(--space-1, 0.25rem);
+  }
+
+  .navLink {
+    padding: var(--space-2, 0.5rem) var(--space-3, 0.75rem);
+  }
+
+  .bottomRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3, 0.75rem);
+  }
+
+  .tagline {
+    font-size: var(--text-xs, 0.72rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .brandText {
+    font-size: var(--text-lg, 1.375rem);
+  }
+
+  .nav {
+    width: 100%;
+  }
+
+  .navLink {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+/* ── Print ────────────────────────────────────────────────── */
+@media print {
+  .footer {
+    display: none;
+  }
+}

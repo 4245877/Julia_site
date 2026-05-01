@@ -1,0 +1,570 @@
+/* ============================================================
+   LauncherSection.module.css
+   "Thorn Princess" × Architecture of Human Thought
+   Yor Forger aesthetic — crimson, obsidian, gold, parchment
+   ============================================================ */
+
+/* ── Section Root ─────────────────────────────────────────── */
+.section {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-base);
+  padding-block: var(--space-24);
+}
+
+/* Ambient thorn cross-hatch overlay (inherits from globals body::before,
+   but we add a second layer scoped to this section) */
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    repeating-linear-gradient(
+      60deg,
+      transparent,
+      transparent 54px,
+      rgba(139, 28, 36, 0.05) 54px,
+      rgba(139, 28, 36, 0.05) 55px
+    ),
+    repeating-linear-gradient(
+      -60deg,
+      transparent,
+      transparent 54px,
+      rgba(139, 28, 36, 0.05) 54px,
+      rgba(139, 28, 36, 0.05) 55px
+    );
+}
+
+/* Deep crimson radial spotlight — top-left origin */
+.section::after {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: -200px;
+  width: 680px;
+  height: 680px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(139, 28, 36, 0.18) 0%,
+    rgba(74, 14, 16, 0.10) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Container (scoped wrapper) ───────────────────────────── */
+.inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Section Header ───────────────────────────────────────── */
+.header {
+  text-align: center;
+  margin-bottom: var(--space-16);
+  position: relative;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: var(--space-4);
+  opacity: 0;
+  animation: staggerIn 0.6s var(--ease-spring) 0.1s both;
+}
+
+/* Thorn lines flanking the eyebrow */
+.eyebrow::before,
+.eyebrow::after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold));
+}
+.eyebrow::after {
+  background: linear-gradient(90deg, var(--color-gold), transparent);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: var(--weight-light);
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-4);
+  opacity: 0;
+  animation: staggerIn 0.65s var(--ease-spring) 0.2s both;
+}
+
+/* Italic accent word */
+.title em {
+  font-style: italic;
+  color: var(--color-blush);
+}
+
+/* Ornamental under-rule */
+.titleRule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+  opacity: 0;
+  animation: staggerIn 0.6s var(--ease-spring) 0.3s both;
+}
+
+.titleRule::before,
+.titleRule::after {
+  content: '';
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-default));
+}
+.titleRule::after {
+  background: linear-gradient(90deg, var(--border-default), transparent);
+}
+
+.titleRuleDiamond {
+  width: 6px;
+  height: 6px;
+  background: var(--accent-primary);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  box-shadow: var(--shadow-glow-sm);
+}
+
+/* ── Two-column Body ──────────────────────────────────────── */
+.body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+/* ── Left Column — Text ───────────────────────────────────── */
+.textCol {
+  opacity: 0;
+  animation: slideInLeft 0.7s var(--ease-spring) 0.35s both;
+}
+
+.subtitle {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-regular);
+  color: var(--text-primary);
+  margin-bottom: var(--space-5);
+  line-height: var(--leading-snug);
+}
+
+.description {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  line-height: var(--leading-normal);
+  margin-bottom: var(--space-8);
+}
+
+/* Feature list */
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-10) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: var(--leading-snug);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  transition:
+    background   var(--duration-base) var(--ease-smooth),
+    border-color var(--duration-base) var(--ease-smooth),
+    color        var(--duration-base) var(--ease-smooth);
+}
+
+.featureItem:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-subtle);
+  color: var(--text-primary);
+}
+
+/* Thorn bullet */
+.featureItem::before {
+  content: '◆';
+  font-size: 7px;
+  color: var(--accent-primary);
+  flex-shrink: 0;
+  margin-top: 4px;
+  transition: color var(--duration-fast) var(--ease-smooth);
+  filter: drop-shadow(0 0 4px rgba(195, 61, 46, 0.5));
+}
+
+.featureItem:hover::before {
+  color: var(--color-gold);
+  filter: drop-shadow(0 0 4px rgba(218, 165, 32, 0.5));
+}
+
+/* CTA Buttons row */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  background: var(--accent-primary);
+  color: var(--color-parchment);
+  border: 1px solid var(--accent-primary);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background   var(--duration-fast) var(--ease-smooth),
+    border-color var(--duration-fast) var(--ease-smooth),
+    box-shadow   var(--duration-fast) var(--ease-smooth),
+    transform    var(--duration-fast) var(--ease-smooth);
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Crimson ripple on hover */
+.btnPrimary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--ease-smooth);
+}
+
+.btnPrimary:hover {
+  background: var(--color-blood);
+  border-color: var(--color-blood);
+  box-shadow: var(--shadow-glow-md);
+  transform: translateY(-1px);
+}
+.btnPrimary:hover::after { opacity: 1; }
+.btnPrimary:active { transform: scale(0.97); }
+
+/* Download button — gold outline */
+.btnDownload {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  background: transparent;
+  color: var(--color-gold);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background   var(--duration-fast) var(--ease-smooth),
+    box-shadow   var(--duration-fast) var(--ease-smooth),
+    transform    var(--duration-fast) var(--ease-smooth);
+  white-space: nowrap;
+}
+
+.btnDownload:hover {
+  background: rgba(218, 165, 32, 0.10);
+  box-shadow: var(--shadow-gold-sm);
+  transform: translateY(-1px);
+}
+.btnDownload:active { transform: scale(0.97); }
+
+/* Animated arrow inside download btn */
+.btnDownload svg,
+.btnPrimary svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  transition: transform var(--duration-fast) var(--ease-spring);
+}
+.btnDownload:hover svg { transform: translateY(2px); }
+.btnPrimary:hover svg  { transform: translateX(3px); }
+
+/* ── Right Column — Image Gallery ────────────────────────── */
+.imageCol {
+  opacity: 0;
+  animation: slideInRight 0.7s var(--ease-spring) 0.45s both;
+}
+
+.imageGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+/* Individual image card */
+.imageCard {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  cursor: pointer;
+  transition:
+    border-color var(--duration-base) var(--ease-smooth),
+    box-shadow   var(--duration-base) var(--ease-smooth),
+    transform    var(--duration-base) var(--ease-smooth);
+}
+
+.imageCard:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-glow-md), var(--shadow-raised);
+  transform: translateY(-3px) scale(1.02);
+  z-index: 2;
+}
+
+/* Thorn-cut corner detail on hover */
+.imageCard::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  background: var(--accent-primary);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  transition: width var(--duration-base) var(--ease-out-quart),
+              height var(--duration-base) var(--ease-out-quart);
+  opacity: 0.7;
+}
+.imageCard:hover::after {
+  width: 14px;
+  height: 14px;
+}
+
+/* Crimson overlay on hover */
+.imageCard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(139, 28, 36, 0.12) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  z-index: 1;
+  transition: opacity var(--duration-base) var(--ease-smooth);
+}
+.imageCard:hover::before { opacity: 1; }
+
+.imageCard img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform var(--duration-slow) var(--ease-out-quart);
+}
+.imageCard:hover img { transform: scale(1.04); }
+
+/* Stagger the image cards' entrance */
+.imageCard:nth-child(1) { animation: staggerIn 0.5s var(--ease-spring) 0.5s both; }
+.imageCard:nth-child(2) { animation: staggerIn 0.5s var(--ease-spring) 0.6s both; }
+.imageCard:nth-child(3) { animation: staggerIn 0.5s var(--ease-spring) 0.7s both; }
+.imageCard:nth-child(4) { animation: staggerIn 0.5s var(--ease-spring) 0.8s both; }
+
+/* ── System Requirements Block ───────────────────────────── */
+.systemReqs {
+  margin-top: var(--space-16);
+  padding-top: var(--space-10);
+  border-top: 1px solid var(--border-subtle);
+  position: relative;
+  opacity: 0;
+  animation: staggerIn 0.65s var(--ease-spring) 0.9s both;
+}
+
+/* Ornamental divider above sysreqs */
+.systemReqs::before {
+  content: '✦';
+  position: absolute;
+  top: -0.7em;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-base);
+  padding: 0 var(--space-4);
+  color: var(--border-default);
+  font-size: var(--text-xs);
+}
+
+/* ── Decorative Side-thorn ────────────────────────────────── */
+
+/* Vertical crimson accent bar — left edge of section */
+.thornBar {
+  position: absolute;
+  top: 15%;
+  left: 0;
+  width: 3px;
+  height: 40%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--accent-primary) 30%,
+    var(--color-blood) 60%,
+    transparent 100%
+  );
+  border-radius: 0 var(--radius-full) var(--radius-full) 0;
+  z-index: 1;
+  animation: thornPulse 3s ease-in-out infinite;
+}
+
+/* Gold vertical accent — right edge */
+.thornBarGold {
+  position: absolute;
+  bottom: 15%;
+  right: 0;
+  width: 2px;
+  height: 30%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--color-gold) 40%,
+    transparent 100%
+  );
+  border-radius: var(--radius-full) 0 0 var(--radius-full);
+  z-index: 1;
+  animation: goldShimmer 3s ease-in-out 1.5s infinite;
+}
+
+/* ── Entrance animations (local definitions complement globals) */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes staggerIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Responsive: tablet ───────────────────────────────────── */
+@media (max-width: 1024px) {
+  .body {
+    gap: var(--space-10);
+  }
+
+  .title {
+    font-size: var(--text-3xl);
+  }
+
+  .subtitle {
+    font-size: var(--text-xl);
+  }
+}
+
+/* ── Responsive: mobile ───────────────────────────────────── */
+@media (max-width: 768px) {
+  .section {
+    padding-block: var(--space-16);
+  }
+
+  .body {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+
+  .imageCol {
+    order: -1; /* images first on mobile — visual hook */
+  }
+
+  .title {
+    font-size: var(--text-2xl);
+  }
+
+  .header {
+    margin-bottom: var(--space-10);
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btnPrimary,
+  .btnDownload {
+    justify-content: center;
+  }
+
+  .thornBar,
+  .thornBarGold {
+    display: none;
+  }
+}
+
+/* ── Responsive: small mobile ─────────────────────────────── */
+@media (max-width: 480px) {
+  .imageGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+  }
+
+  .title {
+    font-size: var(--text-xl);
+  }
+
+  .subtitle {
+    font-size: var(--text-lg);
+  }
+
+  .featureItem {
+    font-size: var(--text-xs);
+    padding: var(--space-2) var(--space-3);
+  }
+}
