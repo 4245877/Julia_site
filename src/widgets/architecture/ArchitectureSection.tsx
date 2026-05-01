@@ -1,18 +1,22 @@
 import { homeRu } from "@/content/home.ru";
-import { Card } from "@/shared/ui/Card";
 import { Container } from "@/shared/ui/Container";
 import { Section } from "@/shared/ui/Section";
 
+import styles from "./ArchitectureSection.module.css";
+
 export function ArchitectureSection() {
   return (
-    <Section id="architecture" className="bg-slate-950">
+    <Section id="architecture" className={styles.section}>
       <Container>
-        <div className="mx-auto mb-14 max-w-5xl text-center">
-          <h2 className="mb-6 text-3xl font-bold md:text-4xl">
-            Не чат-бот. Не оболочка. Когнитивная система.
+        <div className={styles.header}>
+          <p className={styles.eyebrow}>Architecture</p>
+
+          <h2 className={styles.heading}>
+            Не чат-бот. Не оболочка.{" "}
+            <span className={styles.headingAccent}>Когнитивная система.</span>
           </h2>
 
-          <p className="text-lg leading-8 text-slate-300">
+          <p className={styles.description}>
             Julia проектируется как многоуровневая архитектура, где отдельные
             модули отвечают за восприятие, память, внимание, внутреннее
             состояние, принятие решений и обучение на опыте. Главная цель —
@@ -21,12 +25,23 @@ export function ArchitectureSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {homeRu.architectureCards.map((card) => (
-            <Card key={card.title}>
-              <h3 className="mb-4 text-2xl font-bold">{card.title}</h3>
-              <p className="leading-7 text-slate-300">{card.description}</p>
-            </Card>
+        <div className={styles.ornamentRow} aria-hidden="true">
+          <span className={styles.ornamentLine} />
+          <span className={styles.ornamentGlyph}>✦</span>
+          <span className={styles.ornamentLine} />
+        </div>
+
+        <div className={styles.grid}>
+          {homeRu.architectureCards.map((card, index) => (
+            <article className={styles.card} key={card.title}>
+              <span className={styles.cardIndex}>
+                {String(index + 1).padStart(2, "0")}
+              </span>
+
+              <h3 className={styles.cardTitle}>{card.title}</h3>
+
+              <p className={styles.cardDescription}>{card.description}</p>
+            </article>
           ))}
         </div>
       </Container>

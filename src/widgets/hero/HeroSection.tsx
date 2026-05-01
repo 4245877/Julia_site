@@ -6,29 +6,38 @@ import styles from "./HeroSection.module.css";
 
 export function HeroSection() {
   return (
-    <header className="header-gradient relative py-24">
-      <LanguageSwitcher />
+    <header className={styles.hero}>
+      <div className={styles.thorns} aria-hidden="true" />
+      <div className={styles.goldLine} aria-hidden="true" />
 
-      <Container className="text-center">
-        <p className="mb-4 text-sm uppercase tracking-[0.28em] text-blue-300">
-          {homeRu.hero.eyebrow}
-        </p>
+      <div className={styles.langSlot}>
+        <LanguageSwitcher />
+      </div>
 
-        <h1 className="mx-auto mb-6 max-w-5xl text-4xl font-bold leading-tight md:text-6xl">
-          {homeRu.hero.title}
-        </h1>
+      <Container className={styles.inner}>
+        <p className={styles.eyebrow}>{homeRu.hero.eyebrow}</p>
 
-        <p className="mx-auto mb-10 max-w-4xl text-lg leading-8 text-slate-300 md:text-xl">
-          {homeRu.hero.description}
-        </p>
+        <h1 className={styles.title}>{homeRu.hero.title}</h1>
 
-        <div className="flex flex-col justify-center gap-4 sm:flex-row">
-          <ButtonLink href="#architecture">{homeRu.hero.primaryAction}</ButtonLink>
+        <p className={styles.description}>{homeRu.hero.description}</p>
+
+        <div className={styles.actions}>
+          <ButtonLink href="#architecture">
+            {homeRu.hero.primaryAction}
+          </ButtonLink>
+
           <ButtonLink href="#roadmap" variant="secondary">
             {homeRu.hero.secondaryAction}
           </ButtonLink>
         </div>
       </Container>
+
+      <div className={styles.fadeEdge} aria-hidden="true" />
+
+      <div className={styles.scrollHint} aria-hidden="true">
+        <span className={styles.scrollHint__label}>Дальше</span>
+        <span className={styles.scrollHint__line} />
+      </div>
     </header>
   );
 }
