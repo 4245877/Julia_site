@@ -1,26 +1,38 @@
 import Image from "next/image";
-import { Container } from "@/shared/ui/Container";
-import { Section } from "@/shared/ui/Section";
 import { SupportButton } from "@/features/donation-flow/ui/SupportButton";
+import styles from "./DeveloperJourneySection.module.css";
 
 export function DeveloperJourneySection() {
+  const raised = 12.53;
+  const goal = 6_774_053;
+  const progressPercent = (raised / goal) * 100;
+
   return (
-    <Section className="bg-light">
-      <Container>
-        <h2 className="mb-8 text-3xl font-bold text-[var(--dark-burgundy)]">
-          Путь разработки Julia
+    <section className={styles.section}>
+      <div className={styles.container}>
+        <h2
+          className={`${styles.heading} ${styles.animateUp} ${styles.delay1}`}
+        >
+          Путь разработки <em>Julia</em>
         </h2>
 
-        <div className="flex flex-col items-center text-center">
-          <Image
-            src="/images/developer.png"
-            alt="Михаил Головач"
-            width={180}
-            height={180}
-            className="pulse mb-6 rounded-full border border-slate-200 object-cover"
-          />
+        <div className={styles.profileBlock}>
+          <div
+            className={`${styles.avatarWrapper} ${styles.animateUp} ${styles.delay2}`}
+          >
+            <Image
+              src="/images/developer.png"
+              alt="Михаил Головач"
+              width={180}
+              height={180}
+              className={styles.avatar}
+              priority={false}
+            />
+          </div>
 
-          <p className="mb-4 max-w-5xl text-lg leading-8 text-slate-800">
+          <p
+            className={`${styles.description} ${styles.animateUp} ${styles.delay3}`}
+          >
             Julia началась как личный исследовательский проект, но постепенно
             выросла в попытку спроектировать более глубокую ИИ-архитектуру: с
             памятью, вниманием, внутренним состоянием, планированием и модульной
@@ -32,31 +44,74 @@ export function DeveloperJourneySection() {
             человеко-машинного взаимодействия.
           </p>
 
-          <p className="text-lg font-bold text-slate-900">
+          <p
+            className={`${styles.callout} ${styles.animateUp} ${styles.delay4}`}
+          >
             Поддержите исследовательскую разработку Julia
           </p>
         </div>
 
-        <div className="mx-auto mt-10 max-w-2xl rounded-3xl bg-white p-6 shadow-xl">
-          <div className="mb-4 text-center text-lg font-semibold text-slate-900">
-            <span>12.53</span> $ <span className="text-slate-500">из</span>{" "}
-            <span>6774053</span> $
+        <div className={styles.ornamentDivider} aria-hidden="true">
+          <span>✦</span>
+        </div>
+
+        <div
+          className={`${styles.progressCard} ${styles.animateUp} ${styles.delay5}`}
+        >
+          <div className={styles.fundingStats}>
+            <span className={styles.fundingRaised}>
+              {raised.toLocaleString("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}
+            </span>
+
+            <span className={styles.fundingCurrency}>$</span>
+
+            <span className={styles.fundingSeparator}>из</span>
+
+            <span className={styles.fundingGoal}>
+              {goal.toLocaleString("en-US")}
+            </span>
+
+            <span className={styles.fundingCurrency}>$</span>
           </div>
 
-          <div className="progress-bar">
+          <div
+            className={styles.progressTrack}
+            role="progressbar"
+            aria-label="Прогресс финансирования разработки Julia"
+            aria-valuemin={0}
+            aria-valuemax={goal}
+            aria-valuenow={raised}
+          >
             <div
-              className="progress-fill"
+              className={styles.progressFill}
               style={{
-                width: "0.000185%",
+                width: `${progressPercent}%`,
               }}
             />
           </div>
 
-          <div className="mt-6 text-center">
-            <SupportButton />
+          <div className={styles.progressMeta}>
+            <span className={styles.progressPercent}>
+              {progressPercent.toFixed(6)}%
+            </span>
+
+            <span className={styles.progressLabel}>собрано</span>
+          </div>
+
+          <div className={styles.supportArea}>
+            <div className={styles.supportBtnWrapper}>
+              <SupportButton />
+            </div>
+
+            <p className={styles.supportNote}>
+              Каждая поддержка помогает продолжать разработку.
+            </p>
           </div>
         </div>
-      </Container>
-    </Section>
+      </div>
+    </section>
   );
 }

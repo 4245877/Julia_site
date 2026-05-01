@@ -1,0 +1,529 @@
+/* ============================================================
+   DeveloperJourneySection.module.css
+   "Thorn Princess" — Yor Forger Design System
+   Архитектура человеческого мышления × Julia AI
+   ============================================================ */
+
+/* ── Section Base ─────────────────────────────────────────── */
+.section {
+  position: relative;
+  padding-block: var(--space-20);
+  overflow: hidden;
+  background: var(--bg-base);
+}
+
+/* Decorative thorn cross-hatch overlay (inherits from globals, but layered) */
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    repeating-linear-gradient(
+      60deg,
+      transparent,
+      transparent 48px,
+      rgba(139, 28, 36, 0.055) 48px,
+      rgba(139, 28, 36, 0.055) 49px
+    ),
+    repeating-linear-gradient(
+      -60deg,
+      transparent,
+      transparent 48px,
+      rgba(218, 165, 32, 0.03) 48px,
+      rgba(218, 165, 32, 0.03) 49px
+    );
+}
+
+/* Radial crimson glow emanating from center */
+.section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(900px, 120vw);
+  height: 500px;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(139, 28, 36, 0.18) 0%,
+    rgba(195, 61, 46, 0.07) 40%,
+    transparent 72%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Container ────────────────────────────────────────────── */
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: var(--container-lg);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
+
+/* ── Section Header ───────────────────────────────────────── */
+.heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, var(--text-3xl));
+  font-weight: var(--weight-light);
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+  margin-bottom: var(--space-12);
+  text-align: center;
+  position: relative;
+}
+
+/* Decorative thorn line under heading */
+.heading::after {
+  content: '';
+  display: block;
+  margin: var(--space-4) auto 0;
+  width: 64px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-primary),
+    var(--color-gold),
+    var(--accent-primary),
+    transparent
+  );
+  border-radius: var(--radius-full);
+  animation: goldShimmer 3s ease-in-out infinite;
+}
+
+/* Italic accent word */
+.heading em {
+  font-style: italic;
+  color: var(--color-blush);
+  font-weight: var(--weight-regular);
+}
+
+/* ── Profile Block ────────────────────────────────────────── */
+.profileBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-6);
+}
+
+/* ── Avatar Wrapper ───────────────────────────────────────── */
+.avatarWrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Outer thorn ring */
+.avatarWrapper::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-gold);
+  opacity: 0.55;
+  animation: thornPulse 3s ease-in-out infinite;
+}
+
+/* Inner glow ring */
+.avatarWrapper::after {
+  content: '';
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  opacity: 0.4;
+  animation: thornPulse 3s ease-in-out infinite 0.8s;
+}
+
+.avatar {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border-default);
+  box-shadow:
+    0 0 0 4px var(--bg-surface),
+    var(--shadow-glow-sm),
+    var(--shadow-gold-sm);
+  transition: transform var(--duration-slow) var(--ease-spring);
+  animation: float 5s ease-in-out infinite;
+}
+
+.avatarWrapper:hover .avatar {
+  transform: scale(1.04);
+  box-shadow:
+    0 0 0 4px var(--bg-surface),
+    var(--shadow-glow-md),
+    var(--shadow-gold-md);
+}
+
+/* ── Body Text ────────────────────────────────────────────── */
+.description {
+  max-width: 720px;
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  line-height: var(--leading-loose);
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* First word ornamental */
+.description::first-line {
+  color: var(--text-primary);
+}
+
+.callout {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-regular);
+  font-style: italic;
+  color: var(--text-primary);
+  letter-spacing: 0.01em;
+  position: relative;
+  padding: var(--space-4) var(--space-6);
+}
+
+/* Left thorn accent on callout */
+.callout::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 25%;
+  bottom: 25%;
+  width: 3px;
+  background: linear-gradient(
+    to bottom,
+    var(--accent-primary),
+    var(--color-gold),
+    var(--accent-primary)
+  );
+  border-radius: var(--radius-full);
+}
+
+/* ── Progress Card ────────────────────────────────────────── */
+.progressCard {
+  position: relative;
+  margin-inline: auto;
+  margin-top: var(--space-12);
+  max-width: 600px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8) var(--space-8);
+  box-shadow:
+    var(--shadow-raised),
+    inset 0 1px 0 rgba(242, 233, 225, 0.05);
+  overflow: hidden;
+  transition:
+    border-color var(--duration-base) var(--ease-smooth),
+    box-shadow   var(--duration-base) var(--ease-smooth);
+}
+
+.progressCard:hover {
+  border-color: var(--border-strong);
+  box-shadow:
+    var(--shadow-float),
+    var(--shadow-glow-sm);
+}
+
+/* Gold top stripe */
+.progressCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: var(--space-8);
+  right: var(--space-8);
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--border-gold),
+    transparent
+  );
+}
+
+/* Blade corner ornament */
+.progressCard::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 18px;
+  height: 18px;
+  background: var(--accent-primary);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  opacity: 0.7;
+}
+
+/* ── Funding Stats ────────────────────────────────────────── */
+.fundingStats {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.fundingRaised {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-light);
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.fundingCurrency {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  color: var(--color-gold);
+  font-weight: var(--weight-medium);
+  margin-left: 2px;
+}
+
+.fundingSeparator {
+  font-size: var(--text-base);
+  color: var(--text-muted);
+  font-weight: var(--weight-regular);
+  margin-inline: var(--space-2);
+}
+
+.fundingGoal {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-light);
+  color: var(--text-muted);
+  letter-spacing: -0.01em;
+}
+
+/* ── Progress Bar ─────────────────────────────────────────── */
+.progressTrack {
+  position: relative;
+  height: 6px;
+  background: var(--border-subtle);
+  border-radius: var(--radius-full);
+  overflow: visible;
+  margin-bottom: var(--space-2);
+}
+
+.progressFill {
+  position: relative;
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: linear-gradient(
+    90deg,
+    var(--accent-primary),
+    var(--color-blood),
+    var(--color-gold)
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+  min-width: 6px; /* always visible even at 0% */
+  transition: width var(--duration-slower) var(--ease-out-quart);
+  box-shadow: var(--shadow-glow-sm);
+}
+
+/* Glowing tip of progress fill */
+.progressFill::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  box-shadow: var(--shadow-gold-sm);
+  animation: goldShimmer 1.8s ease-in-out infinite;
+}
+
+.progressMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-3);
+}
+
+.progressPercent {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.progressLabel {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: var(--weight-bold);
+}
+
+/* ── Support Button Area ──────────────────────────────────── */
+.supportArea {
+  margin-top: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* Wrapper that adds thorn-glow effect around SupportButton */
+.supportBtnWrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.supportBtnWrapper::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: calc(var(--radius-md) + 4px);
+  background: linear-gradient(
+    135deg,
+    rgba(139, 28, 36, 0.35),
+    rgba(218, 165, 32, 0.25),
+    rgba(139, 28, 36, 0.35)
+  );
+  background-size: 200% 200%;
+  animation: goldShimmer 2.5s ease-in-out infinite;
+  z-index: -1;
+  filter: blur(6px);
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-smooth);
+}
+
+.supportBtnWrapper:hover::before {
+  opacity: 1;
+}
+
+.supportNote {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+/* ── Divider Ornament ─────────────────────────────────────── */
+.ornamentDivider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-block: var(--space-10);
+  color: var(--border-default);
+}
+
+.ornamentDivider::before,
+.ornamentDivider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--border-subtle),
+    var(--border-default),
+    var(--border-subtle),
+    transparent
+  );
+}
+
+.ornamentDivider span {
+  font-size: var(--text-xs);
+  color: var(--border-default);
+  letter-spacing: 0.2em;
+  user-select: none;
+}
+
+/* ── Stagger Entrance Animations ─────────────────────────── */
+.animateUp {
+  animation: staggerIn var(--duration-slow) var(--ease-spring) both;
+}
+
+.delay1 { animation-delay: 0ms; }
+.delay2 { animation-delay: 80ms; }
+.delay3 { animation-delay: 160ms; }
+.delay4 { animation-delay: 240ms; }
+.delay5 { animation-delay: 320ms; }
+
+/* ── Mobile Responsive ────────────────────────────────────── */
+@media (max-width: 768px) {
+  .section {
+    padding-block: var(--space-12);
+  }
+
+  .container {
+    padding-inline: var(--space-4);
+  }
+
+  .heading {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-8);
+  }
+
+  .avatar {
+    width: 140px;
+    height: 140px;
+  }
+
+  .description {
+    font-size: var(--text-base);
+  }
+
+  .progressCard {
+    padding: var(--space-6);
+    margin-inline: 0;
+  }
+
+  .fundingRaised {
+    font-size: var(--text-2xl);
+  }
+
+  .fundingGoal {
+    font-size: var(--text-lg);
+  }
+
+  .fundingStats {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .fundingSeparator {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding-block: var(--space-10);
+  }
+
+  .heading {
+    font-size: var(--text-xl);
+  }
+
+  .avatar {
+    width: 110px;
+    height: 110px;
+  }
+
+  .callout {
+    font-size: var(--text-base);
+    padding-inline: var(--space-4);
+  }
+
+  .progressCard {
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+  }
+}
