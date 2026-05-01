@@ -1,43 +1,88 @@
 import Image from "next/image";
+
 import { homeRu } from "@/content/home.ru";
-import { Card } from "@/shared/ui/Card";
 import { Container } from "@/shared/ui/Container";
 import { Section } from "@/shared/ui/Section";
 
+import styles from "./RoadmapSection.module.css";
+
+const getStatus = (index: number) => {
+  if (index === 0) {
+    return {
+      label: "Активно",
+      className: styles.statusActive,
+    };
+  }
+
+  return {
+    label: "Запланировано",
+    className: styles.statusPlanned,
+  };
+};
+
 export function RoadmapSection() {
   return (
-    <Section id="roadmap" className="bg-slate-950">
+    <Section id="roadmap" className={styles.section}>
       <Container>
-        <div className="mx-auto mb-12 max-w-5xl text-center">
-          <h2 className="mb-6 text-3xl font-bold md:text-4xl">
-            Дорожная карта разработки
-          </h2>
+        <div className={styles.container}>
+          <header className={styles.header}>
+            <span className={styles.eyebrow}>Roadmap</span>
 
-          <p className="text-lg leading-8 text-slate-300">
-            Разработка Julia строится как поэтапное создание нейрокогнитивной
-            системы: сначала формируется вычислительное ядро и память, затем
-            подключаются модули восприятия, речи, планирования, самообучения,
-            безопасности и долгосрочной персонализации.
-          </p>
-        </div>
+            <h2 className={styles.title}>
+              Дорожная карта{" "}
+              <span className={styles.titleAccent}>разработки</span>
+            </h2>
 
-        <div className="grid grid-cols-1 gap-6 text-slate-200 md:grid-cols-2 lg:grid-cols-3">
-          {homeRu.roadmapCards.map((card) => (
-            <Card key={card.title}>
-              <h3 className="mb-3 text-xl font-semibold">{card.title}</h3>
-              <p className="leading-7 text-slate-300">{card.description}</p>
-            </Card>
-          ))}
-        </div>
+            <p className={styles.description}>
+              Разработка Julia строится как поэтапное создание
+              нейрокогнитивной системы: сначала формируется вычислительное ядро
+              и память, затем подключаются модули восприятия, речи,
+              планирования, самообучения, безопасности и долгосрочной
+              персонализации.
+            </p>
+          </header>
 
-        <div className="mt-10 flex justify-center">
-          <Image
-            src="/images/board.png"
-            alt="Дорожная карта разработки нейрокогнитивной ИИ-системы Julia"
-            width={1200}
-            height={680}
-            className="w-full max-w-5xl rounded-2xl border border-white/10 shadow-2xl"
-          />
+          <div className={styles.ornament} aria-hidden="true">
+            <span className={styles.ornamentLine} />
+            <span className={styles.ornamentGlyph}>✦</span>
+            <span className={styles.ornamentLine} />
+          </div>
+
+          <div className={styles.grid}>
+            {homeRu.roadmapCards.map((card, index) => {
+              const status = getStatus(index);
+
+              return (
+                <article key={card.title} className={styles.card}>
+                  <span className={styles.cardPhase}>
+                    <span className={styles.cardPhaseDot} />
+                    Этап {String(index + 1).padStart(2, "0")}
+                  </span>
+
+                  <h3 className={styles.cardTitle}>{card.title}</h3>
+
+                  <p className={styles.cardDescription}>{card.description}</p>
+
+                  <div className={styles.cardStatus}>
+                    <span className={status.className}>{status.label}</span>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+
+          <div className={styles.boardWrapper}>
+            <div className={styles.boardFrame}>
+              <Image
+                src="/images/board.png"
+                alt="Дорожная карта разработки нейрокогнитивной ИИ-системы Julia"
+                width={1200}
+                height={680}
+                className={styles.boardImage}
+                priority={false}
+              />
+            </div>
+          </div>
         </div>
       </Container>
     </Section>

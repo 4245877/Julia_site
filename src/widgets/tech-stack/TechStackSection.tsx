@@ -1,46 +1,81 @@
 import { homeRu } from "@/content/home.ru";
 import { Container } from "@/shared/ui/Container";
 import { Section } from "@/shared/ui/Section";
+import styles from "./TechStackSection.module.css";
+
+const TECH_STACK_TITLE_ID = "techStackTitle";
 
 export function TechStackSection() {
   return (
-    <Section
-      className="bg-gradient-to-r from-slate-900 to-slate-800"
-      aria-labelledby="techStackTitle"
-    >
-      <Container>
-        <h2 id="techStackTitle" className="mb-6 text-3xl font-bold md:text-4xl">
-          Технологический стек
-        </h2>
+    <Section className={styles.section} aria-labelledby={TECH_STACK_TITLE_ID}>
+      <Container className={styles.container}>
+        <div className={styles.header}>
+          <span className={styles.eyebrow}>Спецификация</span>
 
-        <p className="mb-10 max-w-4xl text-lg leading-8 text-slate-300">
-          Julia — экспериментальная мультимодальная ИИ-система, проектируемая
-          как биологически вдохновлённая нейрокогнитивная архитектура. Цель
-          проекта — исследовать устойчивое восприятие, долговременную память,
-          рассуждение, планирование действий, самообучение и x86-ориентированную
-          вычислительную оптимизацию.
-        </p>
+          <h2 id={TECH_STACK_TITLE_ID} className={styles.title}>
+            Технологический <span className={styles.titleAccent}>стек</span>
+          </h2>
 
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
-          {homeRu.techStack.map((column) => (
-            <div key={column.columnTitle}>
-              <h3 className="mb-4 text-2xl font-bold">{column.columnTitle}</h3>
+          <p className={styles.description}>
+            Julia — экспериментальная мультимодальная ИИ-система, проектируемая
+            как биологически вдохновлённая нейрокогнитивная архитектура. Цель
+            проекта — исследовать устойчивое восприятие, долговременную память,
+            рассуждение, планирование действий, самообучение и x86-ориентированную
+            вычислительную оптимизацию.
+          </p>
+        </div>
 
-              {column.groups.map((group) => (
-                <div key={group.title} className="mt-6">
-                  <h4 className="mb-2 text-xl font-semibold">{group.title}</h4>
+        <div className={styles.ornamentDivider} aria-hidden="true">
+          <span className={styles.ornamentSymbol}>✦</span>
+        </div>
 
-                  <ul className="ml-6 list-disc space-y-2 text-slate-200">
-                    {group.items.map((item) => (
-                      <li key={item} className="leading-7">
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          ))}
+        <div className={styles.grid}>
+          {homeRu.techStack.map((column, columnIndex) => {
+            const columnTitleId = `techStackColumn-${columnIndex}`;
+
+            return (
+              <article
+                key={`${column.columnTitle}-${columnIndex}`}
+                className={styles.column}
+                aria-labelledby={columnTitleId}
+              >
+                <h3 id={columnTitleId} className={styles.columnTitle}>
+                  <span className={styles.columnTitleMark} aria-hidden="true" />
+                  {column.columnTitle}
+                </h3>
+
+                {column.groups.map((group, groupIndex) => {
+                  const groupTitleId = `techStackColumn-${columnIndex}-group-${groupIndex}`;
+
+                  return (
+                    <section
+                      key={`${group.title}-${groupIndex}`}
+                      className={styles.group}
+                      aria-labelledby={groupTitleId}
+                    >
+                      {groupIndex > 0 && (
+                        <hr className={styles.groupSeparator} aria-hidden="true" />
+                      )}
+
+                      <h4 id={groupTitleId} className={styles.groupTitle}>
+                        {group.title}
+                      </h4>
+
+                      <ul className={styles.itemList}>
+                        {group.items.map((item, itemIndex) => (
+                          <li key={`${item}-${itemIndex}`} className={styles.item}>
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </section>
+                  );
+                })}
+
+                <div className={styles.glowStrip} aria-hidden="true" />
+              </article>
+            );
+          })}
         </div>
       </Container>
     </Section>

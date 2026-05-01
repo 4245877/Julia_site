@@ -1,0 +1,341 @@
+/* ============================================================
+   SystemRequirements.module.css
+   "Thorn Princess" — Yor Forger Design System
+   ============================================================ */
+
+/* ── Wrapper ─────────────────────────────────────────────────── */
+.wrapper {
+  margin-top: var(--space-12);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-default);
+  background: var(--bg-surface);
+  padding: var(--space-8);
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn var(--duration-slow) var(--ease-out-quart) both;
+}
+
+/* Thorn cross-hatch accent layer behind content */
+.wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: var(--radius-xl);
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 28px,
+      rgba(139, 28, 36, 0.05) 28px,
+      rgba(139, 28, 36, 0.05) 29px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 28px,
+      rgba(139, 28, 36, 0.05) 28px,
+      rgba(139, 28, 36, 0.05) 29px
+    );
+  z-index: 0;
+}
+
+/* Crimson glow bleed at top-left */
+.wrapper::after {
+  content: '';
+  position: absolute;
+  top: -60px;
+  left: -60px;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(139, 28, 36, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Header ──────────────────────────────────────────────────── */
+.header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+/* Ornamental thorn mark left of the title */
+.header::before {
+  content: '';
+  display: block;
+  flex-shrink: 0;
+  width: 3px;
+  height: 28px;
+  background: linear-gradient(180deg, var(--color-blood) 0%, var(--color-crimson) 100%);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-glow-sm);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-regular);
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  line-height: var(--leading-tight);
+  margin: 0;
+}
+
+/* ── Description ─────────────────────────────────────────────── */
+.description {
+  position: relative;
+  z-index: 1;
+  font-size: var(--text-sm);
+  line-height: var(--leading-loose);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-8);
+  max-width: 640px;
+}
+
+/* ── Grid ────────────────────────────────────────────────────── */
+.grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+
+/* ── Requirement Card ────────────────────────────────────────── */
+.card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  position: relative;
+  overflow: hidden;
+  transition:
+    border-color var(--duration-base) var(--ease-smooth),
+    box-shadow   var(--duration-base) var(--ease-smooth),
+    transform    var(--duration-base) var(--ease-smooth);
+
+  /* Stagger reveal */
+  animation: staggerIn var(--duration-slow) var(--ease-spring) both;
+}
+
+.card:nth-child(1) { animation-delay: 60ms; }
+.card:nth-child(2) { animation-delay: 140ms; }
+.card:nth-child(3) { animation-delay: 220ms; }
+
+/* Blade corner detail */
+.card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  background: var(--accent-primary);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  opacity: 0.55;
+  transition: opacity var(--duration-base) var(--ease-smooth);
+}
+
+.card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-glow-sm), var(--shadow-raised);
+  transform: translateY(-3px);
+}
+.card:hover::after {
+  opacity: 1;
+}
+
+/* Subtle inner glow on hover */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(195, 61, 46, 0.04) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-smooth);
+  pointer-events: none;
+  z-index: 0;
+}
+.card:hover::before {
+  opacity: 1;
+}
+
+/* ── Card Header ─────────────────────────────────────────────── */
+.cardHeader {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* Thorn-dot accent before card title */
+.cardHeader::before {
+  content: '';
+  display: block;
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-blood);
+  box-shadow: 0 0 8px rgba(195, 61, 46, 0.55);
+  animation: thornPulse 2.5s ease-in-out infinite;
+}
+
+.card:nth-child(2) .cardHeader::before {
+  animation-delay: 0.8s;
+}
+.card:nth-child(3) .cardHeader::before {
+  animation-delay: 1.6s;
+}
+
+.cardTitle {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* Gold accent for the recommended tier */
+.card:nth-child(2) {
+  border-color: var(--border-gold);
+}
+.card:nth-child(2):hover {
+  box-shadow: var(--shadow-gold-sm), var(--shadow-raised);
+}
+.card:nth-child(2) .cardHeader::before {
+  background: var(--color-gold);
+  box-shadow: 0 0 8px rgba(218, 165, 32, 0.55);
+  animation: goldShimmer 2.5s ease-in-out infinite;
+}
+.card:nth-child(2) .cardTitle {
+  color: var(--color-gold);
+}
+.card:nth-child(2)::after {
+  background: var(--color-gold);
+}
+
+/* ── Item List ───────────────────────────────────────────────── */
+.list {
+  position: relative;
+  z-index: 1;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+  color: var(--text-secondary);
+  transition: color var(--duration-fast) var(--ease-smooth);
+}
+
+.item:hover {
+  color: var(--text-primary);
+}
+
+/* Custom bullet — small thorn slash */
+.item::before {
+  content: '—';
+  flex-shrink: 0;
+  color: var(--border-strong);
+  font-size: var(--text-xs);
+  margin-top: 3px;
+  line-height: 1;
+  transition: color var(--duration-fast) var(--ease-smooth);
+}
+
+.item:hover::before {
+  color: var(--color-blood);
+}
+
+/* Gold bullets for recommended card */
+.card:nth-child(2) .item::before {
+  color: rgba(218, 165, 32, 0.45);
+}
+.card:nth-child(2) .item:hover::before {
+  color: var(--color-gold);
+}
+
+/* ── Divider between description and grid ────────────────────── */
+.divider {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-subtle);
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .card:nth-child(3) {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    padding: var(--space-6) var(--space-5);
+    border-radius: var(--radius-lg);
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+  .card:nth-child(3) {
+    grid-column: span 1;
+  }
+  .title {
+    font-size: var(--text-xl);
+  }
+  .description {
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-6);
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    padding: var(--space-5) var(--space-4);
+    margin-top: var(--space-8);
+  }
+  .card {
+    padding: var(--space-4) var(--space-5);
+  }
+  .title {
+    font-size: var(--text-lg);
+  }
+}

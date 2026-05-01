@@ -1,3 +1,5 @@
+import styles from "./SystemRequirements.module.css";
+
 const requirements = [
   {
     title: "Базовый запуск",
@@ -33,30 +35,36 @@ const requirements = [
 
 export function SystemRequirements() {
   return (
-    <div className="mt-12 rounded-2xl border border-white/10 bg-slate-900 p-6">
-      <h3 className="mb-4 text-xl font-bold">Системные требования</h3>
+    <section className={styles.wrapper}>
+      <div className={styles.header}>
+        <h3 className={styles.title}>Системные требования</h3>
+      </div>
 
-      <p className="mb-6 leading-8 text-slate-300">
+      <p className={styles.description}>
         Требования зависят от выбранных модулей, размера моделей, объёма памяти
         и режима запуска. Ниже указаны ориентиры для локальной экспериментальной
         сборки.
       </p>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-        {requirements.map((group) => (
-          <div key={group.title}>
-            <h4 className="mb-2 font-bold">{group.title}</h4>
+      <div className={styles.divider}>Конфигурации</div>
 
-            <ul className="ml-6 list-disc space-y-1 text-slate-200">
+      <div className={styles.grid}>
+        {requirements.map((group) => (
+          <article key={group.title} className={styles.card}>
+            <div className={styles.cardHeader}>
+              <h4 className={styles.cardTitle}>{group.title}</h4>
+            </div>
+
+            <ul className={styles.list}>
               {group.items.map((item) => (
-                <li key={item} className="leading-7">
+                <li key={item} className={styles.item}>
                   {item}
                 </li>
               ))}
             </ul>
-          </div>
+          </article>
         ))}
       </div>
-    </div>
+    </section>
   );
 }
