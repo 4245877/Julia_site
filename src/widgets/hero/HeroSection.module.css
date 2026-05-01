@@ -1,0 +1,600 @@
+/* ============================================================
+   HeroSection.module.css
+   "Thorn Princess" — Yor Forger Hero
+   ============================================================ */
+
+/* ── Wrapper ─────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  padding-block: var(--space-24) var(--space-20);
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+
+  /* Deep crimson → obsidian gradient */
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%,
+      rgba(139, 28, 36, 0.38) 0%,
+      transparent 70%),
+    radial-gradient(ellipse 55% 40% at 80% 90%,
+      rgba(195, 61, 46, 0.14) 0%,
+      transparent 60%),
+    radial-gradient(ellipse 45% 35% at 15% 70%,
+      rgba(74, 14, 16, 0.30) 0%,
+      transparent 55%),
+    var(--bg-base);
+}
+
+/* ── Thorn cross-hatch atmospheric texture ────────────────── */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -2;
+  background-image:
+    repeating-linear-gradient(
+      48deg,
+      transparent,
+      transparent 52px,
+      rgba(139, 28, 36, 0.055) 52px,
+      rgba(139, 28, 36, 0.055) 53px
+    ),
+    repeating-linear-gradient(
+      -48deg,
+      transparent,
+      transparent 52px,
+      rgba(139, 28, 36, 0.055) 52px,
+      rgba(139, 28, 36, 0.055) 53px
+    );
+  animation: thornDrift 28s linear infinite;
+}
+
+/* ── Animated crimson veil — upper arc ───────────────────── */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    conic-gradient(
+      from 200deg at 50% 0%,
+      transparent 0deg,
+      rgba(139, 28, 36, 0.10) 30deg,
+      rgba(195, 61, 46, 0.08) 60deg,
+      transparent 90deg
+    );
+  animation: veilRotate 18s ease-in-out infinite alternate;
+}
+
+/* ── Decorative thorn blades (pseudo SVG geometry) ───────── */
+.thorns {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Blade — top-left diagonal slash */
+.thorns::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  left: -40px;
+  width: 3px;
+  height: 340px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(195, 61, 46, 0.32) 35%,
+    rgba(218, 165, 32, 0.20) 65%,
+    transparent 100%
+  );
+  transform: rotate(18deg);
+  border-radius: var(--radius-full);
+  animation: bladeFade 4s ease-in-out infinite alternate;
+}
+
+/* Blade — bottom-right diagonal slash */
+.thorns::after {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  right: -30px;
+  width: 2px;
+  height: 280px;
+  background: linear-gradient(
+    0deg,
+    transparent 0%,
+    rgba(139, 28, 36, 0.25) 40%,
+    rgba(218, 165, 32, 0.15) 70%,
+    transparent 100%
+  );
+  transform: rotate(-14deg);
+  border-radius: var(--radius-full);
+  animation: bladeFade 4s ease-in-out 2s infinite alternate;
+}
+
+/* ── Gold ornament line — top center ─────────────────────── */
+.goldLine {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 80px;
+  background: linear-gradient(
+    180deg,
+    rgba(218, 165, 32, 0.65) 0%,
+    rgba(218, 165, 32, 0.00) 100%
+  );
+  z-index: 1;
+  animation: goldPulse 3s ease-in-out infinite;
+}
+
+.goldLine::before {
+  content: '✦';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  color: rgba(218, 165, 32, 0.60);
+  letter-spacing: 0;
+  animation: goldShimmer 3s ease-in-out infinite;
+}
+
+/* ── Inner content wrapper ────────────────────────────────── */
+.inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  width: 100%;
+}
+
+/* ── Language Switcher slot ───────────────────────────────── */
+.langSlot {
+  position: absolute;
+  top: var(--space-6);
+  right: var(--space-6);
+  z-index: var(--z-raised);
+}
+
+/* ── Eyebrow / sub-label ──────────────────────────────────── */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.30em;
+  text-transform: uppercase;
+  color: var(--color-blush);
+  opacity: 0;
+  animation: staggerReveal var(--duration-slow) var(--ease-spring) 0.10s both;
+}
+
+/* Flanking thorn ornaments */
+.eyebrow::before,
+.eyebrow::after {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(214, 126, 122, 0.60)
+  );
+}
+.eyebrow::after {
+  background: linear-gradient(
+    270deg,
+    transparent,
+    rgba(214, 126, 122, 0.60)
+  );
+}
+
+/* ── Headline ─────────────────────────────────────────────── */
+.title {
+  margin-inline: auto;
+  margin-bottom: var(--space-6);
+  max-width: 900px;
+
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  font-weight: var(--weight-light);
+  line-height: 1.13;
+  letter-spacing: -0.035em;
+  color: var(--text-primary);
+
+  opacity: 0;
+  animation: staggerReveal var(--duration-slower) var(--ease-spring) 0.22s both;
+}
+
+/* Crimson accent — wraps key word(s) in JSX with <em> */
+.title :global(em),
+.titleAccent {
+  font-style: italic;
+  color: transparent;
+  background: linear-gradient(
+    135deg,
+    var(--color-blush)     0%,
+    var(--color-blood)     45%,
+    var(--color-gold)     100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-weight: var(--weight-regular);
+}
+
+/* ── Description ──────────────────────────────────────────── */
+.description {
+  margin-inline: auto;
+  margin-bottom: var(--space-10);
+  max-width: 720px;
+
+  font-family: var(--font-body);
+  font-size: clamp(var(--text-base), 2vw, var(--text-md));
+  line-height: var(--leading-loose);
+  color: var(--text-secondary);
+
+  opacity: 0;
+  animation: staggerReveal var(--duration-slower) var(--ease-spring) 0.36s both;
+}
+
+/* ── CTA actions row ──────────────────────────────────────── */
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+
+  opacity: 0;
+  animation: staggerReveal var(--duration-slower) var(--ease-spring) 0.50s both;
+}
+
+/* Primary button override — thorn glow on hover */
+.actions :global(.btn--primary),
+.btnPrimary {
+  position: relative;
+  overflow: hidden;
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: var(--color-parchment);
+  padding: var(--space-4) var(--space-8);
+  font-size: var(--text-sm);
+  border-radius: var(--radius-md);
+  letter-spacing: 0.04em;
+  transition:
+    background     var(--duration-base) var(--ease-smooth),
+    border-color   var(--duration-base) var(--ease-smooth),
+    box-shadow     var(--duration-base) var(--ease-smooth),
+    transform      var(--duration-fast) var(--ease-spring);
+}
+
+.actions :global(.btn--primary):hover,
+.btnPrimary:hover {
+  background: var(--color-blood);
+  border-color: var(--color-blood);
+  box-shadow:
+    var(--shadow-glow-md),
+    0 0 48px rgba(195, 61, 46, 0.20);
+  transform: translateY(-2px);
+}
+
+/* Ripple effect on primary btn */
+.actions :global(.btn--primary)::after,
+.btnPrimary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--x, 50%) var(--y, 50%),
+    rgba(255, 255, 255, 0.12) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--ease-smooth);
+}
+.actions :global(.btn--primary):hover::after,
+.btnPrimary:hover::after {
+  opacity: 1;
+}
+
+/* Secondary button override */
+.actions :global(.btn--secondary),
+.btnSecondary {
+  background: transparent;
+  border-color: var(--border-default);
+  color: var(--text-secondary);
+  padding: var(--space-4) var(--space-8);
+  font-size: var(--text-sm);
+  border-radius: var(--radius-md);
+  letter-spacing: 0.04em;
+  transition:
+    background     var(--duration-base) var(--ease-smooth),
+    border-color   var(--duration-base) var(--ease-smooth),
+    color          var(--duration-base) var(--ease-smooth),
+    transform      var(--duration-fast) var(--ease-spring);
+}
+.actions :global(.btn--secondary):hover,
+.btnSecondary:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+}
+
+/* ── Floating stat pills (optional decorative elements) ─────── */
+.pill {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-card);
+  white-space: nowrap;
+  z-index: 2;
+  pointer-events: none;
+  animation: float 4s ease-in-out infinite;
+}
+
+.pill--left {
+  left: 6%;
+  top: 30%;
+  animation-delay: 0s;
+  opacity: 0;
+  animation: pillReveal 0.6s var(--ease-spring) 0.80s both, float 4s ease-in-out 1.4s infinite;
+}
+
+.pill--right {
+  right: 6%;
+  top: 38%;
+  animation-delay: 0.2s;
+  opacity: 0;
+  animation: pillReveal 0.6s var(--ease-spring) 1.0s both, float 4s ease-in-out 1.6s infinite;
+}
+
+.pill__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  flex-shrink: 0;
+  animation: goldShimmer 2.5s ease-in-out infinite;
+}
+
+.pill__dot--crimson {
+  background: var(--color-blood);
+  animation: thornPulseSmall 2s ease-in-out infinite;
+}
+
+/* ── Bottom gradient fade into page body ─────────────────── */
+.fadeEdge {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--bg-base) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Scroll hint ──────────────────────────────────────────── */
+.scrollHint {
+  position: absolute;
+  bottom: var(--space-8);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  z-index: 3;
+  opacity: 0;
+  animation: staggerReveal var(--duration-slow) var(--ease-out-quart) 1.0s both;
+}
+
+.scrollHint__label {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.scrollHint__line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(
+    180deg,
+    var(--border-strong) 0%,
+    transparent 100%
+  );
+  animation: scrollDrop 1.8s ease-in-out infinite;
+}
+
+/* ── Keyframes ────────────────────────────────────────────── */
+@keyframes staggerReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes pillReveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes goldPulse {
+  0%, 100% { opacity: 0.65; height: 80px; }
+  50%       { opacity: 1.00; height: 100px; }
+}
+
+@keyframes goldShimmer {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.50; }
+}
+
+@keyframes thornDrift {
+  from { background-position: 0 0; }
+  to   { background-position: 100px 100px; }
+}
+
+@keyframes veilRotate {
+  from { transform: rotate(0deg) scale(1); opacity: 0.7; }
+  to   { transform: rotate(5deg) scale(1.05); opacity: 1; }
+}
+
+@keyframes bladeFade {
+  from { opacity: 0.20; }
+  to   { opacity: 0.65; }
+}
+
+@keyframes scrollDrop {
+  0%   { transform: scaleY(0); transform-origin: top; opacity: 0; }
+  40%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+  80%  { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
+  100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+}
+
+@keyframes thornPulseSmall {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(195, 61, 46, 0); }
+  50%       { box-shadow: 0 0 0 4px rgba(195, 61, 46, 0.18); }
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .pill--left,
+  .pill--right {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-block: var(--space-20) var(--space-16);
+    min-height: 80vh;
+    align-items: flex-start;
+    padding-top: calc(var(--space-16) + 56px); /* account for lang switcher */
+  }
+
+  .title {
+    font-size: clamp(2rem, 9vw, 3rem);
+    letter-spacing: -0.025em;
+  }
+
+  .description {
+    font-size: var(--text-base);
+    padding-inline: var(--space-2);
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+    padding-inline: var(--space-4);
+  }
+
+  .actions :global(.btn--primary),
+  .actions :global(.btn--secondary),
+  .btnPrimary,
+  .btnSecondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .goldLine {
+    height: 48px;
+  }
+
+  .scrollHint {
+    display: none;
+  }
+
+  .langSlot {
+    top: var(--space-4);
+    right: var(--space-4);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding-top: calc(var(--space-12) + 52px);
+    min-height: 70vh;
+  }
+
+  .eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.20em;
+  }
+
+  .eyebrow::before,
+  .eyebrow::after {
+    width: 16px;
+  }
+}
+
+/* ── Reduced-motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .hero::before,
+  .hero::after,
+  .thorns::before,
+  .thorns::after,
+  .goldLine,
+  .scrollHint__line,
+  .pill {
+    animation: none;
+  }
+
+  .eyebrow,
+  .title,
+  .description,
+  .actions,
+  .scrollHint {
+    opacity: 1;
+    animation: none;
+  }
+
+  .pill--left,
+  .pill--right {
+    opacity: 1;
+  }
+}
