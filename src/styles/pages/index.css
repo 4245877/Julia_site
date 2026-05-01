@@ -1018,7 +1018,7 @@ section {
 }
 
 .select-input option {
-  background: var(--gray-900);
+  background: var(--dark-burgundy);
   color: var(--white);
 }
 
@@ -1325,4 +1325,108 @@ section {
     width: 34px;
     height: 34px;
   }
+}
+
+/* --- Theme overrides after tokens cleanup --- */
+
+body {
+  background: var(--dark-burgundy);
+  color: var(--white);
+}
+
+/* Tailwind gray backgrounds -> project palette */
+.bg-gray-900 {
+  background-color: var(--dark-burgundy) !important;
+}
+
+.bg-gray-800 {
+  background-color: var(--primary-red) !important;
+}
+
+.bg-gray-700 {
+  background-color: var(--accent-coral) !important;
+}
+
+/* Tailwind blue accents -> project palette */
+.bg-blue-600 {
+  background-color: var(--primary-red) !important;
+}
+
+.hover\:bg-blue-500:hover {
+  background-color: var(--accent-coral) !important;
+}
+
+.hover\:bg-gray-700:hover {
+  background-color: var(--dark-burgundy) !important;
+}
+
+.hover\:bg-gray-600:hover {
+  background-color: var(--accent-coral) !important;
+}
+
+/* Text utilities */
+.text-white {
+  color: var(--white) !important;
+}
+
+.text-gray-200,
+.text-gray-300,
+.text-gray-500 {
+  color: var(--light-sand) !important;
+}
+
+.text-blue-300 {
+  color: var(--gold-accent) !important;
+}
+
+/* Gradient section that used Tailwind gray gradient */
+.bg-gradient-to-r.from-gray-800.to-gray-700 {
+  background: var(--gradient-header) !important;
+}
+
+/* Borders and shadows closer to current palette */
+.border-gray-700,
+.border-gray-800,
+.border-gray-900 {
+  border-color: var(--pastel-pink) !important;
+}
+
+.shadow,
+.shadow-lg,
+.shadow-xl {
+  box-shadow: var(--shadow-soft);
+}
+
+/* Buttons and links */
+a.inline-block,
+button {
+  transition: var(--transition-base);
+}
+
+/* Dark cards should stay readable on burgundy background */
+#architecture .bg-gray-800,
+#roadmap .bg-gray-800,
+#features .bg-gray-900,
+#launcher .bg-gray-800,
+#launcher .bg-gray-900,
+#character-customization .bg-gray-900 {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Launcher image cards */
+#launcher .rounded-lg.overflow-hidden {
+  background: var(--dark-burgundy);
+}
+
+/* Inputs */
+.select-input {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.select-input option {
+  background: var(--dark-burgundy);
+  color: var(--white);
 }

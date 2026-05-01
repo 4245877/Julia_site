@@ -19,7 +19,7 @@ body {
   font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Roboto", sans-serif;
   line-height: 1.6;
   color: var(--white);
-  background: var(--gray-900);
+  background: var(--dark-burgundy);
   overflow-x: hidden;
 }
 
