@@ -16,4 +16,4 @@ export const siteConfig = {
     "multimodal AI",
     "AI companion",
   ],
-} as const;
+};
