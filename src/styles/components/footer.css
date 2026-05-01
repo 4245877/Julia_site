@@ -1,4 +1,3 @@
-/* Footer */
 footer {
   background: var(--primary-red);
   color: var(--light-sand);
@@ -8,7 +7,7 @@ footer {
 }
 
 footer::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -17,7 +16,8 @@ footer::before {
   background: var(--gradient-gold);
 }
 
-footer h2 {
+footer h2,
+footer h3 {
   color: var(--white);
   margin-bottom: 0.75rem;
 }
@@ -25,7 +25,7 @@ footer h2 {
 footer p {
   margin-bottom: 1rem;
   padding: 0;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 footer .flex {
@@ -35,9 +35,10 @@ footer .flex {
   margin-top: 0.75rem;
 }
 
-/* Links (icons) */
 footer a {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 0.75rem;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.1);
@@ -52,7 +53,6 @@ footer a:hover {
   transform: translateY(-3px);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   footer .flex {
     flex-wrap: wrap;

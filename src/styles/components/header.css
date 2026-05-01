@@ -1,0 +1,18 @@
+.lang-switcher {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.lang-switcher button {
+  border: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  border-radius: 999px;
+  padding: 0.4rem 0.75rem;
+  font-weight: 700;
+  transition: var(--transition-smooth);
+}
+
+.lang-switcher button:hover {
+  transform: translateY(-1px);
+}
