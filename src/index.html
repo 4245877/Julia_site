@@ -389,90 +389,359 @@
   </section>
 
 
-  <section class="bg-gradient-to-r from-gray-800 to-gray-700 py-20">
-    <div class="container mx-auto px-4">
-      <h2 id="techStackTitle" class="text-3xl font-bold mb-8">Технологический стек</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
-          <h3 id="whatDrivesTitle" class="text-2xl font-bold mb-4">Что движет Julia</h3>
+  <section class="bg-gradient-to-r from-gray-800 to-gray-700 py-20" aria-labelledby="techStackTitle">
+  <div class="container mx-auto px-4">
+    <h2 id="techStackTitle" class="text-3xl font-bold mb-6">
+      Технологический стек
+    </h2>
 
-          <h4 class="text-xl font-semibold mt-4 mb-2">Высокопроизводительные вычисления</h4>
-          <ul class="list-disc ml-6 space-y-2">
-            <li>CUDA (NVIDIA)</li>
-            <li>NVIDIA TensorRT</li>
-            <li>OpenMP</li>
-            <li>Intel TBB</li>
-            <li>AMD AOCL</li>
-          </ul>
+    <p class="text-gray-300 mb-10 max-w-4xl">
+      Julia — экспериментальная мультимодальная ИИ-система, проектируемая как
+      биологически вдохновлённая нейрокогнитивная архитектура. Цель проекта —
+      приблизить поведение системы к естественному человеческому взаимодействию:
+      восприятию речи, текста и визуальной информации, формированию долговременной
+      памяти, рассуждению, обучению на опыте, планированию действий и поддержанию
+      устойчивого контекста личности.
+    </p>
 
-          <h4 class="text-xl font-semibold mt-4 mb-2">Машинное обучение и ИИ</h4>
-          <ul class="list-disc ml-6 space-y-2">
-            <li>TensorFlow & LibTorch</li>
-            <li>ONNX</li>
-            <li>Dlib</li>
-            <li>OpenCV</li>
-            <li>YOLO</li>
-            <li>RNN</li>
-            <li>GAN</li>
-          </ul>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div>
+        <h3 id="whatDrivesTitle" class="text-2xl font-bold mb-4">
+          Архитектурная основа Julia
+        </h3>
 
-          <h4 class="text-xl font-semibold mt-4 mb-2">Данные и графика</h4>
-          <ul class="list-disc ml-6 space-y-2">
-            <li>OpenGL</li>
-            <li>GLM</li>
-            <li>Assimp</li>
-            <li>SFML</li>
-            <li>Boost.Graph</li>
-            <li>PostgreSQL</li>
-            <li>OpenAL</li>
-            <li>PortAudio</li>
-          </ul>
+        <h4 class="text-xl font-semibold mt-4 mb-2">
+          Нейрокогнитивное ядро
+        </h4>
+        <ul class="list-disc ml-6 space-y-2 text-gray-200">
+          <li>
+            <strong>Моделирование функциональных подсистем мозга</strong> —
+            архитектура строится вокруг аналогов коры, таламуса, гиппокампа,
+            базальных ганглиев, мозжечка и префронтальных управляющих контуров.
+          </li>
+          <li>
+            <strong>Когнитивная рабочая область</strong> —
+            единый механизм внимания, контекста и выбора активных мыслительных процессов.
+          </li>
+          <li>
+            <strong>Память разных уровней</strong> —
+            кратковременная, эпизодическая, семантическая, процедурная и ассоциативная память.
+          </li>
+          <li>
+            <strong>Механизмы внимания и приоритизации</strong> —
+            распределение вычислительных ресурсов между речью, зрением, внутренним контекстом,
+            целями и внешними событиями.
+          </li>
+          <li>
+            <strong>Мотивационные и оценочные сигналы</strong> —
+            внутренние контуры вознаграждения, уверенности, новизны, ошибки предсказания
+            и выбора действий.
+          </li>
+        </ul>
 
-          <h4 class="text-xl font-semibold mt-4 mb-2">Разговорный ИИ и NLP</h4>
-          <ul class="list-disc ml-6 space-y-2">
-            <li>Rasa / BotPress</li>
-            <li>CMU Sphinx</li>
-            <li>Festival</li>
-            <li>WaveGlow</li>
-          </ul>
+        <h4 class="text-xl font-semibold mt-4 mb-2">
+          Нейросетевые модели и обучение
+        </h4>
+        <ul class="list-disc ml-6 space-y-2 text-gray-200">
+          <li>
+            <strong>PyTorch / LibTorch</strong> и <strong>TensorFlow</strong> —
+            обучение, интеграция и запуск глубоких нейросетевых моделей.
+          </li>
+          <li>
+            <strong>ONNX</strong> и <strong>ONNX Runtime</strong> —
+            переносимость моделей и единый слой инференса.
+          </li>
+          <li>
+            <strong>Transformer</strong>, <strong>State Space Models</strong>,
+            <strong>RNN/LSTM</strong> и <strong>нейросетевые памяти</strong> —
+            моделирование языка, последовательностей, долговременного контекста и рассуждений.
+          </li>
+          <li>
+            <strong>Spiking Neural Networks</strong> и нейроморфные прототипы —
+            исследование событийной обработки, временной динамики и биологически близких вычислений.
+          </li>
+          <li>
+            <strong>Reinforcement Learning</strong>,
+            <strong>self-supervised learning</strong> и <strong>continual learning</strong> —
+            обучение через опыт, обратную связь, предсказание и постепенное накопление навыков.
+          </li>
+        </ul>
 
-          <h4 class="text-xl font-semibold mt-4 mb-2">Ключевые датасеты</h4>
-          <ul class="list-disc ml-6 space-y-2">
-            <li>Wikipedia</li>
-            <li>The Pile</li>
-            <li>Natural Questions</li>
-            <li>SQuAD</li>
-            <li>PersonaChat</li>
-            <li>DailyDialog</li>
-            <li>GSM8K</li>
-            <li>BIG‑Bench</li>
-          </ul>
+        <h4 class="text-xl font-semibold mt-4 mb-2">
+          Платформа x86 и вычислительная оптимизация
+        </h4>
+        <ul class="list-disc ml-6 space-y-2 text-gray-200">
+          <li>
+            <strong>x86-64</strong> — основная аппаратная платформа для запуска когнитивного ядра,
+            памяти, планировщика и модулей инференса.
+          </li>
+          <li>
+            <strong>AVX2</strong>, <strong>AVX-512</strong>, <strong>SIMD</strong> и
+            <strong>NUMA-aware scheduling</strong> — низкоуровневая оптимизация вычислений на CPU.
+          </li>
+          <li>
+            <strong>OpenMP</strong>, <strong>Intel TBB</strong> и
+            <strong>oneAPI / oneDNN</strong> — параллельное выполнение, тензорные операции
+            и оптимизация нейросетевого инференса на x86.
+          </li>
+          <li>
+            <strong>Intel MKL</strong>, <strong>AMD AOCL</strong>, <strong>Eigen</strong>,
+            <strong>BLAS</strong> и <strong>LAPACK</strong> — математическая база для линейной алгебры,
+            оптимизации и численного моделирования.
+          </li>
+          <li>
+            <strong>CUDA</strong> и <strong>NVIDIA TensorRT</strong> —
+            дополнительное ускорение тяжёлых моделей при наличии GPU, без зависимости основной архитектуры от GPU.
+          </li>
+        </ul>
 
-          <h4 class="text-xl font-semibold mt-4 mb-2">DevOps</h4>
-          <ul class="list-disc ml-6 space-y-2">
-            <li>Git</li>
-            <li>Docker</li>
-          </ul>
+        <h4 class="text-xl font-semibold mt-4 mb-2">
+          Восприятие: речь, текст, зрение и аудио
+        </h4>
+        <ul class="list-disc ml-6 space-y-2 text-gray-200">
+          <li>
+            <strong>NLP-модели</strong> — понимание текста, диалога, намерений, эмоций,
+            фактов, логических связей и долговременного контекста.
+          </li>
+          <li>
+            <strong>ASR-модули</strong> — распознавание речи, шумоподавление,
+            определение говорящего и обработка аудиопотоков в реальном времени.
+          </li>
+          <li>
+            <strong>TTS-модули</strong> — синтез естественной речи, управление интонацией,
+            темпом, паузами и эмоциональной окраской.
+          </li>
+          <li>
+            <strong>OpenCV</strong>, <strong>YOLO</strong>, <strong>ViT</strong> и
+            мультимодальные энкодеры — распознавание объектов, сцен, лиц, жестов,
+            действий и визуального контекста.
+          </li>
+          <li>
+            <strong>PortAudio</strong>, <strong>OpenAL</strong> и потоковая обработка —
+            ввод, вывод и синхронизация аудиосигналов.
+          </li>
+        </ul>
 
-          <h4 class="text-xl font-semibold mt-4 mb-2">Фундаментальные области</h4>
-          <ul class="list-disc ml-6 space-y-2">
-            <li>Computer Science</li>
-            <li>Machine Learning</li>
-            <li>UI/UX дизайн</li>
-            <li>Интеграция с оборудованием</li>
-          </ul>
-        </div>
+        <h4 class="text-xl font-semibold mt-4 mb-2">
+          Память, знания и внутренний мир модели
+        </h4>
+        <ul class="list-disc ml-6 space-y-2 text-gray-200">
+          <li>
+            <strong>PostgreSQL</strong> и <strong>pgvector</strong> —
+            хранение структурированных данных, воспоминаний, эмбеддингов и контекстных связей.
+          </li>
+          <li>
+            <strong>FAISS</strong> / <strong>Qdrant</strong> —
+            быстрый поиск по векторной памяти и ассоциативное извлечение опыта.
+          </li>
+          <li>
+            <strong>Neo4j</strong> или <strong>Boost.Graph</strong> —
+            графы знаний, причинно-следственные связи, сущности, отношения и социальный контекст.
+          </li>
+          <li>
+            <strong>Эпизодическая память</strong> —
+            сохранение событий, диалогов, пользовательских предпочтений и изменений состояния во времени.
+          </li>
+          <li>
+            <strong>Семантическая память</strong> —
+            факты, понятия, правила, языковые связи и обобщённые знания о мире.
+          </li>
+        </ul>
 
-        <div>
-          <h3 id="roadmapTitle" class="text-2xl font-bold mb-4">Дорожная карта разработки</h3>
-          <div class="flex justify-center">
-            <img src="Images/Board.png" alt="Дорожная карта" class="w-full rounded-lg shadow-lg">
-          </div>
-        </div>
+        <h4 class="text-xl font-semibold mt-4 mb-2">
+          Планирование, действия и автономность
+        </h4>
+        <ul class="list-disc ml-6 space-y-2 text-gray-200">
+          <li>
+            <strong>Модуль целей</strong> —
+            постановка задач, удержание намерений и выбор стратегии поведения.
+          </li>
+          <li>
+            <strong>Планировщик действий</strong> —
+            разбиение сложных задач на шаги, оценка последствий и корректировка плана.
+          </li>
+          <li>
+            <strong>Tool-use слой</strong> —
+            безопасная интеграция с внешними API, файлами, базами данных, браузером,
+            устройствами и пользовательскими сервисами.
+          </li>
+          <li>
+            <strong>Контур саморефлексии</strong> —
+            проверка собственных ответов, обнаружение ошибок, оценка уверенности
+            и пересмотр решения при недостатке данных.
+          </li>
+        </ul>
+
+        <h4 class="text-xl font-semibold mt-4 mb-2">
+          Интерфейсы, визуализация и воплощение
+        </h4>
+        <ul class="list-disc ml-6 space-y-2 text-gray-200">
+          <li>
+            <strong>OpenGL</strong>, <strong>Vulkan</strong>, <strong>GLM</strong> и
+            <strong>Assimp</strong> — 3D-визуализация, аватар, сцены и пространственное представление.
+          </li>
+          <li>
+            <strong>SFML</strong>, <strong>Qt</strong> или веб-интерфейс —
+            интерактивные пользовательские оболочки и мультимодальное взаимодействие.
+          </li>
+          <li>
+            <strong>Human-Computer Interaction</strong> —
+            проектирование естественного диалога, понятной обратной связи и комфортного общения с системой.
+          </li>
+          <li>
+            <strong>Интеграция с сенсорами и устройствами</strong> —
+            подключение камер, микрофонов, контроллеров, робототехнических модулей и внешних источников данных.
+          </li>
+        </ul>
+
+        <h4 class="text-xl font-semibold mt-4 mb-2">
+          Безопасность, контроль и наблюдаемость
+        </h4>
+        <ul class="list-disc ml-6 space-y-2 text-gray-200">
+          <li>
+            <strong>Sandbox-исполнение</strong> —
+            изоляция внешних действий, ограничение доступа к файловой системе, сети и системным ресурсам.
+          </li>
+          <li>
+            <strong>Политики безопасности</strong> —
+            контроль опасных команд, чувствительных данных, приватности и нежелательного поведения.
+          </li>
+          <li>
+            <strong>Логирование когнитивных состояний</strong> —
+            трассировка решений, активной памяти, выбранных целей, вызовов инструментов и ошибок.
+          </li>
+          <li>
+            <strong>Тестирование устойчивости</strong> —
+            проверка на галлюцинации, противоречия, потерю контекста, социальные ошибки и небезопасные ответы.
+          </li>
+        </ul>
+
+        <h4 class="text-xl font-semibold mt-4 mb-2">
+          Инфраструктура разработки
+        </h4>
+        <ul class="list-disc ml-6 space-y-2 text-gray-200">
+          <li>
+            <strong>C++</strong>, <strong>Rust</strong> и <strong>Python</strong> —
+            системное ядро, безопасные сервисы, исследовательские прототипы и ML-инструменты.
+          </li>
+          <li>
+            <strong>Git</strong>, <strong>Docker</strong> и <strong>CI/CD</strong> —
+            контроль версий, воспроизводимость окружения, тестирование и сборка модулей.
+          </li>
+          <li>
+            <strong>MLflow</strong>, <strong>Weights & Biases</strong> или аналогичные системы —
+            отслеживание экспериментов, метрик, датасетов и версий моделей.
+          </li>
+          <li>
+            <strong>gRPC</strong>, <strong>REST</strong> и <strong>message bus</strong> —
+            взаимодействие между модулями восприятия, памяти, планирования и интерфейса.
+          </li>
+        </ul>
+
+        <h4 class="text-xl font-semibold mt-4 mb-2">
+          Научные и инженерные области
+        </h4>
+        <ul class="list-disc ml-6 space-y-2 text-gray-200">
+          <li>Artificial General Intelligence</li>
+          <li>Computational Neuroscience</li>
+          <li>Cognitive Architecture</li>
+          <li>Machine Learning</li>
+          <li>Natural Language Processing</li>
+          <li>Computer Vision</li>
+          <li>Reinforcement Learning</li>
+          <li>Human-Computer Interaction</li>
+          <li>High-Performance Computing on x86</li>
+          <li>AI Safety and Alignment</li>
+        </ul>
       </div>
 
+      <div>
+        <h3 id="roadmapTitle" class="text-2xl font-bold mb-4">
+          Дорожная карта разработки
+        </h3>
+
+        <p class="text-gray-300 mb-6">
+          Разработка Julia строится как поэтапное создание нейрокогнитивной системы:
+          сначала формируется вычислительное ядро и память, затем подключаются модули
+          восприятия, речи, планирования, самообучения, безопасности и долгосрочной
+          персонализации. Финальная цель — не отдельная чат-модель, а целостная
+          архитектура, способная поддерживать устойчивое поведение, контекст,
+          индивидуальность и адаптацию к опыту.
+        </p>
+
+        <div class="space-y-5 text-gray-200">
+          <div class="bg-gray-900/40 rounded-lg p-5 shadow">
+            <h4 class="text-lg font-semibold mb-2">
+              Этап 1. Нейрокогнитивное ядро
+            </h4>
+            <p class="text-gray-300">
+              Проектирование базовой архитектуры: рабочая область внимания,
+              память, внутреннее состояние, планировщик, модель целей и событийная шина.
+            </p>
+          </div>
+
+          <div class="bg-gray-900/40 rounded-lg p-5 shadow">
+            <h4 class="text-lg font-semibold mb-2">
+              Этап 2. Мультимодальное восприятие
+            </h4>
+            <p class="text-gray-300">
+              Подключение речи, текста, зрения, аудиоанализа и механизмов объединения
+              разных потоков данных в общий контекст.
+            </p>
+          </div>
+
+          <div class="bg-gray-900/40 rounded-lg p-5 shadow">
+            <h4 class="text-lg font-semibold mb-2">
+              Этап 3. Долговременная память
+            </h4>
+            <p class="text-gray-300">
+              Создание эпизодической, семантической и ассоциативной памяти,
+              способной сохранять опыт, извлекать знания и обновляться во времени.
+            </p>
+          </div>
+
+          <div class="bg-gray-900/40 rounded-lg p-5 shadow">
+            <h4 class="text-lg font-semibold mb-2">
+              Этап 4. Обучение на опыте
+            </h4>
+            <p class="text-gray-300">
+              Реализация механизмов самоконтроля, обратной связи, оценки уверенности,
+              обучения через взаимодействие и постепенного улучшения поведения.
+            </p>
+          </div>
+
+          <div class="bg-gray-900/40 rounded-lg p-5 shadow">
+            <h4 class="text-lg font-semibold mb-2">
+              Этап 5. Безопасность и проверка
+            </h4>
+            <p class="text-gray-300">
+              Тестирование устойчивости, приватности, управляемости, ограничений доступа
+              и корректности ответов в сложных диалоговых сценариях.
+            </p>
+          </div>
+
+          <div class="bg-gray-900/40 rounded-lg p-5 shadow">
+            <h4 class="text-lg font-semibold mb-2">
+              Этап 6. Интеграция на x86-платформе
+            </h4>
+            <p class="text-gray-300">
+              Оптимизация вычислений, профилирование памяти, настройка многопоточности,
+              подготовка стабильной сборки и интеграция с внешними устройствами.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex justify-center mt-8">
+          <img
+            src="Images/Board.png"
+            alt="Дорожная карта разработки нейрокогнитивной ИИ-системы Julia"
+            class="w-full rounded-lg shadow-lg"
+          >
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <section class="bg-gray-800 py-20">
     <div class="container mx-auto px-4">
