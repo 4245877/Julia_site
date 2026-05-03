@@ -1,0 +1,431 @@
+/* ============================================================
+   SupportButton.module.css — Yor Forger "Thorn Princess"
+   Поддержка / Support Modal Component
+   ============================================================ */
+
+/* ── Trigger Button ────────────────────────────────────────── */
+.triggerBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--accent-primary);
+  color: var(--color-parchment);
+  border: 1px solid var(--accent-primary);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+  transition:
+    background   var(--duration-fast) var(--ease-smooth),
+    border-color var(--duration-fast) var(--ease-smooth),
+    box-shadow   var(--duration-fast) var(--ease-smooth),
+    transform    var(--duration-fast) var(--ease-smooth);
+}
+
+/* Thorn shimmer before-element */
+.triggerBtn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(242, 233, 225, 0.12) 50%,
+    transparent 70%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.55s var(--ease-out-quart);
+}
+
+.triggerBtn:hover::before {
+  transform: translateX(100%);
+}
+
+.triggerBtn:hover {
+  background: var(--color-blood);
+  border-color: var(--color-blood);
+  box-shadow: var(--shadow-glow-sm);
+}
+
+.triggerBtn:active {
+  transform: scale(0.97);
+}
+
+/* Gold accent icon inside button */
+.triggerBtn svg,
+.triggerBtn .icon {
+  width: 15px;
+  height: 15px;
+  opacity: 0.85;
+  flex-shrink: 0;
+}
+
+/* ── Backdrop ──────────────────────────────────────────────── */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  background: rgba(10, 2, 3, 0.78);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: backdropIn 280ms var(--ease-out-quart) both;
+}
+
+@keyframes backdropIn {
+  from { opacity: 0; backdrop-filter: blur(0px); }
+  to   { opacity: 1; backdrop-filter: blur(6px); }
+}
+
+/* ── Modal Panel ───────────────────────────────────────────── */
+.modal {
+  width: 100%;
+  max-width: 560px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-float), var(--shadow-glow-md);
+  position: relative;
+  overflow: hidden;
+  animation: modalIn 380ms var(--ease-spring) both;
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(28px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Decorative top thorn stripe */
+.modal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--color-obsidian),
+    var(--color-crimson) 35%,
+    var(--color-blood)   55%,
+    var(--color-gold)    100%
+  );
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+/* Subtle thorn cross-hatch watermark */
+.modal::after {
+  content: '';
+  position: absolute;
+  bottom: -24px;
+  right: -24px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139, 28, 36, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── Modal Header ──────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-regular);
+  color: var(--text-primary);
+  line-height: var(--leading-snug);
+  letter-spacing: -0.01em;
+}
+
+/* Gold accent ornament on title */
+.titleAccent {
+  color: var(--color-gold);
+  font-style: italic;
+}
+
+/* ── Close Button ──────────────────────────────────────────── */
+.closeBtn {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-overlay);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background   var(--duration-fast) var(--ease-smooth),
+    border-color var(--duration-fast) var(--ease-smooth),
+    color        var(--duration-fast) var(--ease-smooth),
+    transform    var(--duration-fast) var(--ease-smooth);
+}
+
+.closeBtn:hover {
+  background: rgba(195, 61, 46, 0.14);
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+  transform: rotate(90deg);
+}
+
+.closeBtn:active {
+  transform: rotate(90deg) scale(0.92);
+}
+
+/* ── Payment Cards Grid ────────────────────────────────────── */
+.cardsGrid {
+  display: grid;
+  gap: var(--space-4);
+}
+
+/* ── Payment Card ──────────────────────────────────────────── */
+.payCard {
+  position: relative;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-5);
+  overflow: hidden;
+  transition:
+    border-color var(--duration-base) var(--ease-smooth),
+    box-shadow   var(--duration-base) var(--ease-smooth),
+    transform    var(--duration-base) var(--ease-smooth);
+  animation: cardStagger var(--duration-slow) var(--ease-spring) both;
+}
+
+.payCard:nth-child(1) { animation-delay: 80ms; }
+.payCard:nth-child(2) { animation-delay: 150ms; }
+.payCard:nth-child(3) { animation-delay: 220ms; }
+
+@keyframes cardStagger {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.payCard:hover {
+  border-color: var(--border-default);
+  box-shadow: var(--shadow-card);
+  transform: translateX(3px);
+}
+
+/* Left accent bar on card */
+.payCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(
+    180deg,
+    var(--color-crimson),
+    var(--color-blood)
+  );
+  border-radius: var(--radius-full) 0 0 var(--radius-full);
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-smooth);
+}
+.payCard:hover::before { opacity: 1; }
+
+/* Gold card variant (Bitcoin) */
+.payCard--gold {
+  border-color: var(--border-gold);
+}
+.payCard--gold::before {
+  background: linear-gradient(180deg, #A07818, var(--color-gold));
+}
+.payCard--gold:hover {
+  box-shadow: var(--shadow-gold-sm), var(--shadow-card);
+}
+
+/* ── Card Label ────────────────────────────────────────────── */
+.cardLabel {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.cardLabel--gold {
+  color: var(--color-gold);
+  opacity: 0.8;
+}
+
+/* ── Card Value ────────────────────────────────────────────── */
+.cardValue {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  word-break: break-all;
+  line-height: var(--leading-loose);
+  margin-bottom: var(--space-4);
+  transition: color var(--duration-fast) var(--ease-smooth);
+}
+.payCard:hover .cardValue { color: var(--text-primary); }
+
+/* ── Copy Button ───────────────────────────────────────────── */
+.copyBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background   var(--duration-fast) var(--ease-smooth),
+    border-color var(--duration-fast) var(--ease-smooth),
+    color        var(--duration-fast) var(--ease-smooth),
+    transform    var(--duration-fast) var(--ease-spring);
+  position: relative;
+  overflow: hidden;
+}
+
+.copyBtn:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+  transform: scale(1.03);
+}
+
+.copyBtn:active {
+  transform: scale(0.96);
+}
+
+/* Copied state */
+.copyBtn--copied {
+  background: rgba(74, 120, 60, 0.15);
+  border-color: rgba(74, 120, 60, 0.40);
+  color: #7EC870;
+}
+.copyBtn--copied:hover {
+  background: rgba(74, 120, 60, 0.20);
+  color: #7EC870;
+}
+
+/* Gold copy button (for Bitcoin) */
+.copyBtn--gold {
+  border-color: var(--border-gold);
+  color: var(--color-gold);
+}
+.copyBtn--gold:hover {
+  background: rgba(218, 165, 32, 0.10);
+  color: var(--color-gold);
+  box-shadow: var(--shadow-gold-sm);
+}
+
+/* Ripple animation on copy */
+.copyBtn::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: currentColor;
+  border-radius: 50%;
+  opacity: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  pointer-events: none;
+}
+.copyBtn--ripple::after {
+  animation: copyRipple 450ms var(--ease-out-quart) forwards;
+}
+@keyframes copyRipple {
+  from { opacity: 0.3; transform: translate(-50%, -50%) scale(0); }
+  to   { opacity: 0;   transform: translate(-50%, -50%) scale(8); }
+}
+
+/* ── Divider ornament ──────────────────────────────────────── */
+.ornamentDivider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: var(--space-5) 0 var(--space-4);
+  color: var(--border-default);
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.ornamentDivider::before,
+.ornamentDivider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-subtle);
+}
+
+/* ── Footer Note ───────────────────────────────────────────── */
+.footerNote {
+  margin-top: var(--space-5);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border-subtle);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  line-height: var(--leading-loose);
+  font-style: italic;
+  font-family: var(--font-display);
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .modal {
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    margin: var(--space-4);
+  }
+
+  .title {
+    font-size: var(--text-xl);
+  }
+
+  .cardValue {
+    font-size: var(--text-xs);
+  }
+}
+
+@media (max-width: 400px) {
+  .backdrop {
+    padding: var(--space-3);
+    align-items: flex-end;
+  }
+
+  .modal {
+    border-radius: var(--radius-xl) var(--radius-xl) var(--radius-md) var(--radius-md);
+    padding: var(--space-5) var(--space-5);
+  }
+}
