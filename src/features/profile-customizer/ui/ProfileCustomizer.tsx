@@ -1,14 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { ButtonLink, Button } from "@/shared/ui/Button";
-import { Card } from "@/shared/ui/Card";
-import { ColorPicker } from "@/shared/ui/ColorPicker";
+import { type CSSProperties, useMemo, useState } from "react";
 import { Container } from "@/shared/ui/Container";
-import { RangeField } from "@/shared/ui/RangeField";
-import { Section } from "@/shared/ui/Section";
-import { SelectField } from "@/shared/ui/SelectField";
 import { cn } from "@/shared/lib/cn";
+import styles from "./ProfileCustomizer.module.css";
 
 const visualStyles = [
   { value: "3d", label: "3D-модель" },
@@ -40,6 +35,218 @@ const eyeColors = [
   { value: "red", label: "Красный", hex: "#B22222" },
 ];
 
+type SelectOption = {
+  value: string;
+  label: string;
+};
+
+type ColorOption = {
+  value: string;
+  label: string;
+  hex: string;
+};
+
+type RangeStyle = CSSProperties & {
+  "--range-pct": string;
+};
+
+type RangeControlProps = {
+  id: string;
+  label: string;
+  value: number;
+  onChange: (value: number) => void;
+  min?: number;
+  max?: number;
+  step?: number;
+  unit?: string;
+  minLabel?: string;
+  maxLabel?: string;
+};
+
+function RangeControl({
+  id,
+  label,
+  value,
+  onChange,
+  min = 0,
+  max = 100,
+  step = 1,
+  unit = "%",
+  minLabel = "0",
+  maxLabel = "100",
+}: RangeControlProps) {
+  const rangePct = ((value - min) / (max - min)) * 100;
+
+  const rangeStyle: RangeStyle = {
+    "--range-pct": `${rangePct}%`,
+  };
+
+  return (
+    <div className={styles.formGroup}>
+      <label className={styles.formLabel} htmlFor={id}>
+        {label}
+      </label>
+
+      <div className={styles.rangeWrapper}>
+        <div className={styles.rangeMeta}>
+          <span className={styles.rangeMinMax}>{minLabel}</span>
+          <span className={styles.rangeValue}>
+            {value}
+            {unit && ` ${unit}`}
+          </span>
+          <span className={styles.rangeMinMax}>{maxLabel}</span>
+        </div>
+
+        <input
+          id={id}
+          type="range"
+          min={min}
+          max={max}
+          step={step}
+          value={value}
+          onChange={(event) => onChange(Number(event.target.value))}
+          className={styles.rangeInput}
+          style={rangeStyle}
+        />
+      </div>
+    </div>
+  );
+}
+
+type SelectControlProps = {
+  id: string;
+  label: string;
+  value: string;
+  options: SelectOption[];
+  onChange: (value: string) => void;
+};
+
+function SelectControl({
+  id,
+  label,
+  value,
+  options,
+  onChange,
+}: SelectControlProps) {
+  return (
+    <div className={styles.formGroup}>
+      <label className={styles.formLabel} htmlFor={id}>
+        {label}
+      </label>
+
+      <select
+        id={id}
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        className={styles.selectInput}
+      >
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+}
+
+type ColorPickerControlProps = {
+  label: string;
+  value: string;
+  options: ColorOption[];
+  onChange: (value: string) => void;
+};
+
+function ColorPickerControl({
+  label,
+  value,
+  options,
+  onChange,
+}: ColorPickerControlProps) {
+  return (
+    <div>
+      <span className={styles.colorPickerLabel}>{label}</span>
+
+      <div className={styles.colorSwatches}>
+        {options.map((option) => (
+          <button
+            key={option.value}
+            type="button"
+            title={option.label}
+            aria-label={option.label}
+            aria-pressed={value === option.value}
+            onClick={() => onChange(option.value)}
+            className={cn(
+              styles.colorSwatch,
+              value === option.value && styles.colorSwatchActive,
+            )}
+            style={{ backgroundColor: option.hex }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function VisualIcon() {
+  return (
+    <svg
+      className={styles.featureIcon}
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M12 3l7 4v10l-7 4-7-4V7l7-4Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      />
+      <path
+        d="M12 3v18M5 7l7 4 7-4"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      />
+    </svg>
+  );
+}
+
+function VoiceIcon() {
+  return (
+    <svg
+      className={styles.featureIcon}
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M8 10v4M12 7v10M16 9v6M4 12h1M19 12h1"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function BehaviorIcon() {
+  return (
+    <svg
+      className={styles.featureIcon}
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M12 4v4M12 16v4M4 12h4M16 12h4M7.8 7.8l2.8 2.8M13.4 13.4l2.8 2.8M16.2 7.8l-2.8 2.8M10.6 13.4l-2.8 2.8"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+      <circle cx="12" cy="12" r="2.2" stroke="currentColor" strokeWidth="1.6" />
+    </svg>
+  );
+}
+
 export function ProfileCustomizer() {
   const [visualStyle, setVisualStyle] = useState("3d");
   const [age, setAge] = useState("25");
@@ -64,87 +271,115 @@ export function ProfileCustomizer() {
   const [memory, setMemory] = useState(70);
 
   const selectedStyleLabel = useMemo(() => {
-    return visualStyles.find((style) => style.value === visualStyle)?.label ?? "3D-модель";
+    return (
+      visualStyles.find((style) => style.value === visualStyle)?.label ??
+      "3D-модель"
+    );
   }, [visualStyle]);
 
   return (
-    <Section id="character-customization" className="bg-slate-900">
+    <section id="character-customization" className={styles.section}>
       <Container>
-        <div className="mb-12 max-w-4xl">
-          <h2 className="mb-4 text-4xl font-bold">Настройка интерфейсной личности</h2>
+        <div className={styles.container}>
+          <header className={styles.header}>
+            <span className={styles.headerEyebrow}>Profile interface</span>
 
-          <p className="text-lg leading-8 text-slate-300">
-            Внешний образ Julia — это не основа системы, а пользовательский
-            интерфейсный слой. Он позволяет выбрать визуальное представление,
-            голос, стиль речи и параметры поведения, не меняя глубинную
-            нейрокогнитивную архитектуру.
-          </p>
-        </div>
+            <h2 className={styles.headerTitle}>
+              Настройка <em>интерфейсной личности</em>
+            </h2>
 
-        <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-3">
-          <Card>
-            <h3 className="mb-4 text-2xl font-semibold">Визуальный образ</h3>
-            <p className="text-slate-300">
-              2D, 3D, фотореалистичный или стилизованный интерфейсный персонаж.
+            <p className={styles.headerDesc}>
+              Внешний образ Julia — это не основа системы, а пользовательский
+              интерфейсный слой. Он позволяет выбрать визуальное представление,
+              голос, стиль речи и параметры поведения, не меняя глубинную
+              нейрокогнитивную архитектуру.
             </p>
-          </Card>
+          </header>
 
-          <Card>
-            <h3 className="mb-4 text-2xl font-semibold">Речь и голос</h3>
-            <p className="text-slate-300">
-              Тембр, скорость речи, интонация, паузы и эмоциональная окраска ответа.
-            </p>
-          </Card>
+          <div className={styles.featureGrid}>
+            <article className={styles.featureCard}>
+              <VisualIcon />
 
-          <Card>
-            <h3 className="mb-4 text-2xl font-semibold">Поведенческий профиль</h3>
-            <p className="text-slate-300">
-              Формальность, эмпатия, инициативность, осторожность, креативность и
-              глубина объяснений.
-            </p>
-          </Card>
-        </div>
+              <h3 className={styles.featureTitle}>Визуальный образ</h3>
 
-        <div className="mb-12">
-          <h3 className="mb-4 text-2xl font-semibold">Стиль визуального слоя</h3>
+              <p className={styles.featureDesc}>
+                2D, 3D, фотореалистичный или стилизованный интерфейсный персонаж.
+              </p>
+            </article>
 
-          <div className="flex flex-wrap gap-4">
-            {visualStyles.map((style) => (
-              <button
-                type="button"
-                key={style.value}
-                onClick={() => setVisualStyle(style.value)}
-                className={cn(
-                  "rounded-xl px-4 py-2 font-medium transition",
-                  visualStyle === style.value
-                    ? "bg-blue-600 text-white"
-                    : "bg-slate-800 text-slate-200 hover:bg-slate-700",
-                )}
-              >
-                {style.label}
-              </button>
-            ))}
+            <article className={styles.featureCard}>
+              <VoiceIcon />
+
+              <h3 className={styles.featureTitle}>Речь и голос</h3>
+
+              <p className={styles.featureDesc}>
+                Тембр, скорость речи, интонация, паузы и эмоциональная окраска
+                ответа.
+              </p>
+            </article>
+
+            <article className={styles.featureCard}>
+              <BehaviorIcon />
+
+              <h3 className={styles.featureTitle}>Поведенческий профиль</h3>
+
+              <p className={styles.featureDesc}>
+                Формальность, эмпатия, инициативность, осторожность, креативность
+                и глубина объяснений.
+              </p>
+            </article>
           </div>
 
-          <div className="mt-6 flex h-64 w-full items-center justify-center rounded-2xl border border-white/10 bg-slate-950 text-center text-slate-400">
-            <div>
-              <p className="text-lg font-semibold text-slate-200">
-                Превью интерфейсного образа
-              </p>
-              <p className="mt-2 text-sm">Выбран стиль: {selectedStyleLabel}</p>
+          <div className={styles.styleSelectorBlock}>
+            <h3 className={styles.blockTitle}>Стиль визуального слоя</h3>
+
+            <div className={styles.styleOptions}>
+              {visualStyles.map((style) => (
+                <button
+                  type="button"
+                  key={style.value}
+                  onClick={() => setVisualStyle(style.value)}
+                  className={cn(
+                    styles.styleBtn,
+                    visualStyle === style.value && styles.styleBtnActive,
+                  )}
+                >
+                  <span>{style.label}</span>
+                </button>
+              ))}
+            </div>
+
+            <div className={styles.previewPanel}>
+              <div className={styles.previewContent}>
+                <p className={styles.previewLabel}>
+                  Превью интерфейсного образа
+                </p>
+
+                <p className={styles.previewSub}>
+                  Выбран стиль: <em>{selectedStyleLabel}</em>
+                </p>
+
+                <div className={styles.previewOrn} aria-hidden="true">
+                  ✦
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="rounded-3xl border border-white/10 bg-slate-950/60 p-6 shadow-xl">
-          <h3 className="mb-8 text-2xl font-bold">Основные настройки</h3>
+          <div className={styles.ornDivider} aria-hidden="true">
+            <span className={styles.ornDividerIcon}>✦ ✦</span>
+          </div>
 
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-            <Card>
-              <h4 className="mb-6 text-xl font-semibold">Визуальное представление</h4>
+          <div className={styles.settingsPanel}>
+            <h3 className={styles.settingsPanelTitle}>Основные настройки</h3>
 
-              <div className="grid gap-6">
-                <SelectField
+            <div className={styles.settingsGrid}>
+              <article className={styles.settingsCard}>
+                <h4 className={styles.settingsCardTitle}>
+                  Визуальное представление
+                </h4>
+
+                <SelectControl
                   id="age"
                   label="Возраст интерфейсного персонажа"
                   value={age}
@@ -160,7 +395,7 @@ export function ProfileCustomizer() {
                   ]}
                 />
 
-                <RangeField
+                <RangeControl
                   id="height"
                   label="Рост визуального образа"
                   min={140}
@@ -172,27 +407,27 @@ export function ProfileCustomizer() {
                   onChange={setHeight}
                 />
 
-                <ColorPicker
+                <ColorPickerControl
                   label="Цвет волос"
                   value={hairColor}
                   options={hairColors}
                   onChange={setHairColor}
                 />
 
-                <ColorPicker
+                <ColorPickerControl
                   label="Цвет глаз"
                   value={eyeColor}
                   options={eyeColors}
                   onChange={setEyeColor}
                 />
-              </div>
-            </Card>
+              </article>
 
-            <Card>
-              <h4 className="mb-6 text-xl font-semibold">Поведенческий профиль</h4>
+              <article className={styles.settingsCard}>
+                <h4 className={styles.settingsCardTitle}>
+                  Поведенческий профиль
+                </h4>
 
-              <div className="grid gap-6">
-                <RangeField
+                <RangeControl
                   id="temperament"
                   label="Темперамент"
                   minLabel="Спокойный"
@@ -201,7 +436,7 @@ export function ProfileCustomizer() {
                   onChange={setTemperament}
                 />
 
-                <RangeField
+                <RangeControl
                   id="empathy"
                   label="Эмпатия"
                   minLabel="Сдержанная"
@@ -210,7 +445,7 @@ export function ProfileCustomizer() {
                   onChange={setEmpathy}
                 />
 
-                <RangeField
+                <RangeControl
                   id="formality"
                   label="Формальность речи"
                   minLabel="Неформальная"
@@ -219,7 +454,7 @@ export function ProfileCustomizer() {
                   onChange={setFormality}
                 />
 
-                <SelectField
+                <SelectControl
                   id="personality-type"
                   label="Когнитивный профиль"
                   value={personalityType}
@@ -233,14 +468,12 @@ export function ProfileCustomizer() {
                     { value: "research", label: "Исследовательский" },
                   ]}
                 />
-              </div>
-            </Card>
+              </article>
 
-            <Card>
-              <h4 className="mb-6 text-xl font-semibold">Голос</h4>
+              <article className={styles.settingsCard}>
+                <h4 className={styles.settingsCardTitle}>Голос</h4>
 
-              <div className="grid gap-6">
-                <RangeField
+                <RangeControl
                   id="voice-pitch"
                   label="Тембр"
                   minLabel="Низкий"
@@ -249,7 +482,7 @@ export function ProfileCustomizer() {
                   onChange={setVoicePitch}
                 />
 
-                <RangeField
+                <RangeControl
                   id="speech-speed"
                   label="Темп речи"
                   minLabel="Медленный"
@@ -258,7 +491,7 @@ export function ProfileCustomizer() {
                   onChange={setSpeechSpeed}
                 />
 
-                <SelectField
+                <SelectControl
                   id="accent"
                   label="Акцент"
                   value={accent}
@@ -275,79 +508,101 @@ export function ProfileCustomizer() {
                     { value: "caucasian", label: "Кавказский" },
                   ]}
                 />
+              </article>
+            </div>
+          </div>
+
+          <div>
+            <button
+              type="button"
+              aria-expanded={advancedOpen}
+              aria-controls="profile-advanced-settings"
+              onClick={() => setAdvancedOpen((current) => !current)}
+              className={styles.advancedToggleBtn}
+            >
+              <span>Дополнительные параметры</span>
+
+              <span
+                className={cn(
+                  styles.advancedToggleIcon,
+                  advancedOpen && styles.advancedToggleIconOpen,
+                )}
+              >
+                ▼
+              </span>
+            </button>
+
+            {advancedOpen && (
+              <div
+                id="profile-advanced-settings"
+                className={styles.advancedPanel}
+              >
+                <h3 className={styles.advancedTitle}>
+                  Расширенные настройки
+                </h3>
+
+                <div className={styles.advancedGrid}>
+                  <RangeControl
+                    id="initiative"
+                    label="Степень инициативности"
+                    minLabel="Низкая"
+                    maxLabel="Высокая"
+                    value={initiative}
+                    onChange={setInitiative}
+                  />
+
+                  <RangeControl
+                    id="creativity"
+                    label="Креативность"
+                    minLabel="Логичная"
+                    maxLabel="Творческая"
+                    value={creativity}
+                    onChange={setCreativity}
+                  />
+
+                  <RangeControl
+                    id="realism"
+                    label="Допустимость естественных ошибок"
+                    minLabel="Минимальная"
+                    maxLabel="Повышенная"
+                    value={realism}
+                    onChange={setRealism}
+                  />
+
+                  <RangeControl
+                    id="knowledge"
+                    label="Глубина объяснений"
+                    minLabel="Базовая"
+                    maxLabel="Экспертная"
+                    value={knowledge}
+                    onChange={setKnowledge}
+                  />
+
+                  <RangeControl
+                    id="memory"
+                    label="Объём пользовательского контекста"
+                    minLabel="Короткий"
+                    maxLabel="Долгий"
+                    value={memory}
+                    onChange={setMemory}
+                  />
+                </div>
               </div>
-            </Card>
+            )}
+          </div>
+
+          <div className={styles.ctaBlock}>
+            <a href="#launcher" className={styles.ctaBtn}>
+              <span>Настроить профиль Julia</span>
+              <span aria-hidden="true">→</span>
+            </a>
+
+            <p className={styles.ctaHint}>
+              Профиль можно <em>изменить позже</em>
+            </p>
           </div>
         </div>
-
-        <div className="mt-8">
-          <Button
-            variant="secondary"
-            onClick={() => setAdvancedOpen((current) => !current)}
-            className="w-full justify-between rounded-2xl px-6"
-          >
-            <span>Дополнительные параметры</span>
-            <span>{advancedOpen ? "▲" : "▼"}</span>
-          </Button>
-
-          {advancedOpen && (
-            <Card className="mt-6">
-              <h3 className="mb-8 text-2xl font-bold">Расширенные настройки</h3>
-
-              <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-                <RangeField
-                  id="initiative"
-                  label="Степень инициативности"
-                  minLabel="Низкая"
-                  maxLabel="Высокая"
-                  value={initiative}
-                  onChange={setInitiative}
-                />
-
-                <RangeField
-                  id="creativity"
-                  label="Креативность"
-                  minLabel="Логичная"
-                  maxLabel="Творческая"
-                  value={creativity}
-                  onChange={setCreativity}
-                />
-
-                <RangeField
-                  id="realism"
-                  label="Допустимость естественных ошибок"
-                  minLabel="Минимальная"
-                  maxLabel="Повышенная"
-                  value={realism}
-                  onChange={setRealism}
-                />
-
-                <RangeField
-                  id="knowledge"
-                  label="Глубина объяснений"
-                  minLabel="Базовая"
-                  maxLabel="Экспертная"
-                  value={knowledge}
-                  onChange={setKnowledge}
-                />
-
-                <RangeField
-                  id="memory"
-                  label="Объём пользовательского контекста"
-                  minLabel="Короткий"
-                  maxLabel="Долгий"
-                  value={memory}
-                  onChange={setMemory}
-                />
-              </div>
-            </Card>
-          )}
-        </div>
-
-        <div className="mt-10 text-center">
-          <ButtonLink href="#launcher">Настроить профиль Julia</ButtonLink>
-        </div>
       </Container>
-    </Section>
+    </section>
   );
 }
