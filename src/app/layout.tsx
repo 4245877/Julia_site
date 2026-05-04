@@ -15,7 +15,7 @@ const jsonLd = {
   description: siteConfig.description,
   url: siteConfig.url,
   image: `${siteConfig.url}/images/og-image.png`,
-  logo: `${siteConfig.url}/images/logo-256.png`,
+  logo: `${siteConfig.url}/Logo.png`,
   applicationCategory: "AIApplication",
   operatingSystem: "Windows, macOS, Linux, Web",
   offers: {
@@ -38,7 +38,9 @@ export const metadata: Metadata = {
     follow: true,
   },
   icons: {
-    icon: "/images/logo-256.png",
+    icon: "/Logo.png",
+    shortcut: "/Logo.png",
+    apple: "/Logo.png",
   },
   openGraph: {
     type: "website",
