@@ -2,30 +2,34 @@
 
 import { useState } from "react";
 import { cn } from "@/shared/lib/cn";
+import styles from "./LanguageSwitcher.module.css";
 
 const languages = ["EN", "UA", "RU"] as const;
 
+type Language = (typeof languages)[number];
+
+const languageTitles: Record<Language, string> = {
+  EN: "English version",
+  UA: "Українська версія",
+  RU: "Русская версия",
+};
+
 export function LanguageSwitcher() {
-  const [activeLanguage, setActiveLanguage] = useState<(typeof languages)[number]>("RU");
+  const [activeLanguage, setActiveLanguage] = useState<Language>("RU");
 
   return (
-    <div className="absolute right-4 top-4 z-50 flex gap-2">
+    <div className={styles.wrapper}>
       {languages.map((language) => (
         <button
           key={language}
           type="button"
           onClick={() => setActiveLanguage(language)}
           className={cn(
-            "rounded-full border px-3 py-1 text-sm font-semibold transition",
-            activeLanguage === language
-              ? "border-blue-300 bg-blue-500 text-white"
-              : "border-white/20 bg-white/10 text-slate-200 hover:bg-white/15",
+            styles.btn,
+            activeLanguage === language && styles.btnActive,
           )}
-          title={
-            language === "RU"
-              ? "Русская версия"
-              : "Перевод можно подключить следующим этапом"
-          }
+          title={languageTitles[language]}
+          aria-pressed={activeLanguage === language}
         >
           {language}
         </button>
