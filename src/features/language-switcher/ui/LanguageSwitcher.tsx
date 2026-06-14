@@ -18,7 +18,7 @@ export function LanguageSwitcher() {
   const [activeLanguage, setActiveLanguage] = useState<Language>("RU");
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} role="group" aria-label="Выбор языка">
       {languages.map((language) => (
         <button
           key={language}
@@ -29,6 +29,7 @@ export function LanguageSwitcher() {
             activeLanguage === language && styles.btnActive,
           )}
           title={languageTitles[language]}
+          aria-label={languageTitles[language]}
           aria-pressed={activeLanguage === language}
         >
           {language}
