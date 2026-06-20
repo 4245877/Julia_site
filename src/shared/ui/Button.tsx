@@ -1,12 +1,15 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
+import Link from "next/link";
 import { cn } from "@/shared/lib/cn";
 
 type Variant = "primary" | "secondary" | "ghost";
 
+// Map to the "Thorn Princess" design-system button classes (globals.css)
+// so buttons match the crimson/gold theme instead of the default blue.
 const variantClasses: Record<Variant, string> = {
-  primary: "bg-blue-600 text-white hover:bg-blue-500",
-  secondary: "bg-slate-800 text-white hover:bg-slate-700",
-  ghost: "bg-white/10 text-white hover:bg-white/15",
+  primary: "btn btn--primary",
+  secondary: "btn btn--secondary",
+  ghost: "btn btn--ghost",
 };
 
 type ButtonLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
@@ -21,17 +24,26 @@ export function ButtonLink({
   children,
   className,
   variant = "primary",
+  href,
   ...props
 }: ButtonLinkProps) {
+  const classes = cn(variantClasses[variant], className);
+
+  // Use next/link for internal route navigation so basePath/assetPrefix
+  // (GitHub Pages deploy) is applied. Hash anchors and external links stay <a>.
+  const isInternalRoute =
+    typeof href === "string" && href.startsWith("/") && !href.startsWith("//");
+
+  if (isInternalRoute) {
+    return (
+      <Link href={href} className={classes} {...props}>
+        {children}
+      </Link>
+    );
+  }
+
   return (
-    <a
-      className={cn(
-        "inline-flex items-center justify-center rounded-full px-7 py-3 font-semibold transition",
-        variantClasses[variant],
-        className,
-      )}
-      {...props}
-    >
+    <a href={href} className={classes} {...props}>
       {children}
     </a>
   );
@@ -47,11 +59,7 @@ export function Button({
   return (
     <button
       type={type}
-      className={cn(
-        "inline-flex items-center justify-center rounded-full px-7 py-3 font-semibold transition",
-        variantClasses[variant],
-        className,
-      )}
+      className={cn(variantClasses[variant], className)}
       {...props}
     >
       {children}

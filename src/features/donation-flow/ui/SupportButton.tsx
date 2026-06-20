@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./SupportButton.module.css";
 
 const paymentDetails = [
@@ -22,6 +22,24 @@ const paymentDetails = [
 export function SupportButton() {
   const [isOpen, setIsOpen] = useState(false);
   const [copiedValue, setCopiedValue] = useState<string | null>(null);
+
+  // Close on Escape and lock body scroll while the modal is open.
+  useEffect(() => {
+    if (!isOpen) return;
+
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") setIsOpen(false);
+    }
+
+    document.addEventListener("keydown", onKeyDown);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isOpen]);
 
   async function copyToClipboard(value: string) {
     try {

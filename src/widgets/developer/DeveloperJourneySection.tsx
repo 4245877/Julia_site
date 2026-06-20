@@ -8,7 +8,7 @@ export function DeveloperJourneySection() {
   const progressPercent = (raised / goal) * 100;
 
   return (
-    <section className={styles.section}>
+    <section id="contact" className={styles.section}>
       <div className={styles.container}>
         <h2
           className={`${styles.heading} ${styles.animateUp} ${styles.delay1}`}

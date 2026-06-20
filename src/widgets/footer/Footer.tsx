@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./Footer.module.css";
 
 export function Footer() {
@@ -5,7 +6,7 @@ export function Footer() {
     <footer className={styles.footer}>
       <div className={styles.inner}>
         <div className={styles.topRow}>
-          <a href="/" className={styles.brand} aria-label="Julia AI">
+          <Link href="/" className={styles.brand} aria-label="Julia AI">
             <span className={styles.brandMark} aria-hidden="true">
               <span className={styles.brandMarkInner} />
             </span>
@@ -14,7 +15,7 @@ export function Footer() {
               <span className={styles.brandText}>Julia AI</span>
               <span className={styles.brandSub}>Research Project</span>
             </span>
-          </a>
+          </Link>
 
           <nav className={styles.nav} aria-label="Footer navigation">
             <a href="#architecture" className={styles.navLink}>

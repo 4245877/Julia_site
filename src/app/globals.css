@@ -133,30 +133,10 @@
   --blade-clip:  polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
 }
 
-/* Light mode overrides */
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg-base:            var(--color-parchment);
-    --bg-surface:         #EDE1D8;
-    --bg-elevated:        var(--color-white);
-    --bg-overlay:         rgba(139, 28, 36, 0.06);
-    --bg-hover:           rgba(139, 28, 36, 0.09);
-    --bg-active:          rgba(195, 61, 46, 0.14);
-
-    --text-primary:       var(--color-ink);
-    --text-secondary:     rgba(42, 42, 42, 0.60);
-    --text-muted:         rgba(42, 42, 42, 0.35);
-    --text-accent:        #A07818;
-
-    --border-subtle:      rgba(139, 28, 36, 0.15);
-    --border-default:     rgba(139, 28, 36, 0.28);
-    --border-strong:      rgba(139, 28, 36, 0.55);
-
-    --shadow-card:        0 2px 8px rgba(74, 14, 16, 0.10), 0 0 0 1px var(--border-subtle);
-    --shadow-raised:      0 4px 20px rgba(74, 14, 16, 0.14), 0 0 0 1px var(--border-default);
-    --shadow-float:       0 8px 40px rgba(74, 14, 16, 0.18), 0 0 0 1px var(--border-strong);
-  }
-}
+/* The "Thorn Princess" theme is a dark-only design. Many decorative colors
+   are hardcoded crimson/obsidian, so flipping the background to a light
+   palette on `prefers-color-scheme: light` produced broken, low-contrast
+   visuals. The scheme is locked to dark instead (see `html { color-scheme }`). */
 
 /* ── Reset & Base ──────────────────────────────────────────── */
 *, *::before, *::after {
@@ -168,6 +148,7 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  color-scheme: dark;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
