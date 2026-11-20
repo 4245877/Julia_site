@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./SupportButton.module.css";
 
 const paymentDetails = [
@@ -21,55 +21,89 @@ const paymentDetails = [
 
 export function SupportButton() {
   const [isOpen, setIsOpen] = useState(false);
-  const [copiedValue, setCopiedValue] = useState<string | null>(null);
+  const [copyResult, setCopyResult] = useState<{
+    value: string;
+    success: boolean;
+  } | null>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const copying = useRef(false);
+  const dialogSession = useRef(0);
 
-  // Close on Escape and lock body scroll while the modal is open.
   useEffect(() => {
-    if (!isOpen) return;
+    const dialog = dialogRef.current;
+    const trigger = triggerRef.current;
+    if (!isOpen || !dialog) return;
 
-    function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setIsOpen(false);
-    }
-
-    document.addEventListener("keydown", onKeyDown);
     const previousOverflow = document.body.style.overflow;
+    dialog.showModal();
     document.body.style.overflow = "hidden";
 
     return () => {
-      document.removeEventListener("keydown", onKeyDown);
+      dialog.close();
       document.body.style.overflow = previousOverflow;
+      trigger?.focus({ preventScroll: true });
     };
   }, [isOpen]);
 
+  useEffect(() => {
+    if (!copyResult?.success) return;
+
+    const timer = window.setTimeout(() => setCopyResult(null), 1800);
+    return () => window.clearTimeout(timer);
+  }, [copyResult]);
+
+  function closeDialog() {
+    dialogSession.current += 1;
+    setCopyResult(null);
+    setIsOpen(false);
+  }
+
   async function copyToClipboard(value: string) {
+    if (copying.current) return;
+
+    copying.current = true;
+    const session = dialogSession.current;
+    let success: boolean;
     try {
       await navigator.clipboard.writeText(value);
-      setCopiedValue(value);
-      window.setTimeout(() => setCopiedValue(null), 1800);
+      success = true;
     } catch {
-      setCopiedValue(null);
+      success = false;
+    }
+    copying.current = false;
+
+    if (session === dialogSession.current) {
+      setCopyResult({ value, success });
     }
   }
 
   return (
     <>
       <button
+        ref={triggerRef}
         type="button"
         className={styles.triggerBtn}
+        aria-haspopup="dialog"
         onClick={() => setIsOpen(true)}
       >
         Поддержать
       </button>
 
       {isOpen && (
-        <div
+        <dialog
+          ref={dialogRef}
           className={styles.backdrop}
-          role="dialog"
-          aria-modal="true"
           aria-labelledby="support-modal-title"
-          onClick={() => setIsOpen(false)}
+          onCancel={(event) => {
+            event.preventDefault();
+            closeDialog();
+          }}
+          onClick={(event) => {
+            if (event.target === event.currentTarget) closeDialog();
+          }}
         >
-          <div className={styles.modal} onClick={(event) => event.stopPropagation()}>
+          <div className={styles.modal}>
             <div className={styles.header}>
               <h2 id="support-modal-title" className={styles.title}>
                 Сумма не важна.{" "}
@@ -81,7 +115,7 @@ export function SupportButton() {
               <button
                 type="button"
                 className={styles.closeBtn}
-                onClick={() => setIsOpen(false)}
+                onClick={closeDialog}
                 aria-label="Закрыть окно поддержки"
               >
                 ×
@@ -90,7 +124,8 @@ export function SupportButton() {
 
             <div className={styles.cardsGrid}>
               {paymentDetails.map((detail) => {
-                const isCopied = copiedValue === detail.value;
+                const isCopied =
+                  copyResult?.success && copyResult.value === detail.value;
 
                 return (
                   <div
@@ -118,6 +153,11 @@ export function SupportButton() {
                     <button
                       type="button"
                       onClick={() => copyToClipboard(detail.value)}
+                      aria-label={
+                        isCopied
+                          ? `Реквизиты ${detail.label} скопированы`
+                          : `Скопировать ${detail.label}`
+                      }
                       className={[
                         styles.copyBtn,
                         isCopied ? styles["copyBtn--copied"] : "",
@@ -136,12 +176,13 @@ export function SupportButton() {
 
             <div className={styles.ornamentDivider}>Support</div>
 
-            <p className={styles.footerNote}>
-              Google Pay можно подключить следующим шагом отдельным клиентским
-              компонентом, чтобы не загружать платёжный SDK на первом экране.
+            <p className={styles.footerNote} role="status">
+              {copyResult?.success === false
+                ? "Не удалось скопировать. Выделите реквизиты и скопируйте их вручную."
+                : "Реквизиты можно выделить и скопировать вручную."}
             </p>
           </div>
-        </div>
+        </dialog>
       )}
     </>
   );

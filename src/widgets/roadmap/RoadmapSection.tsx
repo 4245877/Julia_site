@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { homeRu } from "@/content/home.ru";
+import { publicAssetPath } from "@/shared/config/site.config";
 import { Container } from "@/shared/ui/Container";
 import { Section } from "@/shared/ui/Section";
 
@@ -74,7 +75,7 @@ export function RoadmapSection() {
           <div className={styles.boardWrapper}>
             <div className={styles.boardFrame}>
               <Image
-                src="/images/board.png"
+                src={publicAssetPath("/images/board.png")}
                 alt="Дорожная карта разработки нейрокогнитивной ИИ-системы Julia"
                 width={1200}
                 height={680}

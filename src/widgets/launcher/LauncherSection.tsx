@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { publicAssetPath, siteConfig } from "@/shared/config/site.config";
 import { ButtonLink } from "@/shared/ui/Button";
 import { Container } from "@/shared/ui/Container";
 import { Section } from "@/shared/ui/Section";
@@ -22,7 +23,7 @@ const launcherImages = [
     src: "/images/launcher-4.png",
     alt: "Интерфейс лаунчера Julia — системные настройки",
   },
-];
+] as const;
 
 export function LauncherSection() {
   return (
@@ -36,7 +37,7 @@ export function LauncherSection() {
             <p className={styles.eyebrow}>Julia Launcher</p>
 
             <h2 className={styles.title}>
-              Скачать <em>Julia Launcher</em>
+              О <em>Julia Launcher</em>
             </h2>
 
             <div className={styles.titleRule} aria-hidden="true">
@@ -81,11 +82,11 @@ export function LauncherSection() {
                 </ButtonLink>
 
                 <ButtonLink
-                  href="#"
+                  href={siteConfig.launcherSourceUrl}
                   variant="secondary"
                   className={styles.btnDownload}
                 >
-                  Скачать лаунчер
+                  Исходники лаунчера
                 </ButtonLink>
               </div>
             </div>
@@ -95,7 +96,7 @@ export function LauncherSection() {
                 {launcherImages.map((image) => (
                   <div key={image.src} className={styles.imageCard}>
                     <Image
-                      src={image.src}
+                      src={publicAssetPath(image.src)}
                       alt={image.alt}
                       width={520}
                       height={360}

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { SupportButton } from "@/features/donation-flow/ui/SupportButton";
+import { publicAssetPath } from "@/shared/config/site.config";
 import styles from "./DeveloperJourneySection.module.css";
 
 export function DeveloperJourneySection() {
@@ -21,7 +22,7 @@ export function DeveloperJourneySection() {
             className={`${styles.avatarWrapper} ${styles.animateUp} ${styles.delay2}`}
           >
             <Image
-              src="/images/developer.png"
+              src={publicAssetPath("/images/developer.png")}
               alt="Михаил Головач"
               width={180}
               height={180}

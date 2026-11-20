@@ -1,6 +1,6 @@
 "use client";
 
-import { type CSSProperties, useMemo, useState } from "react";
+import { type CSSProperties, useId, useMemo, useState } from "react";
 import { Container } from "@/shared/ui/Container";
 import { cn } from "@/shared/lib/cn";
 import styles from "./ProfileCustomizer.module.css";
@@ -104,6 +104,7 @@ function RangeControl({
           max={max}
           step={step}
           value={value}
+          aria-valuetext={unit ? `${value} ${unit}` : String(value)}
           onChange={(event) => onChange(Number(event.target.value))}
           className={styles.rangeInput}
           style={rangeStyle}
@@ -163,11 +164,15 @@ function ColorPickerControl({
   options,
   onChange,
 }: ColorPickerControlProps) {
+  const labelId = useId();
+
   return (
     <div>
-      <span className={styles.colorPickerLabel}>{label}</span>
+      <span id={labelId} className={styles.colorPickerLabel}>
+        {label}
+      </span>
 
-      <div className={styles.colorSwatches}>
+      <div className={styles.colorSwatches} role="group" aria-labelledby={labelId}>
         {options.map((option) => (
           <button
             key={option.value}
@@ -338,6 +343,7 @@ export function ProfileCustomizer() {
                 <button
                   type="button"
                   key={style.value}
+                  aria-pressed={visualStyle === style.value}
                   onClick={() => setVisualStyle(style.value)}
                   className={cn(
                     styles.styleBtn,
@@ -598,7 +604,7 @@ export function ProfileCustomizer() {
             </a>
 
             <p className={styles.ctaHint}>
-              Профиль можно <em>изменить позже</em>
+              Настройки демонстрации <em>сбрасываются при перезагрузке</em>
             </p>
           </div>
         </div>

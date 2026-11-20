@@ -1,4 +1,5 @@
 import { homeRu } from "@/content/home.ru";
+import { siteConfig } from "@/shared/config/site.config";
 
 import styles from "./BrainModelSection.module.css";
 
@@ -44,7 +45,7 @@ export function BrainModelSection() {
         </div>
 
         <div className={styles.cta}>
-          <a href="#contact" className={styles.ctaBtn}>
+          <a href={siteConfig.discussionsUrl} className={styles.ctaBtn}>
             Обсудить архитектуру
             <span className={styles.ctaArrow} aria-hidden="true">
               →

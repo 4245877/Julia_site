@@ -1,9 +1,10 @@
 import type { NextConfig } from "next";
 
-const isGithubActions = process.env.GITHUB_ACTIONS === "true";
+const basePath = process.env.GITHUB_ACTIONS === "true" ? "/Julia_site" : "";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  agentRules: false,
 
   output: "export",
   trailingSlash: true,
@@ -12,8 +13,10 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
 
-  basePath: isGithubActions ? "/Julia_site" : "",
-  assetPrefix: isGithubActions ? "/Julia_site/" : "",
+  basePath,
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
+  },
 };
 
 export default nextConfig;

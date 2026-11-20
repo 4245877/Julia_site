@@ -5,33 +5,28 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "start": "serve out --listen tcp://127.0.0.1:3000 --no-clipboard --no-port-switching",
+    "lint": "eslint .",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test:export": "node --test tests/static-export.test.mjs"
   },
   "dependencies": {
-    "@tanstack/react-query": "latest",
     "clsx": "latest",
-    "next": "latest",
+    "next": "16.4.6",
     "react": "latest",
     "react-dom": "latest",
-    "tailwind-merge": "latest",
-    "zod": "latest",
-    "zustand": "latest"
+    "tailwind-merge": "latest"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "latest",
-    "@testing-library/react": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "autoprefixer": "latest",
     "eslint": "latest",
-    "eslint-config-next": "latest",
-    "jsdom": "latest",
-    "postcss": "latest",
+    "eslint-config-next": "16.4.6",
+    "postcss": "8.5.33",
+    "serve": "14.2.8",
     "tailwindcss": "^3.4.17",
-    "typescript": "latest",
-    "vitest": "latest"
+    "typescript": "latest"
   }
 }

@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import { siteConfig } from "@/shared/config/site.config";
+import "./fonts/inter.css";
+import { publicAssetPath, siteConfig } from "@/shared/config/site.config";
 
-const inter = Inter({
-  subsets: ["latin", "cyrillic"],
-  display: "swap",
-});
+const logoPath = publicAssetPath("/Logo.png");
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -38,9 +35,9 @@ export const metadata: Metadata = {
     follow: true,
   },
   icons: {
-    icon: "/Logo.png",
-    shortcut: "/Logo.png",
-    apple: "/Logo.png",
+    icon: logoPath,
+    shortcut: logoPath,
+    apple: logoPath,
   },
   openGraph: {
     type: "website",
@@ -74,7 +71,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className={inter.className}>
+      <body className="site-font">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
