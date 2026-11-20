@@ -22,12 +22,12 @@ export function RangeField({
   onChange,
 }: RangeFieldProps) {
   return (
-    <div className="form-group">
-      <div className="flex items-center justify-between gap-4">
-        <label htmlFor={id} className="font-medium text-slate-100">
+    <div>
+      <div>
+        <label htmlFor={id}>
           {label}
         </label>
-        <output htmlFor={id} className="font-semibold text-white">
+        <output htmlFor={id}>
           {value}
           {unit ? ` ${unit}` : ""}
         </output>
@@ -35,7 +35,6 @@ export function RangeField({
 
       <input
         id={id}
-        className="range-input"
         type="range"
         min={min}
         max={max}
@@ -44,7 +43,7 @@ export function RangeField({
       />
 
       {(minLabel || maxLabel) && (
-        <div className="range-labels">
+        <div>
           <span>{minLabel}</span>
           <span>{maxLabel}</span>
         </div>

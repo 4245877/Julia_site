@@ -1,10 +1,8 @@
-import Image from "next/image";
 import { publicAssetPath, siteConfig } from "@/shared/config/site.config";
 import { ButtonLink } from "@/shared/ui/Button";
 import { Container } from "@/shared/ui/Container";
 import { Section } from "@/shared/ui/Section";
 import { SystemRequirements } from "@/widgets/launcher/SystemRequirements";
-import styles from "./LauncherSection.module.css";
 
 const launcherImages = [
   {
@@ -27,80 +25,71 @@ const launcherImages = [
 
 export function LauncherSection() {
   return (
-    <Section id="launcher" className={styles.section}>
-      <span className={styles.thornBar} aria-hidden="true" />
-      <span className={styles.thornBarGold} aria-hidden="true" />
-
+    <Section id="launcher">
       <Container>
-        <div className={styles.inner}>
-          <header className={styles.header}>
-            <p className={styles.eyebrow}>Julia Launcher</p>
+        <div>
+          <header>
+            <p>Julia Launcher</p>
 
-            <h2 className={styles.title}>
+            <h2>
               О <em>Julia Launcher</em>
             </h2>
-
-            <div className={styles.titleRule} aria-hidden="true">
-              <span className={styles.titleRuleDiamond} />
-            </div>
           </header>
 
-          <div className={styles.body}>
-            <div className={styles.textCol}>
-              <h3 className={styles.subtitle}>Что такое лаунчер Julia?</h3>
+          <div>
+            <div>
+              <h3>Что такое лаунчер Julia?</h3>
 
-              <p className={styles.description}>
+              <p>
                 Julia Launcher — приложение для установки, настройки и запуска
                 локальных модулей Julia. Через него можно управлять конфигурацией
                 системы, интерфейсным профилем, голосовым взаимодействием,
                 обновлениями и уровнем доступа к ресурсам устройства.
               </p>
 
-              <ul className={styles.featureList}>
-                <li className={styles.featureItem}>
+              <ul>
+                <li>
                   Настраивать визуальное представление, голос и стиль речи Julia
                 </li>
-                <li className={styles.featureItem}>
+                <li>
                   Выбирать режим взаимодействия: текстовый, голосовой или
                   мультимодальный
                 </li>
-                <li className={styles.featureItem}>
+                <li>
                   Управлять локальными моделями, памятью, профилями и обновлениями
                 </li>
-                <li className={styles.featureItem}>
+                <li>
                   Контролировать доступ к микрофону, камере, файлам и внешним
                   сервисам
                 </li>
-                <li className={styles.featureItem}>
+                <li>
                   Запускать системные модули с учётом возможностей x86-оборудования
                 </li>
               </ul>
 
-              <div className={styles.actions}>
-                <ButtonLink href="/how-to-use" className={styles.btnPrimary}>
+              <div>
+                <ButtonLink href="/how-to-use">
                   Как пользоваться
                 </ButtonLink>
-
-                <ButtonLink
-                  href={siteConfig.launcherSourceUrl}
-                  variant="secondary"
-                  className={styles.btnDownload}
-                >
+                {" "}
+                <ButtonLink href={siteConfig.launcherSourceUrl}>
                   Исходники лаунчера
                 </ButtonLink>
               </div>
             </div>
 
-            <div className={styles.imageCol}>
-              <div className={styles.imageGrid}>
+            <div>
+              <div>
                 {launcherImages.map((image) => (
-                  <div key={image.src} className={styles.imageCard}>
-                    <Image
+                  <div key={image.src}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
                       src={publicAssetPath(image.src)}
                       alt={image.alt}
                       width={520}
                       height={360}
-                      sizes="(max-width: 768px) 50vw, 25vw"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 ))}
@@ -108,7 +97,7 @@ export function LauncherSection() {
             </div>
           </div>
 
-          <div className={styles.systemReqs}>
+          <div>
             <SystemRequirements />
           </div>
         </div>

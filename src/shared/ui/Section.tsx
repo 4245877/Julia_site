@@ -1,15 +1,5 @@
-import { cn } from "@/shared/lib/cn";
+import type { ComponentPropsWithoutRef } from "react";
 
-type SectionProps = {
-  children: React.ReactNode;
-  id?: string;
-  className?: string;
-};
-
-export function Section({ children, id, className }: SectionProps) {
-  return (
-    <section id={id} className={cn("py-20", className)}>
-      {children}
-    </section>
-  );
+export function Section(props: ComponentPropsWithoutRef<"section">) {
+  return <section {...props} />;
 }

@@ -1,5 +1,3 @@
-import styles from "./SystemRequirements.module.css";
-
 const requirements = [
   {
     title: "Базовый запуск",
@@ -35,29 +33,29 @@ const requirements = [
 
 export function SystemRequirements() {
   return (
-    <section className={styles.wrapper}>
-      <div className={styles.header}>
-        <h3 className={styles.title}>Системные требования</h3>
+    <section>
+      <div>
+        <h3>Системные требования</h3>
       </div>
 
-      <p className={styles.description}>
+      <p>
         Требования зависят от выбранных модулей, размера моделей, объёма памяти
         и режима запуска. Ниже указаны ориентиры для локальной экспериментальной
         сборки.
       </p>
 
-      <div className={styles.divider}>Конфигурации</div>
+      <div>Конфигурации</div>
 
-      <div className={styles.grid}>
+      <div>
         {requirements.map((group) => (
-          <article key={group.title} className={styles.card}>
-            <div className={styles.cardHeader}>
-              <h4 className={styles.cardTitle}>{group.title}</h4>
+          <article key={group.title}>
+            <div>
+              <h4>{group.title}</h4>
             </div>
 
-            <ul className={styles.list}>
+            <ul>
               {group.items.map((item) => (
-                <li key={item} className={styles.item}>
+                <li key={item}>
                   {item}
                 </li>
               ))}

@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import "./globals.css";
-import "./fonts/inter.css";
 import { publicAssetPath, siteConfig } from "@/shared/config/site.config";
 
 const logoPath = publicAssetPath("/Logo.png");
@@ -71,7 +69,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className="site-font">
+      <body>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

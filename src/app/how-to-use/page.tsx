@@ -10,11 +10,11 @@ export const metadata: Metadata = {
 
 export default function HowToUsePage() {
   return (
-    <main className="min-h-screen bg-slate-950 py-20 text-white">
+    <main>
       <Container>
-        <h1 className="mb-6 text-4xl font-bold">Как пользоваться Julia Launcher</h1>
+        <h1>Как пользоваться Julia Launcher</h1>
 
-        <p className="mb-8 max-w-3xl text-lg leading-8 text-slate-300">
+        <p>
           Публичный установщик пока недоступен.{" "}
           <a href={siteConfig.launcherSourceUrl}>Исходный код Julia Launcher</a>{" "}
           опубликован на GitHub. На главной странице доступны системные требования

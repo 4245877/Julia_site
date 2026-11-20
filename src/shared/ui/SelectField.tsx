@@ -19,14 +19,13 @@ export function SelectField({
   onChange,
 }: SelectFieldProps) {
   return (
-    <div className="form-group">
-      <label htmlFor={id} className="font-medium text-slate-100">
+    <div>
+      <label htmlFor={id}>
         {label}
       </label>
 
       <select
         id={id}
-        className="select-input"
         value={value}
         onChange={(event) => onChange(event.target.value)}
       >

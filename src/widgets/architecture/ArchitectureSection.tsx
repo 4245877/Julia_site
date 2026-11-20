@@ -2,21 +2,19 @@ import { homeRu } from "@/content/home.ru";
 import { Container } from "@/shared/ui/Container";
 import { Section } from "@/shared/ui/Section";
 
-import styles from "./ArchitectureSection.module.css";
-
 export function ArchitectureSection() {
   return (
-    <Section id="architecture" className={styles.section}>
+    <Section id="architecture">
       <Container>
-        <div className={styles.header}>
-          <p className={styles.eyebrow}>Architecture</p>
+        <div>
+          <p>Architecture</p>
 
-          <h2 className={styles.heading}>
+          <h2>
             Не чат-бот. Не оболочка.{" "}
-            <span className={styles.headingAccent}>Когнитивная система.</span>
+            <span>Когнитивная система.</span>
           </h2>
 
-          <p className={styles.description}>
+          <p>
             Julia проектируется как многоуровневая архитектура, где отдельные
             модули отвечают за восприятие, память, внимание, внутреннее
             состояние, принятие решений и обучение на опыте. Главная цель —
@@ -25,22 +23,12 @@ export function ArchitectureSection() {
           </p>
         </div>
 
-        <div className={styles.ornamentRow} aria-hidden="true">
-          <span className={styles.ornamentLine} />
-          <span className={styles.ornamentGlyph}>✦</span>
-          <span className={styles.ornamentLine} />
-        </div>
+        <div>
+          {homeRu.architectureCards.map((card) => (
+            <article key={card.title}>
+              <h3>{card.title}</h3>
 
-        <div className={styles.grid}>
-          {homeRu.architectureCards.map((card, index) => (
-            <article className={styles.card} key={card.title}>
-              <span className={styles.cardIndex}>
-                {String(index + 1).padStart(2, "0")}
-              </span>
-
-              <h3 className={styles.cardTitle}>{card.title}</h3>
-
-              <p className={styles.cardDescription}>{card.description}</p>
+              <p>{card.description}</p>
             </article>
           ))}
         </div>
