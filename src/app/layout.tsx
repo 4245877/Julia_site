@@ -5,7 +5,7 @@ import { themeInitScript } from "@/features/theme-switcher/model/theme-script";
 import { publicAssetPath, siteConfig } from "@/shared/config/site.config";
 import { SiteHeader } from "@/widgets/site-header/SiteHeader";
 
-const logoPath = publicAssetPath("/Logo.png");
+const logoPath = publicAssetPath("/Logo.jpg");
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -14,7 +14,7 @@ const jsonLd = {
   description: siteConfig.description,
   url: siteConfig.url,
   image: `${siteConfig.url}/images/og-image.png`,
-  logo: `${siteConfig.url}/Logo.png`,
+  logo: `${siteConfig.url}/Logo.jpg`,
   applicationCategory: "AIApplication",
   operatingSystem: "Windows, macOS, Linux, Web",
   offers: {

@@ -27,7 +27,7 @@ test("exported pages link to their local assets and to each other", async () => 
   }
 
   for (const page of [home, guide]) {
-    assert.ok(page.includes(`href="${basePath}/Logo.png"`));
+    assert.ok(page.includes(`href="${basePath}/Logo.jpg"`));
     const buildAssets = [
       ...page.matchAll(/(?:src|href)="([^"]*\/_next\/static\/[^"]+)"/g),
     ];
@@ -37,7 +37,7 @@ test("exported pages link to their local assets and to each other", async () => 
       await access(new URL(asset.slice(basePath.length + 1), exported));
     }
   }
-  await access(new URL("Logo.png", exported));
+  await access(new URL("Logo.jpg", exported));
 });
 
 test("the export contains the Google site verification file and a 404 page", async () => {
