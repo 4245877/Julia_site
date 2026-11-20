@@ -1,0 +1,113 @@
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-s);
+  margin-bottom: var(--space-l);
+}
+
+.title {
+  max-width: 22ch;
+  font-size: clamp(1.625rem, 1.3rem + 1.4vw, 2.125rem);
+  line-height: 1.12;
+}
+
+.close {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: -0.375rem -0.5rem 0 0;
+  border-radius: var(--radius-pill);
+  color: var(--color-text-muted);
+  transition:
+    background-color var(--dur-linger) var(--ease-soft),
+    color var(--dur-linger) var(--ease-soft),
+    transform var(--dur-3) var(--ease-soft);
+}
+
+.close:hover {
+  background: var(--color-tint-primary);
+  color: var(--color-text);
+  transform: rotate(90deg);
+  transition-duration: var(--dur-1), var(--dur-1), var(--dur-3);
+}
+
+.details {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-xs) var(--space-s);
+  align-items: center;
+  padding: var(--space-s) var(--space-s) var(--space-s) 1.25rem;
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-l);
+  background: var(--color-field);
+  transition:
+    border-color var(--dur-linger) var(--ease-soft),
+    background-color var(--dur-linger) var(--ease-soft);
+}
+
+.detail.copied {
+  border-color: color-mix(in oklab, var(--color-success) 55%, transparent);
+  background: color-mix(in oklab, var(--color-success) 8%, var(--color-field));
+  transition-duration: var(--dur-2);
+}
+
+.detailText {
+  display: grid;
+  gap: 0.125rem;
+  min-width: 0;
+}
+
+.detailLabel {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.detailValue {
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  line-height: 1.45;
+  word-break: break-all;
+  user-select: all;
+}
+
+.copyButton {
+  min-width: 9.5rem;
+}
+
+.copied .copyButton {
+  --btn-border: var(--color-success);
+  --btn-fg: var(--color-success);
+}
+
+.status {
+  margin-top: var(--space-m);
+}
+
+.hint {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 30rem) {
+  .detail {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .copyButton {
+    width: 100%;
+  }
+}

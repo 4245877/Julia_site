@@ -1,0 +1,174 @@
+/* Size is set by the consumer through --pool-size (no specificity races
+   between CSS modules). */
+.pool {
+  position: relative;
+  width: var(--pool-size, 100%);
+  aspect-ratio: 640 / 600;
+}
+
+.svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.surfaceStopInner {
+  stop-color: var(--color-surface);
+  stop-opacity: 0.95;
+}
+
+.surfaceStopMid {
+  stop-color: var(--color-surface);
+  stop-opacity: 0.5;
+}
+
+.surfaceStopOuter {
+  stop-color: var(--color-surface);
+  stop-opacity: 0;
+}
+
+.emberStopInner {
+  stop-color: var(--color-accent);
+  stop-opacity: 0.48;
+}
+
+.emberStopOuter {
+  stop-color: var(--color-accent);
+  stop-opacity: 0;
+}
+
+/* — rings: layers of the system, slowly drifting like water — */
+
+.ring {
+  fill: none;
+  stroke: var(--color-border);
+  stroke-opacity: 0.6;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.faint {
+  stroke-opacity: 0.34;
+}
+
+.dashed {
+  stroke-dasharray: 2 9;
+  stroke-linecap: round;
+  stroke-opacity: 0.75;
+}
+
+.drift {
+  animation: pool-spin 200s linear infinite;
+}
+
+.driftBack {
+  animation: pool-spin 280s linear infinite reverse;
+}
+
+/* — threads and the signals travelling along them — */
+
+.thread {
+  stroke: var(--color-border);
+  stroke-opacity: 0.3;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.pulse {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-dasharray: 9 100;
+  stroke-dashoffset: 9;
+  vector-effect: non-scaling-stroke;
+  opacity: 0;
+  animation: pool-pulse 8.4s var(--ease-in-out) infinite;
+}
+
+/* — module nodes — */
+
+.node {
+  fill: var(--color-surface);
+  stroke: var(--color-primary);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pool-node 6.2s var(--ease-in-out) infinite;
+}
+
+.nodeFilled {
+  fill: var(--color-primary);
+}
+
+.label {
+  fill: var(--color-text-muted);
+  font-family: var(--font-text);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* — the ember at the centre — */
+
+.glow {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pool-glow 4.8s var(--ease-in-out) infinite;
+}
+
+.ember {
+  fill: var(--color-accent);
+}
+
+@media (max-width: 40rem) {
+  .label {
+    font-size: 21px;
+  }
+}
+
+@keyframes pool-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pool-pulse {
+  0% {
+    stroke-dashoffset: 9;
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.9;
+  }
+  70% {
+    opacity: 0.55;
+  }
+  100% {
+    stroke-dashoffset: -100;
+    opacity: 0;
+  }
+}
+
+@keyframes pool-node {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.22);
+  }
+}
+
+@keyframes pool-glow {
+  0%,
+  100% {
+    transform: scale(0.82);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+}

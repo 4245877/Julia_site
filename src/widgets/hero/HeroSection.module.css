@@ -1,0 +1,154 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  /* Extends under the transparent header so the haze has no seam. */
+  margin-top: calc(-1 * var(--header-h));
+  padding-top: calc(var(--header-h) + clamp(1.5rem, 0.5rem + 3vw, 3.5rem));
+  padding-bottom: clamp(3.5rem, 2rem + 5vw, 6.5rem);
+}
+
+/* A drifting haze — plum and smoke, barely there. */
+.haze {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent);
+  mask-image: linear-gradient(to bottom, #000 55%, transparent);
+}
+
+.haze::before,
+.haze::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+
+.haze::before {
+  top: -22vmax;
+  right: -14vmax;
+  width: 64vmax;
+  height: 64vmax;
+  background: radial-gradient(closest-side, var(--color-glow-primary), transparent);
+  animation: haze-drift 38s var(--ease-in-out) infinite alternate;
+}
+
+.haze::after {
+  bottom: -8vmax;
+  left: -18vmax;
+  width: 52vmax;
+  height: 52vmax;
+  background: radial-gradient(closest-side, var(--color-tint-secondary), transparent);
+  animation: haze-drift-back 46s var(--ease-in-out) infinite alternate;
+}
+
+.inner {
+  display: grid;
+  align-items: center;
+  gap: clamp(2.5rem, 1.5rem + 4vw, 4rem);
+}
+
+.copy {
+  max-width: 41rem;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: clamp(1.25rem, 1rem + 1vw, 2rem);
+  color: var(--color-primary);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+
+.title {
+  margin-bottom: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+  font-size: var(--text-h1);
+}
+
+.description {
+  max-width: 36rem;
+  color: var(--color-text-muted);
+  font-size: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  line-height: 1.65;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
+}
+
+.visual {
+  --pool-size: min(100%, 24rem);
+  justify-self: center;
+}
+
+@media (min-width: 62rem) {
+  .inner {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    min-height: min(calc(100svh - var(--header-h) - 8rem), 44rem);
+  }
+
+  .visual {
+    --pool-size: min(100%, 34rem);
+  }
+}
+
+/* A soft arrival: text settles in, one line after another. */
+@media (prefers-reduced-motion: no-preference) {
+  .eyebrow,
+  .title,
+  .description,
+  .actions {
+    animation: hero-rise 0.9s var(--ease-settle) both;
+  }
+
+  .title {
+    animation-delay: 70ms;
+  }
+
+  .description {
+    animation-delay: 140ms;
+  }
+
+  .actions {
+    animation-delay: 210ms;
+  }
+
+  .visual {
+    animation: hero-fade 1.6s var(--ease-soft) 120ms both;
+  }
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@keyframes hero-fade {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+
+@keyframes haze-drift {
+  to {
+    transform: translate(-6vmax, 4vmax) scale(1.08);
+  }
+}
+
+@keyframes haze-drift-back {
+  to {
+    transform: translate(5vmax, -3vmax) scale(0.94);
+  }
+}

@@ -1,3 +1,5 @@
+import { SegmentedControl } from "@/shared/ui/SegmentedControl";
+
 const languages = ["EN", "UA", "RU"] as const;
 
 type Language = (typeof languages)[number];
@@ -8,21 +10,28 @@ const languageTitles: Record<Language, string> = {
   RU: "Русская версия",
 };
 
-export function LanguageSwitcher() {
+const options = languages.map((language) => ({
+  value: language,
+  label: language,
+  disabled: language !== "RU",
+  title: languageTitles[language],
+  ariaLabel: languageTitles[language],
+}));
+
+type LanguageSwitcherProps = {
+  labelledBy?: string;
+  className?: string;
+};
+
+export function LanguageSwitcher({ labelledBy, className }: LanguageSwitcherProps) {
   return (
-    <div role="group" aria-label="Выбор языка">
-      {languages.map((language) => (
-        <button
-          key={language}
-          type="button"
-          disabled={language !== "RU"}
-          title={languageTitles[language]}
-          aria-label={languageTitles[language]}
-          aria-pressed={language === "RU"}
-        >
-          {language}
-        </button>
-      ))}
-    </div>
+    <SegmentedControl
+      label={labelledBy ? undefined : "Выбор языка"}
+      labelledBy={labelledBy}
+      value="RU"
+      options={options}
+      size="sm"
+      className={className}
+    />
   );
 }

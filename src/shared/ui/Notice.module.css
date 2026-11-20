@@ -1,0 +1,56 @@
+.notice {
+  --tone: var(--color-primary);
+
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.875rem;
+  align-items: start;
+  padding: 1rem 1.25rem;
+  border: 1px solid color-mix(in oklab, var(--tone) 32%, transparent);
+  border-radius: var(--radius-m);
+  background: color-mix(in oklab, var(--tone) 7%, var(--color-surface));
+}
+
+.info {
+  --tone: var(--color-primary);
+}
+
+.warning {
+  --tone: var(--color-warning);
+}
+
+.success {
+  --tone: var(--color-success);
+}
+
+.error {
+  --tone: var(--color-error);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: color-mix(in oklab, var(--tone) 15%, transparent);
+  color: var(--tone);
+}
+
+.body {
+  display: grid;
+  gap: 0.25rem;
+  padding-top: 0.2rem;
+}
+
+.title {
+  color: var(--color-text);
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.text {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}

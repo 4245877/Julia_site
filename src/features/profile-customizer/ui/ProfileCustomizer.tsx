@@ -1,8 +1,17 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState, type CSSProperties } from "react";
+import { sectionNumber } from "@/shared/config/navigation";
+import { ButtonLink } from "@/shared/ui/Button";
 import { ColorPicker } from "@/shared/ui/ColorPicker";
 import { Container } from "@/shared/ui/Container";
+import { Icon, type IconName } from "@/shared/ui/Icon";
+import { RangeField } from "@/shared/ui/RangeField";
+import { Section } from "@/shared/ui/Section";
+import { SectionHeading } from "@/shared/ui/SectionHeading";
+import { SegmentedControl } from "@/shared/ui/SegmentedControl";
+import { SelectField } from "@/shared/ui/SelectField";
+import styles from "./ProfileCustomizer.module.css";
 
 const visualStyles = [
   { value: "3d", label: "3D-модель" },
@@ -11,124 +20,81 @@ const visualStyles = [
   { value: "photorealism", label: "Фотореализм" },
 ] as const;
 
+// Swatch tones are softened to sit quietly next to the site palette.
 const hairColors = [
-  { value: "brown", label: "Коричневый" },
-  { value: "black", label: "Чёрный" },
-  { value: "blonde", label: "Блонд" },
-  { value: "red", label: "Рыжий" },
-  { value: "blue", label: "Синий" },
-  { value: "purple", label: "Фиолетовый" },
-  { value: "pink", label: "Розовый" },
-  { value: "green", label: "Зелёный" },
-  { value: "white", label: "Белый" },
-];
+  { value: "brown", label: "Коричневый", swatch: "#6b4a3a" },
+  { value: "black", label: "Чёрный", swatch: "#2b2422" },
+  { value: "blonde", label: "Блонд", swatch: "#d8bf8e" },
+  { value: "red", label: "Рыжий", swatch: "#a85b3b" },
+  { value: "blue", label: "Синий", swatch: "#5a6f91" },
+  { value: "purple", label: "Фиолетовый", swatch: "#7d5e89" },
+  { value: "pink", label: "Розовый", swatch: "#d79bb0" },
+  { value: "green", label: "Зелёный", swatch: "#6e8a69" },
+  { value: "white", label: "Белый", swatch: "#efeae3" },
+] as const;
 
 const eyeColors = [
-  { value: "brown", label: "Карий" },
-  { value: "blue", label: "Синий" },
-  { value: "green", label: "Зелёный" },
-  { value: "gray", label: "Серый" },
-  { value: "purple", label: "Фиолетовый" },
-  { value: "pink", label: "Розовый" },
-  { value: "gold", label: "Золотой" },
-  { value: "red", label: "Красный" },
+  { value: "brown", label: "Карий", swatch: "#6b4a3a" },
+  { value: "blue", label: "Синий", swatch: "#5b80a8" },
+  { value: "green", label: "Зелёный", swatch: "#6a8f6a" },
+  { value: "gray", label: "Серый", swatch: "#8d9297" },
+  { value: "purple", label: "Фиолетовый", swatch: "#7d5e89" },
+  { value: "pink", label: "Розовый", swatch: "#d79bb0" },
+  { value: "gold", label: "Золотой", swatch: "#c8a04f" },
+  { value: "red", label: "Красный", swatch: "#9e4842" },
+] as const;
+
+const ageOptions = [
+  { value: "18", label: "18 лет" },
+  { value: "20", label: "20 лет" },
+  { value: "22", label: "22 года" },
+  { value: "25", label: "25 лет" },
+  { value: "28", label: "28 лет" },
+  { value: "30", label: "30 лет" },
+  { value: "35", label: "35 лет" },
+] as const;
+
+const personalityOptions = [
+  { value: "balanced", label: "Сбалансированный" },
+  { value: "analytical", label: "Аналитический" },
+  { value: "supportive", label: "Поддерживающий" },
+  { value: "creative", label: "Креативный" },
+  { value: "formal", label: "Формальный" },
+  { value: "research", label: "Исследовательский" },
+] as const;
+
+const accentOptions = [
+  { value: "none", label: "Без акцента" },
+  { value: "russian", label: "Русский" },
+  { value: "ukrainian", label: "Украинский" },
+  { value: "belarusian", label: "Белорусский" },
+  { value: "british", label: "Британский" },
+  { value: "american", label: "Американский" },
+  { value: "french", label: "Французский" },
+  { value: "japanese", label: "Японский" },
+  { value: "caucasian", label: "Кавказский" },
+] as const;
+
+const aspects: readonly { icon: IconName; title: string; text: string }[] = [
+  {
+    icon: "image",
+    title: "Визуальный образ",
+    text: "2D, 3D, фотореалистичный или стилизованный интерфейсный персонаж.",
+  },
+  {
+    icon: "voice",
+    title: "Речь и голос",
+    text: "Тембр, скорость речи, интонация, паузы и эмоциональная окраска ответа.",
+  },
+  {
+    icon: "sliders",
+    title: "Поведенческий профиль",
+    text: "Формальность, эмпатия, инициативность, осторожность, креативность и глубина объяснений.",
+  },
 ];
 
-type SelectOption = {
-  value: string;
-  label: string;
-};
-
-type RangeControlProps = {
-  id: string;
-  label: string;
-  value: number;
-  onChange: (value: number) => void;
-  min?: number;
-  max?: number;
-  step?: number;
-  unit?: string;
-  minLabel?: string;
-  maxLabel?: string;
-};
-
-function RangeControl({
-  id,
-  label,
-  value,
-  onChange,
-  min = 0,
-  max = 100,
-  step = 1,
-  unit = "%",
-  minLabel = "0",
-  maxLabel = "100",
-}: RangeControlProps) {
-  return (
-    <div>
-      <label htmlFor={id}>
-        {label}
-      </label>
-
-      <div>
-        <div>
-          <span>{minLabel}</span>
-          <span>
-            {value}
-            {unit && ` ${unit}`}
-          </span>
-          <span>{maxLabel}</span>
-        </div>
-
-        <input
-          id={id}
-          type="range"
-          min={min}
-          max={max}
-          step={step}
-          value={value}
-          aria-valuetext={unit ? `${value} ${unit}` : String(value)}
-          onChange={(event) => onChange(Number(event.target.value))}
-        />
-      </div>
-    </div>
-  );
-}
-
-type SelectControlProps = {
-  id: string;
-  label: string;
-  value: string;
-  options: SelectOption[];
-  onChange: (value: string) => void;
-};
-
-function SelectControl({
-  id,
-  label,
-  value,
-  options,
-  onChange,
-}: SelectControlProps) {
-  return (
-    <div>
-      <label htmlFor={id}>
-        {label}
-      </label>
-
-      <select
-        id={id}
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-      >
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
-    </div>
-  );
+function labelOf(options: readonly { value: string; label: string }[], value: string) {
+  return options.find((option) => option.value === value)?.label ?? "";
 }
 
 export function ProfileCustomizer() {
@@ -154,108 +120,112 @@ export function ProfileCustomizer() {
   const [knowledge, setKnowledge] = useState(80);
   const [memory, setMemory] = useState(70);
 
-  const selectedStyleLabel = useMemo(() => {
-    return (
-      visualStyles.find((style) => style.value === visualStyle)?.label ??
-      "3D-модель"
-    );
-  }, [visualStyle]);
+  const selectedStyleLabel = labelOf(visualStyles, visualStyle) || "3D-модель";
+  const hair = hairColors.find((color) => color.value === hairColor) ?? hairColors[0];
+  const eyes = eyeColors.find((color) => color.value === eyeColor) ?? eyeColors[0];
 
   return (
-    <section id="character-customization">
+    <Section id="character-customization" aria-labelledby="customizer-title">
       <Container>
-        <div>
-          <header>
-            <span>Profile interface</span>
-
-            <h2>
+        <SectionHeading
+          index={sectionNumber("character-customization")}
+          eyebrow="Profile interface"
+          eyebrowLang="en"
+          titleId="customizer-title"
+          title={
+            <>
               Настройка <em>интерфейсной личности</em>
-            </h2>
+            </>
+          }
+          lead="Внешний образ Julia — это не основа системы, а пользовательский интерфейсный слой. Он позволяет выбрать визуальное представление, голос, стиль речи и параметры поведения, не меняя глубинную нейрокогнитивную архитектуру."
+        />
 
-            <p>
-              Внешний образ Julia — это не основа системы, а пользовательский
-              интерфейсный слой. Он позволяет выбрать визуальное представление,
-              голос, стиль речи и параметры поведения, не меняя глубинную
-              нейрокогнитивную архитектуру.
-            </p>
-          </header>
-
-          <div>
-            <article>
-              <h3>Визуальный образ</h3>
-
-              <p>
-                2D, 3D, фотореалистичный или стилизованный интерфейсный персонаж.
-              </p>
-            </article>
-
-            <article>
-              <h3>Речь и голос</h3>
-
-              <p>
-                Тембр, скорость речи, интонация, паузы и эмоциональная окраска
-                ответа.
-              </p>
-            </article>
-
-            <article>
-              <h3>Поведенческий профиль</h3>
-
-              <p>
-                Формальность, эмпатия, инициативность, осторожность, креативность
-                и глубина объяснений.
-              </p>
-            </article>
-          </div>
-
-          <div>
-            <h3>Стиль визуального слоя</h3>
-
-            <div>
-              {visualStyles.map((style) => (
-                <button
-                  type="button"
-                  key={style.value}
-                  aria-pressed={visualStyle === style.value}
-                  onClick={() => setVisualStyle(style.value)}
-                >
-                  {style.label}
-                </button>
-              ))}
-            </div>
-
-            <div>
-              <p>Превью интерфейсного образа</p>
-              <p>Выбран стиль: <em>{selectedStyleLabel}</em></p>
-            </div>
-          </div>
-
-          <div>
-            <h3>Основные настройки</h3>
-
-            <div>
+        <ul className={styles.aspects}>
+          {aspects.map((aspect) => (
+            <li key={aspect.title} className={styles.aspect}>
+              <span className={styles.aspectIcon}>
+                <Icon name={aspect.icon} size={22} />
+              </span>
               <article>
-                <h4>
+                <h3 className={styles.aspectTitle}>{aspect.title}</h3>
+                <p className={styles.aspectText}>{aspect.text}</p>
+              </article>
+            </li>
+          ))}
+        </ul>
+
+        <div className={styles.workbench}>
+          <div className={styles.styleRow}>
+            <div className={styles.styleControl}>
+              <h3 id="visual-style-title" className={styles.blockTitle}>
+                Стиль визуального слоя
+              </h3>
+              <SegmentedControl
+                labelledBy="visual-style-title"
+                value={visualStyle}
+                options={visualStyles}
+                onChange={setVisualStyle}
+                className={styles.segments}
+              />
+            </div>
+
+            <div className={styles.preview}>
+              <div
+                className={styles.orb}
+                data-style={visualStyle}
+                style={{ "--hair": hair.swatch, "--eyes": eyes.swatch } as CSSProperties}
+                aria-hidden="true"
+              >
+                <span className={styles.orbHair} />
+                <span className={styles.orbEyes} />
+              </div>
+
+              <div className={styles.previewText}>
+                <p className={styles.previewLabel}>Превью интерфейсного образа</p>
+                <p className={styles.previewStyle} aria-live="polite">
+                  Выбран стиль: <em>{selectedStyleLabel}</em>
+                </p>
+                <dl className={styles.facts}>
+                  <div>
+                    <dt>Возраст</dt>
+                    <dd>{labelOf(ageOptions, age)}</dd>
+                  </div>
+                  <div>
+                    <dt>Рост</dt>
+                    <dd>{height} см</dd>
+                  </div>
+                  <div>
+                    <dt>Волосы</dt>
+                    <dd>{hair.label}</dd>
+                  </div>
+                  <div>
+                    <dt>Глаза</dt>
+                    <dd>{eyes.label}</dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.basics}>
+            <h3 className={styles.blockTitle}>Основные настройки</h3>
+
+            <div className={styles.groups}>
+              <article className={styles.group}>
+                <h4 className={styles.groupTitle}>
+                  <Icon name="image" size={18} />
                   Визуальное представление
                 </h4>
 
-                <SelectControl
+                <SelectField
                   id="age"
                   label="Возраст интерфейсного персонажа"
                   value={age}
                   onChange={setAge}
-                  options={[
-                    { value: "18", label: "18 лет" },
-                    { value: "20", label: "20 лет" },
-                    { value: "22", label: "22 года" },
-                    { value: "25", label: "25 лет" },
-                    { value: "28", label: "28 лет" },
-                    { value: "30", label: "30 лет" },
-                    { value: "35", label: "35 лет" },
-                  ]}
+                  options={ageOptions}
                 />
 
-                <RangeControl
+                <RangeField
                   id="height"
                   label="Рост визуального образа"
                   min={140}
@@ -268,6 +238,7 @@ export function ProfileCustomizer() {
                 />
 
                 <ColorPicker
+                  name="hair-color"
                   label="Цвет волос"
                   value={hairColor}
                   options={hairColors}
@@ -275,6 +246,7 @@ export function ProfileCustomizer() {
                 />
 
                 <ColorPicker
+                  name="eye-color"
                   label="Цвет глаз"
                   value={eyeColor}
                   options={eyeColors}
@@ -282,150 +254,149 @@ export function ProfileCustomizer() {
                 />
               </article>
 
-              <article>
-                <h4>
+              <article className={styles.group}>
+                <h4 className={styles.groupTitle}>
+                  <Icon name="sliders" size={18} />
                   Поведенческий профиль
                 </h4>
 
-                <RangeControl
+                <RangeField
                   id="temperament"
                   label="Темперамент"
+                  unit="%"
                   minLabel="Спокойный"
                   maxLabel="Энергичный"
                   value={temperament}
                   onChange={setTemperament}
                 />
 
-                <RangeControl
+                <RangeField
                   id="empathy"
                   label="Эмпатия"
+                  unit="%"
                   minLabel="Сдержанная"
                   maxLabel="Выраженная"
                   value={empathy}
                   onChange={setEmpathy}
                 />
 
-                <RangeControl
+                <RangeField
                   id="formality"
                   label="Формальность речи"
+                  unit="%"
                   minLabel="Неформальная"
                   maxLabel="Официальная"
                   value={formality}
                   onChange={setFormality}
                 />
 
-                <SelectControl
+                <SelectField
                   id="personality-type"
                   label="Когнитивный профиль"
                   value={personalityType}
                   onChange={setPersonalityType}
-                  options={[
-                    { value: "balanced", label: "Сбалансированный" },
-                    { value: "analytical", label: "Аналитический" },
-                    { value: "supportive", label: "Поддерживающий" },
-                    { value: "creative", label: "Креативный" },
-                    { value: "formal", label: "Формальный" },
-                    { value: "research", label: "Исследовательский" },
-                  ]}
+                  options={personalityOptions}
                 />
               </article>
 
-              <article>
-                <h4>Голос</h4>
+              <article className={styles.group}>
+                <h4 className={styles.groupTitle}>
+                  <Icon name="voice" size={18} />
+                  Голос
+                </h4>
 
-                <RangeControl
+                <RangeField
                   id="voice-pitch"
                   label="Тембр"
+                  unit="%"
                   minLabel="Низкий"
                   maxLabel="Высокий"
                   value={voicePitch}
                   onChange={setVoicePitch}
                 />
 
-                <RangeControl
+                <RangeField
                   id="speech-speed"
                   label="Темп речи"
+                  unit="%"
                   minLabel="Медленный"
                   maxLabel="Быстрый"
                   value={speechSpeed}
                   onChange={setSpeechSpeed}
                 />
 
-                <SelectControl
+                <SelectField
                   id="accent"
                   label="Акцент"
                   value={accent}
                   onChange={setAccent}
-                  options={[
-                    { value: "none", label: "Без акцента" },
-                    { value: "russian", label: "Русский" },
-                    { value: "ukrainian", label: "Украинский" },
-                    { value: "belarusian", label: "Белорусский" },
-                    { value: "british", label: "Британский" },
-                    { value: "american", label: "Американский" },
-                    { value: "french", label: "Французский" },
-                    { value: "japanese", label: "Японский" },
-                    { value: "caucasian", label: "Кавказский" },
-                  ]}
+                  options={accentOptions}
                 />
               </article>
             </div>
           </div>
 
-          <div>
+          <div className={styles.advanced}>
             <button
               type="button"
+              className={styles.disclosure}
               aria-expanded={advancedOpen}
               aria-controls="profile-advanced-settings"
               onClick={() => setAdvancedOpen((current) => !current)}
             >
-              Дополнительные параметры
+              <span>Дополнительные параметры</span>
+              <Icon name="chevron-down" size={20} className={styles.chevron} />
             </button>
 
             {advancedOpen && (
-              <div id="profile-advanced-settings">
-                <h3>Расширенные настройки</h3>
+              <div id="profile-advanced-settings" className={styles.advancedPanel}>
+                <h3 className={styles.blockTitle}>Расширенные настройки</h3>
 
-                <div>
-                  <RangeControl
+                <div className={styles.advancedGrid}>
+                  <RangeField
                     id="initiative"
                     label="Степень инициативности"
+                    unit="%"
                     minLabel="Низкая"
                     maxLabel="Высокая"
                     value={initiative}
                     onChange={setInitiative}
                   />
 
-                  <RangeControl
+                  <RangeField
                     id="creativity"
                     label="Креативность"
+                    unit="%"
                     minLabel="Логичная"
                     maxLabel="Творческая"
                     value={creativity}
                     onChange={setCreativity}
                   />
 
-                  <RangeControl
+                  <RangeField
                     id="realism"
                     label="Допустимость естественных ошибок"
+                    unit="%"
                     minLabel="Минимальная"
                     maxLabel="Повышенная"
                     value={realism}
                     onChange={setRealism}
                   />
 
-                  <RangeControl
+                  <RangeField
                     id="knowledge"
                     label="Глубина объяснений"
+                    unit="%"
                     minLabel="Базовая"
                     maxLabel="Экспертная"
                     value={knowledge}
                     onChange={setKnowledge}
                   />
 
-                  <RangeControl
+                  <RangeField
                     id="memory"
                     label="Объём пользовательского контекста"
+                    unit="%"
                     minLabel="Короткий"
                     maxLabel="Долгий"
                     value={memory}
@@ -436,15 +407,20 @@ export function ProfileCustomizer() {
             )}
           </div>
 
-          <div>
-            <a href="#launcher">Настроить профиль Julia</a>
+          <div className={styles.footer}>
+            <ButtonLink href="#launcher" icon="arrow-right">
+              Настроить профиль Julia
+            </ButtonLink>
 
-            <p>
-              Настройки демонстрации <em>сбрасываются при перезагрузке</em>
+            <p className={styles.note}>
+              <Icon name="info" size={18} className={styles.noteIcon} />
+              <span>
+                Настройки демонстрации <em>сбрасываются при перезагрузке</em>
+              </span>
             </p>
           </div>
         </div>
       </Container>
-    </section>
+    </Section>
   );
 }

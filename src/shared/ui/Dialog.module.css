@@ -1,0 +1,113 @@
+.dialog {
+  max-width: none;
+  max-height: none;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-text);
+  overflow: visible;
+}
+
+.dialog::backdrop {
+  background: rgb(42 33 30 / 0.38);
+  background: var(--color-backdrop, rgb(42 33 30 / 0.38));
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.panel {
+  background: var(--color-surface);
+  box-shadow: var(--shadow-3), var(--highlight-top);
+  overscroll-behavior: contain;
+}
+
+/* — modal: a porcelain card in the middle — */
+
+.modal {
+  width: min(100% - 2rem, 34rem);
+  margin: auto;
+}
+
+.modal .panel {
+  max-height: calc(100dvh - 2rem);
+  overflow: auto;
+  padding: clamp(1.5rem, 1rem + 2vw, 2.25rem);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-xl);
+}
+
+.modal[data-state="open"] {
+  animation: modal-in var(--dur-4) var(--ease-settle);
+}
+
+.modal[data-state="closing"] {
+  animation: modal-out var(--dur-2) var(--ease-soft) forwards;
+}
+
+/* — sheet: lowered from the top like a noren curtain — */
+
+.sheet {
+  inset: 0 0 auto;
+  width: 100%;
+  margin: 0;
+}
+
+.sheet .panel {
+  max-height: 100dvh;
+  overflow: auto;
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+}
+
+.sheet[data-state="open"] {
+  animation: sheet-in var(--dur-4) var(--ease-settle);
+}
+
+.sheet[data-state="closing"] {
+  animation: sheet-out var(--dur-3) var(--ease-in-out) forwards;
+}
+
+.dialog[data-state="open"]::backdrop {
+  animation: backdrop-in var(--dur-4) var(--ease-soft);
+}
+
+.dialog[data-state="closing"]::backdrop {
+  animation: backdrop-out var(--dur-2) var(--ease-soft) forwards;
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.975);
+  }
+}
+
+@keyframes modal-out {
+  to {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+}
+
+@keyframes sheet-in {
+  from {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes sheet-out {
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes backdrop-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes backdrop-out {
+  to {
+    opacity: 0;
+  }
+}

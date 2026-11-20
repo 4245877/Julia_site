@@ -1,0 +1,359 @@
+/* — three aspects of the interface persona — */
+
+.aspects {
+  display: grid;
+  gap: var(--space-s);
+  margin-bottom: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+}
+
+.aspect {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-s);
+  align-items: start;
+  align-content: start;
+  padding: var(--space-m);
+  border: 1px solid var(--color-hairline-strong);
+  border-radius: var(--radius-l);
+}
+
+.aspectIcon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--color-tint-primary);
+  color: var(--color-primary);
+}
+
+.aspectTitle {
+  margin-bottom: 0.25rem;
+  font-size: 1.25rem;
+}
+
+.aspectText {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+/* — the workbench: a porcelain tray holding every control — */
+
+.workbench {
+  display: grid;
+  gap: clamp(2rem, 1.5rem + 2vw, 3rem);
+  padding: clamp(1.25rem, 0.5rem + 3vw, 3rem);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-2), var(--highlight-top);
+}
+
+.blockTitle {
+  margin-bottom: var(--space-s);
+  font-size: clamp(1.375rem, 1.25rem + 0.5vw, 1.625rem);
+  font-weight: 300;
+}
+
+.styleRow {
+  display: grid;
+  gap: var(--space-l);
+  align-items: center;
+}
+
+.styleControl {
+  container-type: inline-size;
+}
+
+/* Four styles: a 2 × 2 grid when narrow, one soft pill when there is room. */
+.styleControl .segments {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
+  border-radius: var(--radius-l);
+}
+
+.styleControl .segments > button {
+  padding-inline: 0.75rem;
+  border-radius: var(--radius-m);
+}
+
+@container (min-width: 35rem) {
+  .styleControl .segments {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    border-radius: var(--radius-pill);
+  }
+
+  .styleControl .segments > button {
+    border-radius: var(--radius-pill);
+  }
+}
+
+/* — live preview — */
+
+.preview {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-m);
+  align-items: center;
+  padding: var(--space-m);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-l);
+  background: var(--color-field);
+}
+
+.orb {
+  position: relative;
+  width: clamp(4.5rem, 3.8rem + 3vw, 6rem);
+  aspect-ratio: 1;
+}
+
+.orbHair,
+.orbEyes {
+  position: absolute;
+  border-radius: 50%;
+  transition:
+    background-color var(--dur-4) var(--ease-soft),
+    box-shadow var(--dur-4) var(--ease-soft);
+}
+
+.orbHair {
+  inset: 0 18% 18% 0;
+  background-color: var(--hair);
+}
+
+.orbEyes {
+  inset: 42% 0 0 42%;
+  background-color: var(--eyes);
+  box-shadow: 0 0 0 4px var(--color-field);
+}
+
+/* Each style renders the same palette with a different hand. */
+.orb[data-style="3d"] .orbHair,
+.orb[data-style="3d"] .orbEyes {
+  background-image: radial-gradient(
+    circle at 32% 28%,
+    rgb(255 255 255 / 0.42),
+    transparent 46%,
+    rgb(0 0 0 / 0.28) 100%
+  );
+}
+
+.orb[data-style="2d"] .orbHair,
+.orb[data-style="2d"] .orbEyes {
+  box-shadow:
+    inset 0 0 0 2px var(--color-text),
+    0 0 0 4px var(--color-field);
+}
+
+.orb[data-style="2d"] .orbHair {
+  box-shadow: inset 0 0 0 2px var(--color-text);
+}
+
+.orb[data-style="hyperrealism"] .orbHair,
+.orb[data-style="hyperrealism"] .orbEyes {
+  background-image:
+    var(--grain),
+    radial-gradient(circle at 40% 35%, rgb(255 255 255 / 0.22), transparent 55%, rgb(0 0 0 / 0.22));
+}
+
+.orb[data-style="photorealism"] .orbHair,
+.orb[data-style="photorealism"] .orbEyes {
+  background-image:
+    radial-gradient(ellipse 32% 22% at 34% 26%, rgb(255 255 255 / 0.75), transparent 70%),
+    radial-gradient(circle at 50% 40%, transparent 40%, rgb(0 0 0 / 0.32));
+}
+
+.previewText {
+  display: grid;
+  gap: 0.375rem;
+  min-width: 0;
+}
+
+.previewLabel {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+
+.previewStyle {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  font-weight: 300;
+  line-height: 1.25;
+}
+
+.previewStyle em {
+  color: var(--color-primary);
+  font-style: italic;
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  margin-top: 0.25rem;
+}
+
+.facts div {
+  display: flex;
+  gap: 0.375rem;
+  font-size: var(--text-xs);
+  line-height: 1.5;
+}
+
+.facts dt {
+  color: var(--color-text-muted);
+}
+
+.facts dt::after {
+  content: ":";
+}
+
+.facts dd {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+/* — base settings — */
+
+.groups {
+  display: grid;
+  gap: var(--space-s);
+}
+
+.group {
+  display: grid;
+  align-content: start;
+  gap: var(--space-m);
+  padding: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-l);
+  background: var(--color-field);
+}
+
+.groupTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px solid var(--color-hairline);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+}
+
+.groupTitle svg {
+  color: var(--color-primary);
+}
+
+/* — advanced disclosure — */
+
+.advanced {
+  border-block: 1px solid var(--color-hairline);
+}
+
+.disclosure {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-s);
+  width: 100%;
+  min-height: 3.5rem;
+  padding: 0.75rem var(--space-s);
+  border-radius: var(--radius-m);
+  color: var(--color-text);
+  font-weight: 700;
+  text-align: start;
+  transition: background-color var(--dur-linger) var(--ease-soft);
+}
+
+.disclosure:hover {
+  background: var(--color-tint-primary);
+  transition-duration: var(--dur-1);
+}
+
+.chevron {
+  flex: none;
+  color: var(--color-primary);
+  transition: transform var(--dur-3) var(--ease-playful);
+}
+
+.disclosure[aria-expanded="true"] .chevron {
+  transform: rotate(180deg);
+}
+
+.advancedPanel {
+  padding: var(--space-s) var(--space-s) var(--space-l);
+  animation: unfold var(--dur-4) var(--ease-settle);
+}
+
+.advancedGrid {
+  display: grid;
+  gap: var(--space-m) var(--space-xl);
+}
+
+/* — footer — */
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-s) var(--space-l);
+}
+
+.note {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.noteIcon {
+  flex: none;
+  color: var(--color-primary);
+}
+
+.note em {
+  color: var(--color-text);
+  font-style: normal;
+  font-weight: 700;
+}
+
+@media (min-width: 48rem) {
+  .advancedGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 56rem) {
+  .aspects {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .aspect {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 64rem) {
+  .styleRow {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: var(--space-xl);
+  }
+
+  .groups {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@keyframes unfold {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}

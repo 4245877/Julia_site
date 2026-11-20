@@ -1,0 +1,54 @@
+.grid {
+  display: grid;
+  gap: clamp(1rem, 0.6rem + 1.2vw, 1.5rem);
+}
+
+.card {
+  display: grid;
+  align-content: start;
+  gap: var(--space-s);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: var(--space-2xs);
+  border-radius: var(--radius-m);
+  background: var(--color-tint-primary);
+  color: var(--color-primary);
+}
+
+.title {
+  font-size: var(--text-h3);
+}
+
+.text {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  line-height: 1.65;
+}
+
+@media (min-width: 40rem) and (max-width: 63.99rem) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* The third pillar lies across the row, icon and title beside the text. */
+  .card:last-child {
+    grid-column: 1 / -1;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: var(--space-m);
+  }
+
+  .card:last-child .icon {
+    grid-row: span 2;
+  }
+}
+
+@media (min-width: 64rem) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

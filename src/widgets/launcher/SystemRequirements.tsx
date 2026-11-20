@@ -1,3 +1,6 @@
+import { cn } from "@/shared/lib/cn";
+import styles from "./SystemRequirements.module.css";
+
 const requirements = [
   {
     title: "Базовый запуск",
@@ -31,38 +34,53 @@ const requirements = [
   },
 ];
 
+/** "ОС: Windows 11" → term and value. */
+function splitSpec(item: string) {
+  const separator = item.indexOf(": ");
+  return separator === -1
+    ? { term: "", value: item }
+    : { term: item.slice(0, separator), value: item.slice(separator + 2) };
+}
+
 export function SystemRequirements() {
   return (
-    <section>
-      <div>
-        <h3>Системные требования</h3>
+    <section id="system-requirements" className={styles.requirements} aria-labelledby="system-requirements-title">
+      <div className={styles.header}>
+        <h3 id="system-requirements-title" className={styles.title}>
+          Системные требования
+        </h3>
+        <p className={styles.intro}>
+          Требования зависят от выбранных модулей, размера моделей, объёма памяти и режима
+          запуска. Ниже указаны ориентиры для локальной экспериментальной сборки.
+        </p>
       </div>
 
-      <p>
-        Требования зависят от выбранных модулей, размера моделей, объёма памяти
-        и режима запуска. Ниже указаны ориентиры для локальной экспериментальной
-        сборки.
-      </p>
+      <p className={styles.label}>Конфигурации</p>
 
-      <div>Конфигурации</div>
-
-      <div>
-        {requirements.map((group) => (
-          <article key={group.title}>
-            <div>
-              <h4>{group.title}</h4>
+      <ol className={styles.tiers}>
+        {requirements.map((group, index) => (
+          <li key={group.title} className={cn(styles.tier, index === 1 && styles.recommended)} data-reveal>
+            <div className={styles.tierHead}>
+              <span className={styles.tierIndex} aria-hidden="true">
+                {index + 1}
+              </span>
+              <h4 className={styles.tierTitle}>{group.title}</h4>
             </div>
 
-            <ul>
-              {group.items.map((item) => (
-                <li key={item}>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </article>
+            <dl className={styles.specs}>
+              {group.items.map((item) => {
+                const { term, value } = splitSpec(item);
+                return (
+                  <div key={item} className={styles.spec}>
+                    {term && <dt>{term}</dt>}
+                    <dd>{value}</dd>
+                  </div>
+                );
+              })}
+            </dl>
+          </li>
         ))}
-      </div>
+      </ol>
     </section>
   );
 }

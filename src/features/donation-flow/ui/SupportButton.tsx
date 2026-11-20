@@ -1,6 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { cn } from "@/shared/lib/cn";
+import { Button } from "@/shared/ui/Button";
+import { Dialog } from "@/shared/ui/Dialog";
+import { Icon } from "@/shared/ui/Icon";
+import { Notice } from "@/shared/ui/Notice";
+import styles from "./SupportButton.module.css";
 
 const paymentDetails = [
   {
@@ -17,29 +23,23 @@ const paymentDetails = [
   },
 ];
 
-export function SupportButton() {
+/** Card numbers read easier in groups of four; the copied value stays raw. */
+function formatForReading(value: string) {
+  return /^\d{16}$/.test(value) ? value.replace(/(\d{4})(?=\d)/g, "$1 ") : value;
+}
+
+type SupportButtonProps = {
+  className?: string;
+};
+
+export function SupportButton({ className }: SupportButtonProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [copyResult, setCopyResult] = useState<{
     value: string;
     success: boolean;
   } | null>(null);
-  const dialogRef = useRef<HTMLDialogElement>(null);
-  const triggerRef = useRef<HTMLButtonElement>(null);
   const copying = useRef(false);
   const dialogSession = useRef(0);
-
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    const trigger = triggerRef.current;
-    if (!isOpen || !dialog) return;
-
-    dialog.showModal();
-
-    return () => {
-      dialog.close();
-      trigger?.focus({ preventScroll: true });
-    };
-  }, [isOpen]);
 
   useEffect(() => {
     if (!copyResult?.success) return;
@@ -75,77 +75,74 @@ export function SupportButton() {
 
   return (
     <>
-      <button
-        ref={triggerRef}
-        type="button"
+      <Button
         aria-haspopup="dialog"
+        className={className}
+        block
         onClick={() => setIsOpen(true)}
       >
         Поддержать
-      </button>
+      </Button>
 
-      {isOpen && (
-        <dialog
-          ref={dialogRef}
-          aria-labelledby="support-modal-title"
-          onCancel={(event) => {
-            event.preventDefault();
-            closeDialog();
-          }}
-          onClick={(event) => {
-            if (event.target === event.currentTarget) closeDialog();
-          }}
-        >
-          <div>
-            <div>
-              <h2 id="support-modal-title">
-                Сумма не важна. Буду рад любой поддержке.
-              </h2>
+      <Dialog open={isOpen} onClose={closeDialog} labelledBy="support-modal-title">
+        <div className={styles.header}>
+          <h2 id="support-modal-title" className={styles.title}>
+            Сумма не важна. <em>Буду рад любой поддержке.</em>
+          </h2>
 
-              <button
-                type="button"
-                onClick={closeDialog}
-                aria-label="Закрыть окно поддержки"
-              >
-                ×
-              </button>
-            </div>
+          <button
+            type="button"
+            className={styles.close}
+            onClick={closeDialog}
+            aria-label="Закрыть окно поддержки"
+          >
+            <Icon name="close" size={22} />
+          </button>
+        </div>
 
-            <div>
-              {paymentDetails.map((detail) => {
-                const isCopied =
-                  copyResult?.success && copyResult.value === detail.value;
+        <ul className={styles.details}>
+          {paymentDetails.map((detail) => {
+            const isCopied = copyResult?.success && copyResult.value === detail.value;
 
-                return (
-                  <div key={detail.label}>
-                    <p>{detail.label}</p>
+            return (
+              <li key={detail.label} className={cn(styles.detail, isCopied && styles.copied)}>
+                <div className={styles.detailText}>
+                  <p className={styles.detailLabel}>{detail.label}</p>
+                  <p className={styles.detailValue} translate="no">
+                    {formatForReading(detail.value)}
+                  </p>
+                </div>
 
-                    <p>{detail.value}</p>
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  icon={isCopied ? "check" : "copy"}
+                  iconPosition="start"
+                  className={styles.copyButton}
+                  onClick={() => copyToClipboard(detail.value)}
+                  aria-label={
+                    isCopied
+                      ? `Реквизиты ${detail.label} скопированы`
+                      : `Скопировать ${detail.label}`
+                  }
+                >
+                  {isCopied ? "Скопировано" : "Скопировать"}
+                </Button>
+              </li>
+            );
+          })}
+        </ul>
 
-                    <button
-                      type="button"
-                      onClick={() => copyToClipboard(detail.value)}
-                      aria-label={
-                        isCopied
-                          ? `Реквизиты ${detail.label} скопированы`
-                          : `Скопировать ${detail.label}`
-                      }
-                    >
-                      {isCopied ? "Скопировано" : "Скопировать"}
-                    </button>
-                  </div>
-                );
-              })}
-            </div>
-
-            <p role="status">
-              {copyResult?.success === false
-                ? "Не удалось скопировать. Выделите реквизиты и скопируйте их вручную."
-                : "Реквизиты можно выделить и скопировать вручную."}
-            </p>
-          </div>
-        </dialog>
-      )}
+        <div role="status" className={styles.status}>
+          {copyResult?.success === false ? (
+            <Notice tone="error" title="Не удалось скопировать.">
+              Выделите реквизиты и скопируйте их вручную.
+            </Notice>
+          ) : (
+            <p className={styles.hint}>Реквизиты можно выделить и скопировать вручную.</p>
+          )}
+        </div>
+      </Dialog>
     </>
   );
 }

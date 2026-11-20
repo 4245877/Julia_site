@@ -1,36 +1,44 @@
 import { homeRu } from "@/content/home.ru";
-import { Card } from "@/shared/ui/Card";
+import { sectionNumber } from "@/shared/config/navigation";
 import { Container } from "@/shared/ui/Container";
+import { Icon, type IconName } from "@/shared/ui/Icon";
 import { Section } from "@/shared/ui/Section";
+import { SectionHeading } from "@/shared/ui/SectionHeading";
+import styles from "./FeaturesSection.module.css";
+
+const featureIcons: readonly IconName[] = ["perception", "sprout", "persona"];
 
 export function FeaturesSection() {
   return (
-    <Section id="features">
+    <Section id="features" aria-labelledby="features-title">
       <Container>
-        <div>
-          <header>
-            <div>Julia AI</div>
+        <SectionHeading
+          index={sectionNumber("features")}
+          eyebrow="Julia AI"
+          eyebrowLang="en"
+          titleId="features-title"
+          title={
+            <>
+              Ключевые возможности <em>Julia</em>
+            </>
+          }
+          lead="Инструменты, которые помогают мыслить яснее, работать быстрее и аккуратно выстраивать архитектуру решений."
+        />
 
-            <h2>
-              Ключевые возможности{" "}
-              <span>Julia</span>
-            </h2>
-
-            <p>
-              Инструменты, которые помогают мыслить яснее, работать быстрее и
-              аккуратно выстраивать архитектуру решений.
-            </p>
-          </header>
-
-          <div>
-            {homeRu.featureCards.map((card) => (
-              <Card key={card.title}>
-                <h3>{card.title}</h3>
-                <p>{card.description}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
+        <ol className={styles.list}>
+          {homeRu.featureCards.map((card, index) => (
+            <li key={card.title} className={styles.item} data-reveal>
+              <span className={styles.number} aria-hidden="true">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <div className={styles.heading}>
+                <Icon name={featureIcons[index]} size={22} className={styles.icon} />
+                <h3 className={styles.title}>{card.title}</h3>
+              </div>
+              <p className={styles.text}>{card.description}</p>
+            </li>
+          ))}
+        </ol>
       </Container>
     </Section>
   );

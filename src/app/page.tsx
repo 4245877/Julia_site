@@ -11,17 +11,19 @@ import { Footer } from "@/widgets/footer/Footer";
 
 export default function HomePage() {
   return (
-    <main>
-      <HeroSection />
-      <ArchitectureSection />
-      <BrainModelSection />
-      <RoadmapSection />
-      <FeaturesSection />
-      <TechStackSection />
-      <ProfileCustomizer />
-      <LauncherSection />
-      <DeveloperJourneySection />
-      <Footer />
-    </main>
+    <>
+      <main id="main" tabIndex={-1}>
+        <HeroSection />
+        <ArchitectureSection />
+        <BrainModelSection />
+        <RoadmapSection />
+        <FeaturesSection />
+        <TechStackSection />
+        <ProfileCustomizer />
+        <LauncherSection />
+        <DeveloperJourneySection />
+      </main>
+      <Footer home />
+    </>
   );
 }

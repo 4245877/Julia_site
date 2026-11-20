@@ -1,0 +1,12 @@
+.ember {
+  display: inline-block;
+  flex: none;
+  width: 0.4375rem;
+  height: 0.4375rem;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.live {
+  animation: ember-breathe 4.8s var(--ease-in-out) infinite;
+}

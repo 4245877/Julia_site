@@ -1,0 +1,128 @@
+.field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.label {
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.control {
+  position: relative;
+}
+
+.select {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.65rem 2.75rem 0.65rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-m);
+  background: var(--color-field);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1.3;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  transition:
+    border-color var(--dur-linger) var(--ease-soft),
+    background-color var(--dur-linger) var(--ease-soft),
+    box-shadow var(--dur-linger) var(--ease-soft);
+}
+
+.select:hover {
+  border-color: var(--color-primary);
+  background-color: var(--color-surface);
+  box-shadow: 0 0 0 4px var(--color-tint-primary);
+  transition-duration: var(--dur-2);
+}
+
+.chevron {
+  position: absolute;
+  top: 50%;
+  right: 0.9rem;
+  width: 1.125rem;
+  height: 1.125rem;
+  color: var(--color-text-muted);
+  pointer-events: none;
+  translate: 0 -50%;
+  transition: transform var(--dur-3) var(--ease-soft);
+}
+
+.control:hover .chevron {
+  color: var(--color-primary);
+}
+
+/* Progressive enhancement: a dropdown drawn in the site's own language
+   where customizable <select> is supported. */
+@supports (appearance: base-select) {
+  .select,
+  .select::picker(select) {
+    appearance: base-select;
+  }
+
+  .select {
+    display: flex;
+    align-items: center;
+  }
+
+  .select::picker-icon {
+    display: none;
+  }
+
+  .select:open + .chevron {
+    transform: rotate(180deg);
+  }
+
+  .select::picker(select) {
+    margin-block: 0.375rem;
+    padding: 0.375rem;
+    border: 1px solid var(--color-hairline-strong);
+    border-radius: var(--radius-m);
+    background: var(--color-surface);
+    color: var(--color-text);
+    box-shadow: var(--shadow-3);
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+      opacity var(--dur-2) var(--ease-soft),
+      transform var(--dur-3) var(--ease-settle),
+      overlay var(--dur-2) allow-discrete,
+      display var(--dur-2) allow-discrete;
+  }
+
+  @starting-style {
+    .select:open::picker(select) {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+  }
+
+  .select option {
+    min-height: 2.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-s);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .select option:hover,
+  .select option:focus-visible {
+    background: var(--color-tint-primary);
+    outline: none;
+  }
+
+  .select option:checked {
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .select option::checkmark {
+    color: var(--color-primary);
+  }
+}

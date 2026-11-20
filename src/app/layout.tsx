@@ -1,5 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import "./globals.css";
+import { fontSans, fontSerif } from "./fonts";
+import { themeInitScript } from "@/features/theme-switcher/model/theme-script";
 import { publicAssetPath, siteConfig } from "@/shared/config/site.config";
+import { SiteHeader } from "@/widgets/site-header/SiteHeader";
 
 const logoPath = publicAssetPath("/Logo.png");
 
@@ -62,20 +66,40 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f3eee6" },
+    { media: "(prefers-color-scheme: dark)", color: "#1f1a18" },
+  ],
+  colorScheme: "light dark",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru">
+    <html
+      lang="ru"
+      className={`${fontSerif.variable} ${fontSans.variable}`}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body>
+        <a className="skip-link" href="#main">
+          Перейти к содержанию
+        </a>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(jsonLd),
           }}
         />
+        <SiteHeader />
         {children}
       </body>
     </html>

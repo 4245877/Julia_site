@@ -1,0 +1,53 @@
+.card {
+  --card-pad: clamp(1.5rem, 1.1rem + 1.2vw, 2.125rem);
+
+  position: relative;
+  isolation: isolate;
+  padding: var(--card-pad);
+  border-radius: var(--radius-l);
+}
+
+.surface {
+  background: var(--color-surface);
+  border: 1px solid var(--color-hairline);
+  box-shadow: var(--shadow-1), var(--highlight-top);
+}
+
+.outline {
+  border: 1px solid var(--color-hairline-strong);
+}
+
+.sunken {
+  background: var(--color-field);
+  border: 1px solid var(--color-hairline);
+}
+
+/* Afterglow: a plum warmth rises from the lower edge and lingers. */
+.glow {
+  transition:
+    border-color var(--dur-linger) var(--ease-soft),
+    box-shadow var(--dur-linger) var(--ease-soft);
+}
+
+.glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(120% 85% at 50% 118%, var(--color-glow-primary), transparent 68%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-linger) var(--ease-soft);
+}
+
+.glow:hover {
+  border-color: color-mix(in oklab, var(--color-primary) 34%, var(--color-hairline));
+  box-shadow: var(--shadow-2), var(--highlight-top);
+  transition-duration: var(--dur-3);
+}
+
+.glow:hover::after {
+  opacity: 1;
+  transition-duration: var(--dur-3);
+}

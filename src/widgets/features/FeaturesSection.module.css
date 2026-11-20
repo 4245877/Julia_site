@@ -1,0 +1,90 @@
+/* An editorial list rather than another row of cards: large italic
+   numerals, hairlines, and generous air. */
+.list {
+  border-bottom: 1px solid var(--color-hairline);
+}
+
+.item {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-s) var(--space-m);
+  padding-block: clamp(1.75rem, 1.4rem + 1.5vw, 2.75rem);
+  border-top: 1px solid var(--color-hairline);
+}
+
+/* Afterglow across the row. */
+.item::after {
+  content: "";
+  position: absolute;
+  inset: 0 calc(-1 * min(var(--space-m), var(--gutter)));
+  z-index: -1;
+  border-radius: var(--radius-l);
+  background: radial-gradient(52% 100% at 42% 100%, var(--color-glow-primary), transparent 72%);
+  opacity: 0;
+  transition: opacity var(--dur-linger) var(--ease-soft);
+}
+
+.item:hover::after {
+  opacity: 1;
+  transition-duration: var(--dur-3);
+}
+
+.number {
+  min-width: 2ch;
+  color: var(--color-primary);
+  font-family: var(--font-display);
+  font-size: var(--text-numeral);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 0.9;
+  opacity: 0.55;
+  transition: opacity var(--dur-linger) var(--ease-soft);
+}
+
+/* On narrow screens the numeral sits beside the title; the text takes the
+   full width beneath them. */
+.text {
+  grid-column: 1 / -1;
+}
+
+.item:hover .number {
+  opacity: 0.9;
+  transition-duration: var(--dur-3);
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.icon {
+  flex: none;
+  color: var(--color-primary);
+}
+
+.title {
+  font-size: clamp(1.375rem, 1.2rem + 0.7vw, 1.75rem);
+  font-weight: 300;
+}
+
+.text {
+  max-width: 52ch;
+  color: var(--color-text-muted);
+  line-height: 1.65;
+}
+
+@media (min-width: 56rem) {
+  .item {
+    grid-template-columns: 7rem minmax(0, 0.9fr) minmax(0, 1.1fr);
+    align-items: baseline;
+    column-gap: clamp(1.5rem, 3vw, 3rem);
+  }
+
+  .text {
+    grid-column: auto;
+  }
+}
